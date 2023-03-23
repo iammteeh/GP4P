@@ -13,13 +13,15 @@ class DataSet(ConfigSysProxy):
     def __init__(self, folder):
         super().__init__(folder)
 
+        self.feature_length = self.get_feature_length()
+
     def parse_configs_csv(self, file):
         df = pd.read_csv(file, sep=";")
         print(df.head())
         # print(df)
         features = list(self.position_map.keys())
         configs_pd = df[features]
-        configs = [tuple(x) for x in configs_pd.values]
+        configs = [tuple(x) for x in configs_pd.values.astype(bool)]
         if not self.attribute:
             nfps = df.drop(features, axis=1)
             col = list(nfps.columns.values)[0]
@@ -29,6 +31,14 @@ class DataSet(ConfigSysProxy):
         ys = np.array(ys_pd)
         performance_map = {c: y for c, y in zip(configs, ys)}
         return performance_map
+    
+    def get_feature_length(self):
+        return len(self.all_configs.keys()[0])
+    
+    def generate_config(self, feature_length=1):
+        key = tuple(np.random.randbool(feature_length))
+        value = np.random.rand() # TODO: replace with real value within confidence interval of y
+        return {key: value}
 
 def prepare_dataset():
     data = select_data()
