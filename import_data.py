@@ -5,7 +5,7 @@ from env import DATADIR
 
 def list_sws():
     sws = []
-    for item in os.listdir('data'):
+    for item in os.listdir(DATADIR):
         if mimetypes.guess_type(item)[0] == 'application/zip':
             sws.append(DATADIR + item)
     return sws
