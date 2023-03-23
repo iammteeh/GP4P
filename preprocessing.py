@@ -1,7 +1,6 @@
 import pandas as pd
 from itertools import combinations
 from dataclasses import dataclass
-import numpy as np
 from bayesify.datahandler import ConfigSysProxy
 from import_data import select_data
 from env import MODE
