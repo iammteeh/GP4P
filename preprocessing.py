@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from bayesify.datahandler import ConfigSysProxy
 from import_data import select_data
 from env import MODE
+import numpy as np
 
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
@@ -11,6 +12,23 @@ from sklearn.model_selection import train_test_split
 class DataSet(ConfigSysProxy):
     def __init__(self, folder):
         super().__init__(folder)
+
+    def parse_configs_csv(self, file):
+        df = pd.read_csv(file, sep=";")
+        print(df.head())
+        # print(df)
+        features = list(self.position_map.keys())
+        configs_pd = df[features]
+        configs = [tuple(x) for x in configs_pd.values]
+        if not self.attribute:
+            nfps = df.drop(features, axis=1)
+            col = list(nfps.columns.values)[0]
+        else:
+            col = self.attribute
+        ys_pd = df[col]
+        ys = np.array(ys_pd)
+        performance_map = {c: y for c, y in zip(configs, ys)}
+        return performance_map
 
 def prepare_dataset():
     data = select_data()
