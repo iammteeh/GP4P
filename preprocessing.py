@@ -1,13 +1,14 @@
 import pandas as pd
 from itertools import combinations
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.model_selection import train_test_split
-
+from dataclasses import dataclass
+import numpy as np
 from bayesify.datahandler import ConfigSysProxy
 from import_data import select_data
 from env import MODE
 
-
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.model_selection import train_test_split
+@dataclass
 class DataSet(ConfigSysProxy):
     def __init__(self, folder):
         super().__init__(folder)
@@ -48,15 +49,12 @@ def add_polynomial_features(X):
             X_poly.drop(f'{a} x {b}', axis=1, inplace=True)
     return X_poly
 
-def gen_feature_model(X):
-    pass
 
 def preprocessing(ds):
     X = ds.drop('y', axis=1)
     y = ds["y"]
     model = {
-        "polynomial": add_polynomial_features(X),
-        "constrained": gen_feature_model(X)
+        "polynomial": add_polynomial_features(X)
     }
     X = model["polynomial"]
     return train_test_split(X, y, test_size=0.8)
