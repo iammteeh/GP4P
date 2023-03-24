@@ -1,13 +1,18 @@
 
 from dataclasses import dataclass
 from bayesify.datahandler import ConfigSysProxy
+import os
 import numpy as np
 import pandas as pd
 
 @dataclass
 class DataSet(ConfigSysProxy):
-    def __init__(self, folder):
-        super().__init__(folder)
+    def __init__(self, folder=None, performance_attribute=None):
+        if not os.path.isdir(folder):
+            os.mkdir(folder)
+        if not performance_attribute:
+            performance_attribute = input("Enter performance attribute (Y):\n")
+        super().__init__(folder=folder, attribute=performance_attribute)
 
         self.feature_length = self.get_feature_length()
 
