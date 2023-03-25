@@ -36,7 +36,7 @@ def select_data(sws=None):
                 print('Data set not found')
                 exit()
     data_header = {
-        'sws': sws_dir,
+        'sws_name': sws_dir,
         'sws_path': DATADIR + sws_dir,
         'measurements_file': DATADIR + sws_dir + '/measurements.csv',
         'measurements_file_cleared': DATADIR + sws_dir + '/measurements-cleared.csv',
