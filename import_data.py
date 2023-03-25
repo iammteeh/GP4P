@@ -34,7 +34,7 @@ def select_data(sws=None):
                 sws_dir = extract_zip(DATADIR + sws + '.zip')
             else:
                 print('Data set not found')
-                exit()
+                exit(1)
     data_header = {
         'sws_name': sws_dir,
         'sws_path': DATADIR + sws_dir,
