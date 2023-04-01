@@ -7,12 +7,15 @@ import pandas as pd
 
 @dataclass
 class DataSet(ConfigSysProxy):
-    def __init__(self, folder=None, performance_attribute=None):
+    def __init__(self, folder=None, performance_attribute=None, value_type=bool):
         if not os.path.isdir(folder):
             os.mkdir(folder)
         if not performance_attribute:
             performance_attribute = input("Enter performance attribute (Y):\n")
-        super().__init__(folder=folder, attribute=performance_attribute)
+
+        self.value_type = value_type
+        
+        super().__init__(folder, performance_attribute)
 
         self.feature_length = self.get_feature_length()
 
@@ -33,8 +36,11 @@ class DataSet(ConfigSysProxy):
         performance_map = {c: y for c, y in zip(configs, ys)}
         return performance_map
     
+    def update_prototype(self):
+        self.prototype_config = list(self.value_type(0) for i in list(self.position_map.keys()))
+    
     def get_feature_length(self):
-        return len(self.all_configs.keys()[0])
+        return len(list(self.all_configs.keys())[0])
     
     def generate_config(self, feature_length=1):
         key = tuple(np.random.randbool(feature_length))
