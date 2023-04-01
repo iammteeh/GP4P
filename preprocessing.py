@@ -1,18 +1,20 @@
-from dataset_class import DataSet
-import pandas as pd
-from itertools import combinations
+from domain.dataset import DataSet
+from env import MODE, MODELDIR, X_val, Y
 from import_data import select_data
-from env import MODE
-import numpy as np
 
+import pandas as pd
+import numpy as np
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
+
+from itertools import combinations
 
 
 def prepare_dataset():
     data = select_data()
     if MODE != "simple":
-        return DataSet(folder=data['sws_path'])
+        #folder = MODELDIR + data['sws_name']
+        return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_val)
     else:
         return pd.read_csv(data['measurements_file_cleared'], sep=';')
     
