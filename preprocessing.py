@@ -9,7 +9,6 @@ from sklearn.model_selection import train_test_split
 
 from itertools import combinations
 
-
 def prepare_dataset():
     data = select_data()
     if MODE != "simple":
@@ -47,14 +46,22 @@ def add_polynomial_features(X):
             X_poly.drop(f'{a} x {b}', axis=1, inplace=True)
     return X_poly
 
-
-def preprocessing(ds):
-    X = ds.drop('y', axis=1)
-    y = ds["y"]
+def add_features(X, extra_ft):
     model = {
+        "none": X,
         "polynomial": add_polynomial_features(X)
     }
-    X = model["polynomial"]
-    return train_test_split(X, y, test_size=0.8)
+    return model[extra_ft]
 
-# add check if ds is consistent to a panda dataframe
+def preprocessing(ds, extra_ft):
+    if type(ds) is DataSet:
+        df = ds.get_measurement_df()
+    else:
+        df = ds
+    # use pandas dataframe methods
+    X = df.drop('y', axis=1)
+    y = df["y"]
+    # add extrafunctional feature model
+    X = add_features(X, extra_ft)
+
+    return train_test_split(X, y, test_size=0.8)

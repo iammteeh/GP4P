@@ -14,7 +14,7 @@ import seaborn as sns
 # if MODE == "simple": panda dataframe
 # if MODE != "simple": 
 ds = prepare_dataset()
-X_train, X_test, y_train, y_test = preprocessing(ds)
+X_train, X_test, y_train, y_test = preprocessing(ds, "none")
 
 print(X_train.head())
 print(X_test.head())
