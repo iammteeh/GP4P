@@ -1,5 +1,7 @@
 import pandas as pd
 from itertools import combinations
+from domain.model import Model
+from regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from preprocessing import prepare_dataset, preprocessing
@@ -9,29 +11,29 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, 
 import decimal
 #import matplotlib.pyplot
 import seaborn as sns 
+import time
 
 # see env.py for mode
 # if MODE == "simple": panda dataframe
 # if MODE != "simple": 
 ds = prepare_dataset()
-X_train, X_test, y_train, y_test = preprocessing(ds, "none")
+X_train, X_test, y_train, y_test = preprocessing(ds, extra_ft="none")
+model = Model("linear", ["r2", "mape"], ds, y_test)
 
-print(X_train.head())
-print(X_test.head())
-print(y_train.head())
-print(y_test.head())
+with Regression(X_train, X_test, y_train, model.method) as regression:
+    print(f"fit with {regression.method}")
+    start = time.time()
+    regression.fit()
+    end = time.time()
+    print(f"Finished fitting in {end - start :.2f} seconds")
 
-LR = linear_model.LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
-#Lasso = linear_model.Lasso(alpha=0.01, max_iter=1000, copy_X=True, fit_intercept=True, normalize=False, positive=False, precompute=False, random_state=None, selection='cyclic', tol=0.0001, warm_start=False)
-Lasso = linear_model.Lasso(alpha=0.01)
-Lasso.fit(X_train, y_train)
+    y_pred = regression.predict()
+    coef = regression.get_coef()
 
-y_pred = Lasso.predict(X_test)
-r2 = r2_score(y_test, y_pred)
-print(r2)
+    model.y_pred = y_pred
+    model.coef = coef
 
-print(f"Coefficients: \n {Lasso.coef_}")
-print(f"MAPE: {mean_absolute_percentage_error(y_test, y_pred)}")
+print(model.test_evaluation())
 
 
 #plt.scatter(X_test.iloc[:,0], y_test)
