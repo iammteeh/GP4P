@@ -7,7 +7,7 @@ import pandas as pd
 
 @dataclass
 class DataSet(ConfigSysProxy):
-    def __init__(self, folder=None, performance_attribute=None, value_type=bool):
+    def __init__(self, folder=None, performance_attribute=None, value_type=bool): #num|mixed
         if not os.path.isdir(folder):
             os.mkdir(folder)
         if not performance_attribute:
@@ -25,7 +25,7 @@ class DataSet(ConfigSysProxy):
         # print(df)
         features = list(self.position_map.keys())
         configs_pd = df[features]
-        configs = [tuple(x) for x in configs_pd.values.astype(bool)]
+        configs = [tuple(x) for x in configs_pd.values.astype(self.value_type)]
         if not self.attribute:
             nfps = df.drop(features, axis=1)
             col = list(nfps.columns.values)[0]
