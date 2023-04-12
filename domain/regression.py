@@ -4,6 +4,7 @@ from typing import Any, Optional, Type
 
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
+from gplearn.genetic import SymbolicRegressor
 
 class Regression:
     def __init__(self, X_train, X_test, y_train, method=None):
@@ -17,6 +18,8 @@ class Regression:
             return linear_model.LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
         elif method == "lasso":
             return linear_model.Lasso(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "ridge":
+            return linear_model.Ridge(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
 
     def __enter__(self):
         return self
