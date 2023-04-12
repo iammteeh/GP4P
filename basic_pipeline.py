@@ -1,5 +1,6 @@
 import pandas as pd
 from itertools import combinations
+from env import REGRESSION
 from domain.model import Model
 from domain.regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
@@ -18,7 +19,7 @@ import time
 # if MODE != "simple": 
 ds = prepare_dataset()
 X_train, X_test, y_train, y_test = preprocessing(ds, extra_ft="none")
-model = Model("linear", ["r2", "mape"], ds, y_test)
+model = Model(REGRESSION, ["mse", "mape", "r2"], ds, y_test)
 
 with Regression(X_train, X_test, y_train, model.method) as regression:
     print(f"fit with {regression.method}")
@@ -28,10 +29,16 @@ with Regression(X_train, X_test, y_train, model.method) as regression:
     print(f"Finished fitting in {end - start :.2f} seconds")
 
     y_pred = regression.predict()
-    coef = regression.get_coef()
+    if REGRESSION == "symbolic":
+        program = regression.get_program()
+        model.program = program
+        print(f"regression program: {program}")
+    else:
+        coef = regression.get_coef()
+        model.coef = coef
+        print(f"regression coefficients: {coef}")
 
     model.y_pred = y_pred
-    model.coef = coef
 
 print(model.test_evaluation())
 
