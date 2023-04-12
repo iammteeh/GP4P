@@ -18,28 +18,33 @@ def extract_zip(zip_file):
         return path.name
 
 def select_data(sws=None):
-    sws_dir = ""
+    selected_sws = ""
     if not sws:
         sws = list_sws()
         for i, sys in enumerate(sws):
             print(i, sys)
         choice = int(input('Select a data set: '))
         if not os.path.isdir(DATADIR + sws[choice].split('/')[-1].split('.')[0]):
-            sws_dir = extract_zip(sws[choice])
+            selected_sws = extract_zip(sws[choice])
         else:
-            sws_dir = sws[choice].split('/')[-1].split('.')[0]
+            selected_sws = sws[choice].split('/')[-1].split('.')[0]
     else:
+        print(f"Checking if {sws} isn't already extracted")
         if not os.path.isdir(DATADIR + '/' + sws):
-            if sws in list_sws():
-                sws_dir = extract_zip(DATADIR + sws + '.zip')
+            print(list_sws())
+            if DATADIR + sws + '.zip' in list_sws():
+                print(f"Found {sws} in {DATADIR}")
+                selected_sws = extract_zip(DATADIR + sws + '.zip')
             else:
                 print('Data set not found')
                 exit(1)
+        else:
+            selected_sws = sws
     data_header = {
-        'sws_name': sws_dir,
-        'sws_path': DATADIR + sws_dir,
-        'measurements_file': DATADIR + sws_dir + '/measurements.csv',
-        'measurements_file_cleared': DATADIR + sws_dir + '/measurements-cleared.csv',
-        'featuremodel': DATADIR + sws_dir + '/featuremodel.xml',
+        'sws_name': selected_sws,
+        'sws_path': DATADIR + selected_sws,
+        'measurements_file': DATADIR + selected_sws + '/measurements.csv',
+        'measurements_file_cleared': DATADIR + selected_sws + '/measurements-cleared.csv',
+        'featuremodel': DATADIR + selected_sws + '/featuremodel.xml',
     }
     return data_header
