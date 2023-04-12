@@ -29,6 +29,14 @@ class Model:
     def coef(self, coef):
         self.data.coef = coef
 
+    @property
+    def program(self):
+        return self.data.program
+    
+    @program.setter
+    def program(self, program):
+        self.data.program = program
+
     def eval(self):
             if "mse" in self.metrics and "mse" not in self._evaluation.keys():
                 self._evaluation["mse"] = mean_squared_error(self.y_test, self.y_pred)
