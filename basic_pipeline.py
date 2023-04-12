@@ -1,7 +1,7 @@
 import pandas as pd
 from itertools import combinations
 from domain.model import Model
-from regression import Regression
+from domain.regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
 from preprocessing import prepare_dataset, preprocessing
