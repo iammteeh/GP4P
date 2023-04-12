@@ -20,6 +20,8 @@ class Regression:
             return linear_model.Lasso(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "ridge":
             return linear_model.Ridge(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "elastic":
+            return linear_model.ElasticNet(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
 
     def __enter__(self):
         return self
