@@ -31,7 +31,7 @@ def select_data(sws=None):
     else:
         print(f"Checking if {sws} isn't already extracted")
         if not os.path.isdir(DATADIR + '/' + sws):
-            print(list_sws())
+            print(f"available sws: {list_sws()}")
             if DATADIR + sws + '.zip' in list_sws():
                 print(f"Found {sws} in {DATADIR}")
                 selected_sws = extract_zip(DATADIR + sws + '.zip')
