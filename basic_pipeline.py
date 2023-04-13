@@ -14,6 +14,7 @@ import decimal
 import seaborn as sns 
 import time
 
+
 # see env.py for mode
 # if MODE == "simple": panda dataframe
 # if MODE != "simple": 
@@ -24,11 +25,14 @@ model = Model(REGRESSION, ["mse", "mape", "r2"], ds, y_test)
 with Regression(X_train, X_test, y_train, model.method) as regression:
     print(f"fit with {regression.method}")
     start = time.time()
+    
     regression.fit()
+    
     end = time.time()
     print(f"Finished fitting in {end - start :.2f} seconds")
 
     y_pred = regression.predict()
+    
     if REGRESSION == "symbolic":
         program = regression.get_program()
         model.program = program
@@ -40,7 +44,10 @@ with Regression(X_train, X_test, y_train, model.method) as regression:
 
     model.y_pred = y_pred
 
-print(model.test_evaluation())
+print(model.eval())
+if REGRESSION == "symbolic":
+    #features = domain.dependence_graph.get_features()
+    print(model.plot_symbolic_program())
 
 
 #plt.scatter(X_test.iloc[:,0], y_test)
