@@ -1,5 +1,5 @@
 from domain.dataset import DataSet
-from env import MODE, MODELDIR, X_val, Y
+from env import SWS, MODE, MODELDIR, X_val, Y
 from import_data import select_data
 
 import pandas as pd
@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 from itertools import combinations
 
 def prepare_dataset():
-    data = select_data()
+    data = select_data(SWS)
     if MODE != "simple":
         #folder = MODELDIR + data['sws_name']
         return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_val)
@@ -52,6 +52,7 @@ def add_features(X, extra_ft):
         "polynomial": add_polynomial_features(X)
     }
     return model[extra_ft]
+
 
 def preprocessing(ds, extra_ft):
     if type(ds) is DataSet:
