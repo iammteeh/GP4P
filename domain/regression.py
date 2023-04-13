@@ -25,8 +25,8 @@ class Regression:
         elif method == "symbolic":
             self.X_train = self.X_train.astype(float)
             self.X_test = self.X_test.astype(float)
-            return SymbolicRegressor(population_size=500,
-                            generations=10, stopping_criteria=0.01,
+            return SymbolicRegressor(population_size=5000,
+                            generations=100, stopping_criteria=0.01,
                             p_crossover=0.7, p_subtree_mutation=0.1,
                             p_hoist_mutation=0.05, p_point_mutation=0.1,
                             max_samples=0.9, verbose=1,
