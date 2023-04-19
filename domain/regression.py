@@ -22,6 +22,12 @@ class Regression:
             return linear_model.Ridge(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "elastic":
             return linear_model.ElasticNet(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "lars":
+            return linear_model.Lars(copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "LassoCV":
+            return linear_model.LassoCV(alphas=[0.1, 1.0, 10.0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "RidgeCV":
+            return linear_model.RidgeCV(alphas=[0.1, 1.0, 10.0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "symbolic":
             self.X_train = self.X_train.astype(float)
             self.X_test = self.X_test.astype(float)
