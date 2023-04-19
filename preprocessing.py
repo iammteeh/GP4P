@@ -1,5 +1,5 @@
 from domain.dataset import DataSet
-from env import SWS, MODE, MODELDIR, X_val, Y
+from env import SWS, MODE, MODELDIR, X_val, POLY_DEGREE, Y
 from import_data import select_data
 
 import pandas as pd
@@ -35,7 +35,7 @@ def poly_feature_names(sklearn_feature_name_output, df):
 
 # begin preprocessing
 def add_polynomial_features(X):
-    poly = PolynomialFeatures(2)
+    poly = PolynomialFeatures(POLY_DEGREE)
     X_poly = poly.fit_transform(X)
     target_feature_names = [' x '.join(['{}'.format(pair[0],pair[1]) for pair in tuple if pair[1] != 0 ]) for tuple in [zip(X.columns,p) for p in poly.powers_]]
     X_poly = pd.DataFrame(X_poly, columns = target_feature_names)
