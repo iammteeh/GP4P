@@ -1,7 +1,7 @@
 
 from types import TracebackType
 from typing import Any, Optional, Type
-
+import numpy as np
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
 from gplearn.genetic import SymbolicRegressor, SymbolicTransformer
@@ -66,5 +66,20 @@ class Regression:
     def get_coef(self):
         return self.method.coef_
     
+    def get_significant_coef(self, threshold=0.01):
+        significant_coefficients_indices = np.where(np.abs(self.method.coef_) > threshold)[0]
+        return self.method.coef_[significant_coefficients_indices]
+    
+    def get_feature_coefficients(self):
+        coef = self.get_coef()
+        feature_names = self.X_train.columns
+        return dict(zip(feature_names, coef))
+    
+    def get_significant_features(self, threshold=0.01):
+        significant_coefs = self.get_significant_coef(threshold)
+        feature_names = self.X_train.columns
+        significant_feature_names = [feature_names[i] for i in np.where(np.abs(self.method.coef_) > threshold)[0]]
+        return dict(zip(significant_feature_names, significant_coefs))
+  
     def get_program(self):
         return self.method._program
