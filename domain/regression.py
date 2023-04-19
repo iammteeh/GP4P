@@ -70,6 +70,9 @@ class Regression:
         significant_coefficients_indices = np.where(np.abs(self.method.coef_) > threshold)[0]
         return self.method.coef_[significant_coefficients_indices]
     
+    def get_intercept(self):
+        return self.method.intercept_
+    
     def get_feature_coefficients(self):
         coef = self.get_coef()
         feature_names = self.X_train.columns
