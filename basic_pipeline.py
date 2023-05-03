@@ -1,6 +1,6 @@
 import pandas as pd
 from itertools import combinations
-from env import REGRESSION
+from env import REGRESSOR, REGRESSION_PENALTY,COEFFICIENT_THRESHOLD
 from domain.model import Model
 from domain.regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
@@ -19,10 +19,10 @@ import time
 # if MODE == "simple": panda dataframe
 # if MODE != "simple": 
 ds = prepare_dataset()
-X_train, X_test, y_train, y_test = preprocessing(ds, extra_ft="polynomial")
-model = Model(REGRESSION, ["mse", "mape", "r2"], ds, y_test)
+X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "robust")
+model = Model(REGRESSOR, ["mse_relative_to_mean", "mse_relative_to_variance", "mape", "r2"], ds, y_test)
 #print(f"perform regression with {model.method}, {model.metrics} with {X_train.shape[1]} features: {X_train.columns}")
-with Regression(X_train, X_test, y_train, model.method) as regression:
+with Regression(X_train, X_test, y_train, model.method, REGRESSION_PENALTY) as regression:
     # first do some linear regression to shrink the model
     print(f"fit with {regression.method}")
     start = time.time()
@@ -34,12 +34,11 @@ with Regression(X_train, X_test, y_train, model.method) as regression:
 
     y_pred = regression.predict()
     
-    threshold = 1
     coef = regression.get_coef()
-    significant_coef = regression.get_significant_coef(threshold)
+    significant_coef = regression.get_significant_coef(COEFFICIENT_THRESHOLD)
     intercept = regression.get_intercept()
     feature_coefficients = regression.get_feature_coefficients()
-    significant_features = regression.get_significant_features(threshold)
+    significant_features = regression.get_significant_features(COEFFICIENT_THRESHOLD)
     new_features = significant_features.keys()
     model.coef = coef
     #print(f"regression coefficients: {coef} ({len(coef)} coefficients) \n")
@@ -51,18 +50,6 @@ with Regression(X_train, X_test, y_train, model.method) as regression:
 
     model.y_pred = y_pred
     print(model.eval())
-
-# then do symbolic regression to get a regression tree
-#REGRESSION = "symbolic"
-#X_train = X_train[new_features]
-#X_test = X_test[new_features]
-#with Regression(X_train, X_test, y_train, REGRESSION) as regression:
-#    regression.fit()
-#    program = regression.get_program()
-#    model.program = program
-#    print(f"regression program: {program}")
-#    print(model.plot_symbolic_program())
-
 
 #plt.scatter(X_test.iloc[:,0], y_test)
 #plt.plot(X_test.iloc[:,0], y_pred)
