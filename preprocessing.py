@@ -5,6 +5,7 @@ from import_data import select_data
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import PolynomialFeatures
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
 from sklearn.model_selection import train_test_split
 
 from itertools import combinations
@@ -34,8 +35,8 @@ def poly_feature_names(sklearn_feature_name_output, df):
     return feat_string.replace(" "," x ").split(',') 
 
 # begin preprocessing
-def add_polynomial_features(X):
-    poly = PolynomialFeatures(POLY_DEGREE)
+def add_polynomial_features(X, degree=POLY_DEGREE):
+    poly = PolynomialFeatures(degree=degree, interaction_only=True)
     X_poly = poly.fit_transform(X)
     target_feature_names = [' x '.join(['{}'.format(pair[0],pair[1]) for pair in tuple if pair[1] != 0 ]) for tuple in [zip(X.columns,p) for p in poly.powers_]]
     X_poly = pd.DataFrame(X_poly, columns = target_feature_names)
@@ -49,12 +50,25 @@ def add_polynomial_features(X):
 def add_features(X, extra_ft):
     model = {
         "none": X,
-        "polynomial": add_polynomial_features(X)
+        "polynomial": add_polynomial_features(X, degree=POLY_DEGREE),
+        "2_poly": add_polynomial_features(X, degree=2),
+        "3_poly": add_polynomial_features(X, degree=3)
     }
     return model[extra_ft]
 
+def scale_features(X, scaler):
+    model = {
+        "none": X,
+        "standard": scaler.fit_transform(X),
+        "minmax": scaler.fit_transform(X),
+        "robust": scaler.fit_transform(X)
+    }
+    return model[scaler]
 
-def preprocessing(ds, extra_ft):
+def store_model():
+    pass 
+
+def preprocessing(ds, extra_ft, scaler):
     if type(ds) is DataSet:
         df = ds.get_measurement_df()
     else:
@@ -64,5 +78,7 @@ def preprocessing(ds, extra_ft):
     y = df["y"]
     # add extrafunctional feature model
     X = add_features(X, extra_ft)
+    # scale features
+    X = scale_features(X, scaler)
 
     return train_test_split(X, y, test_size=0.8)
