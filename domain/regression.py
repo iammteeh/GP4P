@@ -2,32 +2,46 @@
 from types import TracebackType
 from typing import Any, Optional, Type
 import numpy as np
-from sklearn import linear_model
+from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin
+from sklearn import linear_model, svm, tree, ensemble, neighbors, naive_bayes, discriminant_analysis, gaussian_process
+from sklearn.cross_decomposition import PLSRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
 from gplearn.genetic import SymbolicRegressor, SymbolicTransformer
 
 class Regression:
-    def __init__(self, X_train, X_test, y_train, method=None):
+    def __init__(self, X_train, X_test, y_train, method=None, alphas=None):
         self.X_train = X_train
         self.X_test = X_test
         self.y_train = y_train
-        self.method = self.set_method(method)
+        self.method = self.set_method(method, alphas)
     
-    def set_method(self, method):
+    def set_method(self, method, alphas):
         if method == "linear":
             return linear_model.LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
         elif method == "lasso":
-            return linear_model.Lasso(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.Lasso(alpha=alphas[0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "ridge":
-            return linear_model.Ridge(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.Ridge(alpha=alphas[0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "elastic":
-            return linear_model.ElasticNet(alpha=0.01, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.ElasticNet(alpha=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "lars":
-            return linear_model.Lars(copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.Lars(copy_X=True, fit_intercept=True, normalize=False, verbose=1)
+        elif method == "LarsCV":
+            return linear_model.LarsCV(copy_X=True, fit_intercept=True, normalize=True, verbose=1)
         elif method == "LassoCV":
-            return linear_model.LassoCV(alphas=[0.1, 1.0, 10.0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.LassoCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "RidgeCV":
-            return linear_model.RidgeCV(alphas=[0.1, 1.0, 10.0], max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.RidgeCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "ElasticNetCV":
+            return linear_model.ElasticNetCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "BayesianRidge":
+            return linear_model.BayesianRidge(copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "ARDRegression":
+            return linear_model.ARDRegression(copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "SGDRegressor":
+            return linear_model.SGDRegressor(max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+        elif method == "PLS":
+            return PLSRegression(n_components=16, scale=True, max_iter=9999, tol=1e-06, copy=True)
         elif method == "symbolic":
             self.X_train = self.X_train.astype(float)
             self.X_test = self.X_test.astype(float)
@@ -46,6 +60,8 @@ class Regression:
                             p_hoist_mutation=0.05, p_point_mutation=0.1,
                             max_samples=0.9, verbose=1,
                             parsimony_coefficient=0.01, random_state=42, n_jobs=8)
+        else:
+            raise ValueError("no such method")
 
     def __enter__(self):
         return self
