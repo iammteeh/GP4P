@@ -1,6 +1,6 @@
 
 from dataclasses import dataclass
-from bayesify.datahandler import ConfigSysProxy
+from bayesify.datahandler import ConfigSysProxy, DistBasedRepo
 import os
 import numpy as np
 import pandas as pd
@@ -40,11 +40,14 @@ class DataSet(ConfigSysProxy):
         configs = self.get_all_config_df()
         config_attrs = pd.DataFrame(list(self.all_configs.values()), columns=["y"])
         df_configs = pd.concat([configs, config_attrs], axis=1)
-        return df_configs
+        return df_configs        
 
     def update_prototype(self):
         self.prototype_config = list(self.value_type(0) for i in list(self.position_map.keys()))
     
+    def get_feature_names(self):
+        return pd.DataFrame(list(self.all_configs.values()), columns=["y"])
+
     def get_feature_length(self):
         return len(list(self.all_configs.keys())[0])
     
