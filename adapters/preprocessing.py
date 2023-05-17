@@ -1,20 +1,33 @@
 from domain.dataset import DataSet
-from env import SWS, MODE, MODELDIR, X_val, POLY_DEGREE, Y
-from import_data import select_data
+from domain.env import SWS, MODE, MODELDIR, X_type, POLY_DEGREE, Y
+from adapters.import_data import select_data
 
 import pandas as pd
 import numpy as np
+import seaborn as sns
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
 from sklearn.model_selection import train_test_split
 
 from itertools import combinations
 
-def prepare_dataset():
+def prepare_dataset(dummy_data=False):
+    if dummy_data:
+        tips = sns.load_dataset("tips")
+        tips = pd.get_dummies(tips)
+        y = tips["tip"]
+        feature_names = ["total_bill", "sex_Male", "smoker_Yes", "size"]
+        X = tips[feature_names]
+        return {
+            "X": X, 
+            "feature_names":feature_names, 
+            "y": y
+            }
+
     data = select_data(SWS)
     if MODE != "simple":
         #folder = MODELDIR + data['sws_name']
-        return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_val)
+        return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_type)
     else:
         return pd.read_csv(data['measurements_file_cleared'], sep=';')
     
@@ -56,29 +69,45 @@ def add_features(X, extra_ft):
     }
     return model[extra_ft]
 
-def scale_features(X, scaler):
+def scale_features(X, y, scaler):
+    if scaler == "standard":
+        scaler = StandardScaler()
+    elif scaler == "minmax":
+        scaler = MinMaxScaler()
+    elif scaler == "robust":
+        scaler = RobustScaler()
     model = {
         "none": X,
-        "standard": scaler.fit_transform(X),
-        "minmax": scaler.fit_transform(X),
-        "robust": scaler.fit_transform(X)
+        "standard": scaler.fit_transform(X, y),
+        "minmax": scaler.fit_transform(X, y),
+        "robust": scaler.fit_transform(X, y)
     }
-    return model[scaler]
+    return model
 
 def store_model():
     pass 
 
 def preprocessing(ds, extra_ft, scaler):
+    print("Preprocessing...")
     if type(ds) is DataSet:
-        df = ds.get_measurement_df()
+        df = ds.get_measurement_df()    
+        X = df.drop('y', axis=1)
+        y = df["y"]
     else:
         df = ds
+        X = df["X"]
+        y = df["y"]
     # use pandas dataframe methods
-    X = df.drop('y', axis=1)
-    y = df["y"]
+
     # add extrafunctional feature model
+    print(f"applying extrafunctional feature model: {extra_ft} (takes a while..)")
     X = add_features(X, extra_ft)
     # scale features
-    X = scale_features(X, scaler)
-
+    #print(f"apply {scaler} Scaling")
+    #X = scale_features(X, y, scaler)
+    # convert to ndarray
+    X = np.array(X.iloc[:])
+    y = np.array(y.iloc[:])
+    print("Preprocessing done!")
+    # split data
     return train_test_split(X, y, test_size=0.8)

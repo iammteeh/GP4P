@@ -5,9 +5,10 @@ DATADIR = PWD + '/rawdata/'
 MODELDIR = PWD + '/modeldata/'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
-X_val = bool
-POLY_DEGREE = 4
+DUMMY_DATA = True
+X_type = float # for mcmc=float for probit=bool
+POLY_DEGREE = 3
 Y = "energy"
-REGRESSION = "lasso"
-REGRESSION_PENALTY = 0.1
-SIGNIFICANCE_THRESHOLD = 0.05
+REGRESSION = "PLS"
+REGRESSION_PENALTY = [0.1, 1, 10]
+COEFFICIENT_THRESHOLD = 3

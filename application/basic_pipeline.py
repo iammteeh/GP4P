@@ -1,11 +1,11 @@
 import pandas as pd
 from itertools import combinations
-from env import REGRESSOR, REGRESSION_PENALTY,COEFFICIENT_THRESHOLD
+from domain.env import REGRESSOR, REGRESSION_PENALTY,COEFFICIENT_THRESHOLD
 from domain.model import Model
 from domain.regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.model_selection import train_test_split
-from preprocessing import prepare_dataset, preprocessing
+from adapters.preprocessing import prepare_dataset, preprocessing
 import statsmodels.api as stats
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve

@@ -1,7 +1,7 @@
 import os
 import mimetypes
 import zipfile
-from env import DATADIR
+from domain.env import DATADIR
 
 def list_sws():
     sws = []
