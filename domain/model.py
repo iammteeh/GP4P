@@ -44,6 +44,12 @@ class Model:
             if "mse" in self.metrics and "mse" not in self._evaluation.keys():
                 self._evaluation["mse"] = mean_squared_error(self.y_test, self.y_pred)
                 self.eval()
+            elif "mse_relative_to_mean" in self.metrics and "mse_relative_to_mean" not in self._evaluation.keys():
+                self._evaluation["mse_relative_to_mean"] = mean_squared_error(self.y_test, self.y_pred) / np.mean(self.y_test)
+                self.eval()
+            elif "mse_relative_to_variance" in self.metrics and "mse_relative_to_variance" not in self._evaluation.keys():
+                self._evaluation["mse_relative_to_variance"] = mean_squared_error(self.y_test, self.y_pred) / np.var(self.y_test)
+                self.eval()
             elif "mape" in self.metrics and "mape" not in self._evaluation.keys():
                 self._evaluation["mape"] = mean_absolute_percentage_error(self.y_test, self.y_pred)
                 self.eval()
