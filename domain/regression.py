@@ -7,6 +7,10 @@ from sklearn import linear_model, svm, tree, ensemble, neighbors, naive_bayes, d
 from sklearn.cross_decomposition import PLSRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
 from gplearn.genetic import SymbolicRegressor, SymbolicTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.base import BaseEstimator, TransformerMixin
+import pymc3 as pm
+from scipy.stats import norm
 
 class Regression:
     def __init__(self, X_train, X_test, y_train, method=None, alphas=None):
@@ -102,3 +106,95 @@ class Regression:
   
     def get_program(self):
         return self.method._program
+    
+    #def get_regression_spectrum(self, X, y, feature_names, n_steps=50, cv=5, n_jobs=5)
+    
+    #def weighted_avg_and_std(values, weights, gamma)
+
+    #def get_prior_weighted_normal(self, X, y, rv_names, gamma, stddev_multiplier)
+    
+class P4extended():
+    pass
+
+
+
+class ProbitRegressor(LogisticRegression):
+    def __init__(
+        self,
+        penalty="l2",
+        *,
+        dual=False,
+        tol=1e-4,
+        C=1.0,
+        fit_intercept=True,
+        intercept_scaling=1,
+        class_weight=None,
+        random_state=None,
+        solver="lbfgs",
+        max_iter=100,
+        multi_class="auto",
+        verbose=1,
+        warm_start=False,
+        n_jobs=10,
+        l1_ratio=None,
+    ):
+        super().__init__(penalty=penalty, dual=dual, tol=tol, C=C, fit_intercept=fit_intercept, intercept_scaling=intercept_scaling, class_weight=class_weight, random_state=random_state, solver=solver, max_iter=max_iter, multi_class=multi_class, verbose=verbose, warm_start=warm_start, n_jobs=n_jobs, l1_ratio=l1_ratio)
+
+    def probit_link(self, x):
+        from scipy.special import expit
+        return expit(x)
+    
+    def probit_regression(self, X, y):
+        n_features = X.shape[1]
+        with pm.Model() as self.model:
+            # Define priors for the intercept and features
+            intercept = pm.Normal('intercept', mu=0, sd=10)
+            coeffs = pm.Normal('coeffs', mu=0, sd=10, shape=n_features)
+
+            # Calculate the linear predictor
+            linpred = intercept + pm.math.dot(X, coeffs)
+
+            # Define the likelihood using the Probit link function
+            y_obs = pm.Bernoulli('y_obs', p=pm.math.invlogit(linpred), observed=y)
+        return self.model
+    
+    def fit(self, X_train_scaled, y_train):
+        self.model = self.probit_regression(X_train_scaled, y_train)
+        with self.model:
+            self.trace = pm.sample(2000, tune=1000, start={'alpha': np.array([0.]), 'tau': np.array([0.]), 'sigma_c': np.array([0.]), 'sigma_t': np.array([0.])})
+        return self.trace
+
+    def predict_proba(self, X):
+        proba = super().predict_proba(X)
+        return self.probit_link(proba)
+    
+    def predict(self, X, use_proba=False):
+        if use_proba:
+            return self.predict_proba(X)
+        else:
+            linpred = np.dot(X, self.trace['coeffs'].T) + self.trace['intercept']
+            return norm.cdf(linpred)
+        
+    def get_coef(self):
+        return np.mean(self.trace['coeffs'], axis=0)
+    
+    def get_intercept(self):
+        return np.mean(self.trace['intercept'])
+    
+    def get_feature_coefficients(self):
+        coef = self.get_coef()
+        feature_names = self.X_train.columns
+        return dict(zip(feature_names, coef))
+    
+    def get_significant_features(self, threshold=0.01):
+        significant_coefs = self.get_significant_coef(threshold)
+        feature_names = self.X_train.columns
+        significant_feature_names = [feature_names[i] for i in np.where(np.abs(self.method.coef_) > threshold)[0]]
+        return dict(zip(significant_feature_names, significant_coefs))
+    
+    def get_significant_coef(self, threshold=0.01):
+        significant_coefficients_indices = np.where(np.abs(self.method.coef_) > threshold)[0]
+        return self.method.coef_[significant_coefficients_indices]
+    
+    def plot_posterior(self):
+        pm.plot_posterior(self.trace)
