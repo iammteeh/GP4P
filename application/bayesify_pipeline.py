@@ -6,6 +6,7 @@ from sklearn.pipeline import Pipeline
 import seaborn as sns
 import pandas as pd
 import numpy as np
+import time
 
 def get_X_y():
     tips = sns.load_dataset("tips")
@@ -45,7 +46,10 @@ def bayesify_pipeline():
     return Pipeline([('preprocessing', P4Preprocessing()), ('model', PyroMCMCRegressor())])
 
 pipeline = bayesify_pipeline()
+start_time = time.time()
 pipeline.fit(X_train, y_train)
+end_time = time.time()
+print(f"Training time: {end_time - start_time}")
 
 #print(ds.all_configs)
 #print(ds.position_map)
