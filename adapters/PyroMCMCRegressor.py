@@ -1,6 +1,8 @@
 from sklearn.base import BaseEstimator
-from bayesify.pairwise import PyroMCMCRegressor, get_n_words
+from bayesify.pairwise import PyroMCMCRegressor, get_n_words, assert_ci
+import arviz as az
 import inspect
+import numpy as np
 from numpyro import sample, plate
 from numpyro import distributions as dist
 from numpyro.infer import MCMC, NUTS
@@ -14,7 +16,7 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
     def __init__(self,
                 mcmc_samples: int = 1000, 
                 mcmc_tune: int = 1000, 
-                n_chains=1,
+                n_chains=8,
                 base_prior_dist="Normal",
                 base_prior_loc=0,
                 base_prior_scale=1,
@@ -229,3 +231,41 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
     
     def score(self):
         return self.loo()
+    
+    def predict(self, X, n_samples: int = None, ci: float = None):
+        """
+        Performs a prediction conforming to the sklearn interface.
+
+        Parameters
+        ----------
+        X : Array-like data
+        n_samples : number of posterior predictive samples to return for each prediction
+        ci : value between 0 and 1 representing the desired confidence of returned confidence intervals. E.g., ci= 0.8 will generate 80%-confidence intervals
+
+        Returns
+        -------
+        - a scalar if only x is specified
+        - a set of posterior predictive samples of size n_samples if is given and n_samples > 0
+        - a set of pairs, representing lower and upper bounds of confidence intervals for each prediction if ci is given
+
+        """
+        if n_samples is None:
+            n_samples = 500
+
+        y_samples = self._predict_samples(X, n_samples=n_samples)
+
+        # Making sure y_samples is a numpy array
+        if not isinstance(y_samples, np.ndarray):
+            y_samples = np.array(y_samples)
+
+        # If y_samples is 1D, add an extra dimension
+        if y_samples.ndim == 1:
+            y_samples = y_samples[:, None]
+
+        if ci is not None:
+            assert_ci(ci)
+            y_pred = az.hdi(y_samples, hdi_prob=ci, axis=0)
+        else:
+            y_pred = np.mean(y_samples, axis=0)
+
+        return y_pred
