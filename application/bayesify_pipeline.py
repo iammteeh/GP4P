@@ -2,7 +2,7 @@ from domain.env import DUMMY_DATA
 from adapters.preprocessing import prepare_dataset, preprocessing
 from bayesify.pairwise import P4Preprocessing, get_feature_names_from_rv_id, print_baseline_perf, print_scores, get_err_dict, get_snapshot_dict
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
-from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import Pipeline
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -41,10 +41,10 @@ def train_quick_model(X_train, feature_names, y_train, dummy=True):
     )
     return reg
 
-preproc = P4Preprocessing()
-reg = PyroMCMCRegressor()
-#train_quick_model(X_train, feature_names, y_train, dummy=False)
-pipeline = make_pipeline(preproc, reg)
+def bayesify_pipeline():
+    return Pipeline([('preprocessing', P4Preprocessing()), ('model', PyroMCMCRegressor())])
+
+pipeline = bayesify_pipeline()
 pipeline.fit(X_train, y_train)
 
 #print(ds.all_configs)
