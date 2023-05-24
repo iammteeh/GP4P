@@ -13,8 +13,9 @@ import pymc3 as pm
 from scipy.stats import norm
 
 class Regression:
-    def __init__(self, X_train, X_test, y_train, method=None, alphas=None):
+    def __init__(self, X_train, X_test, y_train, feature_names, method=None, alphas=None):
         self.X_train = X_train
+        self.feature_names = feature_names
         self.X_test = X_test
         self.y_train = y_train
         self.method = self.set_method(method, alphas)
@@ -35,11 +36,11 @@ class Regression:
         elif method == "LassoCV":
             return linear_model.LassoCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "RidgeCV":
-            return linear_model.RidgeCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.RidgeCV(alphas=alphas, fit_intercept=True)
         elif method == "ElasticNetCV":
             return linear_model.ElasticNetCV(alphas=alphas, max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "BayesianRidge":
-            return linear_model.BayesianRidge(copy_X=True, fit_intercept=True, normalize=False)
+            return linear_model.BayesianRidge(copy_X=True, fit_intercept=True, verbose=True)
         elif method == "ARDRegression":
             return linear_model.ARDRegression(copy_X=True, fit_intercept=True, normalize=False)
         elif method == "SGDRegressor":
@@ -95,13 +96,11 @@ class Regression:
     
     def get_feature_coefficients(self):
         coef = self.get_coef()
-        feature_names = self.X_train.columns
-        return dict(zip(feature_names, coef))
+        return dict(zip(self.feature_names, coef))
     
     def get_significant_features(self, threshold=0.01):
         significant_coefs = self.get_significant_coef(threshold)
-        feature_names = self.X_train.columns
-        significant_feature_names = [feature_names[i] for i in np.where(np.abs(self.method.coef_) > threshold)[0]]
+        significant_feature_names = [self.feature_names[i] for i in np.where(np.abs(self.method.coef_) > threshold)[0]]
         return dict(zip(significant_feature_names, significant_coefs))
   
     def get_program(self):
