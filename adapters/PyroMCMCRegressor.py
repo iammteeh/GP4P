@@ -206,6 +206,7 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
             num_samples=n_samples,
             num_warmup=n_tune,
             num_chains=n_chains,
+            progress_bar=False,
         )
         #X = DataFrame(X, columns=self.rv_names).to_numpy()
         #y = DataFrame(y, columns=["y"]).to_numpy()
