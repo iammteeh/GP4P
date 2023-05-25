@@ -1,7 +1,6 @@
 from adapters.preprocessing import prepare_dataset, preprocessing
 from application.bayesify_pipeline import bayesify_pipeline
 from sklearn.model_selection import train_test_split
-from domain.model import Model
 from domain.env import DUMMY_DATA
 from domain.regression import Regression
 from dp.bayes_search_cv import bayes_search_cv
