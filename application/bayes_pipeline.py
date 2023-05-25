@@ -7,6 +7,7 @@ from domain.regression import Regression
 from dp.bayes_search_cv import bayes_search_cv
 from domain.metrics import get_metrics
 import numpy as np
+import time
 try:
     np.distutils.__config__.blas_opt_info = np.distutils.__config__.blas_ilp64_opt_info
 except Exception:
@@ -25,7 +26,10 @@ opt = bayes_search_cv
 opt.fit(X_train, y_train)
 
 # Predict on the test set
+start_time = time.time()
 y_pred = opt.predict(X_test)
+end_time = time.time()
+print(f"Prediction time: {end_time - start_time} seconds")
 
 # Evaluate the model
 metrics = get_metrics(y_test, y_pred, type="regression")
