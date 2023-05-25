@@ -24,6 +24,7 @@ model_pipeline = Pipeline([('preprocessing', preprocessing), ('model', model)])
 # Initialize the BayesSearchCV
 bayes_search_cv = BayesSearchCV(model_pipeline, 
                     search_space, 
-                    n_iter=1, 
+                    n_iter=50,
+                    cv=5, 
                     scoring=scoring, 
                     random_state=1)
