@@ -49,7 +49,7 @@ pipeline = bayesify_pipeline()
 start_time = time.time()
 pipeline.fit(X_train, y_train)
 end_time = time.time()
-print(f"Training time: {end_time - start_time}")
+print(f"Training time: {end_time - start_time} seconds")
 
 #print(ds.all_configs)
 #print(ds.position_map)
