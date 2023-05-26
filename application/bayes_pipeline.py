@@ -22,13 +22,13 @@ opt = bayes_search_cv
 # plot the model
 
 # Fit the BayesSearchCV to your data
+start_time = time.time()
 opt.fit(X_train, y_train)
+end_time = time.time()
+print(f"Training time: {end_time - start_time} seconds")
 
 # Predict on the test set
-start_time = time.time()
 y_pred = opt.predict(X_test)
-end_time = time.time()
-print(f"Prediction time: {end_time - start_time} seconds")
 
 # Evaluate the model
 metrics = get_metrics(y_test, y_pred, type="regression")
