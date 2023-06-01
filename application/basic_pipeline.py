@@ -10,7 +10,7 @@ import statsmodels.api as stats
 from sklearn import linear_model
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
 import decimal
-#import matplotlib.pyplot
+from adapters.plot_features import plot_train_test_errors, plot_regularization_path
 import seaborn as sns 
 import time
 
