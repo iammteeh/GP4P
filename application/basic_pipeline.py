@@ -1,15 +1,11 @@
 import pandas as pd
+import numpy as np
 from itertools import combinations
-from domain.env import REGRESSION, REGRESSION_PENALTY, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, DUMMY_DATA
+from domain.env import REGRESSION, REGRESSION_PENALTY, ALPHAS, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, DUMMY_DATA
 from domain.model import Model
 from domain.regression import Regression
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.model_selection import train_test_split
 from adapters.preprocessing import prepare_dataset, preprocessing
 import statsmodels.api as stats
-from sklearn import linear_model
-from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
-import decimal
 from adapters.plot_features import plot_train_test_errors, plot_regularization_path
 import seaborn as sns 
 import time
@@ -19,7 +15,8 @@ feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"
 X_train, X_test, y_train, y_test = preprocessing(ds, "3_poly", "robust")
 model = Model(REGRESSION, ["mse_relative_to_mean", "mse_relative_to_variance", "mape", "r2"], ds, y_test)
 #print(f"perform regression with {model.method}, {model.metrics} with {X_train.shape[1]} features: {X_train.columns}")
-with Regression(X_train, X_test, y_train, feature_names, model.method, REGRESSION_PENALTY) as regression:
+lambda_values = np.logspace(*REGRESSION_PENALTY)
+with Regression(X_train, X_test, y_train, feature_names, model.method, ALPHAS) as regression:
     # first do some linear regression to shrink the model
     print(f"fit with {regression.method}")
     start = time.time()
@@ -44,15 +41,7 @@ with Regression(X_train, X_test, y_train, feature_names, model.method, REGRESSIO
     #print(f"regression significant coefficients: {significant_coef} ({len(significant_coef)} signicifant coefficient - {len(coef)-len(significant_coef)} filtered out) \n")
     #print(f"regression significant features: {significant_features} \n")
 
-
+    print(f"regression coefficients: {coef} ({len(coef)} coefficients) \n")
+    print(type(coef))
     model.y_pred = y_pred
     print(model.eval())
-
-#plt.scatter(X_test.iloc[:,0], y_test)
-#plt.plot(X_test.iloc[:,0], y_pred)
-plt = sns.displot(y=y_pred)
-plt = sns.displot(y=y_test)
-#plt.xticks(())
-#plt.yticks(())
-# plot displot
-#plt.show()
