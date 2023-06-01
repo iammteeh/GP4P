@@ -14,10 +14,6 @@ from adapters.plot_features import plot_train_test_errors, plot_regularization_p
 import seaborn as sns 
 import time
 
-
-# see env.py for mode
-# if MODE == "simple": panda dataframe
-# if MODE != "simple": 
 ds = prepare_dataset(DUMMY_DATA)
 feature_names = ds.get_feature_names()
 X_train, X_test, y_train, y_test = preprocessing(ds, "3_poly", "robust")
