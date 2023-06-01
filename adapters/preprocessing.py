@@ -61,13 +61,17 @@ def add_polynomial_features(X, degree=POLY_DEGREE):
     return X_poly
 
 def add_features(X, extra_ft):
-    model = {
-        "none": X,
-        "polynomial": add_polynomial_features(X, degree=POLY_DEGREE),
-        "2_poly": add_polynomial_features(X, degree=2),
-        "3_poly": add_polynomial_features(X, degree=3)
-    }
-    return model[extra_ft]
+    if extra_ft == "polynomial":
+        X = add_polynomial_features(X, degree=POLY_DEGREE)
+    elif extra_ft == "2_poly":
+        X = add_polynomial_features(X, degree=2)
+        print(len(X.columns))
+    elif extra_ft == "3_poly":
+        X = add_polynomial_features(X, degree=3)
+    else:
+        return X
+    print(len(X.columns))
+    return X
 
 def scale_features(X, y, scaler):
     if scaler == "standard":
