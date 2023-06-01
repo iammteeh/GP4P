@@ -1,6 +1,6 @@
 import pandas as pd
 from itertools import combinations
-from domain.env import REGRESSION, REGRESSION_PENALTY, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE
+from domain.env import REGRESSION, REGRESSION_PENALTY, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, DUMMY_DATA
 from domain.model import Model
 from domain.regression import Regression
 from sklearn.preprocessing import PolynomialFeatures
@@ -18,7 +18,7 @@ import time
 # see env.py for mode
 # if MODE == "simple": panda dataframe
 # if MODE != "simple": 
-ds = prepare_dataset()
+ds = prepare_dataset(DUMMY_DATA)
 feature_names = ds.get_feature_names()
 X_train, X_test, y_train, y_test = preprocessing(ds, "3_poly", "robust")
 model = Model(REGRESSION, ["mse_relative_to_mean", "mse_relative_to_variance", "mape", "r2"], ds, y_test)
