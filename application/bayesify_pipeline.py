@@ -21,6 +21,7 @@ seed = 0
 
 ds = prepare_dataset(DUMMY_DATA)
 feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
+print(f"initial feature set length: {len(feature_names)}")
 X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "none")
 
 def train_quick_model(X_train, feature_names, y_train, dummy=True):
