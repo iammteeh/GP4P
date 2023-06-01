@@ -57,7 +57,7 @@ def add_polynomial_features(X, degree=POLY_DEGREE):
     for a, b in combinations(X,2):
         # IF (A==B AND #A==#B) pandas style for categorial/binary features
         if (((X[a].all().sum() == len(X[a])) & (X[b].all().sum() == len(X[b]))) | ((X[a].all().sum() == 0) & (X[b].all().sum() == 0) & (len(X[a]) == len(X[b])))):
-            X_poly.drop(f'{a} x {b}', axis=1, inplace=True)
+            X_poly.drop(f'{a} x {b}', axis=1)
     return X_poly
 
 def add_features(X, extra_ft):
