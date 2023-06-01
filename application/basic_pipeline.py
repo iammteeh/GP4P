@@ -15,7 +15,7 @@ import seaborn as sns
 import time
 
 ds = prepare_dataset(DUMMY_DATA)
-feature_names = ds.get_feature_names()
+feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
 X_train, X_test, y_train, y_test = preprocessing(ds, "3_poly", "robust")
 model = Model(REGRESSION, ["mse_relative_to_mean", "mse_relative_to_variance", "mape", "r2"], ds, y_test)
 #print(f"perform regression with {model.method}, {model.metrics} with {X_train.shape[1]} features: {X_train.columns}")
