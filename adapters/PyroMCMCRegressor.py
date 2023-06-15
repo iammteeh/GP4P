@@ -194,8 +194,6 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
             self.weighted_errs_per_sample,
             self.weighted_rel_errs_per_sample,
         ) = self.get_prior_weighted_normal(X, y, self.rv_names, gamma=3)
-        
-
         rng_key = random.PRNGKey(random_key)
         nuts_kernel = NUTS(self.model, adapt_step_size=True)
         n_samples = mcmc_samples if mcmc_samples else self.mcmc_samples
@@ -206,7 +204,7 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
             num_samples=n_samples,
             num_warmup=n_tune,
             num_chains=n_chains,
-            progress_bar=False,
+            progress_bar=False, # when running on a TPU, this needs to be False
         )
         #X = DataFrame(X, columns=self.rv_names).to_numpy()
         #y = DataFrame(y, columns=["y"]).to_numpy()
