@@ -10,9 +10,9 @@ def plot_train_test_errors(train_errors, test_errors, lambd_values):
     plt.show()
 
 def plot_regularization_path(lambd_values, beta_values):
-    num_coeffs = len(beta_values[0])
+    num_coeffs = beta_values.shape[0]
     for i in range(num_coeffs):
-        plt.plot(lambd_values, [wi[i] for wi in beta_values])
+        plt.plot(lambd_values, [wi for wi in beta_values])
     plt.xlabel(r"$\lambda$", fontsize=16)
     plt.xscale("log")
     plt.title("Regularization Path")
