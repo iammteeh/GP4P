@@ -91,7 +91,7 @@ def scale_features(X, y, scaler):
 def store_model():
     pass 
 
-def preprocessing(ds, extra_ft, scaler):
+def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     print("Preprocessing...")
     if type(ds) is DataSet:
         df = ds.get_measurement_df()    
@@ -106,12 +106,23 @@ def preprocessing(ds, extra_ft, scaler):
     # add extrafunctional feature model
     print(f"applying extrafunctional feature model: {extra_ft} (takes a while..)")
     X = add_features(X, extra_ft)
+    feature_names = X.columns
     # scale features
     #print(f"apply {scaler} Scaling")
     #X = scale_features(X, y, scaler)
     # convert to ndarray
-    X = np.array(X.iloc[:])
-    y = np.array(y.iloc[:])
+    if to_ndarray:
+        X = X.__deepcopy__()
+        y = y.__deepcopy__()
+        X_np = np.array(X.iloc[:])
+        y_np = np.array(y.iloc[:])
     print("Preprocessing done!")
     # split data
-    return train_test_split(X, y, test_size=0.8)
+    X_train_np, X_test_np, y_train_np, y_test_np = train_test_split(X_np, y_np, test_size=0.8, random_state=42)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
+    # make tuples
+    X_train = (X_train, X_train_np)
+    X_test = (X_test, X_test_np)
+    y_train = (y_train, y_train_np)
+    y_test = (y_test, y_test_np)
+    return feature_names, X_train, X_test, y_train, y_test
