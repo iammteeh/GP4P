@@ -46,7 +46,7 @@ class DataSet(ConfigSysProxy):
         self.prototype_config = list(self.value_type(0) for i in list(self.position_map.keys()))
     
     def get_feature_names(self):
-        return pd.DataFrame(list(self.all_configs.values()), columns=["y"])
+        return self.get_all_config_df().columns.values.tolist()
 
     def get_feature_length(self):
         return len(list(self.all_configs.keys())[0])
