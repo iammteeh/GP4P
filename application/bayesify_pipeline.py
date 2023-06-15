@@ -1,7 +1,10 @@
 from domain.env import DUMMY_DATA
 from adapters.preprocessing import prepare_dataset, preprocessing
+from adapters.calculate_priors import Priors
+from adapters.visualization import plot_coefs, scatter_plot, plot_feature_importance, plot_dist
 from bayesify.pairwise import P4Preprocessing, get_feature_names_from_rv_id, print_baseline_perf, print_scores, get_err_dict, get_snapshot_dict
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
+from bayesify.pairwise import print_baseline_perf
 from sklearn.pipeline import Pipeline
 import seaborn as sns
 import pandas as pd
@@ -22,7 +25,13 @@ seed = 0
 ds = prepare_dataset(DUMMY_DATA)
 feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
 print(f"initial feature set length: {len(feature_names)}")
-X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "none")
+feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "none")    
+# use ndarrays of X and y
+X_train = X_train[1]
+X_test = X_test[1]
+y_train = y_train[1]
+y_test = y_test[1]
+print(f"X_train shape: {X_train.shape}")
 
 def train_quick_model(X_train, feature_names, y_train, dummy=True):
     if dummy:
@@ -47,6 +56,7 @@ def bayesify_pipeline():
     return Pipeline([('preprocessing', P4Preprocessing()), ('model', PyroMCMCRegressor())])
 
 pipeline = bayesify_pipeline()
+print_baseline_perf(X_train, y_train, X_test, y_test)
 start_time = time.time()
 pipeline.fit(X_train, y_train)
 end_time = time.time()
@@ -66,3 +76,15 @@ base = ["MultiNormal, MultiStudentT", "Gumbel", "Beta"]
 def new_baseline_performance(X, y, **model):
     # get last entry
     pass
+
+print(pipeline.named_steps['model'].coef_ci(0.95))
+
+# calculate prior weighted normal
+priors = Priors(X_train, y_train, feature_names)
+coef_prior, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names)
+print(weighted_errs_per_sample)
+print(weighted_rel_errs_per_sample)
+# plot prior weighted normal
+plot_dist(coef_prior, "coef_prior")
+plot_dist(base_prior, "base_prior")
+plot_dist(error_prior, "error_prior")
