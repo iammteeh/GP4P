@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any
 from domain.dataset import DataSet
+import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
 from sklearn.inspection import permutation_importance, plot_partial_dependence
@@ -12,6 +13,7 @@ class Model:
     method: str
     metrics: list
     data: DataSet
+    features: Any
     y_test: Any
     _y_pred: Any = None
     _evaluation: dict[str, float] = field(default_factory=dict)
@@ -30,7 +32,7 @@ class Model:
     
     @coef.setter
     def coef(self, coef):
-        self.data.coef = coef
+        self.data.coef = pd.Series(coef, index=self.features)
 
     @property
     def program(self):
