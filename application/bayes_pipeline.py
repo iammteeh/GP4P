@@ -33,7 +33,7 @@ y_pred = opt.predict(X_test)
 # Evaluate the model
 metrics = get_metrics(y_test, y_pred, type="regression")
 for metric in metrics:
-    print(f"{metric}: {metrics[metric]}")
+    print(f"{metric.key()}: {metric.value()}")
 
 # Get the best parameters
 print('Best parameters found: ', opt.best_params_)
