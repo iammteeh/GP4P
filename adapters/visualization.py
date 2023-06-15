@@ -3,6 +3,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpyro.distributions as dist
 import jax.random as random
+from domain.env import SAFE_FIGURES, RESULTS_DIR
+import time
 
 def generate_heatmap(X_input):
     corrmat = X_input.corr(method='spearman')
@@ -73,21 +75,22 @@ def plot_feature_importance(feature_names, coef):
     plt.show()
 
 def plot_dist(dist_object, title, n_samples=1000):
+    timestamp = time.strftime("%Y%m%d-%H%M%S")
     seed = random.PRNGKey(123456789)
     samples = dist_object.sample(seed, (n_samples,))
     if dist_object == isinstance(dist_object, dist.MultivariateNormal):
         sns.jointplot(samples[:, 0], samples[:, 1], kind="kde")
         plt.title(title)
-        plt.show()
-        sns.distplot(samples[:, 0], bins=30, kde=True)
-        sns.distplot(samples[:, 1], bins=30, kde=True)
-        plt.title(title)
-        plt.show()
-        sns.kdeplot(samples[:, 0], samples[:, 1], shade=True)
-        plt.title(title)
-        plt.show()
+        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAFE_FIGURES else plt.show()
+        #sns.distplot(samples[:, 0], bins=30, kde=True)
+        #sns.distplot(samples[:, 1], bins=30, kde=True)
+        #plt.title(title)
+        #plt.show()
+        #sns.kdeplot(samples[:, 0], samples[:, 1], shade=True)
+        #plt.title(title)
+        #plt.show()
     else:
         #sns.distplot(dist_object, hist=False, rug=True)
         plt.hist(samples, bins=50, density=True)
         plt.title(title)
-        plt.show()
+        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAFE_FIGURES else plt.show()
