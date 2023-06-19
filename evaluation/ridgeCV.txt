@@ -1,0 +1,20 @@
+Checking if LLVM_energy isn't already extracted
+   root  ee_instrument  simplifycfg  ...  fixed-energy  energy        cpu
+0     1              0            0  ...     2988.3432  1701.8  25.431538
+1     1              0            0  ...     2974.7946  1689.0  25.513077
+2     1              0            0  ...     3049.9912  1824.4  25.402877
+3     1              0            0  ...     3127.1658  1918.8  26.013509
+4     1              0            0  ...     3122.2976  1927.0  25.845965
+
+[5 rows x 22 columns]
+Stored measurement CSV file to /home/immanuel/thesis/rawdata/LLVM_energy/measurements-cleared.csv
+Finished reading measurements
+Preprocessing...
+applying extrafunctional feature model: 3_poly (takes a while..)
+697
+Preprocessing done!
+fit with RidgeCV(alphas=[0.1, 1, 10])
+Finished fitting in 1.23 seconds
+regression intercept: 1839.7741938197769 
+
+{'mse_relative_to_mean': 0.310432074500066, 'mse_relative_to_variance': 0.008482631353531375, 'mape': 0.008613434174607916, 'r2': 0.9915173686464687}
