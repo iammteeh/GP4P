@@ -1,0 +1,466 @@
+No GPU/TPU found, falling back to CPU. (Set TF_CPP_MIN_LOG_LEVEL=0 and rerun for more info.)
+/home/immanuel/Dokumente/Master Thesis/dev/energy-influence-model-structure-uncertainty/adapters/PyroMCMCRegressor.py:204: UserWarning: There are not enough devices to run parallel chains: expected 8 but got 1. Chains will be drawn sequentially. If you are running MCMC in CPU, consider using `numpyro.set_host_device_count(8)` at the beginning of your program. You can double-check how many devices are available in your system using `jax.local_device_count()`.
+  mcmc = MCMC(
+Checking if LLVM_energy isn't already extracted
+   root  ee_instrument  simplifycfg  ...  fixed-energy  energy        cpu
+0     1              0            0  ...     2988.3432  1701.8  25.431538
+1     1              0            0  ...     2974.7946  1689.0  25.513077
+2     1              0            0  ...     3049.9912  1824.4  25.402877
+3     1              0            0  ...     3127.1658  1918.8  26.013509
+4     1              0            0  ...     3122.2976  1927.0  25.845965
+
+[5 rows x 22 columns]
+Stored measurement CSV file to /home/immanuel/Dokumente/Master Thesis/dev/energy-influence-model-structure-uncertainty/rawdata/LLVM_energy/measurements-cleared.csv
+Finished reading measurements
+Preprocessing...
+applying extrafunctional feature model: 2_poly (takes a while..)
+Preprocessing done!
+Getting priors from lin regs.
+Prior Spectrum Computation took 19.786462545394897
+X shape: (13107, 106)
+y shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: [[1. 0. 1. ... 0. 0. 0.]
+ [1. 1. 0. ... 0. 0. 0.]
+ [1. 0. 0. ... 0. 0. 0.]
+ ...
+ [1. 1. 1. ... 0. 0. 1.]
+ [1. 0. 1. ... 0. 0. 1.]
+ [1. 1. 0. ... 0. 0. 0.]]
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+base_prior: <numpyro.distributions.continuous.Normal object at 0x7f799737acd0>
+infl_prior: <numpyro.distributions.continuous.Normal object at 0x7f7997388160>
+error_prior: <numpyro.distributions.continuous.Exponential object at 0x7f79973885b0>
+data shape: (13107, 106)
+data: Traced<ShapedArray(float32[13107,106])>with<DynamicJaxprTrace(level=3/0)>
+rnd_influences shape: (106,)
+data.shape[1] == rnd_influences.shape[0]: 106 == 106
+mat_infl after reshaping rnd_influences: (106, 1)
+obs shape: (13107,)
+{'base': Array([1836.5605, 1837.8259, 1844.3939, ..., 1835.453 , 1837.711 ,
+       1837.6869], dtype=float32),
+ 'coefs': Array([[ 7.3115555e+01,  1.1916268e+01,  4.7585126e+02, ...,
+         5.2552694e-01,  5.5461040e+00,  1.0556191e+00],
+       [ 6.7352112e+01,  1.8659069e+01,  4.7590707e+02, ...,
+         2.2279932e+00,  7.4131255e+00,  3.0093610e+00],
+       [ 3.1487358e+01,  9.8244696e+00,  4.7171661e+02, ...,
+        -4.3409348e-01,  4.9198437e+00, -1.3085970e-01],
+       ...,
+       [ 7.1972397e+01,  7.2356887e+00,  4.7790869e+02, ...,
+         3.5933441e-01,  6.1806078e+00,  1.0559769e+00],
+       [ 6.2414055e+01,  7.4216247e+00,  4.7358261e+02, ...,
+         1.5764144e-01,  5.9100294e+00, -4.0349227e-01],
+       [ 5.7932011e+01,  9.3510237e+00,  4.7391562e+02, ...,
+        -8.3393884e-01,  5.0204611e+00, -5.1462245e-01]], dtype=float32),
+ 'error': Array([29.443985, 29.605953, 29.964125, ..., 29.523426, 29.550032,
+       29.576208], dtype=float32)}
+
+                mean       std    median      5.0%     95.0%     n_eff     r_hat
+      base   1838.74      2.47   1838.75   1834.63   1842.74   3317.02      1.00
+  coefs[0]     68.61     29.44     69.09     22.08    118.39   3566.88      1.00
+  coefs[1]     16.28      6.96     16.35      4.98     27.87   3933.87      1.00
+  coefs[2]    474.39      1.83    474.42    471.46    477.39   3179.66      1.00
+  coefs[3]     11.01      8.60     11.03     -2.76     25.67   4002.48      1.00
+  coefs[4]     42.29     20.21     42.27     10.40     76.82   3399.36      1.00
+  coefs[5]     93.50     37.88     93.75     28.91    152.11   3905.62      1.00
+  coefs[6]     29.51     12.56     29.33      8.18     49.47   3715.47      1.00
+  coefs[7]    129.86     57.50    130.30     36.80    225.17   3375.60      1.00
+  coefs[8]     35.96     15.12     36.04     10.44     60.17   3908.74      1.00
+  coefs[9]     53.31     24.13     52.91     15.07     93.98   3835.18      1.00
+ coefs[10]     20.17     10.13     20.23      3.85     37.13   3751.29      1.00
+ coefs[11]    115.06     50.30    114.92     35.23    200.28   3413.45      1.00
+ coefs[12]     -5.28      3.81     -5.24    -11.53      0.88   4105.31      1.00
+ coefs[13]      3.77      6.94      3.70     -7.41     15.26   3706.76      1.00
+ coefs[14]     57.54     25.83     57.78     15.68     99.82   3672.81      1.00
+ coefs[15]     50.81     21.28     51.05     17.34     87.25   3598.13      1.00
+ coefs[16]     47.34     29.45     46.81     -1.63     94.52   3562.78      1.00
+ coefs[17]     12.73      6.95     12.73      1.57     24.32   3866.29      1.00
+ coefs[18]      7.05      8.55      7.00     -6.61     21.19   3995.82      1.00
+ coefs[19]     20.50     20.16     20.61    -13.33     52.85   3386.00      1.00
+ coefs[20]     53.14     37.89     52.87     -6.59    117.22   3912.91      1.00
+ coefs[21]     21.27     12.56     21.42      1.46     42.85   3721.82      1.00
+ coefs[22]     82.19     57.53     81.81    -14.27    174.29   3389.66      1.00
+ coefs[23]     17.45     15.11     17.38     -8.07     41.74   3887.58      1.00
+ coefs[24]     26.87     24.12     27.22    -12.26     66.91   3833.68      1.00
+ coefs[25]      7.64     10.02      7.62     -9.25     23.62   3885.10      1.00
+ coefs[26]     73.81     50.28     74.26     -9.27    155.66   3409.19      1.00
+ coefs[27]     -4.34      3.79     -4.41    -10.89      1.57   4101.27      1.00
+ coefs[28]      3.33      6.94      3.41     -7.76     14.95   3731.82      1.00
+ coefs[29]     30.07     25.80     29.80    -13.09     71.09   3660.70      1.00
+ coefs[30]     31.21     21.29     31.05     -3.55     66.06   3586.65      1.00
+ coefs[31]    -15.54      1.03    -15.54    -17.20    -13.83   8668.08      1.00
+ coefs[32]     -3.91      1.03     -3.91     -5.61     -2.24   8833.20      1.00
+ coefs[33]     15.36      1.03     15.36     13.63     17.04   7166.19      1.00
+ coefs[34]      2.23      1.03      2.21      0.54      3.92   8520.19      1.00
+ coefs[35]      2.27      1.06      2.25      0.53      4.01   8101.17      1.00
+ coefs[36]     41.12      1.05     41.12     39.42     42.87   9089.54      1.00
+ coefs[37]    -33.08      1.06    -33.08    -34.90    -31.41   8051.08      1.00
+ coefs[38]     -4.23      1.05     -4.24     -5.95     -2.55   9158.97      1.00
+ coefs[39]     17.17      1.04     17.17     15.39     18.79   8787.44      1.00
+ coefs[40]    -46.69      1.05    -46.67    -48.54    -45.06   8265.87      1.00
+ coefs[41]      0.53      0.99      0.54     -1.18      2.06   8458.70      1.00
+ coefs[42]     11.16      1.03     11.17      9.46     12.82   7999.41      1.00
+ coefs[43]      3.67      1.02      3.65      1.95      5.28   7935.22      1.00
+ coefs[44]      0.61      1.06      0.62     -1.16      2.32   7431.78      1.00
+ coefs[45]      1.08      1.04      1.07     -0.55      2.83   7606.86      1.00
+ coefs[46]     -4.11      1.07     -4.10     -5.85     -2.39   6414.68      1.00
+ coefs[47]    -13.33      1.04    -13.33    -15.05    -11.66   7507.41      1.00
+ coefs[48]      0.80      1.04      0.80     -0.90      2.50   7082.89      1.00
+ coefs[49]      2.52      1.03      2.51      0.80      4.17   7331.85      1.00
+ coefs[50]      0.19      1.04      0.17     -1.50      1.93   7309.95      1.00
+ coefs[51]      0.81      1.03      0.81     -0.89      2.45   7016.89      1.00
+ coefs[52]     -4.62      1.04     -4.61     -6.34     -2.91   7078.89      1.00
+ coefs[53]      0.54      1.05      0.54     -1.15      2.30   7411.00      1.00
+ coefs[54]      1.12      1.04      1.13     -0.53      2.89   6748.48      1.00
+ coefs[55]      1.38      1.01      1.38     -0.20      3.14   8641.10      1.00
+ coefs[56]      2.39      1.03      2.41      0.70      4.06   8094.52      1.00
+ coefs[57]      1.09      0.91      1.09     -0.38      2.62   8040.98      1.00
+ coefs[58]      0.11      1.02      0.11     -1.54      1.81   8076.44      1.00
+ coefs[59]      3.25      1.05      3.27      1.46      4.93   8117.12      1.00
+ coefs[60]     -4.18      1.00     -4.18     -5.92     -2.60   8392.52      1.00
+ coefs[61]      2.84      0.98      2.85      1.27      4.46   8434.51      1.00
+ coefs[62]      0.54      0.95      0.54     -1.00      2.14   9273.26      1.00
+ coefs[63]      1.70      1.01      1.71      0.02      3.33   8907.52      1.00
+ coefs[64]      1.15      1.05      1.15     -0.64      2.81   9150.54      1.00
+ coefs[65]      0.51      0.76      0.50     -0.71      1.74   8802.69      1.00
+ coefs[66]    -33.25      1.02    -33.23    -34.92    -31.60   8641.18      1.00
+ coefs[67]      0.89      0.95      0.88     -0.67      2.45   9223.48      1.00
+ coefs[68]      6.12      1.01      6.12      4.43      7.75   8363.90      1.00
+ coefs[69]      0.39      0.96      0.40     -1.27      1.85   7688.25      1.00
+ coefs[70]    -26.63      1.05    -26.63    -28.39    -24.95   8395.80      1.00
+ coefs[71]      0.21      1.03      0.22     -1.48      1.87   8453.56      1.00
+ coefs[72]     28.22      1.03     28.21     26.49     29.86   9479.32      1.00
+ coefs[73]      3.04      1.02      3.03      1.38      4.73   8275.54      1.00
+ coefs[74]     10.62      1.01     10.62      9.03     12.32   7719.41      1.00
+ coefs[75]      8.24      1.03      8.24      6.53      9.90   8649.67      1.00
+ coefs[76]    -42.35      1.04    -42.35    -44.07    -40.64   7842.22      1.00
+ coefs[77]     17.61      1.03     17.62     15.86     19.25   8729.30      1.00
+ coefs[78]      3.49      1.02      3.48      1.92      5.29   8728.21      1.00
+ coefs[79]      5.26      1.01      5.23      3.65      6.95   8782.99      1.00
+ coefs[80]     12.55      1.01     12.54     10.90     14.22   8572.80      1.00
+ coefs[81]      5.85      0.96      5.85      4.36      7.48   8978.10      1.00
+ coefs[82]      1.51      1.04      1.50     -0.19      3.18   7637.10      1.00
+ coefs[83]     19.10      1.02     19.11     17.44     20.80   8640.89      1.00
+ coefs[84]      1.37      0.73      1.38      0.19      2.60   8467.71      1.00
+ coefs[85]      0.47      1.03      0.48     -1.22      2.15   8709.56      1.00
+ coefs[86]      1.57      1.04      1.56     -0.09      3.28   8978.87      1.00
+ coefs[87]      2.95      1.03      2.96      1.30      4.66   9101.97      1.00
+ coefs[88]      0.21      1.03      0.21     -1.51      1.89   9105.97      1.00
+ coefs[89]      1.92      1.04      1.90      0.19      3.63   8684.90      1.00
+ coefs[90]      2.75      1.03      2.75      1.10      4.48   9018.31      1.00
+ coefs[91]      1.31      1.06      1.30     -0.38      3.05   8016.64      1.00
+ coefs[92]      1.65      0.93      1.64      0.07      3.12   9494.21      1.00
+ coefs[93]     -4.12      0.97     -4.14     -5.78     -2.61   8396.73      1.00
+ coefs[94]      0.74      1.01      0.74     -0.88      2.45   7559.48      1.00
+ coefs[95]      0.39      0.91      0.39     -1.10      1.91   8317.84      1.00
+ coefs[96]      3.88      1.04      3.88      2.22      5.60   8215.92      1.00
+ coefs[97]      5.55      0.95      5.54      4.04      7.19   8815.64      1.00
+ coefs[98]    -31.50      1.03    -31.50    -33.27    -29.85   9267.60      1.00
+ coefs[99]      0.11      1.04      0.11     -1.61      1.81   7508.90      1.00
+coefs[100]      0.44      1.01      0.44     -1.15      2.13   8186.88      1.00
+coefs[101]      1.54      0.98      1.53     -0.02      3.19   9385.70      1.00
+coefs[102]      1.04      0.93      1.04     -0.41      2.66   8340.84      1.00
+coefs[103]      0.80      1.03      0.80     -0.79      2.61   8132.04      1.00
+coefs[104]      5.84      0.99      5.85      4.25      7.51   8821.20      1.00
+coefs[105]      1.02      0.89      1.03     -0.51      2.43   8327.01      1.00
+     error     29.70      0.17     29.70     29.43     29.98  10819.02      1.00
+
+Number of divergences: 0
+Training time: 9714.718833684921 seconds
