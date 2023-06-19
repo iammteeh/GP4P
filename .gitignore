@@ -3,3 +3,4 @@ launch.json
 settings.json
 .vscode
 my_package.egg-info
+archive/
