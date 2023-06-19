@@ -49,7 +49,7 @@ def poly_feature_names(sklearn_feature_name_output, df):
 
 # begin preprocessing
 def add_polynomial_features(X, degree=POLY_DEGREE):
-    poly = PolynomialFeatures(degree=degree, interaction_only=True)
+    poly = PolynomialFeatures(degree=degree, interaction_only=True, include_bias=False)
     X_poly = poly.fit_transform(X)
     target_feature_names = [' x '.join(['{}'.format(pair[0],pair[1]) for pair in tuple if pair[1] != 0 ]) for tuple in [zip(X.columns,p) for p in poly.powers_]]
     X_poly = pd.DataFrame(X_poly, columns = target_feature_names)
