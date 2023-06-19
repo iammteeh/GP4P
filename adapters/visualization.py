@@ -3,8 +3,26 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpyro.distributions as dist
 import jax.random as random
-from domain.env import SAFE_FIGURES, RESULTS_DIR
+from domain.env import SAVE_FIGURES, RESULTS_DIR
 import time
+
+def plot_train_test_errors(train_errors, test_errors, lambd_values):
+    plt.plot(lambd_values, train_errors, label="Train error")
+    plt.plot(lambd_values, test_errors, label="Test error")
+    plt.xscale("log")
+    plt.legend(loc="upper left")
+    plt.xlabel(r"$\lambda$", fontsize=16)
+    plt.title("Mean Squared Error (MSE)")
+    plt.show()
+
+def plot_regularization_path(lambd_values, beta_values):
+    num_coeffs = beta_values.shape[0]
+    for i in range(num_coeffs):
+        plt.plot(lambd_values, [wi for wi in beta_values])
+    plt.xlabel(r"$\lambda$", fontsize=16)
+    plt.xscale("log")
+    plt.title("Regularization Path")
+    plt.show()
 
 def generate_heatmap(X_input):
     corrmat = X_input.corr(method='spearman')
@@ -81,7 +99,7 @@ def plot_dist(dist_object, title, n_samples=1000):
     if dist_object == isinstance(dist_object, dist.MultivariateNormal):
         sns.jointplot(samples[:, 0], samples[:, 1], kind="kde")
         plt.title(title)
-        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAFE_FIGURES else plt.show()
+        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAVE_FIGURES else plt.show()
         #sns.distplot(samples[:, 0], bins=30, kde=True)
         #sns.distplot(samples[:, 1], bins=30, kde=True)
         #plt.title(title)
@@ -93,4 +111,4 @@ def plot_dist(dist_object, title, n_samples=1000):
         #sns.distplot(dist_object, hist=False, rug=True)
         plt.hist(samples, bins=50, density=True)
         plt.title(title)
-        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAFE_FIGURES else plt.show()
+        plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAVE_FIGURES else plt.show()
