@@ -112,3 +112,14 @@ def plot_dist(dist_object, title, n_samples=1000):
         plt.hist(samples, bins=50, density=True)
         plt.title(title)
         plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAVE_FIGURES else plt.show()
+
+def plot_gp_feature(feature_idx, sample_idx, X_train, X_test, mean_pred, std_pred, y_train):
+    # Plot the results
+    plt.figure(figsize=(10, 5))
+    plt.plot(X_test[:, feature_idx], mean_pred[:, sample_idx], 'r', lw=2, label="mean prediction")
+    plt.fill_between(X_test[:, feature_idx], mean_pred[:, sample_idx] - std_pred[:, sample_idx], mean_pred[:, sample_idx] + std_pred[:, sample_idx], color='r', alpha=0.5, label="1 std deviation")
+    plt.plot(X_train, y_train, 'ok', ms=3, alpha=0.5, label="Training points")
+    plt.xlabel("X")
+    plt.ylabel("Y")
+    plt.legend()
+    plt.show()
