@@ -2,27 +2,25 @@ import pandas as pd
 import numpy as np
 from itertools import combinations
 from adapters.visualization import plot_lassoCV
-from domain.env import REGRESSION, REGRESSION_PENALTY, ALPHAS, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, DUMMY_DATA
+from domain.env import REGRESSION, REGRESSION_PENALTY, ALPHAS, COEFFICIENT_THRESHOLD, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, USE_DUMMY_DATA
 from domain.model import Model
 from domain.regression import Regression
 from adapters.preprocessing import prepare_dataset, preprocessing
 import statsmodels.api as stats
-from adapters.plot_features import plot_train_test_errors, plot_regularization_path
+from adapters.visualization import plot_train_test_errors, plot_regularization_path
 import seaborn as sns 
 import time
 
-def init_pipeline():
-    ds = prepare_dataset(DUMMY_DATA)
+def init_pipeline(use_dummy_data=USE_DUMMY_DATA):
+    ds = prepare_dataset(use_dummy_data)
     #feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
-    feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "3_poly", "robust")
+    feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "robust")
     print(f"len(feature_names): {len(feature_names)}")
 
     return ds, feature_names, X_train, X_test, y_train, y_test
 
-
-
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline()
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=True)
     # use ndarrays of X and y
     X_train = X_train[1]
     X_test = X_test[1]
