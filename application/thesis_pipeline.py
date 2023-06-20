@@ -1,3 +1,4 @@
+from domain.env import USE_DUMMY_DATA
 import numpy as np
 from application.basic_pipeline import init_pipeline
 from adapters.calculate_pretrained_priors import Priors
@@ -22,7 +23,7 @@ def eval_gp(posterior_predictive_distribution, X_test, y_test):
     return mean_pred, std_pred
 
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=True)
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train = X_train[1]
