@@ -16,7 +16,8 @@ class Model:
     features: Any
     y_test: Any
     _y_pred: Any = None
-    _evaluation: dict[str, float] = field(default_factory=dict)
+    #_evaluation: dict[str, float] = field(default_factory=dict)
+    _evaluation: dict = field(default_factory=dict)
 
     @property
     def y_pred(self):
