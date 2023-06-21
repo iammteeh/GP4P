@@ -58,8 +58,8 @@ def main():
         loo_score = loo(trace, model)
         print(f"waic: {waic_score}")
         print(f"loo: {loo_score}")
-        MSE = mean_squared_error(y_test, mean_pred)
-        print(f"MSE: {MSE}")
+        #MSE = mean_squared_error(y_test, mean_pred)
+        #print(f"MSE: {MSE}")
 
 if __name__ == "__main__":
     main()
