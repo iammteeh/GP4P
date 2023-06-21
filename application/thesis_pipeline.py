@@ -33,7 +33,7 @@ def main():
 
     # calculate prior weighted multivariate normal
     priors = Priors(X_train, y_train, feature_names)
-    µ_vector, cov_matrix, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names, gamma=1, stddev_multiplier=3, kernel="expquad")
+    µ_vector, cov_matrix, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names, gamma=1, stddev_multiplier=3, kernel="linear")
     # cov matrix may already be noised
     
     with Model() as model:
