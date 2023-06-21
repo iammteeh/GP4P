@@ -5,7 +5,7 @@ DATADIR = PWD + '/rawdata/'
 MODELDIR = PWD + '/modeldata/'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
-USE_DUMMY_DATA = True
+USE_DUMMY_DATA = False
 X_type = float # for mcmc=float for probit/logistic=bool
 EXTRAFUNCTIONAL_FEATURES = True
 POLY_DEGREE = 2
