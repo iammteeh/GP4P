@@ -11,10 +11,10 @@ from adapters.visualization import plot_train_test_errors, plot_regularization_p
 import seaborn as sns 
 import time
 
-def init_pipeline(use_dummy_data=USE_DUMMY_DATA):
+def init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="2_poly"):
     ds = prepare_dataset(use_dummy_data)
     #feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
-    feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "robust")
+    feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, extra_features, "robust")
     print(f"len(feature_names): {len(feature_names)}")
 
     return ds, feature_names, X_train, X_test, y_train, y_test
