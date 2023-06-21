@@ -23,7 +23,7 @@ def eval_gp(posterior_predictive_distribution, X_test, y_test):
     return mean_pred, std_pred
 
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features=None)
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train = X_train[1]
