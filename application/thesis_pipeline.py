@@ -44,7 +44,7 @@ def main():
         trace = sample(1000)
         #feature_names.delete(0)
         print(f"feature names: {feature_names}")
-        post_pred = sample_posterior_predictive(trace=trace, model=model, var_names=['y_obs'], samples=1000)
+        post_pred = sample_posterior_predictive(trace=trace, model=model, var_names=['y_obs'], samples=1000, n_jobs=8)
         #plot_dist(post_pred, "GP predictive posterior")
 
         #mean_pred, std_pred = eval_gp(post_pred, X_test, y_test)
