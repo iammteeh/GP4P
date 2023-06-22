@@ -2,7 +2,7 @@ from domain.env import USE_DUMMY_DATA
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pca import kernel_pca
-from adapters.calculate_pretrained_priors import Priors
+from adapters.calculate_prior_information import Priors
 from adapters.pm_gp import define_gp
 from pymc3 import Model, sample, sample_posterior_predictive, traceplot, summary, waic, loo
 from pymc3 import gp as GP
@@ -31,7 +31,8 @@ def main():
 
     # calculate prior weighted multivariate normal
     priors = Priors(X_train, y_train, feature_names)
-    µ_vector, cov_matrix, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names, gamma=1, stddev_multiplier=3, kernel="linear")
+    root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs = priors.get_weighted_normal_params(X_train, y_train, feature_names, gamma=1, stddev_multiplier=3)
+    cov_func = priors.get_gp_cov_func(X_train, y_train, feature_names, kernel="linear", coef_matrix=coef_matrix)
     # cov matrix may already be noised
 
     # reduce dimensionality
@@ -39,7 +40,7 @@ def main():
     
     with Model() as model:
         # apply prior knowledge to gp
-        f, gp, y_obs = define_gp(X_train, µ_vector, cov_matrix, y_train, prior=None, noise=None)
+        f, gp, y_obs = define_gp(X_train, root_mean, cov_func, y_train, noise=None)
         # Define Gaussian Process likelihood
         #y_obs = GP.GP('y_obs', gp, sigma=error_prior, observed={'X': X_train, 'Y': y_train})
         trace = sample(1000)
