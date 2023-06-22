@@ -36,24 +36,21 @@ def main():
     # cov matrix may already be noised
 
     # reduce dimensionality
-    X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
+    #X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
     
     with Model() as model:
         # apply prior knowledge to gp
         f, gp, y_obs = define_gp(X_train, y_train, means_weighted, cov_func, noise=noise_sd_over_all_regs)
         # Define Gaussian Process likelihood
-        #y_obs = GP.GP('y_obs', gp, sigma=error_prior, observed={'X': X_train, 'Y': y_train})
         trace = sample(1000)
-        #feature_names.delete(0)
         print(f"feature names: {feature_names}")
         post_pred = sample_posterior_predictive(trace=trace, model=model, var_names=['y_obs'], samples=1000)
         #plot_dist(post_pred, "GP predictive posterior")
 
-        #mean_pred, std_pred = eval_gp(post_pred, X_test, y_test)
-        mean_pred = np.mean(post_pred['y_obs'], axis=0)
+        mean_pred, std_pred = eval_gp(post_pred, X_test, y_test)
 
         print(f"mean_pred: {mean_pred}")
-        #print(f"std_pred: {std_pred}")
+        print(f"std_pred: {std_pred}")
 
         # score gp
         waic_score = waic(trace, model)
