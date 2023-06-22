@@ -32,7 +32,7 @@ def main():
     # calculate prior weighted multivariate normal
     priors = Priors(X_train, y_train, feature_names)
     root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs = priors.get_weighted_normal_params(X_train, y_train, feature_names, gamma=1, stddev_multiplier=3)
-    cov_func = priors.get_gp_cov_func(X_train, root_mean, coef_matrix, noise_sd_over_all_regs, kernel="linear")
+    cov_func = priors.get_gp_cov_func(X_train, means_weighted, coef_matrix, noise_sd_over_all_regs, kernel="linear")
     # cov matrix may already be noised
 
     # reduce dimensionality
