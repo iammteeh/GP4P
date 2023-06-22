@@ -12,8 +12,6 @@ def define_gp(X, Y, µ_vector, cov_func, kernel=None, noise=None):
     mean_func = pm.gp.mean.Constant(c=np.mean(µ_vector))
     gp = pm.gp.Latent(mean_func=mean_func, cov_func=cov_func if cov_func else cov_matrix) if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
     #f = gp.marginal_likelihood("f", X=µ_vector, y=prior, noise=0.1)
-    #if not isinstance(prior, pm.MvNormal):
-    #    prior = pm.MvNormal("coef", mu=np.array(µ_vector), cov=cov) 
     print(f"X is {type(X)}")
     f = gp.prior("f", X=X) if prior is None else prior # maybe need to convert numpyro dist object to pymc3 dist object first
     y_obs = pm.Normal("y_obs", mu=f, sigma=noise, observed=Y)
