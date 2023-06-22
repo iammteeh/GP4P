@@ -156,7 +156,7 @@ class Priors:
                         raise ValueError("Covariance Matrix is still not positive semi definite. Cannot compute GP prior.")
             
             #coef_prior = dist.MultivariateNormal(jnp.array(µ_vector), covariance_matrix=jnp.array(cov_matrix)
-            return pm.gp.cov.Linear(len(µ_vector), cov_matrix)
+            return pm.gp.cov.Linear(input_dim=len(X.T), c=1)
                     
         elif kernel == "expquad":
             return pm.gp.cov.ExpQuad(len(µ_vector), ls=1.0)
