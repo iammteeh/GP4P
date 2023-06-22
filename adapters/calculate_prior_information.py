@@ -97,7 +97,6 @@ class Priors:
         mean_rel_errs = all_rel_errs.mean(axis=1)
         reg_list = list(reg_dict_final.values())
         print(f"fitting {len(reg_list)} regressors")
-        print(f"reg_list: {reg_list}")
 
         means_weighted = []
         stds_weighted = []
@@ -114,7 +113,6 @@ class Priors:
         coef_matrix = []
         for coef_id, coef in enumerate(feature_names):
             coef_candidates = np.array([reg.coef_[coef_id] for reg in reg_list]) # vector of coefficients
-            print(f"coef_candidates with shape {len(coef_candidates)} {coef_candidates}")
             coef_matrix.append(coef_candidates)
             mean_weighted, std_weighted = weighted_avg_and_std(
                 coef_candidates, weights, gamma=gamma
