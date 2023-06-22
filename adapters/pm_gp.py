@@ -2,7 +2,7 @@ import pymc3 as pm
 import theano.tensor as tt
 import numpy as np
 
-def define_gp(X, Y, µ_vector, cov_func, kernel=None, noise=None):
+def define_gp(X, Y, µ_vector, cov_func, noise=None):
     # convert µ_vector to pm mean object
     mean_func = pm.gp.mean.Constant(c=np.mean(µ_vector))
     gp = pm.gp.Latent(mean_func=mean_func, cov_func=cov_func) #if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
