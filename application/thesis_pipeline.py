@@ -40,7 +40,7 @@ def main():
     
     with Model() as model:
         # apply prior knowledge to gp
-        f, gp, y_obs = define_gp(X_train, root_mean, cov_func, y_train, noise=noise_sd_over_all_regs)
+        f, gp, y_obs = define_gp(X_train, y_train, means_weighted, cov_func, noise=noise_sd_over_all_regs)
         # Define Gaussian Process likelihood
         #y_obs = GP.GP('y_obs', gp, sigma=error_prior, observed={'X': X_train, 'Y': y_train})
         trace = sample(1000)
