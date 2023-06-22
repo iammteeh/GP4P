@@ -5,7 +5,7 @@ import numpy as np
 def define_gp(X, Y, µ_vector, cov_func, kernel=None, noise=None):
     # convert µ_vector to pm mean object
     mean_func = pm.gp.mean.Constant(c=np.mean(µ_vector))
-    gp = pm.gp.Latent(mean_func=mean_func, cov_func=cov_func) if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
+    gp = pm.gp.Latent(mean_func=mean_func, cov_func=cov_func) #if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
     #f = gp.marginal_likelihood("f", X=µ_vector, y=prior, noise=0.1)
     print(f"X is {type(X)}")
     f = gp.prior("f", X=X)
