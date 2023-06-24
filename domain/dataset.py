@@ -4,6 +4,7 @@ from bayesify.datahandler import ConfigSysProxy, DistBasedRepo
 import os
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import OneHotEncoder
 
 @dataclass
 class DataSet(ConfigSysProxy):
@@ -38,9 +39,16 @@ class DataSet(ConfigSysProxy):
     
     def get_measurement_df(self):
         configs = self.get_all_config_df()
+        if self.value_type == bool:
+            configs = self.encode_categorical_features(configs)
         config_attrs = pd.DataFrame(list(self.all_configs.values()), columns=["y"])
         df_configs = pd.concat([configs, config_attrs], axis=1)
-        return df_configs        
+        return df_configs
+    
+    def encode_categorical_features(self, configs):
+        enc = OneHotEncoder(drop='if_binary')
+        configs = enc.fit_transform(configs)
+        return configs
 
     def update_prototype(self):
         self.prototype_config = list(self.value_type(0) for i in list(self.position_map.keys()))
