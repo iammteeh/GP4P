@@ -39,6 +39,7 @@ class DataSet(ConfigSysProxy):
     
     def get_measurement_df(self):
         configs = self.get_all_config_df()
+        print(f"configs: {configs}")
         if self.value_type == bool:
             configs = self.encode_categorical_features(configs)
         config_attrs = pd.DataFrame(list(self.all_configs.values()), columns=["y"])
@@ -47,7 +48,10 @@ class DataSet(ConfigSysProxy):
     
     def encode_categorical_features(self, configs):
         enc = OneHotEncoder(drop='if_binary')
-        configs = enc.fit_transform(configs)
+        configs = enc.fit(configs).transform(configs).toarray()
+        print(f"encoded {type(configs)} configs: {configs} (shape: {configs.shape}))")
+        # convert numpy back to pandas dataframe
+        configs = pd.DataFrame(list(configs), columns=self.position_map.keys())
         return configs
 
     def update_prototype(self):
