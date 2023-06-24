@@ -1,6 +1,6 @@
-from domain.env import DUMMY_DATA
+from domain.env import USE_DUMMY_DATA
 from adapters.preprocessing import prepare_dataset, preprocessing
-from adapters.calculate_priors import Priors
+from adapters.calculate_prior_information import Priors
 from adapters.visualization import plot_coefs, scatter_plot, plot_feature_importance, plot_dist
 from bayesify.pairwise import P4Preprocessing, get_feature_names_from_rv_id, print_baseline_perf, print_scores, get_err_dict, get_snapshot_dict
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
@@ -22,10 +22,12 @@ def get_X_y():
 #seed = np.random.randint(np.iinfo(np.int32).max)
 seed = 0
 
-ds = prepare_dataset(DUMMY_DATA)
-feature_names = ds.get_feature_names() if not DUMMY_DATA else ds["feature_names"]
+ds = prepare_dataset(USE_DUMMY_DATA)
+feature_names = ds.get_feature_names() if not USE_DUMMY_DATA else ds["feature_names"]
 print(f"initial feature set length: {len(feature_names)}")
-feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "none")    
+feature_names, X_train, X_test, y_train, y_test = preprocessing(ds, "2_poly", "none")
+print(f"final feature names: {feature_names}")
+print(f"final len(feature_names): {len(feature_names)}")    
 # use ndarrays of X and y
 X_train = X_train[1]
 X_test = X_test[1]
@@ -81,7 +83,7 @@ print(pipeline.named_steps['model'].coef_ci(0.95))
 
 # calculate prior weighted normal
 priors = Priors(X_train, y_train, feature_names)
-coef_prior, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names)
+µ_vector, cov_matrix, coef_prior, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names)
 print(weighted_errs_per_sample)
 print(weighted_rel_errs_per_sample)
 # plot prior weighted normal
