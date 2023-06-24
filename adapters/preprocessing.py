@@ -7,7 +7,7 @@ import numpy as np
 import seaborn as sns
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score, KFold, GroupKFold, StratifiedKFold, LeaveOneGroupOut
 
 from itertools import combinations
 
@@ -91,6 +91,17 @@ def scale_features(X, y, scaler):
 def store_model():
     pass 
 
+def get_data_slice(X, y, mode="str", **mode_args):
+    if mode == "minimal":
+        # get minimal data slice of n rows
+        n = mode_args["n"]
+        X = X.iloc[:n]
+        y = y.iloc[:n]
+
+        return X, y
+    else:
+        raise NotImplementedError
+
 def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     print("Preprocessing...")
     if type(ds) is DataSet:
@@ -110,6 +121,8 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     # scale features
     #print(f"apply {scaler} Scaling")
     #X = scale_features(X, y, scaler)
+    # slice data
+    X, y = get_data_slice(X, y, mode="minimal", n=1000)
     # convert to ndarray
     if to_ndarray:
         X = X.__deepcopy__()
