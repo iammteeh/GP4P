@@ -3,7 +3,7 @@ from application.bayesify_pipeline import bayesify_pipeline
 from sklearn.model_selection import train_test_split
 from domain.env import DUMMY_DATA
 from domain.regression import Regression
-from dp.bayes_search_cv import bayes_search_cv
+from adapters.bayes_search_cv import bayes_search_cv
 from domain.metrics import get_metrics
 import numpy as np
 import time
