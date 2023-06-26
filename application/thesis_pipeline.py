@@ -40,7 +40,7 @@ def main():
     if EXTRAFUNCTIONAL_FEATURES:
         X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
     else:
-        X_train = linear_pca(X_train, y_train, whiten=True)
+        X_train = linear_pca(X_train, y_train)
     
     with Model() as model:
         # apply prior knowledge to gp
