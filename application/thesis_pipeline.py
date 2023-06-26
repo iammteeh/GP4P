@@ -1,7 +1,7 @@
 from domain.env import USE_DUMMY_DATA
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
-from adapters.pca import kernel_pca
+from adapters.pca import kernel_pca, linear_pca
 from adapters.calculate_prior_information import Priors
 from adapters.pm_gp import define_gp
 from pymc3 import Model, sample, sample_posterior_predictive, traceplot, summary, waic, loo
@@ -37,6 +37,7 @@ def main():
 
     # reduce dimensionality
     #X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
+    X_train = linear_pca(X_train, y_train, whiten=True)
     
     with Model() as model:
         # apply prior knowledge to gp
