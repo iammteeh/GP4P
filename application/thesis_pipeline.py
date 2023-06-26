@@ -36,6 +36,7 @@ def main():
     # cov matrix may already be noised
 
     # reduce dimensionality
+    print(f"reduce dimensionality of X_train via PCA")
     #X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
     X_train = linear_pca(X_train, y_train, whiten=True)
     
