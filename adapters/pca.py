@@ -8,6 +8,11 @@ def kernel_pca(X, y, kernel="rbf", **kernel_params):
     result = pca.fit_transform(X, y)
     return result
 
+def linear_pca(X, y, **pca_params):
+    pca = PCA(n_components=len(X.T), **pca_params)
+    result = pca.fit_transform(X, y)
+    return result
+
 def main():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline()
     # use df of x and y
