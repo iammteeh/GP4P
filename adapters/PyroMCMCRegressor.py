@@ -263,7 +263,7 @@ class PyroMCMCRegressor(PyroMCMCRegressor, BaseEstimator):
 
         if ci is not None:
             assert_ci(ci)
-            y_pred = az.hdi(y_samples, hdi_prob=ci, axis=0)
+            y_pred = az.hdi(y_samples, hdi_prob=ci)
         else:
             y_pred = np.mean(y_samples, axis=0)
 
