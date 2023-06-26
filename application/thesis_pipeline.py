@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pca import kernel_pca, linear_pca
@@ -24,7 +24,7 @@ def eval_gp(posterior_predictive_distribution, X_test, y_test):
     return mean_pred, std_pred
 
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features=None, scaler="minmax")
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
@@ -37,8 +37,10 @@ def main():
 
     # reduce dimensionality
     print(f"reduce dimensionality of X_train via PCA")
-    #X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
-    X_train = linear_pca(X_train, y_train, whiten=True)
+    if EXTRAFUNCTIONAL_FEATURES:
+        X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
+    else:
+        X_train = linear_pca(X_train, y_train, whiten=True)
     
     with Model() as model:
         # apply prior knowledge to gp
