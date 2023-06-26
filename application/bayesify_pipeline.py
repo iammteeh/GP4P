@@ -6,6 +6,7 @@ from bayesify.pairwise import P4Preprocessing, get_feature_names_from_rv_id, pri
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import print_baseline_perf
 from sklearn.pipeline import Pipeline
+import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
@@ -82,11 +83,22 @@ def new_baseline_performance(X, y, **model):
 print(pipeline.named_steps['model'].coef_ci(0.95))
 
 # calculate prior weighted normal
-priors = Priors(X_train, y_train, feature_names)
-µ_vector, cov_matrix, coef_prior, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names)
-print(weighted_errs_per_sample)
-print(weighted_rel_errs_per_sample)
-# plot prior weighted normal
-plot_dist(coef_prior, "coef_prior")
-plot_dist(base_prior, "base_prior")
-plot_dist(error_prior, "error_prior")
+#priors = Priors(X_train, y_train, feature_names)
+#µ_vector, cov_matrix, coef_prior, base_prior, error_prior, weighted_errs_per_sample, weighted_rel_errs_per_sample = priors.get_prior_weighted_normal(X_train, y_train, feature_names)
+#print(weighted_errs_per_sample)
+#print(weighted_rel_errs_per_sample)
+## plot prior weighted normal
+#plot_dist(coef_prior, "coef_prior")
+#plot_dist(base_prior, "base_prior")
+#plot_dist(error_prior, "error_prior")
+
+# for each submodel draw samples from the posterior predictive distribution
+y_pred = pipeline.predict(X_test, n_samples=10000, ci=0.99)
+print(f"y_pred: {y_pred}")
+
+# Plotting histogram of posterior predictive samples
+plt.hist(y_pred, bins=30, alpha=0.5)
+plt.xlabel('Predicted y')
+plt.ylabel('Frequency')
+plt.title('Posterior predictive distribution')
+plt.show()
