@@ -2,6 +2,41 @@ from application.basic_pipeline import init_pipeline
 from sklearn.decomposition import PCA, IncrementalPCA, KernelPCA, SparsePCA
 import time
 import matplotlib.pyplot as plt
+import numpy as np
+
+class PCA(PCA):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def get_covariance(self):
+        """Compute data covariance with the generative model.
+
+        ``cov = components_.T * S**2 * components_ + sigma2 * eye(n_features)``
+        where S**2 contains the explained variances, and sigma2 contains the
+        noise variances.
+
+        Returns
+        -------
+        cov : array of shape=(n_features, n_features)
+            Estimated covariance of data.
+        """
+        components_ = self.components_
+        exp_var = self.explained_variance_
+        if self.whiten:
+            components_ = components_ * np.sqrt(exp_var[:, np.newaxis])
+        exp_var_diff = np.maximum(exp_var - self.noise_variance_, 0.0)
+        cov = np.dot(components_.T * exp_var_diff, components_)
+        cov.flat[:: len(cov) + 1] += self.noise_variance_  # modify diag inplace
+        return cov
+    
+    def fit(self, X, y=None):
+        return super().fit(X, y)
+    
+    def fit_transform(self, X, y=None):
+        return super().fit_transform(X, y)
+    
+    def transform(self, X):
+        return super().transform(X)
 
 def kernel_pca(X, y, kernel="rbf", **kernel_params):
     pca = KernelPCA(n_components=len(X.T), kernel=kernel, n_jobs=8, fit_inverse_transform=True, **kernel_params)
@@ -9,9 +44,12 @@ def kernel_pca(X, y, kernel="rbf", **kernel_params):
     return result
 
 def linear_pca(X, y, **pca_params):
-    pca = PCA(n_components=len(X.T), **pca_params)
-    result = pca.fit_transform(X, y)
-    return result
+    if isinstance(X, np.ndarray):
+        X = X.T
+    pca = PCA(n_components=len(X), **pca_params)
+    new_X = pca.fit_transform(X, y)
+    cov = pca.get_covariance()
+    return cov, new_X
 
 def main():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline()
