@@ -4,7 +4,6 @@ from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import GP_Prior
 from adapters.pymc.kernel_construction import get_gp_cov_func, get_additive_lr_kernel
 from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
-from adapters.pymc.pca import kernel_pca, linear_pca
 from pymc3 import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary
 from pymc3 import gp as GP
 from arviz import loo, waic
@@ -30,14 +29,6 @@ def main():
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
-
-    # reduce dimensionality
-    print(f"reduce dimensionality of X_train via PCA")
-    if EXTRAFUNCTIONAL_FEATURES:
-        X_train = kernel_pca(X_train, y_train, kernel="poly", degree=2, gamma=0.03)
-    else:
-        X_train = linear_pca(X_train, y_train)
-
 
     with Model() as model:
         # apply prior knowledge to gp

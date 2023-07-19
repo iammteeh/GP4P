@@ -5,6 +5,7 @@ from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_er
 import pymc3 as pm
 from sklearn import kernel_approximation, metrics
 from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel
+from adapters.pymc.pca import kernel_pca, linear_pca
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
 import math
@@ -163,6 +164,8 @@ class GP_Prior(Priors):
         self.stds_weighted, 
         self.coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
+        # apply dimensionality reduction
+        self.X = self.apply_pca() # TODO: test whether applying PCA before or after computing the prior parameters is better
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel)
 
@@ -190,6 +193,17 @@ class GP_Prior(Priors):
                         raise ValueError("Covariance Matrix is still not positive semi definite. Cannot compute GP prior.")
                     
         return cov_matrix
+    
+    def apply_pca(self):
+        # save original X first
+        self.X_origin = self.X
+        print(f"reduce dimensionality of X_train via PCA")
+        if not isinstance(self.kernel, pm.gp.cov.Linear):
+            X_pcaed = kernel_pca(self.X, self.y, kernel="poly", degree=2, gamma=0.03)
+        else:
+            X_pcaed = linear_pca(self.X, self.y)
+
+        self.X = X_pcaed
 
     def get_mean(self, mean_func="linear"):
         if mean_func == "linear":
@@ -206,4 +220,4 @@ class GP_Prior(Priors):
             return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
         elif kernel == "experimental":
             cov_matrix = self.compute_cov_matrix()
-            return get_experimental_kernel(self.X)
+            return get_experimental_kernel(self.X_origin)
