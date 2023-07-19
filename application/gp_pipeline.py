@@ -32,7 +32,7 @@ def main():
 
     with Model() as model:
         # apply prior knowledge to gp
-        f, gp, y_obs = define_gp(X_train, y_train, feature_names)
+        f, gp, y_obs = define_gp(X_train, y_train, feature_names, kernel="linear")
         #f, gp = get_kronecker_gp(X_train, y_train, (root_mean, root_std), (means_weighted, stds_weighted), noise=noise_sd_over_all_regs)
         # Define Gaussian Process likelihood
         #y_obs = gp.marginal_likelihood("y_obs", X=X_train, y=y_train, noise=noise_sd_over_all_regs)
