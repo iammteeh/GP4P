@@ -167,6 +167,8 @@ class GP_Prior(Priors):
             mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
         elif mean_func == "constant":
             mean_func = pm.gp.mean.Constant(c=np.mean(self.means_weighted))
+        
+        return mean_func
     
     def get_kernel(self, kernel="linear"):
         if kernel == "linear":
