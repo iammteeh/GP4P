@@ -165,7 +165,7 @@ class GP_Prior(Priors):
         self.coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
         # apply dimensionality reduction
-        self.X = self.apply_pca() # TODO: test whether applying PCA before or after computing the prior parameters is better
+        self.X = self.apply_pca(kernel=kernel) # TODO: test whether applying PCA before or after computing the prior parameters is better
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel)
 
@@ -194,11 +194,11 @@ class GP_Prior(Priors):
                     
         return cov_matrix
     
-    def apply_pca(self):
+    def apply_pca(self, kernel="linear"):
         # save original X first
         self.X_origin = self.X
         print(f"reduce dimensionality of X_train via PCA")
-        if not isinstance(self.kernel, pm.gp.cov.Linear):
+        if kernel != "linear":
             X_pcaed = kernel_pca(self.X, self.y, kernel="poly", degree=2, gamma=0.03)
         else:
             X_pcaed = linear_pca(self.X, self.y)
