@@ -150,7 +150,7 @@ class Priors:
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
     
 class GP_Prior(Priors):
-    def __init__(self, X, y, feature_names, dummy=True):
+    def __init__(self, X, y, feature_names):
         super().__init__(X, y, feature_names, dummy)
         # compute empirical prior parameters to avoid improper priors
         (self.root_mean, 
