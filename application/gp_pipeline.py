@@ -1,7 +1,6 @@
 from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
-from adapters.pymc.pca import kernel_pca, linear_pca
 from adapters.pymc.prior_construction import GP_Prior
 from adapters.pymc.kernel_construction import get_gp_cov_func, get_additive_lr_kernel
 from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
