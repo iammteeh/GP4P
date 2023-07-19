@@ -1,9 +1,9 @@
 from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
-from adapters.pca import kernel_pca, linear_pca
-from adapters.calculate_prior_information import Priors
-from adapters.pm_gp import define_gp
+from adapters.pymc.pca import kernel_pca, linear_pca
+from adapters.pymc.prior_construction import Priors
+from adapters.pymc.pm_gp import define_gp
 from pymc3 import Model, sample, sample_posterior_predictive, traceplot, summary, waic, loo
 from pymc3 import gp as GP
 from sklearn.metrics import mean_squared_error, r2_score
