@@ -195,7 +195,7 @@ class GP_Prior(Priors):
         if mean_func == "linear":
             mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
         elif mean_func == "constant":
-            mean_func = pm.gp.mean.Constant(c=np.mean(self.means_weighted))
+            mean_func = pm.gp.mean.Constant(c=np.mean(self.y))
         
         return mean_func
     
