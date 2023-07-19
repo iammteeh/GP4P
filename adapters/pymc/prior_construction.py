@@ -31,12 +31,11 @@ def weighted_avg_and_std(values, weights, gamma=1):
     return average, sqr_var
 
 class Priors:
-    def __init__(self, X, y, feature_names, dummy=True):
+    def __init__(self, X, y, feature_names):
         # TODO: check if X and y is a dataframe or a numpy array
         self.X = X
         self.y = y
         self.feature_names = feature_names
-        self.dummy = dummy
         self.pos_map = {ft: pos for pos, ft in enumerate(feature_names)}
 
     def transform_data_to_candidate_features(self, candidate, train_x):
