@@ -47,7 +47,8 @@ def linear_pca(X, y, **pca_params):
     if isinstance(X, np.ndarray):
         X = X.T
     else:
-        X = np.array(X.iloc[:]).T
+        X = np.array(X.iloc[:])
+        X = X.T
     pca = PCA(n_components=len(X), **pca_params)
     new_X = pca.fit_transform(X, y)
     cov = pca.get_covariance()
