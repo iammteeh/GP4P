@@ -3,7 +3,7 @@ import theano.tensor as tt
 import numpy as np
 from adapters.pymc.prior_construction import GP_Prior
 
-def define_gp(X, y, feature_names, kernel=None, noise=None, gp=None):
+def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", noise=None, gp=None):
     print(f"shape of X: {X.shape}")
     gp_prior = GP_Prior(X, y, feature_names, kernel=kernel)
     print(f"shape of gp_prior.X: {gp_prior.X.shape}")

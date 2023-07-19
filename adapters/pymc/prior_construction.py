@@ -150,7 +150,7 @@ class Priors:
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
     
 class GP_Prior(Priors):
-    def __init__(self, X, y, feature_names, kernel="linear"):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear"):
         super().__init__(X, y, feature_names)
         # compute empirical prior parameters to avoid improper priors
         (self.root_mean, 
@@ -159,11 +159,14 @@ class GP_Prior(Priors):
         self.stds_weighted, 
         self.coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
-        self.mean_func = self.get_mean()
+        self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel)
 
-    def get_mean(self):
-        return pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
+    def get_mean(self, mean_func="linear"):
+        if mean_func == "linear":
+            mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
+        elif mean_func == "constant":
+            mean_func = pm.gp.mean.Constant(c=np.mean(self.means_weighted))
     
     def get_kernel(self, kernel="linear"):
         if kernel == "linear":

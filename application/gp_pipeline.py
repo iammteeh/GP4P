@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import GP_Prior
