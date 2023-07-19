@@ -71,7 +71,10 @@ def get_matern52_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_pa
         return eta ** 2 * Matern52(input_dim=X.T, ls=ls, active_dims=active_dims)
     else:
         return eta ** 2 * Matern52(input_dim=X.T, active_dims=[i for i in range(X.shape[1])])
-    
+
+def get_experimental_kernel(X):
+    #return Linear(len(µ_vector), cov_matrix)
+    return Linear(input_dim=len(X.T), c=1)
 
 # composite kernel construction
 def get_additive_kernel(*kernels, mode="LR"):

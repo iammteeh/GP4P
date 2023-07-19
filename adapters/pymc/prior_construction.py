@@ -4,7 +4,7 @@ from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_err_dict
 import pymc3 as pm
 from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel
+from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
 import math
@@ -29,6 +29,10 @@ def weighted_avg_and_std(values, weights, gamma=1):
     else:
         sqr_var = math.sqrt(variance)
     return average, sqr_var
+
+def is_positive_semi_definite(matrix):
+    return np.all(np.linalg.eigvals(matrix) >= 0)
+
 
 class Priors:
     def __init__(self, X, y, feature_names):
@@ -162,6 +166,31 @@ class GP_Prior(Priors):
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel)
 
+    def compute_cov_matrix(self):
+        """
+        THIS IS EXPERIMENTAL ONLY
+        """
+        # compute experimental cov matrix for experimental kernel
+        cov_matrix = np.cov(self.coef_matrix, rowvar=False)
+
+        if np.isnan(self.means_weighted).any():
+            means_weighted = np.nan_to_num(self.means_weighted)
+            if np.isnan(cov_matrix).any() and np.isinf(cov_matrix).any():
+                print("cov_matrix contains nan or inf")
+                cov_matrix = np.eye(len(means_weighted))
+
+            if not is_positive_semi_definite(cov_matrix):
+                print("Covariance Matrix is not positive semi definite. Adding noise.")
+                cov_matrix += np.eye(len(means_weighted)) * self.noise_sd_over_all_regs
+                if not is_positive_semi_definite(cov_matrix):
+                    print("Covariance Matrix is still not positive semi definite. Compute PSD approximation.")
+                    cov_matrix = sqrtm(cov_matrix)
+                    cov_matrix = np.dot(cov_matrix, cov_matrix.T)
+                    if not is_positive_semi_definite(cov_matrix):
+                        raise ValueError("Covariance Matrix is still not positive semi definite. Cannot compute GP prior.")
+                    
+        return cov_matrix
+
     def get_mean(self, mean_func="linear"):
         if mean_func == "linear":
             mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
@@ -175,3 +204,6 @@ class GP_Prior(Priors):
             return get_linear_kernel(self.X)
         elif kernel == "additive_lr":
             return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
+        elif kernel == "experimental":
+            cov_matrix = self.compute_cov_matrix()
+            return get_experimental_kernel(self.X)
