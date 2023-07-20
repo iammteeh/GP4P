@@ -4,7 +4,7 @@ from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_err_dict
 import pymc3 as pm
 from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel
+from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel
 from adapters.pymc.pca import kernel_pca, linear_pca
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
@@ -155,7 +155,7 @@ class Priors:
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
     
 class GP_Prior(Priors):
-    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear"):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", with_pca=False):
         super().__init__(X, y, feature_names)
         # compute empirical prior parameters to avoid improper priors
         (self.root_mean, 
@@ -165,7 +165,8 @@ class GP_Prior(Priors):
         self.coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
         # apply dimensionality reduction
-        self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
+        if with_pca:
+            self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel)
 
@@ -206,7 +207,13 @@ class GP_Prior(Priors):
         return X_pcaed
 
     def get_mean(self, mean_func="linear"):
-        if mean_func == "linear":
+        if mean_func == "standard":
+            mean_func = pm.gp.mean.Zero()
+        elif mean_func == "linear":
+            betas = pm.Normal("beta", mu=0, sigma=1, shape=len(self.X.T)).random(size=200)
+            #b = np.mean(pm.HalfNormal("b", sigma=1).random(size=200))
+            mean_func = pm.gp.mean.Linear(coeffs=betas, intercept=0)
+        elif mean_func == "linear_weighted":
             mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
         elif mean_func == "constant":
             mean_func = pm.gp.mean.Constant(c=np.mean(self.y))
@@ -220,4 +227,9 @@ class GP_Prior(Priors):
             return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
         elif kernel == "experimental":
             cov_matrix = self.compute_cov_matrix()
-            return get_experimental_kernel(self.X_origin)
+            X = self.X_origin if hasattr(self, "X_origin") else self.X
+            return get_experimental_kernel(X)
+        elif kernel == "matern52":
+            return get_matern52_kernel(self.X)
+        elif kernel == "standard":
+            return get_standard_lr_kernel(self.X)
