@@ -3,7 +3,7 @@ import theano.tensor as tt
 import numpy as np
 from adapters.pymc.prior_construction import GP_Prior
 
-def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", noise=None, gp=None):
+def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", gp=None):
     gp_prior = GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel)
     #print(f"shape of gp_prior.X: {gp_prior.X.shape}")
     gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) #if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
@@ -11,7 +11,7 @@ def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", noise=No
     print(f"X is {type(X)}")
     f = gp.prior("f", X=X)
     print(f"shape of f: {f.shape}")
-    y_obs = pm.Normal("y_obs", mu=f, sigma=noise, observed=gp_prior.y)
+    y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y)
     return f, gp, y_obs
 
 def get_additive_gp(X, y, intercept, coefs, noise):
