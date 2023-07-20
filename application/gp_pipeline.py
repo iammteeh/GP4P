@@ -8,8 +8,9 @@ from pymc3 import Model, sample, sample_posterior_predictive, find_MAP, traceplo
 from pymc3 import gp as GP
 from arviz import loo, waic
 from sklearn.metrics import mean_squared_error, r2_score
+from adapters.visualization import plot_dist, plot_gp_feature, plot
 import matplotlib.pyplot as plt
-from adapters.visualization import plot_dist, plot_gp_feature
+import arviz as az
 
 def eval_gp(posterior_predictive_distribution, X_test, y_test):
     # Calculate mean and standard deviation
@@ -63,5 +64,8 @@ def main():
         #MSE = mean_squared_error(y_test, mean_pred)
         #print(f"MSE: {MSE}")
 
+        #ppc(post_pred, y_test)
+        az.plot_ppc(az.from_pymc3(posterior_predictive=post_pred, model=model))
+        plot(title=f"GP_PPC_{MEAN_FUNC}_{KERNEL_TYPE}")
 if __name__ == "__main__":
     main()
