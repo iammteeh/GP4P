@@ -83,7 +83,16 @@ def get_additive_kernel(*kernels, mode="LR"):
     return Add(*kernels)
 
 def get_additive_lr_kernel(X, root_mean, root_std):
-    return Add(get_constant_kernel(c=root_mean), get_linear_kernel(X), get_white_noise_kernel(sigma=root_std))
+    """
+    only with standard normal prior mean and std
+    """
+    return get_constant_kernel(c=root_mean) + get_linear_kernel(X) + get_white_noise_kernel(sigma=root_std)
+
+def get_standard_lr_kernel(X):
+    """
+    only with standard normal prior mean and std
+    """
+    return get_constant_kernel(c=1) + get_linear_kernel(X) + get_white_noise_kernel(sigma=1)
 
 
 # regularized kernel construction
