@@ -123,3 +123,22 @@ def plot_gp_feature(feature_idx, sample_idx, X_train, X_test, mean_pred, std_pre
     plt.ylabel("Y")
     plt.legend()
     plt.show()
+
+def ppc(pred_samples, Y, ppc_var='y_obs'):
+    plt.figure(figsize=(10,5))
+
+    # PPC samples
+    ppc_samples = pred_samples[ppc_var].flatten()
+
+    # Plot the histogram of PPC samples
+    sns.histplot(ppc_samples, color='skyblue', kde=True, label='Predicted data');
+
+    # Plot the histogram of observed data
+    sns.histplot(Y, color='red', kde=True, label='Observed data');
+
+    plt.legend();
+    plt.show();
+
+def plot(title="title"):
+    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    plt.savefig(f"{RESULTS_DIR}/{title}_{timestamp}.png") if SAVE_FIGURES else plt.show()
