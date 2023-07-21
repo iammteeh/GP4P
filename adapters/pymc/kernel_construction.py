@@ -59,18 +59,18 @@ def get_constant_kernel(c=1.0):
 
 def get_periodic_kernel(X, active_dims=None):
     if active_dims is not None:
-        return Periodic(input_dim=X.T, active_dims=active_dims)
+        return Periodic(input_dim=len(X.T), active_dims=active_dims)
     else:
-        return Periodic(input_dim=X.T, active_dims=[i for i in range(X.shape[1])])
+        return Periodic(input_dim=len(X.T), active_dims=[i for i in range(X.shape[1])])
 
 def get_matern52_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):    
     if hyper_priors:
-        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"], shape=X.shape[1])
-        eta = HalfCauchy("eta", beta=2, shape=X.shape[1])
+        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+        eta = HalfCauchy("eta", beta=2)
     if active_dims is not None:
-        return eta ** 2 * Matern52(input_dim=X.T, ls=ls, active_dims=active_dims)
+        return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls, active_dims=active_dims)
     else:
-        return eta ** 2 * Matern52(input_dim=X.T, active_dims=[i for i in range(X.shape[1])])
+        return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls)# active_dims=[i for i in range(X.shape[1])])
 
 def get_experimental_kernel(X):
     #return Linear(len(µ_vector), cov_matrix)

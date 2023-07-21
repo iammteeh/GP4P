@@ -230,6 +230,9 @@ class GP_Prior(Priors):
             X = self.X_origin if hasattr(self, "X_origin") else self.X
             return get_experimental_kernel(X)
         elif kernel == "matern52":
-            return get_matern52_kernel(self.X)
+            hyper_prior_params = {}
+            hyper_prior_params["mean"] = self.means_weighted
+            hyper_prior_params["sigma"] = self.stds_weighted
+            return get_matern52_kernel(self.X, **hyper_prior_params)
         elif kernel == "standard":
             return get_standard_lr_kernel(self.X)
