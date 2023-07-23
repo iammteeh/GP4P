@@ -4,7 +4,7 @@ from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_err_dict
 import pymc3 as pm
 from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel
+from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel
 from adapters.pymc.pca import kernel_pca, linear_pca
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
@@ -236,3 +236,8 @@ class GP_Prior(Priors):
             return get_matern52_kernel(self.X, **hyper_prior_params)
         elif kernel == "standard":
             return get_standard_lr_kernel(self.X)
+        elif kernel == "expquad":
+            hyper_prior_params = {}
+            hyper_prior_params["mean"] = self.means_weighted
+            hyper_prior_params["sigma"] = self.stds_weighted
+            return get_squared_exponential_kernel(self.X, **hyper_prior_params)
