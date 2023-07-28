@@ -73,7 +73,7 @@ def additive_kernel_permutation(basis_kernel, items, k=3):
     for permutation in permutations:
         #kernels = {'k{}'.format(k): k for k in range(k)}
         #kernels['k{}'.format(permutation.index(item))] = Prod(item, permutation[permutation.index(item)+1])
-        combinations = itertools.combinations(permutation, 2)
+        combinations = list(itertools.combinations(permutation, 2))
         for combination in combinations:
             print(f"add {permutations.index(permutation)} of {len(permutations)}")
             additive_kernel += Prod([combination[0], combination[1]], name="Prod_{}_{}".format(permutations.index(permutation), combinations.index(combination)))
