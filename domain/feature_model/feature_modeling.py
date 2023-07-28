@@ -61,9 +61,8 @@ def find_independent_features():
 
 def additive_kernel_permutation(basis_kernel, items, k=3):
     import itertools
-    from GPy.kern import Add, Prod, BasisFuncKernel
-    import sys
-    sys.setrecursionlimit(10000)
+    from domain.kernel import Add
+    from GPy.kern import Prod
     permutations = [list(p) for p in itertools.combinations(items, r=k)]
     print(f"permutations: {permutations}")
     print(f"len permutations: {len(permutations)}")
