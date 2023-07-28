@@ -42,8 +42,8 @@ def main():
     #model = gp.models.GPRegression(pretrained_priors.X, pretrained_priors.y, kernel=gp.kern.Linear(input_dim=X_train.shape[1]))
     # build additive kernels
     components = [gp.kern.Linear(input_dim=X_train.shape[1]) for item in range(X_train.shape[1])]
-    base_kernel = gp.kern.Kern(input_dim=X_train.shape[1], active_dims=None, name='basis_kernel')
-    additive_kernel = additive_kernel_permutation(base_kernel, components, k=3)
+    #base_kernel = gp.kern.Kern(input_dim=X_train.shape[1], active_dims=None, name='basis_kernel')
+    additive_kernel = additive_kernel_permutation(components, k=3)
     model = gp.core.GP(pretrained_priors.X, pretrained_priors.y, kernel=additive_kernel, likelihood=likelihood, inference_method=inference_method)
     # update kernel priors and likelihood
     #model.kern.variances.set_prior(gp.priors.MultivariateGaussian(np.array(means_weighted).reshape(-1, 1), np.array(stds_weighted).reshape(-1, 1)))

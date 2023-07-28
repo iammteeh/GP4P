@@ -9,9 +9,8 @@ def test_additive_kernel_generation():
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
-    items = [gp.kern.Linear(input_dim=X_train.shape[1]) for item in range(X_train.shape[1])]
-    basis_kernel = gp.kern.Kern(input_dim=X_train.shape[1], active_dims=None, name='basis_kernel')
-    additive_kernel = additive_kernel_permutation(basis_kernel, items, k=3)
+    items = [gp.kern.Linear(input_dim=X_train.shape[1]) for item in range(5)]
+    additive_kernel = additive_kernel_permutation(items, k=3)
     return additive_kernel
 
 if __name__ == "__main__":
