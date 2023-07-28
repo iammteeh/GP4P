@@ -63,12 +63,14 @@ def additive_kernel_permutation(basis_kernel, items, k=3):
     import itertools
     from domain.kernel import Add
     from GPy.kern import Prod
+    import time
     permutations = [list(p) for p in itertools.combinations(items, r=k)]
-    print(f"permutations: {permutations}")
-    print(f"len permutations: {len(permutations)}")
-    #locals().update({'k{}'.format(k): p for k,p in zip(range(k), range(len(permutations)))})
+    print(f"Start building additive kernel. \n Calculated {len(permutations)}.")
+    start = time.time()
     additive_kernel = basis_kernel.copy()
     additive_kernel = Add([Prod([combination[0], combination[1]], name=f"Prod_{p}_{c}") 
                       for p, permutation in enumerate(permutations) 
                       for c, combination in enumerate(itertools.combinations(permutation, 2))])
+    end = time.time()
+    print(f"Finished building additive kernel. It took {end - start:.2f}s.")
     return additive_kernel
