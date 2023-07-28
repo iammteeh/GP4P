@@ -67,5 +67,7 @@ def main():
         #ppc(post_pred, y_test)
         az.plot_ppc(az.from_pymc3(posterior_predictive=post_pred, model=model))
         plot(title=f"GP_PPC_{MEAN_FUNC}_{KERNEL_TYPE}")
+
+#TODO: leite GP_Prior ein weiteres Mal jeweils für pymc3 und gpy ab und definiere abstract methods for get_mean_func und get_kernel
 if __name__ == "__main__":
     main()
