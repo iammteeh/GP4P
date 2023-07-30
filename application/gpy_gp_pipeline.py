@@ -6,10 +6,12 @@ from adapters.pymc.prior_construction import Priors
 from GPy.likelihoods import Gaussian, StudentT, Gamma, LogLogistic, MixedNoise, Poisson, Weibull
 from GPy.kern import Hierarchical, RBF, Coregionalize, Linear, Matern52
 from GPyOpt.acquisitions import AcquisitionEI_MCMC #HierarchicalExpectedImprovement
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE
+from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, RESULTS_DIR
 import numpy as np
 from domain.feature_model.feature_modeling import additive_kernel_permutation
 from application.init_pipeline import init_pipeline, get_numpy_features
+from adapters.gpy.util import save_model, load_model
+import datetime
 
 def waic(model, X, Y):
     mean, var = model.predict(X)
@@ -55,5 +57,8 @@ def main():
     # plot posterior predictive distribution
     
     print(waic(model, X_test, y_test))
+    # save model
+    timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    save_model(f"{MODELDIR}/GPY_{KERNEL_TYPE}_{timestamp}.npy", model.param_array)
 if __name__ == "__main__":
     main()
