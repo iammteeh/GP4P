@@ -6,9 +6,10 @@ from adapters.pymc.prior_construction import Priors
 from GPy.likelihoods import Gaussian, StudentT, Gamma, LogLogistic, MixedNoise, Poisson, Weibull
 from GPy.kern import Hierarchical, RBF, Coregionalize, Linear, Matern52
 from GPyOpt.acquisitions import AcquisitionEI_MCMC #HierarchicalExpectedImprovement
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, RESULTS_DIR
+from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 import numpy as np
 from domain.feature_model.feature_modeling import additive_kernel_permutation
+from adapters.gpy.gpy_prior_construction import GPy_Prior
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.gpy.util import save_model, load_model
 import datetime
@@ -30,35 +31,34 @@ def main():
     # get rank of X_train
     rank = np.linalg.matrix_rank(X_train)
 
-
     # define GP_Prior and pretrain weights
     pretrained_priors = Priors(X_train, y_train, feature_names)
     root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs = pretrained_priors.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
     weights = np.array(means_weighted).reshape(-1, 1)
     pretrained_priors.y = np.atleast_2d(y_train).T
     # init Gaussian Process model
-    likelihood = gp.likelihoods.Poisson() # important for classification of space state representation
+    likelihood = gp.likelihoods.Gaussian() # important for classification of space state representation
     #mean_func = gp.core.Mapping(1, 1)
     #mean_func.f = lambda x: np.dot(x, weights)
-    inference_method = gp.inference.latent_function_inference.Laplace()
+    #inference_method = gp.inference.latent_function_inference.Laplace()
     #model = gp.models.GPRegression(pretrained_priors.X, pretrained_priors.y, kernel=gp.kern.Linear(input_dim=X_train.shape[1]))
-    # build additive kernels
-    components = [gp.kern.Linear(input_dim=X_train.shape[1]) for item in range(X_train.shape[1])]
-    #base_kernel = gp.kern.Kern(input_dim=X_train.shape[1], active_dims=None, name='basis_kernel')
-    additive_kernel = additive_kernel_permutation(components, k=3)
-    model = gp.core.GP(pretrained_priors.X, pretrained_priors.y, kernel=additive_kernel, likelihood=likelihood, inference_method=inference_method)
+    # build prior
+    gp_prior = GPy_Prior(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE, kernel_structure=KERNEL_STRUCTURE, ARD=ARD)
+    mean_func = gp_prior.mean_func
+    kernel = gp_prior.kernel
+    model = gp.core.GP(pretrained_priors.X, pretrained_priors.y, kernel=kernel, likelihood=likelihood, mean_function=mean_func)
     # update kernel priors and likelihood
     #model.kern.variances.set_prior(gp.priors.MultivariateGaussian(np.array(means_weighted).reshape(-1, 1), np.array(stds_weighted).reshape(-1, 1)))
     model.optimize(messages=True)
     # calculate posterior predictive distribution
+
     mean, var = model.predict(X_test)
-    
     # score model with GPy
     # plot posterior predictive distribution
-    
     print(waic(model, X_test, y_test))
+
     # save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    save_model(f"{MODELDIR}/GPY_{KERNEL_TYPE}_{timestamp}.npy", model.param_array)
+    save_model(f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.npy", model.param_array)
 if __name__ == "__main__":
     main()
