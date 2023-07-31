@@ -1,10 +1,10 @@
 import pymc3 as pm
 import theano.tensor as tt
 import numpy as np
-from adapters.pymc.prior_construction import GP_Prior
+from adapters.pymc.prior_construction import PM_GP_Prior
 
 def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", gp=None):
-    gp_prior = GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel)
+    gp_prior = PM_GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel)
     #print(f"shape of gp_prior.X: {gp_prior.X.shape}")
     gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) #if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
     #f = gp.marginal_likelihood("f", X=X)

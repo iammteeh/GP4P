@@ -14,6 +14,7 @@ import numpy as np
 from numpyro import distributions as dist
 import time
 import copy
+from abc import abstractmethod
 
 def weighted_avg_and_std(values, weights, gamma=1):
     """
@@ -153,9 +154,9 @@ class Priors:
         )
 
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
-    
+
 class GP_Prior(Priors):
-    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", with_pca=False):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear"):
         super().__init__(X, y, feature_names)
         # compute empirical prior parameters to avoid improper priors
         (self.root_mean, 
@@ -164,6 +165,18 @@ class GP_Prior(Priors):
         self.stds_weighted, 
         self.coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
+
+    @abstractmethod
+    def get_mean(self, mean_func="linear"):
+        raise NotImplementedError
+    
+    @abstractmethod
+    def get_kernel(self, kernel="linear"):
+        raise NotImplementedError
+
+class PM_GP_Prior(GP_Prior):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", with_pca=False):
+        super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel)
         # apply dimensionality reduction
         if with_pca:
             self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
