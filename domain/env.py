@@ -2,7 +2,8 @@ import os
 
 PWD = os.getcwd()
 DATADIR = PWD + '/rawdata/'
-MODELDIR = PWD + '/modeldata/'
+MODELDIR = PWD + '/modeldata'
+RESULTS_DIR = PWD + '/evaluation'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
 USE_DUMMY_DATA = False
@@ -16,6 +17,7 @@ REGRESSION_PENALTY = (-2, 4, 50) # (start, stop, num)
 ALPHAS = (-2, 3, 1000)
 COEFFICIENT_THRESHOLD = 3
 MEAN_FUNC = "linear_weighted"
-KERNEL_TYPE = "linear"
-SAVE_FIGURES = False
-RESULTS_DIR = PWD + '/evaluation'
+KERNEL_TYPE = "matern52"
+KERNEL_STRUCTURE = "simple"
+ARD = False
+SAVE_FIGURES = True
