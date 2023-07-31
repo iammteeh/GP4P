@@ -8,6 +8,7 @@ import numpy as np
 class GPy_Prior(GP_Prior):
     def __init__(self, X, y, feature_names, mean_func="linear", kernel_type="linear", kernel_structure="simple", ARD=True):
         super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel_type)
+        self.y = np.atleast_2d(y).T
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(type=kernel_type, structure=kernel_structure, ARD=ARD)
     def get_mean(self, mean_func="linear_weighted"):
@@ -30,4 +31,6 @@ class GPy_Prior(GP_Prior):
         elif structure == "additive":
             if type == "linear":
                 base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
-                return additive_kernel_permutation(base_kernels, k=3)
+            elif type == "matern52":
+                base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD)
+            return additive_kernel_permutation(base_kernels, k=3)

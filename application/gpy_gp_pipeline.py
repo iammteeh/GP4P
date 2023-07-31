@@ -32,21 +32,15 @@ def main():
     rank = np.linalg.matrix_rank(X_train)
 
     # define GP_Prior and pretrain weights
-    pretrained_priors = Priors(X_train, y_train, feature_names)
-    root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs = pretrained_priors.get_weighted_mvnormal_params(gamma=1, stddev_multiplier=3)
-    weights = np.array(means_weighted).reshape(-1, 1)
-    pretrained_priors.y = np.atleast_2d(y_train).T
+    gp_prior = GPy_Prior(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE, kernel_structure=KERNEL_STRUCTURE, ARD=ARD)
+    #weights = np.array(means_weighted).reshape(-1, 1)
     # init Gaussian Process model
     likelihood = gp.likelihoods.Gaussian() # important for classification of space state representation
     #mean_func = gp.core.Mapping(1, 1)
     #mean_func.f = lambda x: np.dot(x, weights)
     #inference_method = gp.inference.latent_function_inference.Laplace()
     #model = gp.models.GPRegression(pretrained_priors.X, pretrained_priors.y, kernel=gp.kern.Linear(input_dim=X_train.shape[1]))
-    # build prior
-    gp_prior = GPy_Prior(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE, kernel_structure=KERNEL_STRUCTURE, ARD=ARD)
-    mean_func = gp_prior.mean_func
-    kernel = gp_prior.kernel
-    model = gp.core.GP(pretrained_priors.X, pretrained_priors.y, kernel=kernel, likelihood=likelihood, mean_function=mean_func)
+    model = gp.core.GP(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, likelihood=likelihood, mean_function=gp_prior.mean_func)
     # update kernel priors and likelihood
     #model.kern.variances.set_prior(gp.priors.MultivariateGaussian(np.array(means_weighted).reshape(-1, 1), np.array(stds_weighted).reshape(-1, 1)))
     model.optimize(messages=True)

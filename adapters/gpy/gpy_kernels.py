@@ -27,7 +27,7 @@ def get_matern52_kernel(X, active_dims=None, ARD=True, hyper_priors=False, **hyp
         return eta ** 2 * kernel
     return kernel
 
-def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, hyper_priors=True, **hyper_prior_params):
+def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, hyper_priors=False, **hyper_prior_params):
     if kernel == "linear":
         base_kernels = [Linear(input_dim=X.shape[1], ARD=ARD) for item in range(X.shape[1])]
         return base_kernels
