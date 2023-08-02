@@ -13,6 +13,9 @@ from adapters.gpy.gpy_prior_construction import GPy_Prior
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.gpy.util import save_model, load_model
 from GPyOpt.models.gpmodel import GPModel
+from GPyOpt.objective_examples.experiments2d import branin
+from GPyOpt.core.task.cost import constant_cost_withGradients
+from GPyOpt.core.task.space import Design_space, bounds_to_space
 import datetime
 
 def waic(model, X, Y):
@@ -37,7 +40,7 @@ def main():
     #weights = np.array(means_weighted).reshape(-1, 1)
     # init Gaussian Process model
     likelihood = gp.likelihoods.Gaussian() # important for classification of space state representation
-    model = gp.models.GPRegression(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, mean_function=gp_prior.mean_func, likelihood=likelihood, noise_var=gp_prior.noise_sd_over_all_regs)
+    model = gp.models.GPRegression(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, mean_function=gp_prior.mean_func, noise_var=gp_prior.noise_sd_over_all_regs)
     gp_model = GPModel(model=model)
     # optimize by maximizing marginal likelihood
     model.optimize(messages=True)
@@ -51,5 +54,7 @@ def main():
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     save_model(f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.npy", model.param_array)
 
+    # prepare BOA
+    objective = model.log_likelihood()  
 if __name__ == "__main__":
     main()
