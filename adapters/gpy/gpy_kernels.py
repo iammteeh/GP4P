@@ -1,6 +1,7 @@
 from GPy.core.parameterization.priors import Gaussian, Gamma, StudentT, HalfT
 #from GPy.likelihoods import Gaussian, StudentT, Gamma, LogLogistic, MixedNoise, Poisson, Weibull
 from GPy.kern import Hierarchical, RBF, Coregionalize, Linear, Matern52
+import numpy as np
 
 def get_kernel(kernel_name, input_dim, active_dims=None, variances=None, ARD=False):
     if kernel_name == "rbf":
@@ -29,10 +30,10 @@ def get_matern52_kernel(X, active_dims=None, ARD=True, hyper_priors=False, **hyp
 
 def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, hyper_priors=False, **hyper_prior_params):
     if kernel == "linear":
-        base_kernels = [Linear(input_dim=X.shape[1], ARD=ARD) for item in range(X.shape[1])]
+        base_kernels = [Linear(input_dim=1, ARD=ARD, active_dims=item) for item in range(X.shape[1])]
         return base_kernels
     elif kernel == "matern52":
-        base_kernels = [Matern52(input_dim=X.shape[1], ARD=ARD) for item in range(X.shape[1])]
+        base_kernels = [Matern52(input_dim=1, ARD=ARD, active_dims=item) for item in range(X.shape[1])]
         if hyper_priors:
             base_kernels = [kernel.lengthscale.set_prior(Gamma(hyper_prior_params["gamma_a"], hyper_prior_params["gamma_b"])) for kernel in base_kernels]
             # add eta prior
