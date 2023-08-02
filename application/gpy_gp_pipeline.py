@@ -12,6 +12,7 @@ from domain.feature_model.feature_modeling import additive_kernel_permutation
 from adapters.gpy.gpy_prior_construction import GPy_Prior
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.gpy.util import save_model, load_model
+from GPyOpt.models.gpmodel import GPModel
 import datetime
 
 def waic(model, X, Y):
@@ -36,16 +37,11 @@ def main():
     #weights = np.array(means_weighted).reshape(-1, 1)
     # init Gaussian Process model
     likelihood = gp.likelihoods.Gaussian() # important for classification of space state representation
-    #mean_func = gp.core.Mapping(1, 1)
-    #mean_func.f = lambda x: np.dot(x, weights)
-    #inference_method = gp.inference.latent_function_inference.Laplace()
-    #model = gp.models.GPRegression(pretrained_priors.X, pretrained_priors.y, kernel=gp.kern.Linear(input_dim=X_train.shape[1]))
-    model = gp.core.GP(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, likelihood=likelihood, mean_function=gp_prior.mean_func)
-    # update kernel priors and likelihood
-    #model.kern.variances.set_prior(gp.priors.MultivariateGaussian(np.array(means_weighted).reshape(-1, 1), np.array(stds_weighted).reshape(-1, 1)))
+    model = gp.models.GPRegression(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, mean_function=gp_prior.mean_func, likelihood=likelihood, noise_var=gp_prior.noise_sd_over_all_regs)
+    gp_model = GPModel(model=model)
+    # optimize by maximizing marginal likelihood
     model.optimize(messages=True)
     # calculate posterior predictive distribution
-
     mean, var = model.predict(X_test)
     # score model with GPy
     # plot posterior predictive distribution
@@ -54,5 +50,6 @@ def main():
     # save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     save_model(f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.npy", model.param_array)
+
 if __name__ == "__main__":
     main()
