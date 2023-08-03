@@ -41,7 +41,6 @@ def main():
     # init Gaussian Process model
     likelihood = gp.likelihoods.Gaussian() # important for classification of space state representation
     model = gp.models.GPRegression(gp_prior.X, gp_prior.y, kernel=gp_prior.kernel, mean_function=gp_prior.mean_func, noise_var=gp_prior.noise_sd_over_all_regs)
-    gp_model = GPModel(model=model)
     # optimize by maximizing marginal likelihood
     model.optimize(messages=True)
     # calculate posterior predictive distribution
