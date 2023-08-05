@@ -262,5 +262,5 @@ class PM_GP_Prior(GP_Prior):
                 hyper_prior_params = {}
                 hyper_prior_params["mean"] = self.means_weighted
                 hyper_prior_params["sigma"] = self.stds_weighted
-                base_kernels = get_base_kernels(self.X, kernel="matern52")
+                base_kernels = get_base_kernels(self.X, kernel="matern52", **hyper_prior_params)
             return additive_kernel_permutation(base_kernels, k=3)
