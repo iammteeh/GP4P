@@ -4,7 +4,7 @@ from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_err_dict
 import pymc3 as pm
 from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel
+from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel, get_base_kernels, additive_kernel_permutation
 from adapters.pymc.pca import kernel_pca, linear_pca
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
@@ -175,13 +175,13 @@ class GP_Prior(Priors):
         raise NotImplementedError
 
 class PM_GP_Prior(GP_Prior):
-    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", with_pca=False):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", with_pca=False):
         super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel)
         # apply dimensionality reduction
         if with_pca:
             self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
         self.mean_func = self.get_mean(mean_func=mean_func)
-        self.kernel = self.get_kernel(kernel=kernel)
+        self.kernel = self.get_kernel(kernel=kernel, structure=structure)
 
     def compute_cov_matrix(self):
         """
@@ -233,24 +233,34 @@ class PM_GP_Prior(GP_Prior):
         
         return mean_func
     
-    def get_kernel(self, kernel="linear"):
-        if kernel == "linear":
-            return get_linear_kernel(self.X)
-        elif kernel == "additive_lr":
-            return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
-        elif kernel == "experimental":
-            cov_matrix = self.compute_cov_matrix()
-            X = self.X_origin if hasattr(self, "X_origin") else self.X
-            return get_experimental_kernel(X)
-        elif kernel == "matern52":
-            hyper_prior_params = {}
-            hyper_prior_params["mean"] = self.means_weighted
-            hyper_prior_params["sigma"] = self.stds_weighted
-            return get_matern52_kernel(self.X, **hyper_prior_params)
-        elif kernel == "standard":
-            return get_standard_lr_kernel(self.X)
-        elif kernel == "expquad":
-            hyper_prior_params = {}
-            hyper_prior_params["mean"] = self.means_weighted
-            hyper_prior_params["sigma"] = self.stds_weighted
-            return get_squared_exponential_kernel(self.X, **hyper_prior_params)
+    def get_kernel(self, kernel="linear", structure="simple"):
+        if structure == "simple":
+            if kernel == "linear":
+                return get_linear_kernel(self.X)
+            elif kernel == "additive_lr":
+                return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
+            elif kernel == "experimental":
+                cov_matrix = self.compute_cov_matrix()
+                X = self.X_origin if hasattr(self, "X_origin") else self.X
+                return get_experimental_kernel(X)
+            elif kernel == "matern52":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.means_weighted
+                hyper_prior_params["sigma"] = self.stds_weighted
+                return get_matern52_kernel(self.X, **hyper_prior_params)
+            elif kernel == "standard":
+                return get_standard_lr_kernel(self.X)
+            elif kernel == "expquad":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.means_weighted
+                hyper_prior_params["sigma"] = self.stds_weighted
+                return get_squared_exponential_kernel(self.X, **hyper_prior_params)
+        elif structure == "additive":
+            if kernel == "linear":
+                base_kernels = get_base_kernels(self.X, kernel="linear")
+            elif kernel == "matern52":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.means_weighted
+                hyper_prior_params["sigma"] = self.stds_weighted
+                base_kernels = get_base_kernels(self.X, kernel="matern52")
+            return additive_kernel_permutation(base_kernels, k=3)

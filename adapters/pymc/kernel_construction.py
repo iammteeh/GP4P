@@ -1,4 +1,4 @@
-from pymc3.gp.cov import Covariance, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern52, ExpQuad, RatQuad
+from pymc3.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern52, ExpQuad, RatQuad
 from pymc3.gp.cov import Combination, Add, Prod, ScaledCov, Kron
 from pymc3.distributions import Gamma, Normal, HalfNormal, Uniform, HalfCauchy, MvNormal, MvStudentT
 import numpy as np
@@ -83,10 +83,34 @@ def get_experimental_kernel(X):
     return Linear(input_dim=len(X.T), c=1)
 
 # composite kernel construction
+def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, hyper_priors=False, **hyper_prior_params):
+    if kernel == "linear":
+        base_kernels = [Linear(input_dim=1, c=1, active_dims=item) for item in range(X.shape[1])]
+        return base_kernels
+    elif kernel == "matern52":
+        if hyper_priors:
+            ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+            eta = HalfCauchy("eta", beta=2)
+        base_kernels = [eta ** 2 * Matern52(input_dim=1, ls=ls, active_dims=item) for item in range(X.shape[1])]
+        return base_kernels
+
 def get_additive_kernel(*kernels, mode="LR"):
     if any([isinstance(kernel, Covariance) for kernel in kernels]):
         raise ValueError("Cannot add kernels that are already additive")
     return Add(*kernels)
+
+def additive_kernel_permutation(items, k=3):
+    import itertools
+    import time
+    permutations = [list(p) for p in itertools.combinations(items, r=k)]
+    print(f"Start building additive kernel. \n Calculated {len(permutations)}.")
+    start = time.time()
+    additive_kernel = Add([Prod([combination[0], combination[1]], name=f"Prod_{p}_{c}") 
+                      for p, permutation in enumerate(permutations) 
+                      for c, combination in enumerate(itertools.combinations(permutation, 2))])
+    end = time.time()
+    print(f"Finished building additive kernel. It took {end - start:.2f}s.")
+    return additive_kernel
 
 def get_additive_lr_kernel(X, root_mean, root_std):
     """
