@@ -4,6 +4,8 @@ from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
 from adapters.pymc.kernel_construction import get_gp_cov_func, get_additive_lr_kernel
 from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
+from adapters.pymc.util import save_model, load_model
+import pymc3 as pm
 from pymc3 import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary
 from pymc3 import gp as GP
 from arviz import loo, waic
@@ -38,8 +40,10 @@ def main():
         # Define Gaussian Process likelihood
         #y_obs = gp.marginal_likelihood("y_obs", X=X_train, y=y_train, noise=noise_sd_over_all_regs)
         trace = sample(1000)
+        saved_trace = pm.save_trace(trace)
         print(f"feature names: {feature_names}")
         post_pred = sample_posterior_predictive(trace=trace, model=model, var_names=['y_obs'], samples=1000)
+        save_model(model, saved_trace, X_train)
         #plot_dist(post_pred, "GP predictive posterior")
 
         #mean_pred, std_pred = eval_gp(post_pred, X_test, y_test)
@@ -67,7 +71,5 @@ def main():
         #ppc(post_pred, y_test)
         az.plot_ppc(az.from_pymc3(posterior_predictive=post_pred, model=model))
         plot(title=f"GP_PPC_{MEAN_FUNC}_{KERNEL_TYPE}")
-
-#TODO: leite GP_Prior ein weiteres Mal jeweils für pymc3 und gpy ab und definiere abstract methods for get_mean_func und get_kernel
 if __name__ == "__main__":
     main()
