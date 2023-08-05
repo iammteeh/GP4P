@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
@@ -33,7 +33,7 @@ def main():
 
     with Model() as model:
         # apply prior knowledge to gp
-        f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure="additive")
+        f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
         #f, gp = get_kronecker_gp(X_train, y_train, (root_mean, root_std), (means_weighted, stds_weighted), noise=noise_sd_over_all_regs)
         # Define Gaussian Process likelihood
         #y_obs = gp.marginal_likelihood("y_obs", X=X_train, y=y_train, noise=noise_sd_over_all_regs)
