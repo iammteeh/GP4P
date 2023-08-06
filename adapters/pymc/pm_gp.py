@@ -6,7 +6,7 @@ from adapters.pymc.prior_construction import PM_GP_Prior
 def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", gp=None):
     gp_prior = PM_GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel, structure=structure)
     #print(f"shape of gp_prior.X: {gp_prior.X.shape}")
-    gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) #if noise is None else pm.gp.Marginal(mean_func=µ_vector, cov_func=cov_func)
+    gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) if kernel == "linear" else pm.gp.Marginal(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel, noise=gp_prior.noise_sd_over_all_regs)
     #f = gp.marginal_likelihood("f", X=X)
     print(f"X is {type(X)}")
     f = gp.prior("f", X=X)
