@@ -9,9 +9,10 @@ def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structur
     gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) if kernel == "linear" else pm.gp.Marginal(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel)
     #f = gp.marginal_likelihood("f", X=X)
     print(f"X is {type(X)}")
-    f = gp.prior("f", X=X)
+    if kernel == "linear":
+        f = gp.prior("f", X=X)
     print(f"shape of f: {f.shape}")
-    y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y)
+    y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y) if kernel == "linear" else gp.marginal_likelihood("y_obs", X=X, y=gp_prior.y, noise=gp_prior.noise_sd_over_all_regs)
     return f, gp, y_obs
 
 def get_additive_gp(X, y, intercept, coefs, noise):
