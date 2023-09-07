@@ -1,5 +1,5 @@
-import pymc3 as pm
-import theano.tensor as tt
+import pymc as pm
+import aesara.tensor as tt
 import numpy as np
 from adapters.pymc.prior_construction import PM_GP_Prior
 

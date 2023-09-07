@@ -1,6 +1,6 @@
-from pymc3.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern52, ExpQuad, RatQuad
-from pymc3.gp.cov import Combination, Add, Prod, ScaledCov, Kron
-from pymc3.distributions import Gamma, Normal, HalfNormal, Uniform, HalfCauchy, MvNormal, MvStudentT
+from pymc.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern52, ExpQuad, RatQuad
+from pymc.gp.cov import Combination, Add, Prod, ScaledCov, Kron
+from pymc.distributions import Gamma, Normal, HalfNormal, Uniform, HalfCauchy, MvNormal, MvStudentT
 import numpy as np
 from scipy.linalg import sqrtm
 

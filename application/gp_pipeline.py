@@ -5,9 +5,9 @@ from adapters.pymc.prior_construction import PM_GP_Prior
 from adapters.pymc.kernel_construction import get_additive_lr_kernel
 from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
 from adapters.pymc.util import save_model, load_model
-import pymc3 as pm
-from pymc3 import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary
-from pymc3 import gp as GP
+import pymc as pm
+from pymc import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary
+from pymc import gp as GP
 from arviz import loo, waic
 from sklearn.metrics import mean_squared_error, r2_score
 from adapters.visualization import plot_dist, plot_gp_feature, plot
@@ -49,7 +49,7 @@ def main():
                     gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=kernel_type, structure=kernel_structure)
 
                 mp = find_MAP(method="BFGS")
-                trace = sample(draws=1000, cores=1, return_inferencedata=False)
+                trace = sample(draws=1000, cores=1, trace=True, return_inferencedata=False)
                 saved_trace = pm.save_trace(trace)
                 traces.append(trace)
                 print(f"feature names: {feature_names}")
@@ -68,7 +68,7 @@ def main():
 
     # Plot convergence
     for i, (structure, kernel) in enumerate(zip(KERNEL_STRUCTURE, KERNEL_TYPE)):
-        pm.traceplot(traces[i])
+        az.plot_trace(traces[i])
         plt.title(f"Convergence plot for kernel: {type(kernel).__name__}")
         plt.show()
 if __name__ == "__main__":

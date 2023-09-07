@@ -2,7 +2,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from bayesify.pairwise import get_feature_names_from_rv_id, print_scores, get_err_dict
-import pymc3 as pm
+import pymc as pm
 from sklearn import kernel_approximation, metrics
 from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel, get_base_kernels, additive_kernel_permutation
 from adapters.pymc.pca import kernel_pca, linear_pca
@@ -227,7 +227,7 @@ class PM_GP_Prior(GP_Prior):
             #b = np.mean(pm.HalfNormal("b", sigma=1).random(size=200))
             mean_func = pm.gp.mean.Linear(coeffs=betas, intercept=0)
         elif mean_func == "linear_weighted":
-            mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean)
+            mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean) # from empirical prior
         elif mean_func == "constant":
             mean_func = pm.gp.mean.Constant(c=np.mean(self.y))
         

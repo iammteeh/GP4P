@@ -1,6 +1,5 @@
 import GPy as gp
 from GPy.examples import regression, classification, dimensionality_reduction
-import pymc3 as pm
 from GPy.core.parameterization.priors import Gaussian, Gamma, StudentT
 from adapters.pymc.prior_construction import Priors
 from GPy.likelihoods import Gaussian, StudentT, Gamma, LogLogistic, MixedNoise, Poisson, Weibull

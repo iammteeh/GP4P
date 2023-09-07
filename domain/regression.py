@@ -9,7 +9,7 @@ from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, 
 from gplearn.genetic import SymbolicRegressor, SymbolicTransformer
 from sklearn.linear_model import LogisticRegression
 from sklearn.base import BaseEstimator, TransformerMixin
-import pymc3 as pm
+import pymc as pm
 from scipy.stats import norm
 
 class Regression:
