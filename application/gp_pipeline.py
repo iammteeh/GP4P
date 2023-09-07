@@ -48,7 +48,7 @@ def main():
                 else:
                     gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=kernel_type, structure=kernel_structure)
 
-                trace = sample(1000)
+                trace = sample(draws=1000, cores=1)
                 saved_trace = pm.save_trace(trace)
                 traces.append(trace)
                 print(f"feature names: {feature_names}")
