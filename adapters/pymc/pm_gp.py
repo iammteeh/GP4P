@@ -10,12 +10,12 @@ def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structur
     #f = gp.marginal_likelihood("f", X=X)
     print(f"X is {type(X)}")
     if kernel == "linear":
-        f = gp.prior("f", X=X)
+        f = gp.prior("f", X=gp_prior.X)
         y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y)
         print(f"shape of f: {f.shape}")
         return f, gp, y_obs
     else: 
-        y_obs = gp.marginal_likelihood("y_obs", X=X, y=gp_prior.y, noise=gp_prior.noise_sd_over_all_regs)
+        y_obs = gp.marginal_likelihood("y_obs", X=gp_prior.X, y=gp_prior.y, noise=gp_prior.noise_sd_over_all_regs)
         return gp, y_obs
 
 def get_additive_gp(X, y, intercept, coefs, noise):
