@@ -49,7 +49,7 @@ def main():
                     gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=kernel_type, structure=kernel_structure)
 
                 mp = find_MAP(method="BFGS")
-                trace = sample(draws=1000, cores=1)
+                trace = sample(draws=1000, cores=1, return_inferencedata=False)
                 saved_trace = pm.save_trace(trace)
                 traces.append(trace)
                 print(f"feature names: {feature_names}")
