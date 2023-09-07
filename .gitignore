@@ -4,3 +4,4 @@ settings.json
 .vscode
 my_package.egg-info
 archive/
+.pymc_*.trace/
