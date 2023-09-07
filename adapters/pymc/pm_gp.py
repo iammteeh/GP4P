@@ -1,5 +1,4 @@
 import pymc as pm
-import aesara.tensor as tt
 import numpy as np
 from adapters.pymc.prior_construction import PM_GP_Prior
 
@@ -17,51 +16,6 @@ def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structur
     else: 
         y_obs = gp.marginal_likelihood("y_obs", X=gp_prior.X, y=gp_prior.y, noise=gp_prior.noise_sd_over_all_regs)
         return gp, y_obs
-
-def get_additive_gp(X, y, intercept, coefs, noise):
-    root_mean, root_std = intercept
-    means_weighted, stds_weighted = coefs
-
-    intercept = pm.Normal("intercept", mu=root_mean, sigma=root_std)
-    GPs = []
-    for i, (mu, sigma) in enumerate(zip(means_weighted, stds_weighted)):
-        coef = pm.Normal(f'coef_{i}', mu=mu, sigma=sigma)  # Prior for coefficient
-        #mean_func = pm.gp.mean.Constant(coef * X[:, i])  # Define mean function
-        mean_func = pm.gp.mean.Linear(coeffs=coef * X[:, i], intercept=root_mean)
-        #cov_func = pm.gp.cov.ExpQuad(X.shape[1], ls=1)  # Assume a simple squared exponential kernel
-        cov_func = pm.gp.cov.Linear(input_dim=X.shape[1], c=1)
-        gp = pm.gp.Marginal(mean_func=mean_func, cov_func=cov_func)
-        globals()['f_%s' % i] = gp.conditional("f_%s" % i, X=X[:, i].reshape(-1, 1), noise=noise, )
-        GPs.append(gp)
-
-    f_prime = intercept + tt.sum([gp.marginal_likelihood("f", X=X, y=y) for gp in GPs])
-
-    return f_prime, GPs
-
-def get__additive_kronecker_gp(X, y, intercept, coefs, noise):
-    root_mean, root_std = intercept
-    means_weighted, stds_weighted = coefs
-
-    intercept = pm.Normal("intercept", mu=root_mean, sigma=root_std)
-    GPs = []
-    for i, (mu, sigma) in enumerate(zip(means_weighted, stds_weighted)):
-        coef = pm.Normal(f'coef_{i}', mu=mu, sigma=sigma)  # Prior for coefficient
-        #mean_func = pm.gp.mean.Constant(coef * X[:, i])  # Define mean function
-        mean_func = pm.gp.mean.Linear(coeffs=coef * X[:, i], intercept=root_mean)
-        #cov_func = pm.gp.cov.ExpQuad(X.shape[1], ls=1)  # Assume a simple squared exponential kernel
-        #cov_func = pm.gp.cov.Linear(input_dim=[i, i+1], c=1)
-        cov_func_1 = pm.gp.cov.Linear(input_dim=i, c=1)
-        cov_func_2 = pm.gp.cov.Linear(input_dim=i+1, c=1)
-        kronecker_product = pm.gp.cov.Kron([cov_func_1, cov_func_2])
-        gp = pm.gp.MarginalKron(mean_func=mean_func, cov_funcs=kronecker_product)
-        #globals()['f_%s' % i] = gp.conditional("f_%s" % i, X=X[:, i].reshape(-1, 1), noise=noise, )
-        GPs.append(gp)
-    # take the list of GPs and sum them up
-    for i in range(len(GPs)):
-        gp += GPs[i]
-    f_prime = intercept + tt.sum([gp.marginal_likelihood("f", Xs=[X[:, None], X[:, None]], y=y, sigma=noise) for gp in GPs])
-
-    return f_prime, GPs
 
 def get_kronecker_gp(X, y, intercept, coefs, noise):
     root_mean, root_std = intercept
