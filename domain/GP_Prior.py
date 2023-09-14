@@ -2,9 +2,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
-import pymc as pm
 from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel, get_base_kernels, additive_kernel_permutation
+from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel
 from adapters.pymc.pca import kernel_pca, linear_pca
 from numpy.linalg import eigvalsh
 from scipy.linalg import sqrtm
@@ -156,7 +155,7 @@ class Priors:
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
 
 class GP_Prior(Priors):
-    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear"):
+    def __init__(self, X, y, feature_names):
         super().__init__(X, y, feature_names)
         # compute empirical prior parameters to avoid improper priors
         (self.root_mean, 
@@ -173,94 +172,3 @@ class GP_Prior(Priors):
     @abstractmethod
     def get_kernel(self, kernel="linear"):
         raise NotImplementedError
-
-class PM_GP_Prior(GP_Prior):
-    def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", with_pca=False):
-        super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel)
-        # apply dimensionality reduction
-        if with_pca:
-            self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
-        self.mean_func = self.get_mean(mean_func=mean_func)
-        self.kernel = self.get_kernel(kernel=kernel, structure=structure)
-
-    def compute_cov_matrix(self):
-        """
-        THIS IS EXPERIMENTAL ONLY
-        """
-        # compute experimental cov matrix for experimental kernel
-        cov_matrix = np.cov(self.coef_matrix, rowvar=False)
-
-        if np.isnan(self.means_weighted).any():
-            means_weighted = np.nan_to_num(self.means_weighted)
-            if np.isnan(cov_matrix).any() and np.isinf(cov_matrix).any():
-                print("cov_matrix contains nan or inf")
-                cov_matrix = np.eye(len(means_weighted))
-
-            if not is_positive_semi_definite(cov_matrix):
-                print("Covariance Matrix is not positive semi definite. Adding noise.")
-                cov_matrix += np.eye(len(means_weighted)) * self.noise_sd_over_all_regs
-                if not is_positive_semi_definite(cov_matrix):
-                    print("Covariance Matrix is still not positive semi definite. Compute PSD approximation.")
-                    cov_matrix = sqrtm(cov_matrix)
-                    cov_matrix = np.dot(cov_matrix, cov_matrix.T)
-                    if not is_positive_semi_definite(cov_matrix):
-                        raise ValueError("Covariance Matrix is still not positive semi definite. Cannot compute GP prior.")
-                    
-        return cov_matrix
-    
-    def apply_pca(self, kernel="linear"):
-        # save original X first
-        self.X_origin = self.X
-        print(f"reduce dimensionality of X_train via PCA")
-        if kernel != "linear":
-            X_pcaed = kernel_pca(self.X, self.y, kernel="poly", degree=2, gamma=0.03)
-        else:
-            X_pcaed = linear_pca(self.X, self.y)
-
-        return X_pcaed
-
-    def get_mean(self, mean_func="linear"):
-        if mean_func == "standard":
-            mean_func = pm.gp.mean.Zero()
-        elif mean_func == "linear":
-            betas = pm.Normal("beta", mu=0, sigma=1, shape=len(self.X.T)).random(size=200)
-            #b = np.mean(pm.HalfNormal("b", sigma=1).random(size=200))
-            mean_func = pm.gp.mean.Linear(coeffs=betas, intercept=0)
-        elif mean_func == "linear_weighted":
-            mean_func = pm.gp.mean.Linear(coeffs=self.means_weighted, intercept=self.root_mean) # from empirical prior
-        elif mean_func == "constant":
-            mean_func = pm.gp.mean.Constant(c=np.mean(self.y))
-        
-        return mean_func
-    
-    def get_kernel(self, kernel="linear", structure="simple"):
-        if structure == "simple":
-            if kernel == "linear":
-                return get_linear_kernel(self.X)
-            elif kernel == "additive_lr":
-                return get_additive_lr_kernel(self.X, self.root_mean, self.root_std)
-            elif kernel == "experimental":
-                cov_matrix = self.compute_cov_matrix()
-                X = self.X_origin if hasattr(self, "X_origin") else self.X
-                return get_experimental_kernel(X)
-            elif kernel == "matern52":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.means_weighted
-                hyper_prior_params["sigma"] = self.stds_weighted
-                return get_matern52_kernel(self.X, **hyper_prior_params)
-            elif kernel == "standard":
-                return get_standard_lr_kernel(self.X)
-            elif kernel == "expquad":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.means_weighted
-                hyper_prior_params["sigma"] = self.stds_weighted
-                return get_squared_exponential_kernel(self.X, **hyper_prior_params)
-        elif structure == "additive":
-            if kernel == "linear":
-                base_kernels = get_base_kernels(self.X, kernel="linear")
-            elif kernel == "matern52":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.means_weighted
-                hyper_prior_params["sigma"] = self.stds_weighted
-                base_kernels = get_base_kernels(self.X, kernel="matern52", **hyper_prior_params)
-            return additive_kernel_permutation(base_kernels, k=3)
