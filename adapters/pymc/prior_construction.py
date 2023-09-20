@@ -1,6 +1,5 @@
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
-from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import pymc as pm
 from sklearn import kernel_approximation, metrics
