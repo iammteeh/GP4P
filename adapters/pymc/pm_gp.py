@@ -5,8 +5,11 @@ from adapters.pymc.prior_construction import PM_GP_Prior
 def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", gp=None):
     gp_prior = PM_GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel, structure=structure)
     #print(f"shape of gp_prior.X: {gp_prior.X.shape}")
+    print(f"mean_func is {mean_func}")
+    print(f"kernel is {kernel}")
     gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) if kernel == "linear" else pm.gp.Marginal(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel)
     #f = gp.marginal_likelihood("f", X=X)
+    print(f"gp is {type(gp)}")
     print(f"X is {type(X)}")
     if kernel == "linear":
         f = gp.prior("f", X=gp_prior.X)
