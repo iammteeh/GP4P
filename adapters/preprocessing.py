@@ -1,5 +1,5 @@
 from domain.dataset import DataSet
-from domain.env import SWS, MODE, MODELDIR, X_type, POLY_DEGREE, Y
+from domain.env import SWS, MODE, MODELDIR, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
 from adapters.import_data import select_data
 
 import pandas as pd
@@ -91,16 +91,24 @@ def scale_features(X, y, scaler):
 def store_model():
     pass 
 
-def get_data_slice(X, y, mode="str", **mode_args):
-    if mode == "minimal":
+def get_data_slice(X, y):
+    print("Slicing data...")
+    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT < len(X):
         # get minimal data slice of n rows
-        n = mode_args["n"]
+        n = DATA_SLICE_AMOUNT
         X = X.iloc[:n]
         y = y.iloc[:n]
-
-        return X, y
+    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION < 1:
+        # get proportional data slice of n rows
+        n = len(X)-1
+        p = DATA_SLICE_PROPORTION
+        x = int(n * p)
+        X = X.iloc[:x]
+        y = y.iloc[:x]
     else:
         raise NotImplementedError
+    print(f"X shape: {X.shape}")
+    return X, y
 
 def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     print("Preprocessing...")
@@ -122,7 +130,7 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     #print(f"apply {scaler} Scaling")
     #X = scale_features(X, y, scaler)
     # slice data
-    X, y = get_data_slice(X, y, mode="minimal", n=1000)
+    X, y = get_data_slice(X, y)
     # convert to ndarray
     if to_ndarray:
         X = X.__deepcopy__()
