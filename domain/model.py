@@ -4,7 +4,7 @@ from domain.dataset import DataSet
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
-from sklearn.inspection import permutation_importance, plot_partial_dependence
+from sklearn.inspection import permutation_importance, PartialDependenceDisplay
 import graphviz
 import time
 
@@ -143,4 +143,4 @@ class Model:
         # generate partial dependence plot for feature string
         if features:
             features = np.arrange(features.shape[1])
-            plot_partial_dependence(self.method, self.X_test, features, feature_names=self.data.columns[:-1])
+            PartialDependenceDisplay(self.method, self.X_test, features, feature_names=self.data.columns[:-1])
