@@ -6,7 +6,10 @@ MODELDIR = PWD + '/modeldata/'
 RESULTS_DIR = PWD + '/evaluation'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
-USE_DUMMY_DATA = True
+USE_DUMMY_DATA = False
+DATA_SLICE_MODE = "proportion"
+DATA_SLICE_PROPORTION = 1/7
+DATA_SLICE_AMOUNT = 10000
 X_type = bool # default = bool for one-hot encoded numerical features, else use float
 EXTRAFUNCTIONAL_FEATURES = False
 POLY_DEGREE = 2
