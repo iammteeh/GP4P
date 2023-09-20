@@ -4,8 +4,6 @@ from domain.dataset import DataSet
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error, r2_score, accuracy_score, precision_score, roc_curve
-from sklearn.inspection import permutation_importance, PartialDependenceDisplay
-import graphviz
 import time
 
 @dataclass
@@ -132,15 +130,3 @@ class Model:
             timings_eval.append(time_of_evaluation)
             i += 1
         print(f"evaluation of eval took {sum(timings_eval)} in total and in average {sum(timings_eval) / len(timings_eval)}")
-
-    def plot_symbolic_program(self, *features):
-        dot = self.data.program.export_graphviz()
-        # replace variable names with feature names
-        for i, feature in enumerate(self.data.get_all_config_df().columns):
-            dot = dot.replace(f"X{i}", feature)
-        graph = graphviz.Source(dot)
-        graph.render('symbolic expression', view=True, cleanup=True)
-        # generate partial dependence plot for feature string
-        if features:
-            features = np.arrange(features.shape[1])
-            PartialDependenceDisplay(self.method, self.X_test, features, feature_names=self.data.columns[:-1])
