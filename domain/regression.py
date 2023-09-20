@@ -47,24 +47,6 @@ class Regression:
             return linear_model.SGDRegressor(max_iter=9999, copy_X=True, fit_intercept=True, normalize=False)
         elif method == "PLS":
             return PLSRegression(n_components=16, scale=True, max_iter=9999, tol=1e-06, copy=True)
-        elif method == "symbolic":
-            self.X_train = self.X_train.astype(float)
-            self.X_test = self.X_test.astype(float)
-            return SymbolicRegressor(population_size=1000,
-                            generations=20, stopping_criteria=0.01,
-                            p_crossover=0.7, p_subtree_mutation=0.1,
-                            p_hoist_mutation=0.05, p_point_mutation=0.1,
-                            max_samples=0.9, verbose=1,
-                            parsimony_coefficient='auto', random_state=42, n_jobs=14, function_set=('add', 'sub'))
-        elif method == "symbolic_transformer":
-            self.X_train = self.X_train.astype(float)
-            self.X_test = self.X_test.astype(float)
-            return SymbolicTransformer(population_size=5000,
-                            generations=75, stopping_criteria=0.01,
-                            p_crossover=0.7, p_subtree_mutation=0.1,
-                            p_hoist_mutation=0.05, p_point_mutation=0.1,
-                            max_samples=0.9, verbose=1,
-                            parsimony_coefficient=0.01, random_state=42, n_jobs=8)
         else:
             raise ValueError("no such method")
 
