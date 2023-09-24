@@ -1,16 +1,9 @@
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
-from adapters.PyroMCMCRegressor import PyroMCMCRegressor
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
-from sklearn import kernel_approximation, metrics
-from adapters.pymc.kernel_construction import get_linear_kernel, get_additive_lr_kernel, get_experimental_kernel, get_matern52_kernel, get_standard_lr_kernel, get_squared_exponential_kernel
-from adapters.pymc.pca import kernel_pca, linear_pca
-from numpy.linalg import eigvalsh
-from scipy.linalg import sqrtm
 import math
 import jax.numpy as jnp
 import numpy as np
-from numpyro import distributions as dist
 import time
 import copy
 from abc import abstractmethod
