@@ -15,6 +15,7 @@ from adapters.visualization import plot_dist, plot_gp_feature, plot
 import matplotlib.pyplot as plt
 import arviz as az
 import datetime
+import jax
 
 def eval_gp(posterior_predictive_distribution, X_test, y_test):
     # Calculate mean and standard deviation
@@ -30,20 +31,22 @@ def eval_gp(posterior_predictive_distribution, X_test, y_test):
     return mean_pred, std_pred
 
 def main():
+    # test if TPU is used
+    print(jax.device_count())
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
     print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
     # use ndarrays of X and y
     X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
 
     with Model() as model:
-        # apply prior knowledge to gp
-        if KERNEL_TYPE == "linear":
-            f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
-        else:
-            gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
+        # apply prior knowledge to gp => Kernel Ridge Regression to estimate c_i
+        #if KERNEL_TYPE == "linear":
+        f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
+        #else:
+        #    gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
 
         # execute inference and sampling
-        mp = find_MAP(method="BFGS") # deprecated
+        #mp = find_MAP(method="BFGS") # deprecated
         inference_data = sample(1000)
         inference_data.extend(sample_posterior_predictive(trace=inference_data, model=model))
         inference_data.extend(compute_log_likelihood(inference_data, model=model))
