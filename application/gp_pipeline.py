@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
@@ -7,6 +7,7 @@ from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
 #from adapters.pymc.util import save_model, load_model
 import pickle
 import pymc as pm
+from pymc.sampling.jax import sample_numpyro_nuts
 from pymc import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary, compute_log_likelihood
 from pymc import gp as GP
 from arviz import loo, waic
@@ -47,7 +48,10 @@ def main():
 
         # execute inference and sampling
         #mp = find_MAP(method="BFGS") # deprecated
-        inference_data = sample(1000)
+        if JAX:
+            inference_data = sample_numpyro_nuts(draws=1000)
+        else:
+            inference_data = sample(draws=1000)
         inference_data.extend(sample_posterior_predictive(trace=inference_data, model=model))
         inference_data.extend(compute_log_likelihood(inference_data, model=model))
         

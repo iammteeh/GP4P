@@ -176,9 +176,16 @@ class GP_Prior(Priors):
 class PM_GP_Prior(GP_Prior):
     def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", with_pca=False):
         super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel)
+        # convert ndarray to aesara tensors
+        import aesara as aes
+        self.X = self.X.astype(aes.config.floatX)
+        self.y = self.y.astype(aes.config.floatX)
+        #import aesara.tensor as at
+        #self.X = at.as_tensor_variable(self.X)
+        #self.y = at.as_tensor_variable(self.y)
         # apply dimensionality reduction
         if with_pca:
-            self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better
+            self.X = self.apply_pca(kernel=kernel)# TODO: test whether applying PCA before or after computing the prior parameters is better # before simplifies kernel ridge regression (better for external validity); afterwards it reduces the kernel to maybe other components that are only better for internal validity
         self.mean_func = self.get_mean(mean_func=mean_func)
         self.kernel = self.get_kernel(kernel=kernel, structure=structure)
 
