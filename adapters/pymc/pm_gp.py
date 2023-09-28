@@ -12,23 +12,39 @@ def define_gp(X, y, feature_names, mean_func="linear", kernel="linear", structur
     print(f"mean_func is {mean_func}")
     print(f"kernel is {kernel}")
     gp = pm.gp.Latent(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel) #if kernel == "linear" else pm.gp.Marginal(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel)
-    #f = gp.marginal_likelihood("f", X=X)
     print(f"gp is {type(gp)}")
     print(f"X is {type(X)}")
     #if kernel == "linear":
     f = gp.prior("f", X=gp_prior.X)
-    #y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y)
     # define y_obs as StudentT to ensure observations are independet from additional extrafunctional features 
     # that are NOT in the data
     print(f"shape of f: {f.shape}")
     nu = 1 + pm.Gamma(
         "nu", alpha=2, beta=0.1
-    ) 
-    y_obs = pm.StudentT("y_obs", mu=f, lam=1.0 / gp_prior.noise_sd_over_all_regs, nu=nu, observed=gp_prior.y)
+    )
+    #y_obs = pm.StudentT("y_obs", mu=f, lam=1.0 / gp_prior.noise_sd_over_all_regs, nu=nu, observed=gp_prior.y)
+    # take normal distribution 
+    y_obs = pm.Normal("y_obs", mu=f, sigma=gp_prior.noise_sd_over_all_regs, observed=gp_prior.y)
     return f, gp, y_obs
     #else: 
     #    y_obs = gp.marginal_likelihood("y_obs", X=gp_prior.X, y=gp_prior.y, noise=gp_prior.noise_sd_over_all_regs)
     #    return gp, y_obs
+
+def define_marginal_gp(X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", gp=None):
+    """
+    using the exact marginal without approximation as with Kernel Ridge Regression (Elastic Net)
+    it is ensured that the matrix is invertible and lambda is positive definite
+    """
+    gp_prior = PM_GP_Prior(X, y, feature_names, mean_func=mean_func, kernel=kernel, structure=structure)
+    #print(f"shape of gp_prior.X: {gp_prior.X.shape}")
+    print(f"mean_func is {mean_func}")
+    print(f"kernel is {kernel}")
+    gp = pm.gp.Marginal(mean_func=gp_prior.mean_func, cov_func=gp_prior.kernel)
+    sigma = pm.HalfNormal("sigma", sigma=gp_prior.noise_sd_over_all_regs)
+    y_obs = gp.marginal_likelihood("f", X=gp_prior.X, y=gp_prior.y, sigma=sigma)
+    print(f"gp is {type(gp)}")
+    print(f"X is {type(X)}")
+    return y_obs, gp
 
 def get_kronecker_gp(X, y, intercept, coefs, noise):
     root_mean, root_std = intercept
