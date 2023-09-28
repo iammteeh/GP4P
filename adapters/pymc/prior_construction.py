@@ -177,9 +177,11 @@ class PM_GP_Prior(GP_Prior):
     def __init__(self, X, y, feature_names, mean_func="linear", kernel="linear", structure="simple", with_pca=False):
         super().__init__(X, y, feature_names, mean_func=mean_func, kernel=kernel)
         # convert ndarray to aesara tensors
-        import aesara as aes
-        self.X = self.X.astype(aes.config.floatX)
-        self.y = self.y.astype(aes.config.floatX)
+        #import aesara as aes
+        #self.X = self.X.astype(aes.config.floatX)
+        #self.y = self.y.astype(aes.config.floatX)
+        print(f"X is {type(self.X)}")
+        print(f"y is {type(self.y)}")
         #import aesara.tensor as at
         #self.X = at.as_tensor_variable(self.X)
         #self.y = at.as_tensor_variable(self.y)
