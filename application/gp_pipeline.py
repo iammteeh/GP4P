@@ -1,13 +1,13 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX, GP
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
 from adapters.pymc.kernel_construction import get_additive_lr_kernel
-from adapters.pymc.pm_gp import define_gp, get_kronecker_gp
+from adapters.pymc.pm_gp import define_gp, define_marginal_gp
 #from adapters.pymc.util import save_model, load_model
 import pickle
 import pymc as pm
-from pymc.sampling.jax import sample_numpyro_nuts
+from pymc.sampling.jax import sample_numpyro_nuts, sample_blackjax_nuts
 from pymc import Model, sample, sample_posterior_predictive, find_MAP, traceplot, summary, compute_log_likelihood
 from pymc import gp as GP
 from arviz import loo, waic
@@ -41,8 +41,10 @@ def main():
 
     with Model() as model:
         # apply prior knowledge to gp => Kernel Ridge Regression to estimate c_i
-        #if KERNEL_TYPE == "linear":
-        f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
+        if GP == "marginal":
+            y_obs, gp = define_marginal_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
+        else:
+            f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
         #else:
         #    gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
 
