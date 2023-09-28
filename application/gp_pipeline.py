@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX, GP
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX, GP, NUTS_SAMPLER
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
@@ -50,8 +50,14 @@ def main():
 
         # execute inference and sampling
         #mp = find_MAP(method="BFGS") # deprecated
-        if JAX:
+        if JAX and NUTS_SAMPLER == "numpyro":
             inference_data = sample_numpyro_nuts(draws=1000)
+        elif JAX and NUTS_SAMPLER == "blackjax":
+            inference_data = sample_blackjax_nuts(draws=1000)
+        elif NUTS_SAMPLER == "numpyro":
+            inference_data = sample(draws=1000, nuts_sampler="numpyro")
+        elif NUTS_SAMPLER == "blackjax":
+            inference_data = sample(draws=1000, nuts_sampler="blackjax")
         else:
             inference_data = sample(draws=1000)
         inference_data.extend(sample_posterior_predictive(trace=inference_data, model=model))
