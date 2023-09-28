@@ -1,4 +1,4 @@
-from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX, GP, NUTS_SAMPLER
+from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, MODELDIR, JAX, GP_MODE, NUTS_SAMPLER
 import numpy as np
 from application.init_pipeline import init_pipeline, get_numpy_features
 from adapters.pymc.prior_construction import PM_GP_Prior
@@ -41,7 +41,8 @@ def main():
 
     with Model() as model:
         # apply prior knowledge to gp => Kernel Ridge Regression to estimate c_i
-        if GP == "marginal":
+        print(f"GP is {GP_MODE}")
+        if GP_MODE == "marginal":
             y_obs, gp = define_marginal_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
         else:
             f, gp, y_obs = define_gp(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel=KERNEL_TYPE, structure=KERNEL_STRUCTURE)
@@ -50,6 +51,7 @@ def main():
 
         # execute inference and sampling
         #mp = find_MAP(method="BFGS") # deprecated
+        print(f"sampling with {NUTS_SAMPLER} (JAX={JAX})")
         if JAX and NUTS_SAMPLER == "numpyro":
             inference_data = sample_numpyro_nuts(draws=1000)
         elif JAX and NUTS_SAMPLER == "blackjax":
