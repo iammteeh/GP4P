@@ -1,4 +1,4 @@
-from pymc.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern32, Matern52, ExpQuad, RatQuad
+from pymc.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern12, Matern32, Matern52, ExpQuad, RatQuad
 from pymc.gp.cov import Combination, Add, Prod, ScaledCov, Kron
 from pymc.distributions import Gamma, Normal, HalfNormal, Uniform, HalfCauchy, MvNormal, MvStudentT
 import numpy as np
@@ -19,50 +19,97 @@ def get_constant_kernel(c=1.0):
     return Constant(c=c)
 
 def get_periodic_kernel(X, active_dims=None):
-    if active_dims is not None:
+    if active_dims:
         return Periodic(input_dim=len(X.T), active_dims=active_dims)
     else:
         return Periodic(input_dim=len(X.T), active_dims=[i for i in range(X.shape[1])])
-    
-def get_matern32_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):
-    if hyper_priors:
-        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
-        eta = HalfCauchy("eta", beta=2)
-    if active_dims is not None:
-        return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls, active_dims=active_dims)
-    else:
-        return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls)# active_dims=[i for i in range(X.shape[1])])
 
-def get_matern52_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):    
-    if hyper_priors:
+def get_matern12_kernel(X, active_dims=None, **hyper_prior_params):
+    if hyper_prior_params:
         ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
         eta = HalfCauchy("eta", beta=2)
-    if active_dims is not None:
-        return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+        if active_dims:
+            return eta ** 2 * Matern12(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+        else:
+            return eta ** 2 * Matern12(input_dim=len(X.T), ls=ls)
     else:
-        return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls)# active_dims=[i for i in range(X.shape[1])])
+        if not active_dims:
+            return Matern12(input_dim=len(X.T), ls=1)# active_dims=[i for i in range(X.shape[1])])
+
+def get_matern32_kernel(X, active_dims=None, **hyper_prior_params):
+    if hyper_prior_params:
+        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+        eta = HalfCauchy("eta", beta=2)
+        if active_dims:
+            return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+        else:
+            return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls)
+    else:
+        if not active_dims:
+            return Matern32(input_dim=len(X.T), ls=1)# active_dims=[i for i in range(X.shape[1])])
+
+def get_matern52_kernel(X, active_dims=None, **hyper_prior_params):
+    if hyper_prior_params:
+        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+        eta = HalfCauchy("eta", beta=2)
+        if active_dims:
+            return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+        else:
+            return eta ** 2 * Matern52(input_dim=len(X.T), ls=ls)
+    else:
+        if not active_dims:
+            return Matern52(input_dim=len(X.T), ls=1)# active_dims=[i for i in range(X.shape[1])])
     
 def get_squared_exponential_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):
-    ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
-    eta = HalfCauchy("eta", beta=2)
-    if active_dims is None:
-        return eta ** 2 * ExpQuad(input_dim=len(X.T), ls=ls)
+    if hyper_prior_params:       
+        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+        eta = HalfCauchy("eta", beta=2)
+        if active_dims:
+            return eta ** 2 * ExpQuad(input_dim=len(X.T), ls=ls)
+        else:
+            return eta ** 2 * ExpQuad(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+    else:
+        if not active_dims:
+            return ExpQuad(input_dim=len(X.T), ls=1)
 
 def get_experimental_kernel(X):
     #return Linear(len(µ_vector), cov_matrix)
     return Linear(input_dim=len(X.T), c=1)
 
 # composite kernel construction
-def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, **hyper_prior_params):
+def get_base_kernels(X, kernel="linear", **hyper_prior_params):
     if kernel == "linear":
         base_kernels = [Linear(input_dim=len(X.T), c=1) for item in range(X.shape[1])]
         return base_kernels
+    elif kernel == "RBF" or kernel == "ExpQuad":
+        if hyper_prior_params:
+            ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+            eta = HalfCauchy("eta", beta=2)
+            base_kernels = [eta ** 2 * ExpQuad(input_dim=len(X.T), ls=ls) for item in range(X.shape[1])]
+        else:
+            base_kernels = [ExpQuad(input_dim=len(X.T), ls=1) for item in range(X.shape[1])]
+    elif kernel == "matern12":
+        if hyper_prior_params:
+            ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+            eta = HalfCauchy("eta", beta=2)
+            base_kernels = [eta ** 2 * Matern12(input_dim=len(X.T), ls=ls) for item in range(X.shape[1])]
+        else:
+            base_kernels = [Matern12(input_dim=len(X.T), ls=1) for item in range(X.shape[1])]
+    elif kernel == "matern32":
+        if hyper_prior_params:
+            ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+            eta = HalfCauchy("eta", beta=2)
+            base_kernels = [eta ** 2 * Matern32(input_dim=len(X.T), ls=ls) for item in range(X.shape[1])]
+        else:
+            base_kernels = [Matern32(input_dim=len(X.T), ls=1) for item in range(X.shape[1])]
     elif kernel == "matern52":
         if hyper_prior_params:
             ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
             eta = HalfCauchy("eta", beta=2)
-        base_kernels = [eta ** 2 * Matern52(input_dim=len(X.T), ls=ls) for item in range(X.shape[1])]
-        return base_kernels
+            base_kernels = [eta ** 2 * Matern52(input_dim=len(X.T), ls=ls) for item in range(X.shape[1])]
+        else:
+            base_kernels = [Matern52(input_dim=len(X.T), ls=1) for item in range(X.shape[1])]
+    return base_kernels
 
 def get_additive_kernel(*kernels, mode="LR"):
     if any([isinstance(kernel, Covariance) for kernel in kernels]):
