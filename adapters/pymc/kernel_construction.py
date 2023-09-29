@@ -1,4 +1,4 @@
-from pymc.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern52, ExpQuad, RatQuad
+from pymc.gp.cov import Covariance, Combination, Linear, WhiteNoise, Constant, Polynomial, Periodic, Matern32, Matern52, ExpQuad, RatQuad
 from pymc.gp.cov import Combination, Add, Prod, ScaledCov, Kron
 from pymc.distributions import Gamma, Normal, HalfNormal, Uniform, HalfCauchy, MvNormal, MvStudentT
 import numpy as np
@@ -23,6 +23,15 @@ def get_periodic_kernel(X, active_dims=None):
         return Periodic(input_dim=len(X.T), active_dims=active_dims)
     else:
         return Periodic(input_dim=len(X.T), active_dims=[i for i in range(X.shape[1])])
+    
+def get_matern32_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):
+    if hyper_priors:
+        ls = Gamma("ls", alpha=2, beta=2, mu=hyper_prior_params["mean"], sigma=hyper_prior_params["sigma"])
+        eta = HalfCauchy("eta", beta=2)
+    if active_dims is not None:
+        return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls, active_dims=active_dims)
+    else:
+        return eta ** 2 * Matern32(input_dim=len(X.T), ls=ls)# active_dims=[i for i in range(X.shape[1])])
 
 def get_matern52_kernel(X, active_dims=None, hyper_priors=True, **hyper_prior_params):    
     if hyper_priors:
