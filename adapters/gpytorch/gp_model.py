@@ -1,0 +1,93 @@
+import torch
+from domain.GP_Prior import GP_Prior
+from gpytorch.models import ExactGP
+from gpytorch.likelihoods import GaussianLikelihood, Likelihood
+from gpytorch.distributions import MultivariateNormal
+from adapters.gpytorch.means import LinearMean
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, additive_kernel_permutation, additive_structure_kernel
+
+class GPyT_Prior(GP_Prior):
+    def __init__(self, X, y, feature_names):
+        super().__init__(X, y, feature_names)
+        
+class GPRegressionModel(GP_Prior, ExactGP):
+    def __init__(self, X, y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple"):
+        
+        GP_Prior.__init__(self, X, y, feature_names)
+        
+        # transform x and y to tensors
+        self.X = torch.tensor(self.X).float()
+        self.y = torch.tensor(self.y).float()
+
+        # select prior knowledge parameter values and adjust dimensionality
+        self.weighted_mean = torch.tensor(self.means_weighted[0]).float()
+        self.weighted_std = torch.tensor(self.stds_weighted[0]).float()
+
+        if likelihood == "gaussian":
+            ExactGP.__init__(self, self.X, self.y, GaussianLikelihood())
+        elif isinstance(likelihood, Likelihood):
+            ExactGP.__init__(self, self.X, self.y, likelihood=likelihood)
+        else:
+            raise NotImplementedError("Only Gaussian likelihood is supported for now")
+
+        self.mean_func = self.get_mean(mean_func=mean_func)
+        self.kernel = self.get_kernel(type=kernel, structure=structure)
+
+        # init kernel hyperparameters
+        hyper_parameter_init_values = {
+            #'likelihood.noise_covar.noise': self.noise_sd_over_all_regs,
+            #'mean_func.beta': self.weighted_mean,
+            #'mean_func.intercept': self.root_mean,
+            'kernel.base_kernel.lengthscale': torch.tensor(0.5),
+            'kernel.outputscale': torch.tensor(1.),
+        }
+        self.initialize(**hyper_parameter_init_values)
+    
+    def get_mean(self, mean_func="linear"):
+        if mean_func == "linear_weighted":
+            return LinearMean(beta=self.means_weighted, intercept=self.root_mean)
+        else:
+            raise NotImplementedError("Only linear weighted mean function is supported for now")
+    
+    def get_kernel(self, type="linear", structure="simple", ARD=False):
+        if structure == "simple":
+            if type == "linear":
+                return get_linear_kernel(self.X)
+            elif type == "RBF":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.weighted_mean
+                hyper_prior_params["sigma"] = self.weighted_std
+                return get_squared_exponential_kernel(self.X, **hyper_prior_params)
+            elif type == "matern32":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.weighted_mean
+                hyper_prior_params["sigma"] = self.weighted_std
+                return get_matern32_kernel(self.X, **hyper_prior_params)
+            elif type == "matern52":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.weighted_mean
+                hyper_prior_params["sigma"] = self.weighted_std
+                return get_matern52_kernel(self.X, **hyper_prior_params)
+        elif structure == "additive":
+            if type == "linear":
+                base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
+            elif type == "matern32":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.weighted_mean
+                hyper_prior_params["sigma"] = self.weighted_std
+                base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
+            elif type == "matern52":
+                hyper_prior_params = {}
+                hyper_prior_params["mean"] = self.weighted_mean
+                hyper_prior_params["sigma"] = self.weighted_std
+                base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
+            return additive_structure_kernel(base_kernels, self.X, **hyper_prior_params)
+        
+    def define_kernels(self, type="linear", structure="simple", ARD=False):
+        pass
+
+    def forward(self, x):
+        output = MultivariateNormal(self.mean_func(x), self.kernel(x))
+        if not torch.isfinite(output.mean).all() or not torch.isfinite(output.variance).all():
+            raise ValueError("Model output is NaN or inf")
+        return output
