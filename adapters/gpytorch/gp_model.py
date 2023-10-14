@@ -4,7 +4,7 @@ from gpytorch.models import ExactGP
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
-from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, additive_kernel_permutation, additive_structure_kernel
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 
 class GPyT_Prior(GP_Prior):
     def __init__(self, X, y, feature_names):
@@ -50,36 +50,25 @@ class GPRegressionModel(GP_Prior, ExactGP):
             raise NotImplementedError("Only linear weighted mean function is supported for now")
     
     def get_kernel(self, type="linear", structure="simple", ARD=False):
+        hyper_prior_params = {}
+        hyper_prior_params["mean"] = self.weighted_mean
+        hyper_prior_params["sigma"] = self.weighted_std
         if structure == "simple":
             if type == "linear":
-                return get_linear_kernel(self.X)
+                base_kernel = get_linear_kernel(self.X)
             elif type == "RBF":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.weighted_mean
-                hyper_prior_params["sigma"] = self.weighted_std
-                return get_squared_exponential_kernel(self.X, **hyper_prior_params)
+                base_kernel = get_squared_exponential_kernel(self.X, **hyper_prior_params)
             elif type == "matern32":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.weighted_mean
-                hyper_prior_params["sigma"] = self.weighted_std
-                return get_matern32_kernel(self.X, **hyper_prior_params)
+                base_kernel = get_matern32_kernel(self.X, **hyper_prior_params)
             elif type == "matern52":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.weighted_mean
-                hyper_prior_params["sigma"] = self.weighted_std
-                return get_matern52_kernel(self.X, **hyper_prior_params)
+                base_kernel = get_matern52_kernel(self.X, **hyper_prior_params)
+            return wrap_scale_kernel(base_kernel, **hyper_prior_params)
         elif structure == "additive":
             if type == "linear":
                 base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
             elif type == "matern32":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.weighted_mean
-                hyper_prior_params["sigma"] = self.weighted_std
                 base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
             elif type == "matern52":
-                hyper_prior_params = {}
-                hyper_prior_params["mean"] = self.weighted_mean
-                hyper_prior_params["sigma"] = self.weighted_std
                 base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
             return additive_structure_kernel(base_kernels, self.X, **hyper_prior_params)
         

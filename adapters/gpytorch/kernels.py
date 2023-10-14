@@ -20,33 +20,27 @@ def get_matern12_kernel(X, **hyper_prior_params):
         alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         lengthscale_prior = GammaPrior(alpha, beta)
-        scale_prior = HalfCauchyPrior(scale=beta)
     else:
         lengthscale_prior = None
-        scale_prior = None
-    return ScaleKernel(MaternKernel(nu=0.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
+    return MaternKernel(nu=0.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
 
 def get_matern32_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
         alpha = tensor(hyper_prior_params["mean"]).float()
         beta = tensor(hyper_prior_params["sigma"]).float()
         lengthscale_prior = GammaPrior(alpha, beta)
-        scale_prior = HalfCauchyPrior(scale=1)
     else:
         lengthscale_prior = None
-        scale_prior = None
-    return ScaleKernel(MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
+    return MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
 
 def get_matern52_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
         alpha = tensor(np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])).float()
         beta = tensor(hyper_prior_params["mean"] / np.square(hyper_prior_params["sigma"])).float()
         lengthscale_prior = GammaPrior(2, 2)
-        scale_prior = HalfCauchyPrior(scale=1)
     else:
         lengthscale_prior = None
-        scale_prior = None
-    return ScaleKernel(MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior), outputscale_prior=scale_prior)
+    return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
 
 # Squared Exponential Kernel
 def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params):
@@ -55,14 +49,9 @@ def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params)
         alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         lengthscale_prior = GammaPrior(alpha, beta)
-        scale_prior = HalfCauchyPrior(scale=1)
     else:
         lengthscale_prior = None
-        scale_prior = None
-    if not interpolation:
-        return gk.ScaleKernel(gk.RBFKernel(lengthscale_prior=lengthscale_prior), outputscale_prior=scale_prior)
-    else:
-        return gk.ScaleKernel(GridInterpolationKernel(RBFKernel(lengthscale_prior=lengthscale_prior), grid_size=2**len(X)))
+    return RBFKernel(lengthscale_prior=lengthscale_prior)
 
 # Base Kernels
 def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
@@ -73,6 +62,10 @@ def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
     elif kernel == "matern52":
         base_kernels = [get_matern52_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     return base_kernels
+
+def wrap_scale_kernel(base_kernel, **scale_prior_params):
+    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None
+    return ScaleKernel(base_kernel=base_kernel, outputscale_prior=outscale_prior)
 
 # Additive Kernel
 def get_additive_kernel(*kernels):
