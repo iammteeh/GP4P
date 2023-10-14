@@ -7,15 +7,15 @@ import numpy as np
 import time
 
 # Linear Kernel
-def get_linear_kernel(X, active_dims=None, **hyper_prior_params):
-    return LinearKernel(active_dims=active_dims)
+def get_linear_kernel(X, **hyper_prior_params):
+    return LinearKernel()
 
 # Periodic Kernel
-def get_periodic_kernel(X, active_dims=None, **hyper_prior_params):
-    return PeriodicKernel(active_dims=active_dims)
+def get_periodic_kernel(X, **hyper_prior_params):
+    return PeriodicKernel()
 
 # Matern Kernels
-def get_matern12_kernel(X, active_dims=None, **hyper_prior_params):
+def get_matern12_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
         alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
@@ -24,9 +24,9 @@ def get_matern12_kernel(X, active_dims=None, **hyper_prior_params):
     else:
         lengthscale_prior = None
         scale_prior = None
-    return ScaleKernel(MaternKernel(nu=0.5, lengthscale_prior=lengthscale_prior, active_dims=active_dims, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
+    return ScaleKernel(MaternKernel(nu=0.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
 
-def get_matern32_kernel(X, active_dims=None, **hyper_prior_params):
+def get_matern32_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
         alpha = tensor(hyper_prior_params["mean"]).float()
         beta = tensor(hyper_prior_params["sigma"]).float()
@@ -35,9 +35,9 @@ def get_matern32_kernel(X, active_dims=None, **hyper_prior_params):
     else:
         lengthscale_prior = None
         scale_prior = None
-    return ScaleKernel(MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, active_dims=active_dims, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
+    return ScaleKernel(MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T)), outputscale_prior=scale_prior)
 
-def get_matern52_kernel(X, active_dims=None, **hyper_prior_params):
+def get_matern52_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
         alpha = tensor(np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])).float()
         beta = tensor(hyper_prior_params["mean"] / np.square(hyper_prior_params["sigma"])).float()
@@ -49,7 +49,7 @@ def get_matern52_kernel(X, active_dims=None, **hyper_prior_params):
     return ScaleKernel(MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior), outputscale_prior=scale_prior)
 
 # Squared Exponential Kernel
-def get_squared_exponential_kernel(X, active_dims=None, interpolation=False, **hyper_prior_params):
+def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params):
     # You can set hyper-prior with prior object in GPyTorch
     if hyper_prior_params:
         alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
@@ -60,22 +60,22 @@ def get_squared_exponential_kernel(X, active_dims=None, interpolation=False, **h
         lengthscale_prior = None
         scale_prior = None
     if not interpolation:
-        return gk.ScaleKernel(gk.RBFKernel(lengthscale_prior=lengthscale_prior, active_dims=active_dims), outputscale_prior=scale_prior)
+        return gk.ScaleKernel(gk.RBFKernel(lengthscale_prior=lengthscale_prior), outputscale_prior=scale_prior)
     else:
-        return gk.ScaleKernel(GridInterpolationKernel(RBFKernel(lengthscale_prior=lengthscale_prior, active_dims=active_dims), grid_size=2**len(X)))
+        return gk.ScaleKernel(GridInterpolationKernel(RBFKernel(lengthscale_prior=lengthscale_prior), grid_size=2**len(X)))
 
 # Experimental Kernel - Linear
 def get_experimental_kernel(X):
     return LinearKernel(active_dims=[i for i in range(X.shape[1])])
 
 # Base Kernels
-def get_base_kernels(X, kernel="linear", ARD=True, active_dims=None, **hyper_prior_params):
+def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
     if kernel == "linear":
         base_kernels = [LinearKernel() for item in range(X.shape[1])]
     elif kernel == "matern32":
-        base_kernels = [get_matern32_kernel(X, active_dims=active_dims, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_matern32_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     elif kernel == "matern52":
-        base_kernels = [get_matern52_kernel(X, active_dims=active_dims, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_matern52_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     return base_kernels
 
 # Additive Kernel
