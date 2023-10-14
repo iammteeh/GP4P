@@ -1,6 +1,7 @@
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from sklearn.kernel_ridge import KernelRidge
+from domain.env import KERNEL_TYPE
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import math
 from scipy.special import binom
@@ -158,6 +159,7 @@ class Priors:
         return root_mean, root_std, means_weighted, stds_weighted, coef_matrix, noise_sd_over_all_regs
     
     def exploit_kernel_ridge_regression(self):
+        kernel_type = "rbf" if KERNEL_TYPE == "RBF" else "laplacian" 
         regs = []
         step_size = int(binom(len(self.X.T), 3))
         print(f"fit {step_size} kernel ridge regressors out of {len(self.X.T)} features")
@@ -165,7 +167,7 @@ class Priors:
         start_time = time.time()
         for alpha in step_list:
             alpha = 1/(2*alpha)
-            kernel_ridge = KernelRidge(alpha=alpha, kernel="rbf")
+            kernel_ridge = KernelRidge(alpha=alpha, kernel=kernel_type)
             reg, err = self.fit_and_eval_lin_reg(reg_proto=kernel_ridge, verbose=False)
             regs.append((reg, err))
 
@@ -228,9 +230,9 @@ class GP_Prior(Priors):
         self.noise_sd_over_all_regs ) = self.get_weighted_normal_params(gamma=1, stddev_multiplier=3)
 
         (
-         means_weighted,
-         self.stds_weighted,
-         noise) = self.exploit_kernel_ridge_regression()
+        means_weighted,
+        self.stds_weighted,
+        noise) = self.exploit_kernel_ridge_regression()
 
     @abstractmethod
     def get_mean(self, mean_func="linear"):
