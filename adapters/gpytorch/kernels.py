@@ -1,7 +1,7 @@
 import gpytorch.kernels as gk
 from gpytorch.utils import grid
 from torch import tensor
-from gpytorch.kernels import RBFKernel, GridInterpolationKernel, ScaleKernel, AdditiveStructureKernel, LinearKernel, PeriodicKernel, MaternKernel
+from gpytorch.kernels import RBFKernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, PeriodicKernel, MaternKernel
 from gpytorch.priors import GammaPrior, HalfCauchyPrior
 import numpy as np
 import time
@@ -85,7 +85,7 @@ def additive_kernel_permutation(items, k=3):
 def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
     import itertools
     kernel_triple = [list(p) for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
-    d_kernels = [kl * kr for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2)] # k * (n over k) in size
+    d_kernels = [ProductKernel([kl, kr]) for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2)] # k * (n over k) in size
     dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2))
     if scale_prior_params:
         outscale_prior = HalfCauchyPrior(scale=1)
