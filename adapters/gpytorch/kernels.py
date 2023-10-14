@@ -64,10 +64,6 @@ def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params)
     else:
         return gk.ScaleKernel(GridInterpolationKernel(RBFKernel(lengthscale_prior=lengthscale_prior), grid_size=2**len(X)))
 
-# Experimental Kernel - Linear
-def get_experimental_kernel(X):
-    return LinearKernel(active_dims=[i for i in range(X.shape[1])])
-
 # Base Kernels
 def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
     if kernel == "linear":
