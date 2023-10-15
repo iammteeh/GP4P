@@ -85,7 +85,7 @@ def additive_kernel_permutation(items, k=3):
 def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
     import itertools
     kernel_triple = [list(p) for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
-    d_kernels = [ProductKernel([kl, kr]) for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2)] # k * (n over k) in size
+    d_kernels = [ProductKernel([kernels[0], kernels[1]]) for p, permutation in enumerate(kernel_triple) for c, kernels in itertools.combinations(permutation, 2)] # k * (n over k) in size
     dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2))
     if scale_prior_params:
         outscale_prior = HalfCauchyPrior(scale=1)
