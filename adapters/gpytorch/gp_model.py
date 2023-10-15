@@ -20,8 +20,8 @@ class GPRegressionModel(GP_Prior, ExactGP):
         self.y = torch.tensor(self.y).float()
 
         # select prior knowledge parameter values and adjust dimensionality
-        self.weighted_mean = torch.tensor(self.means_weighted[0]).float()
-        self.weighted_std = torch.tensor(self.stds_weighted[0]).float()
+        self.weighted_mean = self.means_weighted[0]
+        self.weighted_std = self.stds_weighted[0]
 
         if likelihood == "gaussian":
             ExactGP.__init__(self, self.X, self.y, GaussianLikelihood())
