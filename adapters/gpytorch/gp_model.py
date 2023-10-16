@@ -70,7 +70,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
                 base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
             elif type == "matern52":
                 base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
-            return additive_structure_kernel(base_kernels, self.X, **hyper_prior_params)
+            return additive_structure_kernel(self.X, base_kernels, **hyper_prior_params)
         
     def define_kernels(self, type="linear", structure="simple", ARD=False):
         pass
