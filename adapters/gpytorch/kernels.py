@@ -84,14 +84,14 @@ def additive_kernel_permutation(items, k=3):
 
 def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
     import itertools
-    kernel_triple = [p for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
-    d_kernels = [ProductKernel(kernels[0], kernels[1]) for p, permutation in enumerate(kernel_triple) for c, kernels in itertools.combinations(permutation, 2)] # k * (n over k) in size
-    dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for kl, kr in itertools.combinations(permutation, 2))
-    if scale_prior_params:
-        outscale_prior = HalfCauchyPrior(scale=1)
+    kernel_triple = [list(p) for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
+    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None
+    d_kernels = [ScaleKernel(ProductKernel(kernels[0], kernels[1]), outputscale_prior=outscale_prior) for p, permutation in enumerate(kernel_triple) for c, kernels in itertools.combinations(permutation, 2)] # k * (n over k) in size
+    dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for c, (kl, kr) in itertools.combinations(permutation, 2))
     if interpolation:
         grid_size = grid.choose_grid_size(X, kronecker_structure=False)
         wrapper_kernels = ScaleKernel(GridInterpolationKernel(base_kernel=d_kernels, grid_size=2**len(X)), outputscale_prior=outscale_prior)
+        return AdditiveStructureKernel(base_kernel=wrapper_kernels, num_dims=len(X))
     else:
-        wrapper_kernels = ScaleKernel(base_kernel=d_kernels, outputscale_prior=outscale_prior)
-    return AdditiveStructureKernel(base_kernel=wrapper_kernels, num_dims=len(X))
+        return AdditiveStructureKernel(base_kernel=d_kernels, num_dims=len(X))
+    
