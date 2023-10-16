@@ -76,7 +76,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
         pass
 
     def forward(self, x):
-        output = MultivariateNormal(self.mean_func(x), self.kernel(x))
+        output = MultivariateNormal(self.mean_func(x), self.kernel(x).evaluate()) # evaluate() is necessary to get the covariance/kernel matrix directly as output with a shape attribute when kernel tensors being evaluated lazily
         if not torch.isfinite(output.mean).all() or not torch.isfinite(output.variance).all():
             raise ValueError("Model output is NaN or inf")
         return output
