@@ -68,8 +68,15 @@ def wrap_scale_kernel(base_kernel, **scale_prior_params):
     return ScaleKernel(base_kernel=base_kernel, outputscale_prior=outscale_prior)
 
 # Additive Kernel
-def get_additive_kernel(*kernels):
-    return sum(kernels)
+def get_additive_kernel(kernels):
+    """
+    takes the first out of a list of kernels and sums over it
+    """
+    additive_kernel = kernels[0]
+    for kernel in kernels[1:]:
+        additive_kernel += kernel
+    return additive_kernel
+
 
 # Additive Kernel Permutation 2nd order structure
 def additive_kernel_permutation(items, k=3):
