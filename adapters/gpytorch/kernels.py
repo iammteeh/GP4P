@@ -87,6 +87,7 @@ def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prio
     kernel_triple = [list(p) for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
     outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None
     d_kernels = [ScaleKernel(ProductKernel(kernels[0], kernels[1]), outputscale_prior=outscale_prior) for p, permutation in enumerate(kernel_triple) for c, kernels in itertools.combinations(permutation, 2)] # k * (n over k) in size
+    d_kernels = get_additive_kernel(d_kernels)
     dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for c, (kl, kr) in itertools.combinations(permutation, 2))
     if interpolation:
         grid_size = grid.choose_grid_size(X, kronecker_structure=False)
