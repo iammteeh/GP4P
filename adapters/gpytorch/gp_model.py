@@ -78,7 +78,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
     def forward(self, x):
         kernel = self.kernel(x).evaluate()
         kernel += torch.eye(kernel.shape[0]) * 1e-2 # add jitter
-        output = MultivariateNormal(self.mean_func(x), self.kernel(x).evaluate()) # evaluate() is necessary to get the covariance/kernel matrix directly as output with a shape attribute when kernel tensors being evaluated lazily
+        output = MultivariateNormal(self.mean_func(x), kernel) # evaluate() is necessary to get the covariance/kernel matrix directly as output with a shape attribute when kernel tensors being evaluated lazily
         if not torch.isfinite(output.mean).all() or not torch.isfinite(output.variance).all():
             raise ValueError("Model output is NaN or inf")
         return output
