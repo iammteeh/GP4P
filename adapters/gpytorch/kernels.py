@@ -1,7 +1,7 @@
 import gpytorch.kernels as gk
 from gpytorch.utils import grid
 from torch import tensor
-from gpytorch.kernels import RBFKernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, PeriodicKernel, MaternKernel
+from gpytorch.kernels import Kernel, RBFKernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, PeriodicKernel, MaternKernel
 from gpytorch.priors import GammaPrior, HalfCauchyPrior
 import numpy as np
 import time
@@ -75,7 +75,7 @@ def get_additive_kernel(kernels):
     additive_kernel = kernels[0]
     for kernel in kernels[1:]:
         additive_kernel += kernel
-    return additive_kernel
+    return len(kernels), additive_kernel
 
 
 # Additive Kernel Permutation 2nd order structure
@@ -91,15 +91,11 @@ def additive_kernel_permutation(items, k=3):
 
 def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
     import itertools
-    kernel_triple = [list(p) for p in itertools.combinations(base_kernels, r=3)] # (n over k) in size
-    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None
-    d_kernels = [ScaleKernel(ProductKernel(kernels[0], kernels[1]), outputscale_prior=outscale_prior) for p, permutation in enumerate(kernel_triple) for c, kernels in itertools.combinations(permutation, 2)] # k * (n over k) in size
-    d_kernels = get_additive_kernel(d_kernels)
-    dim_tuples = ((kl, kr) for p, permutation in enumerate(kernel_triple) for c, (kl, kr) in itertools.combinations(permutation, 2))
+    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None # gimmick
     if interpolation:
         grid_size = grid.choose_grid_size(X, kronecker_structure=False)
-        wrapper_kernels = ScaleKernel(GridInterpolationKernel(base_kernel=d_kernels, grid_size=2**len(X)), outputscale_prior=outscale_prior)
-        return AdditiveStructureKernel(base_kernel=wrapper_kernels, num_dims=len(X))
+        d_kernels = [ScaleKernel(GridInterpolationKernel(ProductKernel(k1,k2), grid_size=int(grid_size), num_dims=1, active_dims=[i,j]), outputscale_prior=outscale_prior, num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
     else:
-        return AdditiveStructureKernel(base_kernel=d_kernels, num_dims=len(X))
-    
+        d_kernels = [ScaleKernel(ProductKernel(k1,k2), outputscale_prior=outscale_prior, num_dims=1, active_dims=[i,j]) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
+    num_dims, d_kernels = get_additive_kernel(d_kernels)
+    return AdditiveStructureKernel(base_kernel=d_kernels, num_dims=num_dims)
