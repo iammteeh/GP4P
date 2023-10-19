@@ -42,7 +42,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
             'kernel.base_kernel.lengthscale': torch.tensor(0.5),
             'kernel.outputscale': torch.tensor(1.),
         }
-        self.initialize(**hyper_parameter_init_values)
+        #self.initialize(**hyper_parameter_init_values)
     
     def get_mean(self, mean_func="linear"):
         if mean_func == "constant":
