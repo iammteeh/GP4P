@@ -4,6 +4,7 @@ from gpytorch.models import ExactGP
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
+from gpytorch.means import ConstantMean
 from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 
 class GPyT_Prior(GP_Prior):
@@ -44,7 +45,9 @@ class GPRegressionModel(GP_Prior, ExactGP):
         self.initialize(**hyper_parameter_init_values)
     
     def get_mean(self, mean_func="linear"):
-        if mean_func == "linear_weighted":
+        if mean_func == "constant":
+            return ConstantMean()
+        elif mean_func == "linear_weighted":
             return LinearMean(beta=self.means_weighted, intercept=self.root_mean)
         else:
             raise NotImplementedError("Only linear weighted mean function is supported for now")
