@@ -73,8 +73,8 @@ def main():
 
         # track parameters every 10th step
         if i % 10 == 0:
-            step_time = time() - start - (i * 0.1)
-            print(f"Iteration {i+1}, Loss: {loss.item()}, 10 steps took: {step_time:.2f}s")
+            step_time = time() - start
+            print(f"Iteration {i+1}, Loss: {loss.item()}, {i} steps took: {step_time:.2f}s")
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
 
         optimizer.step()
