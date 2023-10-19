@@ -43,7 +43,7 @@ def get_matern52_kernel(X, **hyper_prior_params):
     return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
 
 # Squared Exponential Kernel
-def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params):
+def get_squared_exponential_kernel(X, **hyper_prior_params):
     # You can set hyper-prior with prior object in GPyTorch
     if hyper_prior_params:
         alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
@@ -57,6 +57,8 @@ def get_squared_exponential_kernel(X, interpolation=False, **hyper_prior_params)
 def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
     if kernel == "linear":
         base_kernels = [LinearKernel() for item in range(X.shape[1])]
+    elif kernel == "RBF":
+        base_kernels = [get_squared_exponential_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     elif kernel == "matern32":
         base_kernels = [get_matern32_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     elif kernel == "matern52":
