@@ -69,6 +69,8 @@ class GPRegressionModel(GP_Prior, ExactGP):
         elif structure == "additive":
             if type == "linear":
                 base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
+            elif type == "RBF":
+                base_kernels = get_base_kernels(self.X, kernel="RBF", ARD=ARD)
             elif type == "matern32":
                 base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
             elif type == "matern52":
