@@ -64,6 +64,7 @@ def main():
     #
     mll = gpytorch.mlls.ExactMarginalLogLikelihood(likelihood, model)
 
+    start = time()
     for i in range(1000):  # training iterations
         optimizer.zero_grad()
         output = model(model.X)
@@ -72,11 +73,12 @@ def main():
 
         # track parameters every 10th step
         if i % 10 == 0:
-            print(f"Iteration {i+1}, Loss: {loss.item()}")
-            print(f"Iteration {i+1}, Mean parameters: {model.mean_func.parameters()}")
+            step_time = time() - start - (i * 0.1)
+            print(f"Iteration {i+1}, Loss: {loss.item()}, 10 steps took: {step_time:.2f}s")
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
 
         optimizer.step()
+    print(f"Training took {time() - start:.2f} seconds.")
 
     # Evaluate model
     model.eval()
