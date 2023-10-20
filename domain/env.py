@@ -22,10 +22,11 @@ ALPHAS = (-2, 3, 1000)
 COEFFICIENT_THRESHOLD = 3
 # for GP pipelines #
 MEAN_FUNC = "linear_weighted"
-KERNEL_TYPE = "matern52"
-KERNEL_STRUCTURE = "simple"
-LIKELIHOOD = "fixed_noise_gaussian"
+KERNEL_TYPE = "RBF"
+KERNEL_STRUCTURE = "additive"
+LIKELIHOOD = "gaussian"
 GP_MODE = "latent" # "latent" or "marginal" (PyMC)
+INTERPOLATION = False
 ARD = False
 # PyMC sample strategies #
 JAX = True

@@ -13,7 +13,7 @@ class GPyT_Prior(GP_Prior):
         super().__init__(X, y, feature_names)
         
 class GPRegressionModel(GP_Prior, ExactGP):
-    def __init__(self, X, y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple"):
+    def __init__(self, X, y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple", interpolate=False):
         
         GP_Prior.__init__(self, X, y, feature_names)
         
@@ -49,7 +49,9 @@ class GPRegressionModel(GP_Prior, ExactGP):
         elif structure == "additive":
             hyper_parameter_init_values = {}
             for i in range(120):
-                hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)
+                if interpolate:
+                    hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)    
+                hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)
                 hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.outputscale'] = torch.tensor(1.)
         self.initialize(**hyper_parameter_init_values)
     
