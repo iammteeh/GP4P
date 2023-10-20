@@ -38,13 +38,19 @@ class GPRegressionModel(GP_Prior, ExactGP):
         self.kernel = self.get_kernel(type=kernel, structure=structure)
 
         # init kernel hyperparameters
-        hyper_parameter_init_values = {
-            #'likelihood.noise_covar.noise': self.noise_sd_over_all_regs,
-            #'mean_func.beta': self.weighted_mean,
-            #'mean_func.intercept': self.root_mean,
-            'kernel.base_kernel.lengthscale': torch.tensor(0.5),
-            'kernel.outputscale': torch.tensor(1.),
-        }
+        if structure == "simple":
+            hyper_parameter_init_values = {
+                #'likelihood.noise_covar.noise': self.noise_sd_over_all_regs,
+                #'mean_func.beta': self.weighted_mean,
+                #'mean_func.intercept': self.root_mean,
+                'kernel.base_kernel.lengthscale': torch.tensor(0.5),
+                'kernel.outputscale': torch.tensor(1.),
+            }
+        elif structure == "additive":
+            hyper_parameter_init_values = {}
+            for i in range(120):
+                hyper_parameter_init_values[f'kernel.base_kernel.kernels,{i}.base_kernel.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)
+                hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.outputscale'] = torch.tensor(1.)
         self.initialize(**hyper_parameter_init_values)
     
     def get_mean(self, mean_func="linear"):
