@@ -9,7 +9,7 @@ MODE = "not simple" # to choose which structure is induced with the data
 USE_DUMMY_DATA = False
 DATA_SLICE_MODE = "amount"
 DATA_SLICE_PROPORTION = 1/1
-DATA_SLICE_AMOUNT = 10000
+DATA_SLICE_AMOUNT = 1000
 X_type = bool # default = bool for one-hot encoded numerical features, else use float
 Y = "energy"
 # for linear regression pipelines #
@@ -24,6 +24,7 @@ COEFFICIENT_THRESHOLD = 3
 MEAN_FUNC = "linear_weighted"
 KERNEL_TYPE = "matern52"
 KERNEL_STRUCTURE = "simple"
+LIKELIHOOD = "fixed_noise_gaussian"
 GP_MODE = "latent" # "latent" or "marginal" (PyMC)
 ARD = False
 # PyMC sample strategies #
