@@ -161,7 +161,7 @@ class Priors:
     def exploit_kernel_ridge_regression(self):
         kernel_type = "rbf" if KERNEL_TYPE == "RBF" else "laplacian" 
         regs = []
-        step_size = int(binom(len(self.X.T), 3))
+        step_size = int(binom(len(self.X.T), 2))
         print(f"fit {step_size} kernel ridge regressors out of {len(self.X.T)} features")
         step_list = np.linspace(0.1, 0.9, step_size) # leaving 0 < alpha < 1
         start_time = time.time()
