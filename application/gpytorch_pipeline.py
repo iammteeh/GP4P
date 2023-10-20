@@ -4,7 +4,7 @@ from adapters.gpytorch.gp_model import GPRegressionModel
 from gpytorch.likelihoods import GaussianLikelihood
 from application.init_pipeline import init_pipeline, get_numpy_features
 from domain.feature_model.feature_modeling import additive_kernel_permutation
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, LIKELIHOOD ,ARD, RESULTS_DIR
 import numpy as np
 import datetime
 from time import time
@@ -52,7 +52,7 @@ def main():
 
     # Define likelihood and model
     likelihood = GaussianLikelihood()
-    model = GPRegressionModel(X_train, y_train, feature_names, likelihood=likelihood, kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
+    model = GPRegressionModel(X_train, y_train, feature_names, likelihood=LIKELIHOOD, kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
 
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)

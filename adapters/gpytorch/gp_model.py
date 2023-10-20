@@ -1,7 +1,8 @@
 import torch
+import numpy as np
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP
-from gpytorch.likelihoods import GaussianLikelihood, Likelihood
+from gpytorch.likelihoods import Likelihood, GaussianLikelihood, FixedNoiseGaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
 from gpytorch.means import ConstantMean
@@ -26,6 +27,8 @@ class GPRegressionModel(GP_Prior, ExactGP):
 
         if likelihood == "gaussian":
             ExactGP.__init__(self, self.X, self.y, GaussianLikelihood())
+        elif likelihood == "fixed_noise_gaussian":
+            ExactGP.__init__(self, self.X, self.y, FixedNoiseGaussianLikelihood(noise=torch.tensor(np.full((len(self.X),),self.noise_sd_over_all_regs)).float(), learn_additional_noise=True))
         elif isinstance(likelihood, Likelihood):
             ExactGP.__init__(self, self.X, self.y, likelihood=likelihood)
         else:
@@ -42,7 +45,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
             'kernel.base_kernel.lengthscale': torch.tensor(0.5),
             'kernel.outputscale': torch.tensor(1.),
         }
-        #self.initialize(**hyper_parameter_init_values)
+        self.initialize(**hyper_parameter_init_values)
     
     def get_mean(self, mean_func="linear"):
         if mean_func == "constant":
