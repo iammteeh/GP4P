@@ -137,6 +137,7 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
         y = y.__deepcopy__()
         X_np = np.array(X.iloc[:])
         y_np = np.array(y.iloc[:])
+    print(f"y shape: {y.shape}")
     print("Preprocessing done!")
     # split data
     X_train_np, X_test_np, y_train_np, y_test_np = train_test_split(X_np, y_np, test_size=0.8, random_state=42)
