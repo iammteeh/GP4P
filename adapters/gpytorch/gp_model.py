@@ -51,7 +51,8 @@ class GPRegressionModel(GP_Prior, ExactGP):
             for i in range(120):
                 if interpolate:
                     hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)    
-                hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)
+                else:
+                    hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.base_kernel.kernels.1.lengthscale'] = torch.tensor(0.5)
                 hyper_parameter_init_values[f'kernel.base_kernel.kernels.{i}.outputscale'] = torch.tensor(1.)
         #self.initialize(**hyper_parameter_init_values)
     
@@ -81,7 +82,7 @@ class GPRegressionModel(GP_Prior, ExactGP):
             if type == "linear":
                 base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
             elif type == "RBF":
-                base_kernels = get_base_kernels(self.X, kernel="RBF", ARD=ARD)
+                base_kernels = get_base_kernels(self.X, kernel="RBF", ARD=ARD, **hyper_prior_params)
             elif type == "matern32":
                 base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
             elif type == "matern52":
