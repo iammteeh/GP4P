@@ -44,3 +44,15 @@ for gen in range(N_GENERATIONS):
     pop = toolbox.select(offspring, k=len(pop))
 best_ind = tools.selBest(pop, k=1)[0]
 print("Best individual:", best_ind)
+
+
+# then do symbolic regression to get a regression tree
+#REGRESSION = "symbolic"
+#X_train = X_train[new_features]
+#X_test = X_test[new_features]
+#with Regression(X_train, X_test, y_train, REGRESSION) as regression:
+#    regression.fit()
+#    program = regression.get_program()
+#    model.program = program
+#    print(f"regression program: {program}")
+#    print(model.plot_symbolic_program())
