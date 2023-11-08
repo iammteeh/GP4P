@@ -20,8 +20,11 @@ domain/GP_Model.py
 evaluation/*.*
 evaluation/LLVM_energy/*.*
 modeldata/*.*
+modeldata/modelstorage/*.*
 util/*.*
 
 *.csv
 
 Anmerkungen.md
+
+gp/*.*
