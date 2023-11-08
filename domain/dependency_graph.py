@@ -4,13 +4,20 @@
 # - performance limit
 # - dependency paths -> pfadabhängige "Interaktion" = Konfiguration 
 # - distanzabhängige Interaktion => Symmetriebrüche(Independency) bei Decoupling (gradual weakening of dependencies)
-
+from dataclasses import dataclass
 import xml.etree.ElementTree as ET
 import ete3
 from networkx import DiGraph
 from util.draw_tree import DrawTree, DrawTreeWithNames
 from util.xml_to_newick import xml_to_newick
 from collections import defaultdict, deque
+from numpy import hstack
+
+@dataclass
+class BinaryTree:
+    value: str
+    left: bool
+    right: bool
 
 class TreeNodes(DiGraph):
     def __init__(self, root, value=None, binary=False):
@@ -77,7 +84,7 @@ class TreeNodes(DiGraph):
 
 
 class DependencyGraph:
-    def __init__(self, xml_path=None, name=None, color=None):
+    def __init__(self, df, xml_path=None, name=None, color=None):
         # load feature model
         self.xml = ET.parse(xml_path)
         #self.newick = xml_to_newick(ET.tostring(self.xml.getroot(), encoding='utf-8', method='xml'))
@@ -86,7 +93,8 @@ class DependencyGraph:
         #
         #root = ET.tostring(self.xml.getroot(), encoding='utf-8', method='xml')
         #xml_root = ET.fromstring(root)
-        self.feature_graph = TreeNodes(root=self.xml.getroot())
+        self.feature_graph_from_xml = TreeNodes(root=self.xml.getroot())
+        self.feature_graph_from_pd = self.create_balanced_tree(list(self.features) if self.features else df.columns.tolist())
         self.name = name
         self.color = color
         #self.feature_graph.add_features(self.features)
@@ -102,7 +110,25 @@ class DependencyGraph:
             self.dependency_graph[a].append(b)
             features.pop()
 
+    def create_balanced_tree(self, columns):
+    # Base case: if there are no columns, return None
+        if len(columns) == 0:
+            return None
+        
+        # Recursive case: take the middle column, make it the root, 
+        # and do the same for the two halves of the remaining columns
+        mid = len(columns) // 2
+        root = BinaryTree(
+            columns[mid],
+            self.create_balanced_tree(columns[:mid]),
+            self.create_balanced_tree(columns[mid+1:]))
+    
+        return root
+
     def constraint_graph(self, features):
+        """
+        apply dependencies to a feature graph
+        """
         import random
         if not features:
             return None
@@ -154,6 +180,36 @@ class DependencyGraph:
                     queue.append(dependency)
 
         return resolved
+    
+    def return_hierarchy(self, tree, mode="BFS"):
+        """
+        create a hierarchy of the feature graph using numpy
+        using a BFS or DFS approach
+        """
+        if mode == "BFS":
+            queue = deque([tree])
+            hierarchy = []
+            while queue:
+                current = queue.popleft()
+                hierarchy.append(current.value)
+                if current.left:
+                    queue.append(current.left)
+                if current.right:
+                    queue.append(current.right)
+            return hstack(hierarchy)
+        elif mode == "DFS":
+            stack = deque([tree])
+            hierarchy = []
+            while stack:
+                current = stack.pop()
+                hierarchy.append(current.value)
+                if current.left:
+                    stack.append(current.left)
+                if current.right:
+                    stack.append(current.right)
+            return hstack(hierarchy)
+
+
     
     def create_permutations(self, features, path=None, remaining=None):
         if path is None:
