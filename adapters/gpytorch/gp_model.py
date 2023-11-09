@@ -2,6 +2,8 @@ import torch
 import numpy as np
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP
+from botorch.models.fully_bayesian import SaasPyroModel, SaasFullyBayesianSingleTaskGP
+from botorch.models.transforms import Standardize
 from gpytorch.likelihoods import Likelihood, GaussianLikelihood, FixedNoiseGaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
@@ -99,3 +101,11 @@ class GPRegressionModel(GP_Prior, ExactGP):
         if not torch.isfinite(output.mean).all() or not torch.isfinite(output.variance).all():
             raise ValueError("Model output is NaN or inf")
         return output
+    
+class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
+    def __init__(self, X, y, feature_names):
+        GP_Prior.__init__(self, X, y, feature_names)
+        # transform x and y to tensors
+        self.X = torch.tensor(self.X).double()
+        self.y = torch.tensor(self.y).double().unsqueeze(-1)
+        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, torch.full_like(self.y, 1e-6), Standardize(m=1), pyro_model=SaasPyroModel())
