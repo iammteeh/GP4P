@@ -51,18 +51,17 @@ def main():
     y_test = torch.tensor(y_test).float()
 
     # Define likelihood and model
-    likelihood = GaussianLikelihood()
-    model = GPRegressionModel(X_train, y_train, feature_names, likelihood=likelihood, kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
+    model = GPRegressionModel(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
 
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)
 
     # find optimal hyperparameters
     model.train()
-    likelihood.train()
+    model.likelihood.train()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
     #
-    mll = gpytorch.mlls.ExactMarginalLogLikelihood(likelihood, model)
+    mll = gpytorch.mlls.ExactMarginalLogLikelihood(model.likelihood, model)
 
     start = time()
     for i in range(1000):  # training iterations
