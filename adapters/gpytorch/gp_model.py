@@ -1,6 +1,6 @@
 import torch
 from typing import Optional
-from botorch.models.utils import fantasize as validate_input_scaling
+from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
 from domain.GP_Prior import GP_Prior
