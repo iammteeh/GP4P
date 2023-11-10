@@ -1,4 +1,8 @@
 import torch
+from typing import Optional
+from botorch.models.utils import fantasize as validate_input_scaling
+from botorch.models.transforms.input import InputTransform
+from botorch.models.transforms.outcome import Log, OutcomeTransform
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
@@ -16,13 +20,31 @@ class GPyT_Prior(GP_Prior):
         super().__init__(X, y, feature_names)
         
 class GPRegressionModel(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
-    def __init__(self, X, y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple"):
+    def __init__(self, train_X, train_y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple",             
+            outcome_transform: Optional[OutcomeTransform] = None,
+            input_transform: Optional[InputTransform] = None
+            ):
+            
+        GP_Prior.__init__(self, train_X, train_y, feature_names)
         
-        GP_Prior.__init__(self, X, y, feature_names)
-        
-        # transform x and y to tensors
+        # transform x to tensor
         self.X = torch.tensor(self.X).float()
-        self.y = torch.tensor(self.y).float()
+        # transform y to tensor and make it 2D
+        self.y = torch.tensor(self.y).float().unsqueeze(-1)
+
+        # preprocess data
+        with torch.no_grad():
+            transformed_X = self.transform_inputs(
+                X=self.X, input_transform=input_transform
+            )
+        if outcome_transform is not None:
+            self.y = outcome_transform(self.y)
+        self._validate_tensor_args(X=transformed_X, Y=self.y)
+        validate_input_scaling(
+            train_X=transformed_X, train_Y=self.y
+        )
+        self._set_dimensions(train_X=self.X, train_Y=self.y)
+        self.X, self.y, self.yvar = self._transform_tensor_args(X=self.X, Y=self.y)
 
         # select prior knowledge parameter values and adjust dimensionality
         self.weighted_mean = self.means_weighted[0]
