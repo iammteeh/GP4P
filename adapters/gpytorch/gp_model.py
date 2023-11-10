@@ -1,6 +1,7 @@
 import torch
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP
+from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasPyroModel, SaasFullyBayesianSingleTaskGP
 from botorch.models.transforms import Standardize
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
@@ -14,7 +15,7 @@ class GPyT_Prior(GP_Prior):
     def __init__(self, X, y, feature_names):
         super().__init__(X, y, feature_names)
         
-class GPRegressionModel(GP_Prior, ExactGP):
+class GPRegressionModel(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
     def __init__(self, X, y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple"):
         
         GP_Prior.__init__(self, X, y, feature_names)
