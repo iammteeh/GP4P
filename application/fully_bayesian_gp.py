@@ -148,8 +148,8 @@ def get_data():
     rank = np.linalg.matrix_rank(X_train)
 
     # transform test data to tensor
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
+    X_test = torch.tensor(X_test).double()
+    y_test = torch.tensor(y_test).double()
 
     return (X_train, X_test, y_train, y_test, feature_names)
 
