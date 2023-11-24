@@ -225,14 +225,14 @@ class GP_Prior(Priors):
         (self.root_mean, 
         self.root_std, 
         self.means_weighted, 
-        stds_weighted, 
+        self.stds_weighted, 
         coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_normal_params(gamma=1, stddev_multiplier=3)
 
-        (
-        means_weighted,
-        self.stds_weighted,
-        noise) = self.exploit_kernel_ridge_regression()
+        #(
+        #means_weighted,
+        #self.stds_weighted,
+        #noise) = self.exploit_kernel_ridge_regression()
 
     @abstractmethod
     def get_mean(self, mean_func="linear"):
