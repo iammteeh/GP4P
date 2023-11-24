@@ -1,4 +1,14 @@
 from itertools import combinations
+from domain.feature_model.boolean_masks import get_word_and_opposite, get_literals_and_interaction
+
+def get_feature_model(X, features):
+    """
+    suited for analyzing boolean feature sets e.g. for distribution analysis
+    suited for one-hot encoded numerical features
+    """
+    words, opposites = get_word_and_opposite(X, features)
+    literals, interactions = get_literals_and_interaction(X, features)
+    return words, opposites, literals, interactions
 
 def gen_feature_model(X):
     """
