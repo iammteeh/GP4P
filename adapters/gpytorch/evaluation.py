@@ -41,6 +41,12 @@ def explore_data(data):
     print(f"{data[:]}")
     # slice for shape (d,)
     print(f"slice of data: {data[0]}")
+    print(f"{data[1:]}") # all but first
+    i = 6
+    print(f"{data[i]}") # i-th
+    print(f"{data[:i]}") # all but i-th
+    print(f"{data[i:]}") # i-th and all after
+    print(f"{data[:1]}") # first
     print(f"{data[:-1]}") # all but last
     print(f"{data[-1:]}") # last
     # for shape (n, d)
@@ -146,3 +152,129 @@ def waic(model, likelihood, X, Y):
         p_waic = torch.sum(torch.var(log_likelihoods, dim=0))
         waic = -2 * (lppd - p_waic)
     return waic.item()
+
+def get_posterior_dimension(posterior):
+    posterior_dimwise = []
+    for dim in range(posterior.mean.shape[1]):
+        beta_dict = {}
+        beta_dict["mu_j"] = posterior.mean[dim]
+        print(f"mu_j: {beta_dict['mu_j']}")
+        print(f"mu_j shape: {beta_dict['mu_j'].shape}")
+        #beta_dict['mu_minus_j'] = np.delete(posterior.mean.numpy(), dim, axis=0)
+        # for beta_dict['mu_minus_j'] we take all but the dim-th row of the mean vector with torch
+        beta_dict["mu_minus_j"] = torch.cat((posterior.mean[:dim], posterior.mean[dim + 1:]), dim=0)
+        print(f"mu_minus_j: {beta_dict['mu_minus_j']}")
+        print(f"mu_minus_j shape: {beta_dict['mu_minus_j'].shape}")
+        beta_dict["mu_minus_j"] = np.delete(posterior.mean.numpy(), dim, axis=0)
+        print(f"mu_minus_j: {beta_dict['mu_minus_j']}")
+        print(f"mu_minus_j shape: {beta_dict['mu_minus_j'].shape}")
+        Sigma = posterior.covariance_matrix
+        print(f"Sigma: {Sigma}")
+        print(f"Sigma shape: {Sigma.shape}")
+        Sigma_j = Sigma[dim]
+        print(f"Sigma_j: {Sigma_j}")
+        print(f"Sigma_j shape: {Sigma_j.shape}")
+        Sigma_minus_j = np.delete(Sigma.numpy(), dim, axis=0)
+        print(f"Sigma_minus_j: {Sigma_minus_j}")
+        print(f"Sigma_minus_j shape: {Sigma_minus_j.shape}")
+        # Sigma_minus_j with torch
+        Sigma_minus_j = torch.cat((posterior.covariance_matrix[:dim], posterior.covariance_matrix[dim + 1:]), dim=0)
+        print(f"Sigma_minus_j: {Sigma_minus_j}")
+        print(f"Sigma_minus_j shape: {Sigma_minus_j.shape}")
+        #Sigma_minus_j = np.delete(np.delete(Sigma, dim, axis=0), dim, axis=1)
+        #Sigma_j_minus_j = np.delete(Sigma[dim, :], dim, axis=0)
+        #Sigma_minus_j_j = np.delete(Sigma[:, dim], dim, axis=0)
+        beta_dict["beta_j"] = posterior.lazy_covariance_matrix[dim].cholesky(upper=False)
+        print(f"beta_j: {beta_dict['beta_j']}")
+        print(f"beta_j shape: {beta_dict['beta_j'].shape}")
+        # for beta_dict['beta_minus_j'] we take all but the dim-th row and column of the covariance matrix with torch.cat
+        beta_dict["beta_minus_j"] = Sigma_minus_j.cholesky(upper=False)
+        #beta_dict["beta_minus_j"] = posterior.lazy_covariance_matrix[:dim].cholesky(upper=False)
+        print(f"beta_minus_j: {beta_dict['beta_minus_j']}")
+        print(f"beta_minus_j shape: {beta_dict['beta_minus_j'].shape}")
+        posterior_dimwise.append(beta_dict)
+    return posterior_dimwise
+
+def get_posterior_dimension_v2(posterior):
+    posterior_dimwise = []
+    for dim in range(posterior.mean.shape[1]):
+        beta_dict = {}
+        beta_dict["mu_j"] = posterior.mean[dim] # has shape (n,1)
+        beta_dict["mu_minus_j"] = torch.cat((posterior.mean[:dim], posterior.mean[dim + 1:]), dim=0) # has shape (d-1,n,1)
+        # alt: beta_dict["mu_minus_j"] = np.delete(posterior.mean.numpy(), dim, axis=0)
+        Sigma = posterior.covariance_matrix # has shape (d,n,n)
+        Sigma_j = Sigma[dim] # has shape (n,n)
+        Sigma_minus_j = torch.cat((posterior.covariance_matrix[:dim], posterior.covariance_matrix[dim + 1:]), dim=0) # has shape (d-1,n,n)
+        Sigma_minus_j = np.delete(Sigma.numpy(), dim, axis=0)
+        beta_dict["beta_j"] = posterior.lazy_covariance_matrix[dim].cholesky(upper=False) # is TriangularLinearOperator with shape (n,n)
+        #beta_dict["beta_minus_j"] = Sigma_minus_j.cholesky(upper=False) # is Tensor with shape (d-1,n,n)
+        beta_dict["beta_minus_j"] = np.linalg.cholesky(Sigma_minus_j) # is Tensor with shape (d-1,n,n)
+        #beta_dict["Lambda_j"] = posterior.lazy_covariance_matrix[dim].inv_matmul(torch.eye(posterior.lazy_covariance_matrix[dim].size(-1))) # is Tensor with shape (n,n) and represents the precision matrix
+        beta_dict["Lambda"] = torch.linalg.inv(Sigma)
+        print(f"Lambda: {beta_dict['Lambda']}")
+        print(f"Lambda shape: {beta_dict['Lambda'].shape}")
+        beta_dict["Lambda_j"] = beta_dict["Lambda"][dim] # is Tensor with shape (n,n) and represents the precision matrix
+        print(f"Lambda_j: {beta_dict['Lambda_j']}")
+        print(f"Lambda_j shape: {beta_dict['Lambda_j'].shape}")
+        beta_dict["Lambda_j"] = torch.linalg.inv(posterior.lazy_covariance_matrix[dim].to_dense()) # is Tensor with shape (n,n) and represents the precision matrix
+        print(f"Lambda_j: {beta_dict['Lambda_j']}")
+        print(f"Lambda_j shape: {beta_dict['Lambda_j'].shape}")
+        #beta_dict["Lambda_minus_j"] = torch.tensor(Sigma_minus_j).inv_matmul(torch.eye(Sigma_minus_j.size(-1))) # is Tensor with shape (d-1,n,n)
+        beta_dict["Lambda_minus_j"] = torch.linalg.inv(torch.tensor(Sigma_minus_j)) # is Tensor with shape (d-1,n,n)
+        print(f"Lambda_minus_j: {beta_dict['Lambda_minus_j']}")
+        print(f"Lambda_minus_j shape: {beta_dict['Lambda_minus_j'].shape}")
+        #beta_dict["lambda_j"] = posterior.lazy_covariance_matrix[dim].inv_quad(torch.eye(posterior.lazy_covariance_matrix[dim].size(-1))) # is Tensor with shape (n,) and represents the precision vector (diagonal of precision matrix)
+        # for beta_dict["lambda_j"] is the diagonal of the precision matrix
+        beta_dict["lambda_j"] = torch.diagonal(torch.linalg.inv(posterior.lazy_covariance_matrix[dim].to_dense())) # is Tensor with shape (n,) and represents the precision vector (diagonal of precision matrix)
+        # now we take the first element of the diagonal
+
+        print(f"lambda_j: {beta_dict['lambda_j']}")
+        print(f"lambda_j shape: {beta_dict['lambda_j'].shape}")
+        #beta_dict["lambda_minus_j"] = torch.tensor(Sigma_minus_j).inv_quad(torch.eye(Sigma_minus_j.size(-1))) # is Tensor with shape (d-1,n)
+        #print(f"lambda_minus_j: {beta_dict['lambda_minus_j']}")
+        #print(f"lambda_minus_j shape: {beta_dict['lambda_minus_j'].shape}")
+        lambda_matrix = torch.inverse(Sigma)
+        # Extract Lambda_minus_j for each batch
+        Lambda_minus_j = torch.cat([lambda_matrix[:, :dim, :dim], lambda_matrix[:, :dim, dim+1:]], dim=2)
+        Lambda_minus_j = torch.cat([Lambda_minus_j, torch.cat([lambda_matrix[:, dim+1:, :dim], lambda_matrix[:, dim+1:, dim+1:]], dim=2)], dim=1)
+        Lambda_minus_j = lambda_matrix[:, :dim-1, :dim-1]
+        print(f"Lambda_minus_j: {Lambda_minus_j}")
+        print(f"Lambda_minus_j shape: {Lambda_minus_j.shape}")
+        # Extract lambda_minus_j for each batch
+        lambda_minus_j = torch.cat([lambda_matrix[:dim], lambda_matrix[dim+1:]], dim=0)
+        print(f"lambda_minus_j: {lambda_minus_j}")
+        print(f"lambda_minus_j shape: {lambda_minus_j.shape}")
+        posterior_dimwise.append(beta_dict)
+    return posterior_dimwise
+
+def get_precision_matrix(posterior):
+    precision_matrix = np.linalg.inv(posterior.covariance_matrix)
+    return precision_matrix
+
+def calculate_conditional_expectation(sigma_minus_j, sigma_minus_j_j, mu_minus_j, beta_j, mu_j):
+    theta_j = np.linalg.inv(sigma_minus_j) @ sigma_minus_j_j
+    E_beta_minus_j_given_beta_j = mu_minus_j + theta_j @ (beta_j - mu_j) # E(beta_{-j} | beta_j)
+    V_beta_minus_j_given_beta_j = np.linalg.inv(sigma_minus_j) # V(beta_{-j} | beta_j)
+
+
+def decompose_covariance(cov):
+    # convert covariance matrix to numpy
+    if not isinstance(cov, np.ndarray):
+        cov = cov.numpy()
+    # decompose covariance matrix into correlation matrix and standard deviations
+    if cov.shape[0] > 1:
+        L = np.array()
+        for i in range(cov.shape[0]):
+            L[i] = np.linalg.cholesky(cov[i])
+        return L
+    std = np.sqrt(np.diag(cov))
+    #corr = cov / np.outer(std, std)
+    # apply cholesky decomposition to covariance matrix
+    L = np.linalg.cholesky(cov)
+    # apply cholesky decomposition to correlation matrix
+    #L_corr = np.linalg.cholesky(corr)
+    # also return the inverse of the cholesky decomposition
+    L_inv = np.linalg.inv(L)
+    
+    return L
+
