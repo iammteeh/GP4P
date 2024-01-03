@@ -7,6 +7,7 @@ RESULTS_DIR = PWD + '/evaluation'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
 USE_DUMMY_DATA = False
+SELECTED_FEATURES = [(1, 1), (2, 1), (3, 1)]  # Example features
 DATA_SLICE_MODE = "amount"
 DATA_SLICE_PROPORTION = 1/1
 DATA_SLICE_AMOUNT = 10000

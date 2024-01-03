@@ -1,6 +1,7 @@
 from domain.dataset import DataSet
-from domain.env import SWS, MODE, MODELDIR, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
+from domain.env import SWS, MODE, MODELDIR, SELECTED_FEATURES, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
 from adapters.import_data import select_data
+from domain.feature_model.boolean_masks import get_word_and_opposite, get_literals_and_interaction, get_opposites_and_interactions
 
 import pandas as pd
 import numpy as np
@@ -88,6 +89,33 @@ def scale_features(X, y, scaler):
     }
     return model
 
+def select_features(ds, feature_set, mode="literals_and_interactions"):
+    """
+    select certain boolean masked features from the dataset
+    """
+    # as we require a ndarray here, we need to convert the dataset to ndarray
+    if type(ds) is DataSet:
+        # as length of feature set stays the same we don't need this for now
+        #columns = []
+        #for feature in feature_set:
+        #    columns.append(ds.get_measurement_df().columns[feature[0]])
+        #print(f"Selecting features: {columns}")
+        columns = ds.get_measurement_df().columns
+        ds = ds.get_measurement_df().to_numpy(copy=False)
+    if mode == "literals_and_interactions":
+        left, right = get_literals_and_interaction(ds, feature_set)
+    elif mode == "opposites_and_interactions":
+        left, right = get_opposites_and_interactions(ds, feature_set)
+    elif mode == "words_and_opposites":
+        left, right = get_word_and_opposite(ds, feature_set)
+
+    print(f"left shape: {left.shape}")
+    print(f"right shape: {right.shape}")
+    left = pd.DataFrame(left, columns=columns)
+    right = pd.DataFrame(right, columns=columns)
+    ds = pd.concat([left, right])
+    return ds
+
 def store_model():
     pass 
 
@@ -112,10 +140,18 @@ def get_data_slice(X, y):
 
 def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     print("Preprocessing...")
+    print("Selecting feature model...")
+    if SELECTED_FEATURES:
+        ds = select_features(ds, SELECTED_FEATURES, mode="literals_and_interactions")
+    
+    print(f"Split X and y...")
     if type(ds) is DataSet:
         df = ds.get_measurement_df()    
         X = df.drop('y', axis=1)
         y = df["y"]
+    elif type(ds) is pd.DataFrame:
+        X = ds.drop('y', axis=1)
+        y = ds["y"]
     else:
         df = ds
         X = df["X"]
@@ -129,8 +165,9 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     # scale features
     #print(f"apply {scaler} Scaling")
     #X = scale_features(X, y, scaler)
-    # slice data
-    X, y = get_data_slice(X, y)
+    if len(X) > DATA_SLICE_AMOUNT:
+        print(f"Selected over {DATA_SLICE_AMOUNT} rows. Slicing data...")
+        X, y = get_data_slice(X, y)
     # convert to ndarray
     if to_ndarray:
         X = X.__deepcopy__()
