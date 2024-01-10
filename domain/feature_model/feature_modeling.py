@@ -1,5 +1,7 @@
 from itertools import combinations
 from domain.feature_model.boolean_masks import get_word_and_opposite, get_literals_and_interaction
+import torch
+import numpy as np
 
 def get_feature_model(X, features):
     """
@@ -9,6 +11,17 @@ def get_feature_model(X, features):
     words, opposites = get_word_and_opposite(X, features)
     literals, interactions = get_literals_and_interaction(X, features)
     return words, opposites, literals, interactions
+
+def inverse_map(X, U):
+    """
+    map a latent feature vector back to its original feature space, also called association matrix
+    translated from https://github.com/lorinanthony/BAKR/blob/master/Rcpp/BAKRGibbs.cpp
+    """
+    X = torch.tensor(X)
+    U = torch.tensor(U)
+    B = torch.pinverse(X.T, rcond=1.490116e-08) @ U
+    return B
+    
 
 def gen_feature_model(X):
     """
@@ -69,17 +82,18 @@ def find_independent_features():
     """
     pass
 
-def additive_kernel_permutation(items, k=3):
-    import itertools
-    from domain.kernel import Add
-    from GPy.kern import Prod
-    import time
-    permutations = [list(p) for p in itertools.combinations(items, r=k)]
-    print(f"Start building additive kernel. \n Calculated {len(permutations)}.")
-    start = time.time()
-    additive_kernel = Add([Prod([combination[0], combination[1]], name=f"Prod_{p}_{c}") 
-                      for p, permutation in enumerate(permutations) 
-                      for c, combination in enumerate(itertools.combinations(permutation, 2))])
-    end = time.time()
-    print(f"Finished building additive kernel. It took {end - start:.2f}s.")
-    return additive_kernel
+# MOVE TO KERNEL
+#def additive_kernel_permutation(items, k=3):
+#    import itertools
+#    from domain.kernel import Add
+#    from GPy.kern import Prod
+#    import time
+#    permutations = [list(p) for p in itertools.combinations(items, r=k)]
+#    print(f"Start building additive kernel. \n Calculated {len(permutations)}.")
+#    start = time.time()
+#    additive_kernel = Add([Prod([combination[0], combination[1]], name=f"Prod_{p}_{c}") 
+#                      for p, permutation in enumerate(permutations) 
+#                      for c, combination in enumerate(itertools.combinations(permutation, 2))])
+#    end = time.time()
+#    print(f"Finished building additive kernel. It took {end - start:.2f}s.")
+#    return additive_kernel
