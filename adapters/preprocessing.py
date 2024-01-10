@@ -89,7 +89,7 @@ def scale_features(X, y, scaler):
     }
     return model
 
-def select_features(ds, feature_set, mode="literals_and_interactions"):
+def select_features(ds, feature_set, mode="opposites_and_interactions"):
     """
     select certain boolean masked features from the dataset
     """
@@ -113,38 +113,27 @@ def select_features(ds, feature_set, mode="literals_and_interactions"):
     print(f"right shape: {right.shape}")
     left = pd.DataFrame(left, columns=columns)
     right = pd.DataFrame(right, columns=columns)
-    ds = pd.concat([left, right])
-    return ds
+    return left, right
+
+def build_train_test(ds):
+    if SELECTED_FEATURES:
+        print("Selecting {SELECTED_FEATURES} as interactive features (takes a while..)")
+        train, test = select_features(ds, SELECTED_FEATURES, mode="opposites_and_interactions")
+        print(f"Splitting X and y...")
+        X_train, y_train = split_X_y(train)
+        X_test, y_test = split_X_y(test)
+    else:
+        X, y = split_X_y(ds)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
+    
+    feature_names = X_train.columns
+
+    return feature_names, X_train.to_numpy(), X_test.to_numpy(), y_train.to_numpy(), y_test.to_numpy()
 
 def store_model():
     pass 
 
-def get_data_slice(X, y):
-    print("Slicing data...")
-    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT < len(X):
-        # get minimal data slice of n rows
-        n = DATA_SLICE_AMOUNT
-        X = X.iloc[:n]
-        y = y.iloc[:n]
-    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION < 1:
-        # get proportional data slice of n rows
-        n = len(X)-1
-        p = DATA_SLICE_PROPORTION
-        x = int(n * p)
-        X = X.iloc[:x]
-        y = y.iloc[:x]
-    else:
-        raise NotImplementedError
-    print(f"X shape: {X.shape}")
-    return X, y
-
-def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
-    print("Preprocessing...")
-    print("Selecting feature model...")
-    if SELECTED_FEATURES:
-        ds = select_features(ds, SELECTED_FEATURES, mode="opposites_and_interactions")
-    
-    print(f"Split X and y...")
+def split_X_y(ds):
     if type(ds) is DataSet:
         df = ds.get_measurement_df()    
         X = df.drop('y', axis=1)
@@ -156,31 +145,44 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
         df = ds
         X = df["X"]
         y = df["y"]
-    # use pandas dataframe methods
+    return X, y
 
-    # add extrafunctional feature model
-    print(f"applying extrafunctional feature model: {extra_ft} (takes a while..)")
-    X = add_features(X, extra_ft)
-    feature_names = X.columns
-    # scale features
-    #print(f"apply {scaler} Scaling")
-    #X = scale_features(X, y, scaler)
-    if len(X) > DATA_SLICE_AMOUNT:
+def get_data_slice(X, y):
+    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT < len(X):
+        # get minimal data slice of n rows
+        n = DATA_SLICE_AMOUNT
+        X = X[:n]
+        y = y[:n]
+    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION < 1:
+        # get proportional data slice of n rows
+        n = len(X)-1
+        p = DATA_SLICE_PROPORTION
+        x = int(n * p)
+        X = X[:x]
+        y = y[:x]
+    else:
+        raise NotImplementedError
+    return X, y
+
+def preprocessing(ds, extra_ft=None, scaler=None):
+    print("Preprocessing...")
+    feature_names, X_train, X_test, y_train, y_test = build_train_test(ds)
+
+    if extra_ft:
+        # add extrafunctional feature model
+        print(f"applying extrafunctional feature model: {extra_ft} (takes a while..)")
+        X_train = add_features(X_train, extra_ft)
+        X_test = add_features(X_test, extra_ft)
+    
+    if scaler:
+        # scale features
+        print(f"apply {scaler} Scaling")
+        X_train = scale_features(X_train, y_train, scaler)
+        X_test = scale_features(X_test, y_test, scaler)
+    
+    if len(X_train) > DATA_SLICE_AMOUNT or len(X_test) > DATA_SLICE_AMOUNT:
         print(f"Selected over {DATA_SLICE_AMOUNT} rows. Slicing data...")
-        X, y = get_data_slice(X, y)
-    # convert to ndarray
-    if to_ndarray:
-        X = X.__deepcopy__()
-        y = y.__deepcopy__()
-        X_np = np.array(X.iloc[:])
-        y_np = np.array(y.iloc[:])
-    print("Preprocessing done!")
-    # split data
-    X_train_np, X_test_np, y_train_np, y_test_np = train_test_split(X_np, y_np, test_size=0.8, random_state=42)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
-    # make tuples
-    X_train = (X_train, X_train_np)
-    X_test = (X_test, X_test_np)
-    y_train = (y_train, y_train_np)
-    y_test = (y_test, y_test_np)
+        X_train, y_train = get_data_slice(X_train, y_train)
+        X_test, y_test = get_data_slice(X_test, y_test)
+
     return feature_names, X_train, X_test, y_train, y_test
