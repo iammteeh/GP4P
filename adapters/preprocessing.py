@@ -142,7 +142,7 @@ def preprocessing(ds, extra_ft, scaler, to_ndarray=True):
     print("Preprocessing...")
     print("Selecting feature model...")
     if SELECTED_FEATURES:
-        ds = select_features(ds, SELECTED_FEATURES, mode="literals_and_interactions")
+        ds = select_features(ds, SELECTED_FEATURES, mode="opposites_and_interactions")
     
     print(f"Split X and y...")
     if type(ds) is DataSet:
