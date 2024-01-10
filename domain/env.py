@@ -7,17 +7,18 @@ RESULTS_DIR = PWD + '/evaluation'
 SWS = "LLVM_energy"
 MODE = "not simple" # to choose which structure is induced with the data
 USE_DUMMY_DATA = False
-SELECTED_FEATURES = [(1, 1), (2, 1), (3, 1)]  # Example features
+FEATURE_ENCODING = "binary" # try "binary", "one-hot" or "ordinal"
+SELECTED_FEATURES = [(1, 1), (2, 1), (3, 1)]  # Example features, else None
 DATA_SLICE_MODE = "amount"
 DATA_SLICE_PROPORTION = 1/1
 DATA_SLICE_AMOUNT = 10000
-X_type = bool # default = bool for one-hot encoded numerical features, else use float
+X_type = bool # default = bool for one-hot or binary encoded numerical features, else use float
 Y = "energy"
 # for linear regression pipelines #
 EXTRAFUNCTIONAL_FEATURES = False
 POLY_DEGREE = 2
 REGRESSION = "LassoCV"
-REGRESSION_PENALTY = (-2, 4, 50) # (start, stop, num)
+REGRESSION_PENALTY = (-2, 4, 50) # np.logspace(start, stop, num)
 #ALPHAS = [0.1, 0.5, 1, 5, 10, 50, 100]
 ALPHAS = (-2, 3, 1000)
 COEFFICIENT_THRESHOLD = 3

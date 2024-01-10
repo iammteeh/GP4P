@@ -3,7 +3,8 @@ from dataclasses import dataclass
 import os
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelBinarizer, OrdinalEncoder
+from domain.env import FEATURE_ENCODING
 
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 from xml.etree import ElementTree as ET
@@ -211,7 +212,7 @@ class ConfigSysProxy:
 
     def parse_configs_csv(self, file):
         df = pd.read_csv(file, sep=";")
-        print(df.head())
+        #print(df.head())
         # print(df)
         features = list(self.position_map.keys())
         configs_pd = df[features]
@@ -494,17 +495,22 @@ class DataSet(ConfigSysProxy):
     
     def get_measurement_df(self):
         configs = self.get_all_config_df()
-        print(f"configs: {configs}")
+        #print(f"configs: {configs}")
         if self.value_type == bool:
             configs = self.encode_categorical_features(configs)
         config_attrs = pd.DataFrame(list(self.all_configs.values()), columns=["y"])
         df_configs = pd.concat([configs, config_attrs], axis=1)
         return df_configs
     
-    def encode_categorical_features(self, configs):
-        enc = OneHotEncoder(drop='if_binary')
-        configs = enc.fit(configs).transform(configs).toarray()
-        print(f"encoded {type(configs)} configs: {configs} (shape: {configs.shape}))")
+    def encode_categorical_features(self, configs, encoding=FEATURE_ENCODING):
+        if encoding == "binary":
+            enc = LabelBinarizer()
+        elif encoding == "one-hot":
+            enc = OneHotEncoder(drop='if_binary')
+        elif encoding == "ordinal":
+            enc = OrdinalEncoder()
+        configs = enc.fit(configs).transform(configs)
+        #print(f"encoded {type(configs)} configs: {configs} (shape: {configs.shape}))")
         # convert numpy back to pandas dataframe
         configs = pd.DataFrame(list(configs), columns=self.position_map.keys())
         return configs
