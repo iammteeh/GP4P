@@ -21,11 +21,6 @@ def init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="2_poly"):
 
 def main():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=True)
-    # use ndarrays of X and y
-    X_train = X_train[1]
-    X_test = X_test[1]
-    y_train = y_train[1]
-    y_test = y_test[1]
     model = Model(REGRESSION, ["mse_relative_to_mean", "mse_relative_to_variance", "mape", "r2"], ds, feature_names, y_test)
     #print(f"perform regression with {model.method}, {model.metrics} with {X_train.shape[1]} features: {X_train.columns}")
     lambda_values = np.logspace(*ALPHAS)

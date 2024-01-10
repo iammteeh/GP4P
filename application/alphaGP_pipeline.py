@@ -3,7 +3,7 @@ import torch
 import pyro
 from adapters.gpytorch.gp_model import GPRegressionModel, SAASGP
 from gpytorch.likelihoods import GaussianLikelihood
-from gpytorch.mlls import ExactMarginalLogLikelihood
+from gpytorch.mlls import ExactMarginalLogLikelihood, VariationalELBO, GammaRobustVariationalELBO, PredictiveLogLikelihood
 from application.init_pipeline import init_pipeline, get_numpy_features
 from botorch import fit_fully_bayesian_model_nuts, fit_gpytorch_mll
 from domain.feature_model.feature_modeling import additive_kernel_permutation
@@ -45,8 +45,7 @@ def validate_data(*args):
 
 def get_data():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
-    print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
-    X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
     rank = np.linalg.matrix_rank(X_train)
 
     # transform test data to tensor

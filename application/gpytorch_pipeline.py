@@ -41,8 +41,8 @@ def validate_data(*args):
     print(f"data is fine.")
 
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
-    print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
     X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
     rank = np.linalg.matrix_rank(X_train)
 
