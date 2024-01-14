@@ -3,8 +3,8 @@ import torch
 from adapters.gpytorch.gp_model import GPRegressionModel
 from gpytorch.likelihoods import GaussianLikelihood
 from application.init_pipeline import init_pipeline, get_numpy_features
-from domain.feature_model.feature_modeling import additive_kernel_permutation
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
 from time import time
@@ -43,7 +43,6 @@ def validate_data(*args):
 def main():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
-    X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
     rank = np.linalg.matrix_rank(X_train)
 
     # transform test data to tensor
@@ -83,11 +82,15 @@ def main():
     model.eval()
     model.likelihood.eval()
     with torch.no_grad():
-        observed_pred = model.likelihood(model(X_test))
+        observed_pred = model.likelihood(model(X_test)) # same as p
         mean = observed_pred.mean
         var = observed_pred.variance
+        posterior = model.posterior(X_test)
 
     #print(waic(model, model.likelihood, X_test, y_test))
+    print(gaussian_log_likelihood(model, X_test, y_test))
+    metrics = get_metrics(posterior, y_test, posterior.mean, type="GP")
+    print(f"metrics: {metrics}")
 
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")

@@ -14,6 +14,7 @@ from adapters.gpytorch.evaluation import analyze_posterior, get_posterior_dimens
 from adapters.gpytorch.plotting import plot_prior, plot_pairwise_posterior_mean_variances, plot_density, plot_combined_pdf_v2, plot_interaction_pdfs
 from scipy.spatial.distance import jensenshannon, yule
 from adapters.gpytorch.util import decompose_matrix, beta_distances, get_alphas, get_betas, get_beta, get_thetas
+from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
 from time import time
@@ -93,6 +94,16 @@ def main():
     # Evaluate model
     model.eval()
     model.likelihood.eval()
+    with torch.no_grad():
+        observed_pred = model.likelihood(model(X_test)) # same as p
+        mean = observed_pred.mean
+        var = observed_pred.variance
+        posterior = model.posterior(X_test)
+
+    #print(waic(model, model.likelihood, X_test, y_test))
+    print(gaussian_log_likelihood(model, X_test, y_test))
+    metrics = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")
+    print(f"metrics: {metrics}")
 
     #print(waic(model, model.likelihood, X_test, y_test))
     # calculate KLD of posterior and prior
@@ -101,6 +112,6 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    torch.save(model.state_dict(), f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
+    torch.save(model.state_dict(), f"{MODELDIR}/{GP}_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
 if __name__ == "__main__":
     main()
