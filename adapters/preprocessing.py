@@ -117,7 +117,7 @@ def select_features(ds, feature_set, mode="opposites_and_interactions"):
 
 def build_train_test(ds):
     if SELECTED_FEATURES:
-        print("Selecting {SELECTED_FEATURES} as interactive features (takes a while..)")
+        print(f"Selecting {SELECTED_FEATURES} as interactive features (takes a while..)")
         train, test = select_features(ds, SELECTED_FEATURES, mode="opposites_and_interactions")
         print(f"Splitting X and y...")
         X_train, y_train = split_X_y(train)
