@@ -1,5 +1,5 @@
 from domain.dataset import DataSet
-from domain.env import SWS, MODE, MODELDIR, SELECTED_FEATURES, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
+from domain.env import SWS, MODE, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
 from adapters.import_data import select_data
 from domain.feature_model.boolean_masks import get_word_and_opposite, get_literals_and_interaction, get_opposites_and_interactions
 
@@ -116,15 +116,8 @@ def select_features(ds, feature_set, mode="opposites_and_interactions"):
     return left, right
 
 def build_train_test(ds):
-    if SELECTED_FEATURES:
-        print(f"Selecting {SELECTED_FEATURES} as interactive features (takes a while..)")
-        train, test = select_features(ds, SELECTED_FEATURES, mode="opposites_and_interactions")
-        print(f"Splitting X and y...")
-        X_train, y_train = split_X_y(train)
-        X_test, y_test = split_X_y(test)
-    else:
-        X, y = split_X_y(ds)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
+    X, y = split_X_y(ds)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
     
     feature_names = X_train.columns
 
