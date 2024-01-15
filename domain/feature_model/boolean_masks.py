@@ -1,6 +1,7 @@
 import numpy as np
 import functools, itertools
 from pysat.formula import CNF, WCNF
+from functools import reduce
 
 def kdnf(a,b):
     a = bool(a)
@@ -56,15 +57,18 @@ def get_n_words(X, masks, clause="or"):
 
 def get_words(X, masks, clause="or"):
     if clause == "or":
-        return X[np.logical_or(*masks)]
+        word = np.array(reduce(np.logical_or, masks))
     elif clause == "nor":
-        return X[np.logical_not(np.logical_or(*masks))]
+        words = np.array(np.logical_not(reduce(np.logical_or, masks)))
     elif clause == "and":
-        return X[np.logical_and(*masks)]
+        words = np.array(reduce(np.logical_and, masks))
     elif clause == "nand":
-        return X[np.logical_not(np.logical_and(*masks))]
+        words = np.array(np.logical_not(reduce(np.logical_and, masks)))
     elif clause == "xor":
+        # only works for 2 masks
         return X[np.logical_xor(*masks)]
+    
+    return X[words]
     
 
 def get_word_and_opposite(X, features):
