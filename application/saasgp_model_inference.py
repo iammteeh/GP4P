@@ -3,18 +3,17 @@ import numpy as np
 import torch
 from domain.env import SELECTED_FEATURES
 from application.fully_bayesian_gp import get_data, choose_model
-from adapters.gpytorch.gp_model import GPRegressionModel, SAASGP
 from domain.feature_model.feature_modeling import inverse_map
-from adapters.gpytorch.util import decompose_matrix, beta_distances, get_alphas, get_betas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE
+from adapters.gpytorch.util import decompose_matrix, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant
 from adapters.sklearn.dimension_reduction import kernel_pca
-from adapters.gpytorch.plotting import plot_prior, plot_pairwise_posterior_mean_variances, mean_and_confidence_region, grid_plot, kde_plots
+from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs
 from domain.metrics import get_metrics, gaussian_log_likelihood
-from time import sleep
 import random
 
 from scipy.stats import pointbiserialr
 
-file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing
+file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing n =1000
+#file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240116-161436" #n = 100
 model_file = f"{MODELDIR}/{file_name}.pth"
 
 
@@ -47,6 +46,7 @@ with torch.no_grad():
         dimensional_model[dim]["X_test"] = X_test[:, dim]
         dimensional_model[dim]["mean"] = posterior.mean[dim]
         dimensional_model[dim]["variance"] = posterior.variance[dim]
+        dimensional_model[dim]["std"] = torch.sqrt(posterior.variance[dim])
         dimensional_model[dim]["covariance"] = posterior.covariance_matrix[dim]
         dimensional_model[dim]["lower"] = confidence_region[0][dim]
         dimensional_model[dim]["upper"] = confidence_region[1][dim]
@@ -60,6 +60,8 @@ j, groups = get_groups(X_test, SELECTED_FEATURES)
 print(f"groups: {groups}")
 group_rate = group_RATE(dimensional_model[0]["mean"], U, j)
 print(f"group rate: {group_rate}")
+# use groups to calculate 2 posteriors, one with the group and one without the group, measure the distance and plot the PDFs
+
 
 # inference according to BAKR https://github.com/lorinanthony/BAKR/blob/master/Tutorial/BAKR_Tutorial.R
 explained_var = np.cumsum(np.array(lam) / np.sum(np.array(lam)))
@@ -161,7 +163,7 @@ print(f"get metrics...")
 # check for shapes
 print(f"posterior mean shape: {posterior.mixture_mean.shape}")
 print(f"y_test shape: {y_test.shape}")
-metrics = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="regression")
+metrics = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")
 print(f"metrics: {metrics}")
 kernel_lengthscales = [(feature_names[i],model.median_lengthscale[i]) for i in range(len(model.median_lengthscale))]
 # make list of tuples with feature name and lengthscale sorted by lengthscale
@@ -175,7 +177,38 @@ for feature, lengthscale in sorted_lengthscale:
 #for dim in range(len(dimensional_model)):
 #    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
 
+## PLOTTING SECTION
 # plot feature wise
 #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
 kde_plots(X_train, y_train)
+# plot combined
+selected_dimensions = [0,1,2]
+for dim in selected_dimensions:
+    mean = np.mean(dimensional_model[dim]["mean"].detach().numpy())
+    variance = np.median(dimensional_model[dim]["variance"].detach().numpy())
+    plot_density(mean, variance, dim)
+dim_pairs = [
+    (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), 
+    (1, 2), (1, 3), (1, 4), (1, 5), 
+    (2, 3), (2, 4), (2, 5), 
+    (3, 4), (3, 5), 
+    (4, 5),
+]
+for tuple in dim_pairs:
+    dimensional_submodel = {}
+    for dim in tuple:
+        dimensional_submodel[dim] = dimensional_model[dim].copy()
+    plot_combined_pdf(dimensional_submodel)
+plot_combined_pdf(dimensional_model)
+opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
+dimensional_submodel = {}
+dimensional_submodel["0"] = {}
+dimensional_submodel["0"]["mean"] = opposites.mixture_mean.detach().numpy()
+dimensional_submodel["0"]["std"] = np.sqrt(opposites.mixture_variance.detach().numpy())
+dimensional_submodel["1"] = {}
+dimensional_submodel["1"]["mean"] = interactions.mixture_mean.detach().numpy()
+dimensional_submodel["1"]["std"] = np.sqrt(interactions.mixture_variance.detach().numpy())
+plot_combined_pdf(dimensional_submodel)
+print(f"opposites and interactions diverge at {interaction_distant(model, X_test, SELECTED_FEATURES)}")
+#plot_interaction_pdfs(dimensional_submodel)
 print(f"done.")
