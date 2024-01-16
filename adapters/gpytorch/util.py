@@ -2,6 +2,7 @@ import torch
 import numpy as np
 from scipy.stats import median_abs_deviation, norm
 from domain.feature_model.boolean_masks import get_literals_and_interaction, get_opposites_and_interactions
+from scipy.spatial.distance import pdist, jensenshannon
 from time import time
 
 def decompose_matrix(X):
@@ -94,6 +95,9 @@ def get_beta(B, thetamat):
 
 
 def get_thetas(K, q):
+    """
+    derived from BakrGibbs.cpp
+    """
     U, S, V = decompose_matrix(K)
     #thetamat = U @ np.diag(S)
     thetas = torch.diag(S) @ U.T # is the mean of the posterior distribution
@@ -112,6 +116,25 @@ def get_groups(X, feature_group):
     idx = np.array([np.where((X == group).all(axis=1))[0][0] for group in groups])
     print(f"minus_j intersects in X at: {idx}")
     return idx, groups
+
+def get_posterior_variations(model, X_test, feature_group):
+    opposites, interactions = get_opposites_and_interactions(X_test, feature_group) # wahlweise mit X_train, um Gewissheit über Interaktionseinflüsse zu bekommen
+    # get posterior for opposites and interactions
+    posterior_opposites = model.posterior(torch.tensor(opposites))
+    posterior_interactions = model.posterior(torch.tensor(interactions))
+    return posterior_opposites, posterior_interactions
+
+def interaction_distant(model, X_test, feature_group):
+    posterior_opposites, posterior_interactions = get_posterior_variations(model, X_test, feature_group)
+    opposite_mixture_mean = posterior_opposites.mixture_mean.detach().numpy()
+    interaction_mixture_mean = posterior_interactions.mixture_mean.detach().numpy()
+    # slice X_test such that it has the same shape as X_train
+    if len(opposite_mixture_mean) > len(interaction_mixture_mean):
+        opposite_mixture_mean = opposite_mixture_mean[:len(interaction_mixture_mean)]
+    elif len(opposite_mixture_mean) < len(interaction_mixture_mean):
+        interaction_mixture_mean = interaction_mixture_mean[:len(opposite_mixture_mean)]
+    # calculate distance between posterior distributions
+    return jensenshannon(opposite_mixture_mean, interaction_mixture_mean)
 
 def group_RATE(mus, U, groups, nullify=None):
     """
