@@ -66,7 +66,9 @@ def get_words(X, masks, clause="or"):
         words = np.array(np.logical_not(reduce(np.logical_and, masks)))
     elif clause == "xor":
         # only works for 2 masks
-        return X[np.logical_xor(*masks)]
+        #return X[np.logical_xor(*masks)]
+        # XOR mit reduce
+        words = np.array(reduce(np.logical_xor, masks))
     
     return X[words]
     
