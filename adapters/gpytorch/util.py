@@ -2,6 +2,8 @@ import torch
 import numpy as np
 from scipy.stats import median_abs_deviation, norm
 from domain.feature_model.boolean_masks import get_literals_and_interaction, get_opposites_and_interactions
+from adapters.preprocessing import define_subsets
+from domain.metrics import get_metrics
 from scipy.spatial.distance import pdist, jensenshannon
 from time import time
 
@@ -118,11 +120,11 @@ def get_groups(X, feature_group):
     return idx, groups
 
 def get_posterior_variations(model, X_test, feature_group):
-    opposites, interactions = get_opposites_and_interactions(X_test, feature_group) # wahlweise mit X_train, um Gewissheit über Interaktionseinflüsse zu bekommen
+    literals, interactions = get_literals_and_interaction(X_test, feature_group) # wahlweise mit X_train um Gewissheit über trainings interaktionen zu haben
     # get posterior for opposites and interactions
-    posterior_opposites = model.posterior(torch.tensor(opposites))
+    posterior_literals = model.posterior(torch.tensor(literals))
     posterior_interactions = model.posterior(torch.tensor(interactions))
-    return posterior_opposites, posterior_interactions
+    return posterior_literals, posterior_interactions
 
 def interaction_distant(model, X_test, feature_group):
     posterior_opposites, posterior_interactions = get_posterior_variations(model, X_test, feature_group)
