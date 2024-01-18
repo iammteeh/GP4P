@@ -126,6 +126,15 @@ def get_posterior_variations(model, X_test, feature_group):
     posterior_interactions = model.posterior(torch.tensor(interactions))
     return posterior_literals, posterior_interactions
 
+def measure_subset(model, ds, feature_group):
+    (X_literals, y_literals), (X_interactions, y_interactions) = define_subsets(ds, feature_group)
+    print(f"get subset posteriors...")
+    posterior_literals = model.posterior(torch.tensor(X_literals))
+    posterior_interactions = model.posterior(torch.tensor(X_interactions))
+    with torch.no_grad():
+        print(f"metrics for the literals model: {get_metrics(posterior_literals, torch.tensor(y_literals), posterior_literals.mixture_mean.squeeze(), type='GP')}")
+        print(f"metrics for the interactions model: {get_metrics(posterior_interactions, torch.tensor(y_interactions), posterior_interactions.mixture_mean.squeeze(), type='GP')}")
+
 def interaction_distant(model, X_test, feature_group):
     posterior_opposites, posterior_interactions = get_posterior_variations(model, X_test, feature_group)
     opposite_mixture_mean = posterior_opposites.mixture_mean.detach().numpy()
