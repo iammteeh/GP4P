@@ -212,4 +212,19 @@ plot_interaction_pdfs(dimensional_submodel, subset_that_increases_y)
 print(f"opposites and interactions diverge at {interaction_distant(model, X_test, subset_that_increases_y)}")
 #for dim in range(len(dimensional_model)):
 #    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
+
+# post analysis
+from sklearn.covariance import EllipticEnvelope, EmpiricalCovariance, GraphicalLassoCV
+start = time()
+graphical_lasso = GraphicalLassoCV()
+mvn = posterior.mvn.sample(sample_shape=torch.Size([100])).reshape(100, -1).detach().numpy()
+graphical_lasso.fit(mvn)
+interval = time() - start
+print(f"graphical lasso took {interval} seconds")
+print(f"graphical lasso: {graphical_lasso.get_params()}")
+print(f"graphical lasso precision: {graphical_lasso.precision_}")
+graphical_lasso.error_norm(posterior.mvn.covariance_matrix[0]) # error norm between the covariance matrix in dimension 0 and the graphical lasso covariance matrix
+end = time()
+print(f"graphical lasso error norm took {end - start} seconds")
+
 print(f"done.")
