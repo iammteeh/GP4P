@@ -10,10 +10,6 @@ from botorch import fit_fully_bayesian_model_nuts, fit_gpytorch_mll
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.sampling import get_initial_points, generate_batch, draw_random_samples, draw_random_x, generate_test_x_from_tensor
-from adapters.gpytorch.evaluation import analyze_posterior, get_posterior_dimension, get_posterior_dimension_v2, calculate_conditional_expectation
-from adapters.gpytorch.plotting import plot_prior, plot_pairwise_posterior_mean_variances, plot_density, plot_combined_pdf_v2, plot_interaction_pdfs
-from scipy.spatial.distance import jensenshannon, yule
-from adapters.gpytorch.util import decompose_matrix, beta_distances, get_alphas, get_betas, get_beta, get_thetas
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
@@ -45,16 +41,25 @@ def validate_data(*args):
     print(f"data is fine.")
 
 
-def get_data():
+def get_data(get_ds=False):
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
     rank = np.linalg.matrix_rank(X_train)
+
+    # slice X_test such that it has the same shape as X_train
+    if len(X_test) > len(X_train):
+        X_test = X_test[:len(X_train)]
+    elif len(X_test) < len(X_train):
+        X_train = X_train[:len(X_test)]
 
     # transform test data to tensor
     X_test = torch.tensor(X_test).double()
     y_test = torch.tensor(y_test).double()
 
-    return (X_train, X_test, y_train, y_test, feature_names)
+    if get_ds:
+        return (ds, X_train, X_test, y_train, y_test, feature_names)
+    else:
+        return (X_train, X_test, y_train, y_test, feature_names)
 
 def choose_model(model="GP", data=None):
     if not data:
