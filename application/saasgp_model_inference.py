@@ -4,11 +4,12 @@ import torch
 from domain.env import SELECTED_FEATURES
 from application.fully_bayesian_gp import get_data, choose_model
 from domain.feature_model.feature_modeling import inverse_map
-from adapters.gpytorch.util import decompose_matrix, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant
+from adapters.gpytorch.util import decompose_matrix, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
-from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs
+from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import random
+from time import time
 
 from scipy.stats import pointbiserialr
 
@@ -19,16 +20,11 @@ model_file = f"{MODELDIR}/{file_name}.pth"
 
 # get data that produced the model
 #TODO: ensure that the data is the same as the data that produced the model
-data = get_data()
-X_train, X_test, y_train, y_test, feature_names = data
-# slice X_test such that it has the same shape as X_train
-if len(X_test) > len(X_train):
-    X_test = X_test[:len(X_train)]
-elif len(X_test) < len(X_train):
-    X_train = X_train[:len(X_test)]
+data = get_data(get_ds=True)
+ds, X_train, X_test, y_train, y_test, feature_names = data
 
 # init model and load state dict
-model = choose_model(model="SAASGP", data=data)
+model = choose_model(model="SAASGP")
 model.load_state_dict(torch.load(model_file))
 
 model.eval()
@@ -42,6 +38,7 @@ with torch.no_grad():
     for dim in range(dims):
         dimensional_model[dim] = {}
         dimensional_model[dim]["X"] = X_train[:, dim]
+        dimensional_model[dim]["feature_name"] = feature_names[dim]
         dimensional_model[dim]["y"] = y_train
         dimensional_model[dim]["X_test"] = X_test[:, dim]
         dimensional_model[dim]["mean"] = posterior.mean[dim]
@@ -129,7 +126,7 @@ for s in range(970, 996, 5):
         print(f"non influencial features: {non_influentials}")
 
 # plot prior
-#plot_prior(model, X_test, y_test)
+#plot_prior(model, X_test, y_test)dimensional_model
 # plot posterior mean and variance of dimensions 0 and 1
 #plot_pairwise_posterior_mean_variances(0, 1, posterior, X_test, y_test)
 
@@ -186,29 +183,33 @@ selected_dimensions = [0,1,2]
 for dim in selected_dimensions:
     mean = np.mean(dimensional_model[dim]["mean"].detach().numpy())
     variance = np.median(dimensional_model[dim]["variance"].detach().numpy())
-    plot_density(mean, variance, dim)
+    feature_name = dimensional_model[dim]["feature_name"]
+    plot_density(mean, variance, feature_name)
 dim_pairs = [
-    (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), 
-    (1, 2), (1, 3), (1, 4), (1, 5), 
-    (2, 3), (2, 4), (2, 5), 
-    (3, 4), (3, 5), 
-    (4, 5),
+    (0,1,3), (0,1,4), (0,1,5),
 ]
 for tuple in dim_pairs:
     dimensional_submodel = {}
     for dim in tuple:
-        dimensional_submodel[dim] = dimensional_model[dim].copy()
+        dimensional_submodel[dim] = dimensional_model[dim]
     plot_combined_pdf(dimensional_submodel)
 plot_combined_pdf(dimensional_model)
-opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
+opposites, interactions = get_posterior_variations(model, X_train, [(1,0),(3,1)])
+measure_subset(model, ds, [(1,0),(3,1)])
 dimensional_submodel = {}
 dimensional_submodel["0"] = {}
 dimensional_submodel["0"]["mean"] = opposites.mixture_mean.detach().numpy()
 dimensional_submodel["0"]["std"] = np.sqrt(opposites.mixture_variance.detach().numpy())
+dimensional_submodel["0"]["feature_name"] = "without interaction"
 dimensional_submodel["1"] = {}
 dimensional_submodel["1"]["mean"] = interactions.mixture_mean.detach().numpy()
 dimensional_submodel["1"]["std"] = np.sqrt(interactions.mixture_variance.detach().numpy())
-plot_combined_pdf(dimensional_submodel)
-print(f"opposites and interactions diverge at {interaction_distant(model, X_test, SELECTED_FEATURES)}")
-#plot_interaction_pdfs(dimensional_submodel)
+dimensional_submodel["1"]["feature_name"] = "with interaction"
+#plot_combined_pdf(dimensional_submodel)
+subset_that_lowers_y = [(1,0), (3,1)]
+subset_that_increases_y = [(0,0),(1,1), (3,0), (5,1), (10,0)]
+plot_interaction_pdfs(dimensional_submodel, subset_that_increases_y)
+print(f"opposites and interactions diverge at {interaction_distant(model, X_test, subset_that_increases_y)}")
+#for dim in range(len(dimensional_model)):
+#    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
 print(f"done.")
