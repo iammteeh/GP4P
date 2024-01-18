@@ -115,6 +115,20 @@ def select_features(ds, feature_set, mode="opposites_and_interactions"):
     right = pd.DataFrame(right, columns=columns)
     return left, right
 
+def define_subsets(ds, feature_group, mode="literals_and_interactions", to_numpy=True):
+    print(f"build subsets (can take a while)...")
+    literals, interactions = select_features(ds, feature_group, mode=mode)
+    X_literals, y_literals = split_X_y(literals)
+    X_interactions, y_interactions = split_X_y(interactions)
+
+    X_literals, y_literals = get_data_slice(X_literals, y_literals)
+    X_interactions, y_interactions = get_data_slice(X_interactions, y_interactions)
+
+    if to_numpy:
+        return (X_literals.to_numpy(), y_literals.to_numpy()), (X_interactions.to_numpy(), y_interactions.to_numpy())
+    else:
+        return (X_literals, y_literals), (X_interactions, y_interactions)
+
 def build_train_test(ds):
     X, y = split_X_y(ds)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
