@@ -1,7 +1,9 @@
 import gpytorch.kernels as gk
 from gpytorch.utils import grid
 from torch import tensor
-from gpytorch.kernels import Kernel, RBFKernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, PeriodicKernel, MaternKernel
+from gpytorch.kernels import (
+    Kernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, RBFKernel, PeriodicKernel, MaternKernel,
+    PolynomialKernel, SpectralMixtureKernel, InducingPointKernel)
 from gpytorch.priors import GammaPrior, HalfCauchyPrior
 import numpy as np
 import time
@@ -38,9 +40,9 @@ def get_matern52_kernel(X, **hyper_prior_params):
         alpha = tensor(np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])).float()
         beta = tensor(hyper_prior_params["mean"] / np.square(hyper_prior_params["sigma"])).float()
         lengthscale_prior = GammaPrior(2, 2)
+        return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
     else:
-        lengthscale_prior = None
-    return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
+        return MaternKernel(nu=2.5)
 
 # Squared Exponential Kernel
 def get_squared_exponential_kernel(X, **hyper_prior_params):
@@ -50,8 +52,7 @@ def get_squared_exponential_kernel(X, **hyper_prior_params):
         beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
         lengthscale_prior = GammaPrior(alpha, beta)
     else:
-        lengthscale_prior = None
-    return RBFKernel(lengthscale_prior=lengthscale_prior)
+        return RBFKernel()
 
 # Base Kernels
 def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
