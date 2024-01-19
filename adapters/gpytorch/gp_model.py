@@ -1,4 +1,6 @@
+import numpy as np
 import torch
+import gpytorch
 from typing import Optional
 from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
@@ -6,7 +8,8 @@ from botorch.models.transforms.outcome import Log, OutcomeTransform
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
-from botorch.models.fully_bayesian import SaasPyroModel, SaasFullyBayesianSingleTaskGP
+from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
+from adapters.gpytorch.pyro_model import SaasPyroModel
 from botorch.models.transforms import Standardize
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
 from gpytorch.distributions import MultivariateNormal
@@ -122,3 +125,26 @@ class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
         self.y = torch.tensor(self.y).double().unsqueeze(-1)
         self.noised_y = self.y + torch.randn_like(self.y) * 1e-6 # add jitter || torch.full_like(self.y, 1e-6)
         SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, self.noised_y, Standardize(m=1), pyro_model=SaasPyroModel())
+    
+    @property
+    def median_lengthscale(self) -> torch.Tensor:
+        r"""Median lengthscales across the MCMC samples."""
+        if type(self.covar_module) is gpytorch.kernels.AdditiveStructureKernel:
+            self._check_if_fitted()
+            lengthscales = []    
+            # Extract unique lengthscales from each ScaleKernel
+            for scale_kernel in self.covar_module.base_kernel.kernels:
+                # Collect lengthscales from MaternKernels within each ScaleKernel
+                scale_kernel_lengthscales = [base_kernel.lengthscale.clone() for base_kernel in scale_kernel.base_kernel.kernels]
+                
+                # Concatenate lengthscales from both MaternKernels and compute the median
+                combined_lengthscale = torch.cat(scale_kernel_lengthscales, dim=0)
+                median_scale_kernel_lengthscale = combined_lengthscale.median(0).values.squeeze(0)
+                
+                lengthscales.append(median_scale_kernel_lengthscale)
+
+            return torch.stack(lengthscales)
+        else:
+            self._check_if_fitted()
+            lengthscale = self.covar_module.base_kernel.lengthscale.clone()
+            return lengthscale.median(0).values.squeeze(0)
