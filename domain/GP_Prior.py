@@ -1,6 +1,9 @@
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from sklearn.kernel_ridge import KernelRidge
+from adapters.gpytorch.means import LinearMean
+from gpytorch.means import ConstantMean
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 from domain.env import KERNEL_TYPE
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import math
@@ -234,10 +237,35 @@ class GP_Prior(Priors):
         #self.stds_weighted,
         #noise) = self.exploit_kernel_ridge_regression()
 
-    @abstractmethod
     def get_mean(self, mean_func="linear"):
-        raise NotImplementedError
+        if mean_func == "constant":
+            return ConstantMean()
+        elif mean_func == "linear_weighted":
+            return LinearMean(beta=self.means_weighted, intercept=self.root_mean)
+        else:
+            raise NotImplementedError("Only linear weighted mean function is supported for now")
     
-    @abstractmethod
-    def get_kernel(self, kernel="linear"):
-        raise NotImplementedError
+    def get_kernel(self, type="linear", structure="simple", ARD=False):
+        hyper_prior_params = {}
+        hyper_prior_params["mean"] = self.weighted_mean
+        hyper_prior_params["sigma"] = self.weighted_std
+        if structure == "simple":
+            if type == "linear":
+                base_kernel = get_linear_kernel(self.X)
+            elif type == "RBF":
+                base_kernel = get_squared_exponential_kernel(self.X, **hyper_prior_params)
+            elif type == "matern32":
+                base_kernel = get_matern32_kernel(self.X, **hyper_prior_params)
+            elif type == "matern52":
+                base_kernel = get_matern52_kernel(self.X, **hyper_prior_params)
+            return wrap_scale_kernel(base_kernel, **hyper_prior_params)
+        elif structure == "additive":
+            if type == "linear":
+                base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
+            elif type == "RBF":
+                base_kernels = get_base_kernels(self.X, kernel="RBF", ARD=ARD)
+            elif type == "matern32":
+                base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
+            elif type == "matern52":
+                base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
+            return additive_structure_kernel(self.X, base_kernels, **hyper_prior_params)
