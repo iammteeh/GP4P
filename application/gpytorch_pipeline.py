@@ -1,9 +1,11 @@
 import gpytorch
 import torch
-from adapters.gpytorch.gp_model import GPRegressionModel
-from gpytorch.likelihoods import GaussianLikelihood
+from application.fully_bayesian_gp import get_data
+from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
+from gpytorch.likelihoods import GaussianLikelihood, DirichletClassificationLikelihood, StudentTLikelihood
+from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
 from application.init_pipeline import init_pipeline, get_numpy_features
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR, DATA_SLICE_AMOUNT
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
@@ -40,6 +42,28 @@ def validate_data(*args):
             raise ValueError("Data contains NaN or inf values.")
     print(f"data is fine.")
 
+def choose_model(model="exact", data=None):
+    if not data:
+        X_train, X_test, y_train, y_test, feature_names = get_data()
+    if model == "exact":
+        model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
+        mll = ExactMarginalLogLikelihood(model.likelihood, model)
+    elif model == "approximate":
+        model = MyApproximateGP(X_train, y_train, feature_names, kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
+        optimizer = gpytorch.optim.NGD(model.variational_parameters(), num_data=y_train.shape[0])
+        #hyperparameter_optimizer = torch.optim.Adam([
+        #    {'hyperparams': model.hyperparameters()},
+        #    {'params': model.likelihood.parameters()},
+        #    ], lr=0.01)
+        # doesn't work yet
+        mll = VariationalELBO(model.likelihood, model, num_data=len(model.y))
+    else:
+        raise ValueError("Invalid model type.")
+    
+    return model, optimizer, mll
+
+
 def main():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
@@ -49,30 +73,30 @@ def main():
     X_test = torch.tensor(X_test).float()
     y_test = torch.tensor(y_test).float()
 
-    # Define likelihood and model
-    model = GPRegressionModel(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
-
+    # init model
+    model, optimizer, mll = choose_model(model="exact")
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)
-
-    # find optimal hyperparameters
+    
     model.train()
     model.likelihood.train()
-    optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
     #
-    mll = gpytorch.mlls.ExactMarginalLogLikelihood(model.likelihood, model)
-
+    #prior_dist = gpytorch.priors.MultivariateNormalPrior(torch.zeros(len(model.train_inputs)), torch.eye(len(model.train_inputs)))
+    #variational_dist = gpytorch.distributions.MultivariateNormal(torch.zeros(len(model.train_inputs)), torch.eye(len(model.train_inputs)))
+    #mll = GammaRobustVariationalELBO(model.likelihood, model, num_data=len(model.y), prior_dist=prior_dist, variational_dist=variational_dist, beta=1.0)
+    # find optimal hyperparameters
+    
     start = time()
     for i in range(1000):  # training iterations
         optimizer.zero_grad()
         output = model(model.X)
         loss = -mll(output, model.y)
-        loss.backward()
+        loss.sum().backward()
 
         # track parameters every 10th step
         if i % 10 == 0:
             step_time = time() - start
-            print(f"Iteration {i+1}, Loss: {loss.item()}, {i} steps took: {step_time:.2f}s")
+            print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s")
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
 
         optimizer.step()
@@ -94,7 +118,7 @@ def main():
 
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    torch.save(model.state_dict(), f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
+    torch.save(model.state_dict(), f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}__{timestamp}.pth")
 
 if __name__ == "__main__":
     main()

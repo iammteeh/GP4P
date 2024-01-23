@@ -6,7 +6,9 @@ from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
 from domain.GP_Prior import GP_Prior
-from gpytorch.models import ExactGP
+from gpytorch.models import ExactGP, ApproximateGP
+from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariationalDistribution
+from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, AdditiveGridInterpolationVariationalStrategy, NNVariationalStrategy, OrthogonallyDecoupledVariationalStrategy
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
 from adapters.gpytorch.pyro_model import SaasPyroModel
@@ -18,11 +20,7 @@ from gpytorch.means import ConstantMean
 from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 from gpytorch.beta_features import default_preconditioner
 
-class GPyT_Prior(GP_Prior):
-    def __init__(self, X, y, feature_names):
-        super().__init__(X, y, feature_names)
-        
-class GPRegressionModel(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
+class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
     def __init__(self, train_X, train_y, feature_names, likelihood=None, kernel="linear", mean_func="linear_weighted", structure="simple",             
             outcome_transform: Optional[OutcomeTransform] = None,
             input_transform: Optional[InputTransform] = None
@@ -72,42 +70,6 @@ class GPRegressionModel(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
             'kernel.outputscale': torch.tensor(1.),
         }
         #self.initialize(**hyper_parameter_init_values)
-    
-    def get_mean(self, mean_func="linear"):
-        if mean_func == "constant":
-            return ConstantMean()
-        elif mean_func == "linear_weighted":
-            return LinearMean(beta=self.means_weighted, intercept=self.root_mean)
-        else:
-            raise NotImplementedError("Only linear weighted mean function is supported for now")
-    
-    def get_kernel(self, type="linear", structure="simple", ARD=False):
-        hyper_prior_params = {}
-        hyper_prior_params["mean"] = self.weighted_mean
-        hyper_prior_params["sigma"] = self.weighted_std
-        if structure == "simple":
-            if type == "linear":
-                base_kernel = get_linear_kernel(self.X)
-            elif type == "RBF":
-                base_kernel = get_squared_exponential_kernel(self.X, **hyper_prior_params)
-            elif type == "matern32":
-                base_kernel = get_matern32_kernel(self.X, **hyper_prior_params)
-            elif type == "matern52":
-                base_kernel = get_matern52_kernel(self.X, **hyper_prior_params)
-            return wrap_scale_kernel(base_kernel, **hyper_prior_params)
-        elif structure == "additive":
-            if type == "linear":
-                base_kernels = get_base_kernels(self.X, kernel="linear", ARD=ARD)
-            elif type == "RBF":
-                base_kernels = get_base_kernels(self.X, kernel="RBF", ARD=ARD)
-            elif type == "matern32":
-                base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
-            elif type == "matern52":
-                base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
-            return additive_structure_kernel(self.X, base_kernels, **hyper_prior_params)
-        
-    def define_kernels(self, type="linear", structure="simple", ARD=False):
-        pass
 
     def forward(self, x):
         kernel = self.kernel(x).evaluate()
@@ -116,7 +78,37 @@ class GPRegressionModel(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
         if not torch.isfinite(output.mean).all() or not torch.isfinite(output.variance).all():
             raise ValueError("Model output is NaN or inf")
         return output
-    
+
+class MyApproximateGP(GP_Prior, ApproximateGP, BatchedMultiOutputGPyTorchModel):
+    def __init__(self, train_X, train_y, feature_names, kernel="linear", mean_func="linear_weighted", structure="simple", inducing_points=None):
+        
+        GP_Prior.__init__(self, train_X, train_y, feature_names)
+        # transform x and y to tensors
+        self.X = torch.tensor(self.X).float()
+        self.y = torch.tensor(self.y).float().unsqueeze(-1)
+        # select prior knowledge parameter values and adjust dimensionality
+        self.weighted_mean = self.means_weighted[0]
+        self.weighted_std = self.stds_weighted[0]
+        # draw inducing points
+        if inducing_points is None:
+            inducing_points = torch.tensor(train_X[torch.randperm(self.X.size(0))[:len(self.X)//2]]).float()
+        #self.variational_strategy.register_preconditioner("cij")
+        #self.variational_strategy.register_preconditioner("cii")
+        #self.variational_strategy.register_preconditioner("cjj")
+        variational_distribution = CholeskyVariationalDistribution(inducing_points.size(0))
+        variational_strategy = CiqVariationalStrategy(self, inducing_points, variational_distribution, learn_inducing_locations=True)
+        ApproximateGP.__init__(self, variational_strategy)
+        self.mean_module = self.get_mean(mean_func=mean_func)
+        self.covar_module = self.get_kernel(type=kernel, structure=structure)
+        self.likelihood = GaussianLikelihood()
+
+    def forward(self, x):
+        mean_x = self.mean_module(x)
+        covar_x = self.covar_module(x).evaluate()
+        covar_x += torch.eye(covar_x.shape[0]) * 1e-2 # add jitter
+        return MultivariateNormal(mean_x, covar_x)
+
+
 class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
     def __init__(self, X, y, feature_names):
         GP_Prior.__init__(self, X, y, feature_names)
