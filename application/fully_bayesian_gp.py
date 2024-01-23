@@ -2,9 +2,7 @@ import gpytorch
 import torch
 import jax.numpy as jnp
 import pyro
-from adapters.gpytorch.gp_model import GPRegressionModel, SAASGP
-from gpytorch.likelihoods import GaussianLikelihood, DirichletClassificationLikelihood, StudentTLikelihood
-from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
+from adapters.gpytorch.gp_model import SAASGP
 from application.init_pipeline import init_pipeline, get_numpy_features
 from botorch import fit_fully_bayesian_model_nuts, fit_gpytorch_mll
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
@@ -60,26 +58,13 @@ def get_data(get_ds=False):
         return (ds, X_train, X_test, y_train, y_test, feature_names)
     else:
         return (X_train, X_test, y_train, y_test, feature_names)
-
-def choose_model(model="GP", data=None):
-    if not data:
-        X_train, X_test, y_train, y_test, feature_names = get_data()
-    else:
-        X_train, X_test, y_train, y_test, feature_names = data
-    
-    if model == "GP":
-        return GPRegressionModel(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
-    elif model == "SAASGP":
-        return SAASGP(X_train, y_train, feature_names)
-    else:
-        raise ValueError(f"Model {model} not found.")
     
 def main():
     GP = "SAASGP"
     # init model
     data = get_data()
     X_train, X_test, y_train, y_test, feature_names = data
-    model = choose_model(model=GP, data=data)
+    model = SAASGP(X_train, y_train, feature_names)
 
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)
@@ -117,6 +102,6 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    torch.save(model.state_dict(), f"{MODELDIR}/{GP}_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
+    torch.save(model.state_dict(), f"{MODELDIR}/SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
 if __name__ == "__main__":
     main()
