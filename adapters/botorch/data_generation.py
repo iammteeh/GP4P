@@ -1,3 +1,5 @@
+from contextlib import ExitStack
+import gpytorch.settings as gpts
 from application.init_pipeline import init_pipeline, get_numpy_features
 from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES
 from itertools import combinations
@@ -7,6 +9,12 @@ from torch import Tensor
 import numpy as np
 from adapters.botorch.utility import LinearPredictionUtility
 from botorch.test_functions import Branin, Hartmann
+from botorch.optim import optimize_acqf
+from torch.quasirandom import SobolEngine
+from botorch.sampling.normal import SobolQMCNormalSampler
+from botorch.sampling.pairwise_samplers import PairwiseSobolQMCNormalSampler
+from botorch.sampling.stochastic_samplers import StochasticSampler
+from botorch.generation.sampling import MaxPosteriorSampling
 
 def get_X_y():
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
@@ -95,3 +103,75 @@ def for_X_get_y(ds, X, feature_names):
     condition = (df[feature_names] == pd.Series(X, index=feature_names)).all(axis=1)
     y = df.loc[condition, "y"]
     return torch.tensor(y).double()
+
+def generate_candidates(num_samples, mode="random",**kwargs):
+
+
+    if mode == "Sobol":
+        sobol = SobolEngine(kwargs["dim"], scramble=True, seed=kwargs["seed"])
+        return sobol.draw(num_samples).to(dtype=kwargs["dtype"], device=kwargs["device"])
+    
+    elif mode == "from_posterior": # move to gpytorch adapters later
+        posterior = kwargs["model"].posterior(kwargs["model"].X)
+        samples = posterior.rsample(sample_shape=torch.Size([num_samples]))
+        samples = {
+            "mean": samples[:, :, 0],
+            "variance": samples[:, :, 1],
+            "lengthscale": samples[:, :, 2],
+            "outputscale": samples[:, :, 3],
+        }
+        return samples
+    
+    elif mode == "acqf":
+        candidates, _ = optimize_acqf(
+            acq_function=kwargs["acq_func"],
+            bounds=kwargs["bounds"],
+            q=kwargs["batch_size"],
+            num_restarts=kwargs["num_restarts"],
+            raw_samples=kwargs["raw_samples"],  # used for intialization heuristic
+            options={"batch_limit": 5, "maxiter": 200},
+        )
+        return candidates
+    
+    elif mode == "thompson":
+        candidates = generate_candidates(num_samples, mode="Sobol", dim=kwargs["dim"], seed=51)
+        # Thompson sample
+        with ExitStack() as es:
+            if kwargs["sampler"] == "cholesky":
+                es.enter_context(gpts.max_cholesky_size(float("inf")))
+            elif kwargs["sampler"] == "ciq":
+                es.enter_context(gpts.fast_computations(covar_root_decomposition=True))
+                es.enter_context(gpts.max_cholesky_size(0))
+                es.enter_context(gpts.ciq_samples(True))
+                es.enter_context(
+                    gpts.minres_tolerance(2e-3)
+                )  # Controls accuracy and runtime
+                es.enter_context(gpts.num_contour_quadrature(15))
+            elif kwargs["sampler"] == "lanczos":
+                es.enter_context(
+                    gpts.fast_computations(
+                        covar_root_decomposition=True, log_prob=True, solves=True
+                    )
+                )
+                es.enter_context(gpts.max_lanczos_quadrature_iterations(10))
+                es.enter_context(gpts.max_cholesky_size(0))
+                es.enter_context(gpts.ciq_samples(False))
+            elif kwargs["sampler"] == "rff":
+                es.enter_context(gpts.fast_computations(covar_root_decomposition=True))
+
+        with torch.no_grad():
+            thompson_sampling = MaxPosteriorSampling(model=kwargs["model"], replacement=False)
+            X_next = thompson_sampling(candidates, num_samples=kwargs["batch_size"])
+
+        return X_next
+
+def get_observations(X, noise_se, constraints):
+    # observe new values
+    new_x = X.detach()
+    #neg_hartmann = Hartmann(negate=True, dim=dim)
+    #exact_obj = neg_hartmann(new_x).unsqueeze(-1)  # add output dimension
+    exact_obj = new_x.sum(dim=-1).unsqueeze(-1)
+    exact_con = outcome_constraint(new_x).unsqueeze(-1)  # add output dimension
+    new_obj = exact_obj + noise_se * torch.randn_like(exact_obj)
+    new_con = exact_con + noise_se * torch.randn_like(exact_con)
+    return new_x, new_obj, new_con

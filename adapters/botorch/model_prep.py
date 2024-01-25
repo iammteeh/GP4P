@@ -1,12 +1,13 @@
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 from application.fully_bayesian_gp import get_data
+from botorch.models import SingleTaskGP, FixedNoiseGP, ModelListGP
 from adapters.gpytorch.gp_model import MyExactGP, SAASGP
 import torch, gpytorch, botorch
 from botorch.models.transforms.input import Normalize
 from gpytorch.mlls import ExactMarginalLogLikelihood, SumMarginalLogLikelihood
 from botorch import fit_fully_bayesian_model_nuts, fit_gpytorch_mll
 
-def init_model(model="exact", data=None):
+def init_model(model="exact", data=None, state_dict=None):
     if not data:
         X_train, X_test, y_train, y_test, feature_names = get_data()
     else:
@@ -41,5 +42,8 @@ def init_model(model="exact", data=None):
 
     else:
         raise ValueError("Invalid model type.")
+    
+    if state_dict:
+        model.load_state_dict(state_dict)
     
     return model, optimizer, mll, hyperparameter_optimizer, trainer
