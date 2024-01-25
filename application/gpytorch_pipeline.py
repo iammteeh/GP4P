@@ -48,20 +48,27 @@ def choose_model(model="exact", data=None):
     if model == "exact":
         model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
         optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
+        model_params = set(model.hyperparameters())
+        hyperparameter_optimizer = torch.optim.Adam([
+            {'params': list(model_params)},
+            {'params': [p for p in model.likelihood.parameters() if p not in model_params]}, # add only likelihood parameters that are not already in the list
+        ], lr=0.01)
         mll = ExactMarginalLogLikelihood(model.likelihood, model)
     elif model == "approximate":
         model = MyApproximateGP(X_train, y_train, feature_names, kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
         optimizer = gpytorch.optim.NGD(model.variational_parameters(), num_data=y_train.shape[0])
-        #hyperparameter_optimizer = torch.optim.Adam([
-        #    {'hyperparams': model.hyperparameters()},
-        #    {'params': model.likelihood.parameters()},
-        #    ], lr=0.01)
-        # doesn't work yet
-        mll = VariationalELBO(model.likelihood, model, num_data=len(model.y))
+        model_params = set(model.hyperparameters())
+        hyperparameter_optimizer = torch.optim.Adam([
+            {'params': list(model_params)},
+            {'params': [p for p in model.likelihood.parameters() if p not in model_params]}, # add only likelihood parameters that are not already in the list
+        ], lr=0.01)
+
+        #mll = VariationalELBO(model.likelihood, model, num_data=len(model.y))
+        mll = GammaRobustVariationalELBO(model.likelihood, model, num_data=len(model.y), beta=1.0)
     else:
         raise ValueError("Invalid model type.")
     
-    return model, optimizer, mll
+    return model, optimizer, mll, hyperparameter_optimizer
 
 
 def main():
@@ -74,7 +81,7 @@ def main():
     y_test = torch.tensor(y_test).float()
 
     # init model
-    model, optimizer, mll = choose_model(model="exact")
+    model, optimizer, mll, hyperparameter_optimizer = choose_model(model="exact")
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)
     
@@ -89,6 +96,7 @@ def main():
     start = time()
     for i in range(1000):  # training iterations
         optimizer.zero_grad()
+        hyperparameter_optimizer.zero_grad()
         output = model(model.X)
         loss = -mll(output, model.y)
         loss.sum().backward()
@@ -100,6 +108,7 @@ def main():
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
 
         optimizer.step()
+        hyperparameter_optimizer.step()
     print(f"Training took {time() - start:.2f} seconds.")
 
     # Evaluate model
