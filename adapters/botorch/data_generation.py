@@ -1,6 +1,7 @@
 from application.init_pipeline import init_pipeline, get_numpy_features
 from domain.env import USE_DUMMY_DATA, EXTRAFUNCTIONAL_FEATURES
 from itertools import combinations
+import pandas as pd
 import torch
 from torch import Tensor
 import numpy as np
@@ -8,10 +9,9 @@ from adapters.botorch.utility import LinearPredictionUtility
 from botorch.test_functions import Branin, Hartmann
 
 def get_X_y():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
-    print(f"fit model having {X_train[1].shape[1]} features: {feature_names}")
-    X_train, X_test, y_train, y_test = get_numpy_features(X_train, X_test, y_train, y_test)
-    return torch.tensor(X_train).double(), torch.tensor(X_test), torch.tensor(y_train).double(), torch.tensor(y_test).double(), feature_names
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
+    return ds, torch.tensor(X_train).double(), torch.tensor(X_test), torch.tensor(y_train).double(), torch.tensor(y_test).double(), feature_names
 
 def init_utility():
     X_train, X_test, y_train, y_test, feature_names = get_X_y()
@@ -84,3 +84,14 @@ def update_random_observations(best_random, batch_size):
     next_random_best = weighted_obj(rand_x).max().item()
     best_random.append(max(best_random[-1], next_random_best))
     return best_random
+
+def for_X_get_y(ds, X, feature_names):
+    """
+    Given a pandas dataframe and a matrix of features X, return the corresponding y values
+    """
+    if type(X) is not list:
+        X = X.tolist()[0]
+    df = ds.get_measurement_df()
+    condition = (df[feature_names] == pd.Series(X, index=feature_names)).all(axis=1)
+    y = df.loc[condition, "y"]
+    return torch.tensor(y).double()
