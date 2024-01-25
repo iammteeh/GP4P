@@ -92,7 +92,7 @@ def additive_kernel_permutation(items, k=3):
     print(f"Finished building additive kernel. \n Time elapsed: {end - start:.2f}s")
     return additive_kernel
 
-def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
+def additive_structure_kernel(X, base_kernels, interpolation=True, **scale_prior_params):
     import itertools
     outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None # gimmick
     if interpolation:
