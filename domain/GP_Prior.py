@@ -3,7 +3,7 @@ from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from sklearn.kernel_ridge import KernelRidge
 from adapters.gpytorch.means import LinearMean
 from gpytorch.means import ConstantMean
-from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_spectral_mixture_kernel, get_rff_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 from domain.env import KERNEL_TYPE
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import math
@@ -258,6 +258,10 @@ class GP_Prior(Priors):
                 base_kernel = get_matern32_kernel(self.X, **hyper_prior_params)
             elif type == "matern52":
                 base_kernel = get_matern52_kernel(self.X, **hyper_prior_params)
+            elif type == "spectral_mixture":
+                base_kernel = get_spectral_mixture_kernel(self.X, **hyper_prior_params)
+            elif type == "RFF":
+                base_kernel = get_rff_kernel(self.X, **hyper_prior_params)
             return wrap_scale_kernel(base_kernel, **hyper_prior_params)
         elif structure == "additive":
             if type == "linear":
@@ -268,4 +272,8 @@ class GP_Prior(Priors):
                 base_kernels = get_base_kernels(self.X, kernel="matern32", ARD=ARD)
             elif type == "matern52":
                 base_kernels = get_base_kernels(self.X, kernel="matern52", ARD=ARD, **hyper_prior_params)
+            elif type == "spectral_mixture":
+                base_kernels = get_base_kernels(self.X, kernel="spectral_mixture", ARD=ARD, **hyper_prior_params)
+            elif type == "RFF":
+                base_kernels = get_base_kernels(self.X, kernel="RFF", ARD=ARD, **hyper_prior_params)
             return additive_structure_kernel(self.X, base_kernels, **hyper_prior_params)

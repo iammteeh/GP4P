@@ -3,7 +3,7 @@ from gpytorch.utils import grid
 from torch import tensor
 from gpytorch.kernels import (
     Kernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, RBFKernel, PeriodicKernel, MaternKernel,
-    PolynomialKernel, SpectralMixtureKernel, InducingPointKernel)
+    PolynomialKernel, SpectralMixtureKernel, RFFKernel, InducingPointKernel)
 from gpytorch.priors import GammaPrior, HalfCauchyPrior
 import numpy as np
 import time
@@ -15,6 +15,12 @@ def get_linear_kernel(X, **hyper_prior_params):
 # Periodic Kernel
 def get_periodic_kernel(X, **hyper_prior_params):
     return PeriodicKernel()
+
+def get_spectral_mixture_kernel(X, **hyper_prior_params):
+    return SpectralMixtureKernel(num_mixtures=len(X.T), ard_num_dims=len(X.T))
+
+def get_rff_kernel(X, **hyper_prior_params):
+    return RFFKernel(num_samples=len(X.T))
 
 # Matern Kernels
 def get_matern12_kernel(X, **hyper_prior_params):
@@ -64,6 +70,10 @@ def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
         base_kernels = [get_matern32_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     elif kernel == "matern52":
         base_kernels = [get_matern52_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+    elif kernel == "spectral_mixture":
+        base_kernels = [get_spectral_mixture_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+    elif kernel == "RFF":
+        base_kernels = [get_rff_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
     return base_kernels
 
 def wrap_scale_kernel(base_kernel, **scale_prior_params):
