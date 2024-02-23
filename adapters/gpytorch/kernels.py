@@ -22,6 +22,9 @@ def get_spectral_mixture_kernel(X, **hyper_prior_params):
 def get_rff_kernel(X, **hyper_prior_params):
     return RFFKernel(num_samples=len(X.T))
 
+def get_polynomial_kernel(X, **hyper_prior_params):
+    return PolynomialKernel(power=2)
+
 # Matern Kernels
 def get_matern12_kernel(X, **hyper_prior_params):
     if hyper_prior_params:
