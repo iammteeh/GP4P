@@ -3,7 +3,7 @@ from itertools import combinations
 from gpytorch.constraints import GreaterThan
 from botorch.models.fully_bayesian import SaasPyroModel
 from gpytorch.means.constant_mean import ConstantMean
-from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, PolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, InducingPointKernel, AdditiveStructureKernel
+from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, PolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
 from adapters.gpytorch.kernels import get_base_kernels, get_additive_kernel
 from domain.env import KERNEL_TYPE, KERNEL_STRUCTURE ,POLY_DEGREE
 from gpytorch.likelihoods.likelihood import Likelihood
@@ -36,7 +36,7 @@ class SaasPyroModel(SaasPyroModel):
         self.kernel_type = kernel_type
         self.kernel_structure = kernel_structure
 
-        if kernel_structure == "additive":
+        if self.kernel_structure == "additive":
             base_kernels = get_base_kernels(self.train_X, kernel=kernel_type)
             d_kernels = [ScaleKernel(ProductKernel(k1,k2), num_dims=1, active_dims=[i,j], ard_num_dims=2, batch_shape=kwargs["batch_shape"]) for (i,k1),(j,k2) in combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
             num_dims, d_kernels = get_additive_kernel(d_kernels)
@@ -64,6 +64,11 @@ class SaasPyroModel(SaasPyroModel):
         elif kernel_type == "rbf":
             return ScaleKernel(
                 base_kernel=RBFKernel(ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
+            batch_shape=kwargs["batch_shape"]
+            )
+        elif kernel_type == "RFF":
+            return ScaleKernel(
+                base_kernel=RFFKernel(num_samples=kwargs["ard_num_dims"], ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
         else:
