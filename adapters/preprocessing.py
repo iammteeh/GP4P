@@ -2,7 +2,7 @@ from domain.dataset import DataSet
 from domain.env import SWS, MODE, DATA_SLICE_MODE, DATA_SLICE_AMOUNT, DATA_SLICE_PROPORTION, X_type, POLY_DEGREE, Y
 from adapters.import_data import select_data
 from domain.feature_model.boolean_masks import get_word_and_opposite, get_literals_and_interaction, get_opposites_and_interactions
-
+from adapters.generate_synthetic_data import generate_synthetic_polynomial_data
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -14,16 +14,7 @@ from itertools import combinations
 
 def prepare_dataset(dummy_data=False):
     if dummy_data:
-        tips = sns.load_dataset("tips")
-        tips = pd.get_dummies(tips)
-        y = tips["tip"]
-        feature_names = ["total_bill", "sex_Male", "smoker_Yes", "size"]
-        X = tips[feature_names]
-        return {
-            "X": X, 
-            "feature_names":feature_names, 
-            "y": y
-            }
+        return generate_synthetic_polynomial_data(1000, 4, POLY_DEGREE, 1)
 
     data = select_data(SWS)
     if MODE != "simple":
