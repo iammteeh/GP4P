@@ -85,13 +85,13 @@ def main():
     model.eval()
     model.likelihood.eval()
     with torch.no_grad():
-        observed_pred = model.likelihood(model(X_test)) # same as p
-        mean = observed_pred.mean
-        var = observed_pred.variance
+        #observed_pred = model.likelihood(model(X_test)) # same as p
+        #mean = observed_pred.mean
+        #var = observed_pred.variance
         posterior = model.posterior(X_test)
 
     #print(waic(model, model.likelihood, X_test, y_test))
-    print(gaussian_log_likelihood(model, X_test, y_test))
+    #print(gaussian_log_likelihood(model, X_test, y_test))
     metrics = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")
     print(f"metrics: {metrics}")
 
@@ -102,6 +102,8 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    torch.save(model.state_dict(), f"{MODELDIR}/SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}.pth")
+    filename = f"SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}"
+    torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
+    print(f"Model saved to {MODELDIR}/{filename}.pth")
 if __name__ == "__main__":
     main()
