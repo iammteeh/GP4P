@@ -28,6 +28,7 @@ KERNEL_TYPE = "matern52"
 KERNEL_STRUCTURE = "simple"
 GP_MODE = "latent" # "latent" or "marginal" (PyMC)
 ARD = False
+CANDIDATE_SAMPLER = "sobol" # one of "sobol", "cholesky", "rff", "lhs", "halton", "hammersley", "grid"
 # PyMC sample strategies #
 JAX = True
 NUTS_SAMPLER = "numpyro"
