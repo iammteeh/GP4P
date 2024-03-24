@@ -7,12 +7,13 @@ from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
 from domain.GP_Prior import GP_Prior
 from gpytorch.models import ExactGP, ApproximateGP
-from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariationalDistribution
+from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariationalDistribution, MeanFieldVariationalDistribution, DeltaVariationalDistribution
 from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, AdditiveGridInterpolationVariationalStrategy, NNVariationalStrategy, OrthogonallyDecoupledVariationalStrategy
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
 from adapters.gpytorch.pyro_model import SaasPyroModel
 from botorch.models.transforms import Standardize
+from gpytorch.utils import grid
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
@@ -95,8 +96,14 @@ class MyApproximateGP(GP_Prior, ApproximateGP, BatchedMultiOutputGPyTorchModel):
         #self.variational_strategy.register_preconditioner("cij")
         #self.variational_strategy.register_preconditioner("cii")
         #self.variational_strategy.register_preconditioner("cjj")
-        variational_distribution = CholeskyVariationalDistribution(inducing_points.size(0))
-        variational_strategy = CiqVariationalStrategy(self, inducing_points, variational_distribution, learn_inducing_locations=True)
+        #variational_distribution = CholeskyVariationalDistribution(inducing_points.size(0))
+        #variational_distribution = MeanFieldVariationalDistribution(num_inducing_points=inducing_points.size(0))
+        variational_distribution = DeltaVariationalDistribution(inducing_points.size(0))
+        #variational_strategy = CiqVariationalStrategy(self, inducing_points, variational_distribution, learn_inducing_locations=True)
+        grid_size = int(grid.choose_grid_size(self.X, kronecker_structure=False))
+        variational_strategy = AdditiveGridInterpolationVariationalStrategy(self, grid_size=grid_size, grid_bounds=[(0.0, 1.0)*len(self.X.T)], num_dim=len(self.X), variational_distribution=variational_distribution, mixing_params=True)
+        #variational_strategy = VariationalStrategy(self, inducing_points, variational_distribution, learn_inducing_locations=True)
+        #variational_strategy = NNVariationalStrategy(self, inducing_points, variational_distribution,k=len(self.X.T), training_batch_size=len(self.X.T))
         ApproximateGP.__init__(self, variational_strategy)
         self.mean_module = self.get_mean(mean_func=mean_func)
         self.covar_module = self.get_kernel(type=kernel, structure=structure)
@@ -115,9 +122,10 @@ class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
         # transform x and y to tensors
         self.X = torch.tensor(self.X).double()
         self.y = torch.tensor(self.y).double().unsqueeze(-1)
-        self.noised_y = self.y + torch.randn_like(self.y) * 1e-6 # add jitter || torch.full_like(self.y, 1e-6)
-        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, self.noised_y, Standardize(m=1), pyro_model=SaasPyroModel())
-    
+        #self.noised_y = self.y + torch.randn_like(self.y) * 1e-6 # add jitter || torch.full_like(self.y, 1e-6)
+        #SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, self.noised_y, Standardize(m=1), pyro_model=SaasPyroModel())
+        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=SaasPyroModel())
+
     @property
     def median_lengthscale(self) -> torch.Tensor:
         r"""Median lengthscales across the MCMC samples."""
