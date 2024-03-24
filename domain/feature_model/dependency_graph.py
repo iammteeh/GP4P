@@ -11,6 +11,7 @@ from networkx import DiGraph
 from util.draw_tree import DrawTree, DrawTreeWithNames
 from util.xml_to_newick import xml_to_newick
 from collections import defaultdict, deque
+from sortedcontainers import SortedDict
 
 class TreeNodes(DiGraph):
     def __init__(self, root, value=None, binary=False):
@@ -212,3 +213,4 @@ class DepencyMultiGraph(DependencyGraph):
         graph.color = color
         graph.metrics = metrics
         self.graphs.append(graph)
+
