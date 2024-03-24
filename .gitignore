@@ -6,7 +6,11 @@ my_package.egg-info
 archive/
 .pymc_*.trace/
 *.csv
+
 evaluation/*.*
 evaluation/LLVM_energy/*.*
+
 modeldata/*.*
 modeldata/modelstorage/*.*
+
+adapters/sklearn/*.*
