@@ -1,12 +1,11 @@
 import gpytorch
 import torch
 import pyro
-from adapters.gpytorch.gp_model import GPRegressionModel, SAASGP
-from gpytorch.likelihoods import GaussianLikelihood
-from gpytorch.mlls import ExactMarginalLogLikelihood, VariationalELBO, GammaRobustVariationalELBO, PredictiveLogLikelihood
+from adapters.gpytorch.gp_model import ExactGP, SAASGP
+from gpytorch.likelihoods import GaussianLikelihood, StudentTLikelihood, DirichletClassificationLikelihood
+from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO, PredictiveLogLikelihood
 from application.init_pipeline import init_pipeline, get_numpy_features
 from botorch import fit_fully_bayesian_model_nuts, fit_gpytorch_mll
-from domain.feature_model.feature_modeling import additive_kernel_permutation
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 import numpy as np
 import datetime
@@ -44,7 +43,7 @@ def validate_data(*args):
     print(f"data is fine.")
 
 def get_data():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features="polynomial" if EXTRAFUNCTIONAL_FEATURES else None, scaler="minmax")
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
     rank = np.linalg.matrix_rank(X_train)
 
@@ -61,7 +60,7 @@ def choose_model(model="GP", data=None):
         X_train, X_test, y_train, y_test, feature_names = data
     
     if model == "GP":
-        return GPRegressionModel(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
+        return ExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
     elif model == "SAASGP":
         return SAASGP(X_train, y_train, feature_names)
     else:
