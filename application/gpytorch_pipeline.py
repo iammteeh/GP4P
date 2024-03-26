@@ -1,6 +1,5 @@
 import gpytorch
 import torch
-from application.fully_bayesian_gp import get_data
 from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
 from gpytorch.likelihoods import GaussianLikelihood, DirichletClassificationLikelihood, StudentTLikelihood
 from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
@@ -23,6 +22,25 @@ def waic(model, likelihood, X, Y):
         p_waic = torch.sum(torch.var(log_likelihoods, dim=0))
         waic = -2 * (lppd - p_waic)
     return waic.item()
+
+def get_data(get_ds=False):
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
+
+    # slice X_test such that it has the same shape as X_train
+    if len(X_test) > len(X_train):
+        X_test = X_test[:len(X_train)]
+    elif len(X_test) < len(X_train):
+        X_train = X_train[:len(X_test)]
+
+    # transform test data to tensor
+    X_test = torch.tensor(X_test).float()
+    y_test = torch.tensor(y_test).float()
+
+    if get_ds:
+        return (ds, X_train, X_test, y_train, y_test, feature_names)
+    else:
+        return (X_train, X_test, y_train, y_test, feature_names)
 
 def locate_invalid_data(data):
     if isinstance(data, torch.Tensor):
@@ -72,13 +90,7 @@ def choose_model(model="exact", data=None):
 
 
 def main():
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
-    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
-    rank = np.linalg.matrix_rank(X_train)
-
-    # transform test data to tensor
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
+    X_train, X_test, y_train, y_test, feature_names = get_data()
 
     # init model
     model, optimizer, mll, hyperparameter_optimizer = choose_model(model="exact")
