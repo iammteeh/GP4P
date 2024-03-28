@@ -49,6 +49,7 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
         self.X, self.y, self.yvar = self._transform_tensor_args(X=self.X, Y=self.y)
 
         # select prior knowledge parameter values and adjust dimensionality
+        # take the first out of list as they're identical for each feature
         self.weighted_mean = self.means_weighted[0]
         self.weighted_std = self.stds_weighted[0]
 
