@@ -14,3 +14,14 @@ modeldata/*.*
 modeldata/modelstorage/*.*
 
 adapters/sklearn/*.*
+# Add the missing entries below
+# BEGIN: abpxx6d04wxr
+__pycache__
+launch.json
+settings.json
+.vscode
+#my_package.egg-info
+archive/
+.pymc_*.trace/
+*.csv
+# END: abpxx6d04wxr
