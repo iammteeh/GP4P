@@ -109,7 +109,7 @@ def generate_candidates(num_samples, mode="random",**kwargs):
 
     if mode == "Sobol":
         sobol = SobolEngine(kwargs["dim"], scramble=True, seed=kwargs["seed"])
-        return sobol.draw(num_samples).to(dtype=kwargs["dtype"], device=kwargs["device"])
+        return sobol.draw(num_samples)#.to(dtype=kwargs["dtype"], device=kwargs["device"])
     
     elif mode == "from_posterior": # move to gpytorch adapters later
         posterior = kwargs["model"].posterior(kwargs["model"].X)
