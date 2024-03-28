@@ -1,5 +1,6 @@
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 from application.fully_bayesian_gp import get_data
+from adapters.botorch.data_generation import get_X_y
 from botorch.models import SingleTaskGP, FixedNoiseGP, ModelListGP
 from adapters.gpytorch.gp_model import MyExactGP, SAASGP
 import torch, gpytorch, botorch
@@ -21,6 +22,7 @@ def init_model(model="exact", data=None, state_dict=None):
             {'params': [p for p in model.likelihood.parameters() if p not in model_params]}, # add only likelihood parameters that are not already in the list
         ], lr=0.01)
         mll = ExactMarginalLogLikelihood(model.likelihood, model)
+        trainer = fit_gpytorch_mll
     elif model == "FixedNoise":
         model = botorch.models.FixedNoiseGP(X_train, y_train, train_Yvar=torch.full_like(y_train, 1e-6), input_transform=Normalize(d=X_train.shape[-1])) # X_train.shape[-1] is the rank of the matrix
         #mll = SumMarginalLogLikelihood(model.likelihood, model)
