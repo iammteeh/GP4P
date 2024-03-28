@@ -2,7 +2,8 @@ from domain.env import MODELDIR
 import numpy as np
 import torch
 from domain.env import SELECTED_FEATURES
-from application.fully_bayesian_gp import get_data, choose_model
+from application.fully_bayesian_gp import get_data
+from adapters.gpytorch.gp_model import SAASGP
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.util import decompose_matrix, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
@@ -14,17 +15,17 @@ from time import time
 from scipy.stats import pointbiserialr
 
 file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing n =1000
-#file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240116-161436" #n = 100
+#file_name = "SAASGP_linear_weighted_matern52_additive_ARD=False__20240119-155321"
 model_file = f"{MODELDIR}/{file_name}.pth"
 
 
 # get data that produced the model
-#TODO: ensure that the data is the same as the data that produced the model
+#TODO: ensure that the input data is the same as the data in the model
 data = get_data(get_ds=True)
 ds, X_train, X_test, y_train, y_test, feature_names = data
 
 # init model and load state dict
-model = choose_model(model="SAASGP")
+model = SAASGP(X_train, y_train, feature_names)
 model.load_state_dict(torch.load(model_file))
 
 model.eval()
@@ -48,6 +49,19 @@ with torch.no_grad():
         dimensional_model[dim]["lower"] = confidence_region[0][dim]
         dimensional_model[dim]["upper"] = confidence_region[1][dim]
 
+# co-generated content with github's copilot:
+# for the copula or CDFs we need the eigendecomposition of the covariance matrix
+# Co-variance matrix = U @ lam @ V^T
+# Covariance matrix is symmetric and positive semi-definite, so we can decompose it into U @ lam @ V^T
+# where U is the eigenvectors, lam is the eigenvalues and V is the transpose of the eigenvectors
+# the eigenvectors are the directions of the latent space that are most important (the directions of the most variance) while the eigenvalues are the amount of variance in that direction
+# we can use the eigendecomposition of the covariance matrix to get the betas from the inverse map
+# the betas are the weights of the features in the latent space
+
+# or the low rank pivoted cholesky decomposition of the covariance matrix
+        
+# copula
+# posterior predictive checks
 
 U, lam, V = decompose_matrix(dimensional_model[0]["covariance"]) # example for first dimension
 
@@ -55,7 +69,7 @@ U, lam, V = decompose_matrix(dimensional_model[0]["covariance"]) # example for f
 # j is the feature group that occurs in the rows of the validation set
 j, groups = get_groups(X_test, SELECTED_FEATURES)
 print(f"groups: {groups}")
-group_rate = group_RATE(dimensional_model[0]["mean"], U, j)
+group_rate = group_RATE(dimensional_model[0]["mean"], U, j) #TODO: How to visualize the group rate or KLD in general?
 print(f"group rate: {group_rate}")
 # use groups to calculate 2 posteriors, one with the group and one without the group, measure the distance and plot the PDFs
 
@@ -81,7 +95,11 @@ betas = get_beta(B, thetas)
 #alphas = get_alphas(dimensional_model[0]["covariance"], q)
 beta_j, lambda_j = map_inverse_to_sample_feature(betas, B, thetas)
 
-
+# instead of eigendecomposition of the covariance use low rank pivoted cholesky decomposition
+L = np.linalg.cholesky(dimensional_model[0]["covariance"])
+B = inverse_map(model.X.T, L)
+thetas_ = torch.diag(lam) @ L.T
+betas_ = get_beta(B, thetas_)
 
 # calculate distances between betas
 # the KLD between the mixture distribution and the posterior distribution of the feature combination in the validation set is the distance
@@ -110,6 +128,8 @@ lfsr = LFSR(betas)
 print(f"lfsr: {lfsr}")
 
 print(f"look at influencial features on different significance levels")
+# take low rank approximation
+betas = betas_
 # count from 0.8 to 0.995 in steps of 0.005
 for s in range(970, 996, 5):
     feature_idx, PPAAs = get_PPAAs(betas, tuple(feature_names), sigval=s/1000)
@@ -168,12 +188,14 @@ lengthscale_sorted = list(torch.sort(model.median_lengthscale)[0])
 lengthscale_argsorted = list(torch.argsort(model.median_lengthscale))
 feature_names = list(feature_names)
 sorted_lengthscale = [(feature_names[lengthscale_argsorted[i]], lengthscale_sorted[i]) for i in range(len(model.median_lengthscale))]
+sorted_features = [feature_names[lengthscale_argsorted[i]] for i in range(len(model.median_lengthscale))]
+print(f"sorted features: {sorted_features} having lengthscales: {lengthscale_sorted}")
 for feature, lengthscale in sorted_lengthscale:
     print(f"lengthscale of {feature}: {lengthscale}")
 
 #for dim in range(len(dimensional_model)):
 #    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
-
+exit(0)
 ## PLOTTING SECTION
 # plot feature wise
 #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
@@ -210,21 +232,6 @@ subset_that_lowers_y = [(1,0), (3,1)]
 subset_that_increases_y = [(0,0),(1,1), (3,0), (5,1), (10,0)]
 plot_interaction_pdfs(dimensional_submodel, subset_that_increases_y)
 print(f"opposites and interactions diverge at {interaction_distant(model, X_test, subset_that_increases_y)}")
-#for dim in range(len(dimensional_model)):
-#    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
-
-# post analysis
-from sklearn.covariance import EllipticEnvelope, EmpiricalCovariance, GraphicalLassoCV
-start = time()
-graphical_lasso = GraphicalLassoCV()
-mvn = posterior.mvn.sample(sample_shape=torch.Size([100])).reshape(100, -1).detach().numpy()
-graphical_lasso.fit(mvn)
-interval = time() - start
-print(f"graphical lasso took {interval} seconds")
-print(f"graphical lasso: {graphical_lasso.get_params()}")
-print(f"graphical lasso precision: {graphical_lasso.precision_}")
-graphical_lasso.error_norm(posterior.mvn.covariance_matrix[0]) # error norm between the covariance matrix in dimension 0 and the graphical lasso covariance matrix
-end = time()
-print(f"graphical lasso error norm took {end - start} seconds")
-
+for dim in range(len(dimensional_model)):
+    mean_and_confidence_region(dimensional_model[dim]["X_test"], dimensional_model[dim]["X"], dimensional_model[dim]["y"], dimensional_model[dim]["mean"], dimensional_model[dim]["lower"], dimensional_model[dim]["upper"])
 print(f"done.")
