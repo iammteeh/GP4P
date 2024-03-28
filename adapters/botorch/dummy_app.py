@@ -36,7 +36,8 @@ THINNING = 16
 
 # GET DATA
 # TODO: merge data import
-ds, X_train, X_test, y_train, y_test, feature_names = get_X_y()
+#ds, X_train, X_test, y_train, y_test, feature_names = get_X_y() # torch outputs not suited for own GPs
+ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)#
 # get some properties of the input matrix
 dim = X_train.shape[-1]
 rank = np.linalg.matrix_rank(X_train)
@@ -69,8 +70,9 @@ for trial in range(1, N_TRIALS + 1):
     # TODO: start with a random model
     X_train = X_train[:N_INIT]
     y_train = y_train[:N_INIT]
-    MODEL = "FixedNoise"
-    gp, optimizer, mll, hyperparameter_optimizer, trainer = init_model(model=MODEL, data=(X_train, X_test, y_train, y_test, feature_names))
+    MODEL = "exact"
+    # TODO: for other models than FixedNoise, init_model only takes model as parameter
+    gp, optimizer, mll, hyperparameter_optimizer, trainer = init_model(model=MODEL)#, data=(X_train, X_test, y_train, y_test, feature_names))
     best_observed.append(y_train.min().item())
     best_random.append(y_train.min().item())
                        
@@ -95,11 +97,13 @@ for trial in range(1, N_TRIALS + 1):
         bounds = torch.stack([torch.zeros(X_train.shape[-1]), torch.ones(X_train.shape[-1])])
         outcome_constraint = lambda X: X.sum(dim=-1) - 3
         # Optimize the acquisition function and get new observation
-        candidates = generate_candidates(num_samples=BATCH_SIZE, mode="acqf", acq_func=acq, bounds=bounds, batch_size=BATCH_SIZE, num_restarts=NUM_RESTARTS, raw_samples=RAW_SAMPLES)
+        #candidates = generate_candidates(num_samples=BATCH_SIZE, mode="acqf", acq_func=acq, bounds=bounds, batch_size=BATCH_SIZE, num_restarts=NUM_RESTARTS, raw_samples=RAW_SAMPLES)
+        #candidates = generate_candidates(num_samples=BATCH_SIZE, mode="Sobol", dim=X_train.shape[-1], seed=trial)
+        candidates = generate_candidates(num_samples=BATCH_SIZE, mode="thompson", dim=X_train.shape[-1], sampler="cholesky", model=gp, batch_size=BATCH_SIZE)
         new_x, new_obj, new_con = get_observations(candidates, NOISE_SE ,outcome_constraint)
 
         # Update training data
-        X_train = torch.cat([X_train, new_x])
+        X_train = torch.cat([X_train, new_x]) # TODO: check if this is correct
         y_train = torch.cat([y_train, new_obj])
         #train_con = torch.cat([train_con, new_con])
 
