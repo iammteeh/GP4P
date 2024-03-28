@@ -2,7 +2,9 @@ from jax import numpy as jnp
 from jax import vmap
 import numpy as np
 import torch
+import scipy
 from domain.feature_model.feature_modeling import get_feature_model
+from adapters.gpytorch.util import decompose_matrix
 
 def analyze_posterior(model, X_test, y_test, features):
     words, opposites, literals, interactions = get_feature_model(X_test, features)
@@ -255,26 +257,3 @@ def calculate_conditional_expectation(sigma_minus_j, sigma_minus_j_j, mu_minus_j
     theta_j = np.linalg.inv(sigma_minus_j) @ sigma_minus_j_j
     E_beta_minus_j_given_beta_j = mu_minus_j + theta_j @ (beta_j - mu_j) # E(beta_{-j} | beta_j)
     V_beta_minus_j_given_beta_j = np.linalg.inv(sigma_minus_j) # V(beta_{-j} | beta_j)
-
-
-def decompose_covariance(cov):
-    # convert covariance matrix to numpy
-    if not isinstance(cov, np.ndarray):
-        cov = cov.numpy()
-    # decompose covariance matrix into correlation matrix and standard deviations
-    if cov.shape[0] > 1:
-        L = np.array()
-        for i in range(cov.shape[0]):
-            L[i] = np.linalg.cholesky(cov[i])
-        return L
-    std = np.sqrt(np.diag(cov))
-    #corr = cov / np.outer(std, std)
-    # apply cholesky decomposition to covariance matrix
-    L = np.linalg.cholesky(cov)
-    # apply cholesky decomposition to correlation matrix
-    #L_corr = np.linalg.cholesky(corr)
-    # also return the inverse of the cholesky decomposition
-    L_inv = np.linalg.inv(L)
-    
-    return L
-
