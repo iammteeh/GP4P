@@ -1,7 +1,10 @@
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Union
 from itertools import combinations
 from gpytorch.constraints import GreaterThan
 from botorch.models.fully_bayesian import SaasPyroModel
+from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
+from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
+from pyro.infer.mcmc import MCMC, NUTS
 from gpytorch.means.constant_mean import ConstantMean
 from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, PolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
 from adapters.gpytorch.kernels import get_base_kernels, get_additive_kernel
@@ -30,6 +33,68 @@ def reshape_and_detach(target: Tensor, new_value: Tensor) -> None:
     else:
         # For non-scalar values, ensure the shape matches the target
         return detached_value.view(target.shape).to(target.device)
+    
+def fit_fully_bayesian_model_nuts(
+    model: Union[SaasFullyBayesianSingleTaskGP, SaasFullyBayesianMultiTaskGP],
+    max_tree_depth: int = 10,
+    warmup_steps: int = 512,
+    num_samples: int = 256,
+    thinning: int = 16,
+    disable_progbar: bool = False,
+    jit_compile: bool = True,
+) -> None:
+    r"""Fit a fully Bayesian model using the No-U-Turn-Sampler (NUTS)
+
+
+    Args:
+        model: SaasFullyBayesianSingleTaskGP to be fitted.
+        max_tree_depth: Maximum tree depth for NUTS
+        warmup_steps: The number of burn-in steps for NUTS.
+        num_samples:  The number of MCMC samples. Note that with thinning,
+            num_samples / thinning samples are retained.
+        thinning: The amount of thinning. Every nth sample is retained.
+        disable_progbar: A boolean indicating whether to print the progress
+            bar and diagnostics during MCMC.
+        jit_compile: Whether to use jit. Using jit may be ~2X faster (rough estimate),
+            but it will also increase the memory usage and sometimes result in runtime
+            errors, e.g., https://github.com/pyro-ppl/pyro/issues/3136.
+
+    Example:
+        >>> gp = SaasFullyBayesianSingleTaskGP(train_X, train_Y)
+        >>> fit_fully_bayesian_model_nuts(gp)
+    """
+    model.train()
+
+    # Do inference with NUTS
+    nuts = NUTS(
+        model.pyro_model.sample,
+        jit_compile=jit_compile,
+        step_size=0.5,
+        full_mass=True,
+        ignore_jit_warnings=True,
+        max_tree_depth=max_tree_depth,
+        target_accept_prob= 0.95,
+    )
+    mcmc = MCMC(
+        nuts,
+        warmup_steps=warmup_steps,
+        num_samples=num_samples,
+        disable_progbar=disable_progbar,
+        disable_validation=False
+    )
+    mcmc.run()
+
+    # Get final MCMC samples from the Pyro model
+    mcmc_samples = model.pyro_model.postprocess_mcmc_samples(
+        mcmc_samples=mcmc.get_samples()
+    )
+    for k, v in mcmc_samples.items():
+        mcmc_samples[k] = v[::thinning]
+
+    # Load the MCMC samples back into the BoTorch model
+    model.load_mcmc_samples(mcmc_samples)
+    model.eval()
+
 
 class SaasPyroModel(SaasPyroModel):
     def load_covar_module(self, kernel_type=KERNEL_TYPE, kernel_structure=KERNEL_STRUCTURE, **kwargs):
