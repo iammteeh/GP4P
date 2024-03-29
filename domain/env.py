@@ -11,7 +11,7 @@ FEATURE_ENCODING = "binary" # try "binary", "one-hot" or "ordinal"
 SELECTED_FEATURES = [(1,0), (3,1), (4,1), (5,1), (6,1), (7,1), (8,1), (9,1)] # Example features for interaction scheme
 DATA_SLICE_MODE = "amount"
 DATA_SLICE_PROPORTION = 1/1
-DATA_SLICE_AMOUNT = 1000
+DATA_SLICE_AMOUNT = 333
 X_type = bool # default = bool for one-hot or binary encoded numerical features, else use float
 Y = "energy"
 # for linear regression pipelines #
