@@ -1,6 +1,10 @@
 from domain.env import MODELDIR
 import numpy as np
 import torch
+from scipy.stats import norm, multivariate_normal as mvn
+from torch.distributions import MultivariateNormal, Normal
+from copulae.core.linalg import cov2corr, corr2cov
+from copulae.core.misc import rank_data
 from domain.env import SELECTED_FEATURES
 from application.fully_bayesian_gp import get_data
 from adapters.gpytorch.gp_model import SAASGP
@@ -14,7 +18,8 @@ from time import time
 
 from scipy.stats import pointbiserialr
 
-file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing n =1000
+#file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing n =1000
+file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240329-195132" # n = 100
 #file_name = "SAASGP_linear_weighted_matern52_additive_ARD=False__20240119-155321"
 model_file = f"{MODELDIR}/{file_name}.pth"
 
@@ -46,6 +51,9 @@ with torch.no_grad():
         dimensional_model[dim]["variance"] = posterior.variance[dim]
         dimensional_model[dim]["std"] = torch.sqrt(posterior.variance[dim])
         dimensional_model[dim]["covariance"] = posterior.covariance_matrix[dim]
+        dimensional_model[dim]["correlation"] = cov2corr(np.array(dimensional_model[dim]["covariance"]))
+        dimensional_model[dim]["marginal"] = Normal(dimensional_model[dim]["mean"], torch.sqrt(posterior.variance[dim])).cdf(dimensional_model[dim]["mean"])
+        dimensional_model[dim]["inverse_transform"] = Normal(dimensional_model[dim]["mean"], torch.sqrt(posterior.variance[dim])).icdf(dimensional_model[dim]["marginal"])
         dimensional_model[dim]["lower"] = confidence_region[0][dim]
         dimensional_model[dim]["upper"] = confidence_region[1][dim]
 
@@ -61,6 +69,8 @@ with torch.no_grad():
 # or the low rank pivoted cholesky decomposition of the covariance matrix
         
 # copula
+# math from https://copulae.readthedocs.io/en/latest/explainers/introduction.html
+# compute CDF from marginals
 # posterior predictive checks
 
 U, lam, V = decompose_matrix(dimensional_model[0]["covariance"]) # example for first dimension
