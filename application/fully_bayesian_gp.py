@@ -46,10 +46,10 @@ def get_data(get_ds=False):
     rank = np.linalg.matrix_rank(X_train)
 
     # slice X_test such that it has the same shape as X_train
+    # TODO: this shouldn't be necessary
     if len(X_test) > len(X_train):
         X_test = X_test[:len(X_train)]
-    elif len(X_test) < len(X_train):
-        X_train = X_train[:len(X_test)]
+        y_test = y_test[:len(X_train)]
 
     # transform test data to tensor
     X_test = torch.tensor(X_test).double()
