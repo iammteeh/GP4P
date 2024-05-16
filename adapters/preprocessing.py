@@ -122,7 +122,14 @@ def define_subsets(ds, feature_group, mode="literals_and_interactions", to_numpy
 
 def build_train_test(ds):
     X, y = split_X_y(ds)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.8, random_state=42)
+    # calculate restricted minimum training set size
+    MIN_TRAIN_SIZE = DATA_SLICE_AMOUNT
+    test_size = 0.8
+    if MIN_TRAIN_SIZE > len(X) * (1-test_size):
+        print(f"test size too large. Adjusting...")
+        test_size = 1 - 1/(len(X) / MIN_TRAIN_SIZE)
+        print(f"new test size: {test_size}")
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
     
     feature_names = X_train.columns
 
@@ -146,12 +153,12 @@ def split_X_y(ds):
     return X, y
 
 def get_data_slice(X, y):
-    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT < len(X):
+    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT <= len(X):
         # get minimal data slice of n rows
         n = DATA_SLICE_AMOUNT
         X = X[:n]
         y = y[:n]
-    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION < 1:
+    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION <= 1:
         # get proportional data slice of n rows
         n = len(X)-1
         p = DATA_SLICE_PROPORTION
