@@ -28,10 +28,10 @@ def get_data(get_ds=False):
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
 
     # slice X_test such that it has the same shape as X_train
+    # TODO: this shouldn't be necessary
     if len(X_test) > len(X_train):
         X_test = X_test[:len(X_train)]
-    elif len(X_test) < len(X_train):
-        X_train = X_train[:len(X_test)]
+        y_test = y_test[:len(X_train)]
 
     # transform test data to tensor
     X_test = torch.tensor(X_test).float()
@@ -64,6 +64,9 @@ def choose_model(model="exact", data=None):
     if not data:
         X_train, X_test, y_train, y_test, feature_names = get_data()
     if model == "exact":
+        # check training set size
+        print(f"X_train size: {X_train.shape}")
+        print(f"y_train size: {y_train.shape}")
         model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=KERNEL_TYPE, mean_func=MEAN_FUNC, structure=KERNEL_STRUCTURE)
         optimizer = torch.optim.Adam(model.parameters(), lr=0.1)
         model_params = set(model.hyperparameters())
