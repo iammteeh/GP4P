@@ -120,10 +120,10 @@ def define_subsets(ds, feature_group, mode="literals_and_interactions", to_numpy
     else:
         return (X_literals, y_literals), (X_interactions, y_interactions)
 
-def build_train_test(ds):
+def build_train_test(ds, training_size=DATA_SLICE_AMOUNT):
     X, y = split_X_y(ds)
     # calculate restricted minimum training set size
-    MIN_TRAIN_SIZE = DATA_SLICE_AMOUNT
+    MIN_TRAIN_SIZE = training_size
     test_size = 0.8
     if MIN_TRAIN_SIZE > len(X) * (1-test_size):
         print(f"test size too large. Adjusting...")
@@ -152,16 +152,16 @@ def split_X_y(ds):
         y = df["y"]
     return X, y
 
-def get_data_slice(X, y):
-    if DATA_SLICE_MODE == "amount" and DATA_SLICE_AMOUNT <= len(X):
+def get_data_slice(X, y, slice=DATA_SLICE_AMOUNT if DATA_SLICE_MODE == "amount" else DATA_SLICE_PROPORTION):
+    if DATA_SLICE_MODE == "amount" and slice <= len(X):
         # get minimal data slice of n rows
-        n = DATA_SLICE_AMOUNT
+        n = slice
         X = X[:n]
         y = y[:n]
-    elif DATA_SLICE_MODE == "proportion" and DATA_SLICE_PROPORTION <= 1:
+    elif DATA_SLICE_MODE == "proportion" and 0 < slice <= 1:
         # get proportional data slice of n rows
         n = len(X)-1
-        p = DATA_SLICE_PROPORTION
+        p = slice
         x = int(n * p)
         X = X[:x]
         y = y[:x]
@@ -169,9 +169,9 @@ def get_data_slice(X, y):
         raise NotImplementedError
     return X, y
 
-def preprocessing(ds, extra_ft=None, scaler=None):
-    print("Preprocessing...")
-    feature_names, X_train, X_test, y_train, y_test = build_train_test(ds)
+def preprocessing(ds, extra_ft=None, scaler=None, training_size=DATA_SLICE_AMOUNT):
+    print(f"Preprocessing for sample size {training_size}...")
+    feature_names, X_train, X_test, y_train, y_test = build_train_test(ds, training_size=training_size)
 
     if extra_ft:
         # add extrafunctional feature model
@@ -185,9 +185,9 @@ def preprocessing(ds, extra_ft=None, scaler=None):
         X_train = scale_features(X_train, y_train, scaler)
         X_test = scale_features(X_test, y_test, scaler)
     
-    if len(X_train) > DATA_SLICE_AMOUNT or len(X_test) > DATA_SLICE_AMOUNT:
-        print(f"Selected over {DATA_SLICE_AMOUNT} rows. Slicing data...")
-        X_train, y_train = get_data_slice(X_train, y_train)
-        X_test, y_test = get_data_slice(X_test, y_test)
+    if len(X_train) > training_size or len(X_test) > training_size:
+        print(f"Data set contains over {training_size} rows. Slicing data...")
+        X_train, y_train = get_data_slice(X_train, y_train, slice=training_size)
+        X_test, y_test = get_data_slice(X_test, y_test, slice=training_size)
 
     return feature_names, X_train, X_test, y_train, y_test
