@@ -5,10 +5,11 @@ from botorch.models.fully_bayesian import SaasPyroModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
 from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
 from pyro.infer.mcmc import MCMC, NUTS
+from gpytorch.means.linear_mean import LinearMean
 from gpytorch.means.constant_mean import ConstantMean
 from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, PolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
 from adapters.gpytorch.kernels import get_base_kernels, get_additive_kernel
-from domain.env import KERNEL_TYPE, KERNEL_STRUCTURE ,POLY_DEGREE
+from domain.env import MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE ,POLY_DEGREE
 from gpytorch.likelihoods.likelihood import Likelihood
 from gpytorch.likelihoods.gaussian_likelihood import (
     FixedNoiseGaussianLikelihood,
@@ -69,11 +70,11 @@ def fit_fully_bayesian_model_nuts(
     nuts = NUTS(
         model.pyro_model.sample,
         jit_compile=jit_compile,
-        step_size=0.5,
+        step_size=1.0,
         full_mass=True,
         ignore_jit_warnings=True,
         max_tree_depth=max_tree_depth,
-        target_accept_prob= 0.95,
+        target_accept_prob= 0.9995,
     )
     mcmc = MCMC(
         nuts,
@@ -97,12 +98,14 @@ def fit_fully_bayesian_model_nuts(
 
 
 class SaasPyroModel(SaasPyroModel):
-    def load_covar_module(self, kernel_type=KERNEL_TYPE, kernel_structure=KERNEL_STRUCTURE, **kwargs):
+    def __init__(self, mean_func=MEAN_FUNC, kernel_structure=KERNEL_STRUCTURE, kernel_type=KERNEL_TYPE):
+        self.mean_func = mean_func
         self.kernel_type = kernel_type
         self.kernel_structure = kernel_structure
-
+    def load_covar_module(self, **kwargs):
+        r"""Load the covariance module based on the kernel type and structure."""
         if self.kernel_structure == "additive":
-            base_kernels = get_base_kernels(self.train_X, kernel=kernel_type)
+            base_kernels = get_base_kernels(self.train_X, kernel=self.kernel_type)
             d_kernels = [ScaleKernel(ProductKernel(k1,k2), num_dims=1, active_dims=[i,j], ard_num_dims=2, batch_shape=kwargs["batch_shape"]) for (i,k1),(j,k2) in combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
             num_dims, d_kernels = get_additive_kernel(d_kernels)
             return AdditiveStructureKernel(num_dims=num_dims, base_kernel=d_kernels)
@@ -111,41 +114,43 @@ class SaasPyroModel(SaasPyroModel):
         #if kernel_type == "spectral_mixture":
         #    return SpectralMixtureKernel(num_mixtures=len(self.train_X.T), ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"])
         
-        elif kernel_type == "piecewise_polynomial":
+        elif self.kernel_type == "piecewise_polynomial":
             return ScaleKernel(
                 base_kernel=PiecewisePolynomialKernel(q=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif kernel_type == "matern52": # candidate kernel
+        elif self.kernel_type == "matern52": # candidate kernel
             return ScaleKernel(
                 base_kernel=MaternKernel(nu=2.5, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif kernel_type == "periodic":
+        elif self.kernel_type == "periodic":
             return ScaleKernel(
                 base_kernel=PeriodicKernel(ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif kernel_type == "rbf":
+        elif self.kernel_type == "rbf" or self.kernel_type == "RBF":
             return ScaleKernel(
                 base_kernel=RBFKernel(ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif kernel_type == "RFF":
+        elif self.kernel_type == "RFF":
             return ScaleKernel(
                 base_kernel=RFFKernel(num_samples=kwargs["ard_num_dims"], ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
         else:
-            raise NotImplementedError(f"Unknown kernel type: {kernel_type}" )
+            raise NotImplementedError(f"Unknown kernel type: {self.kernel_type}" )
         
     def load_mcmc_samples(self, mcmc_samples: Dict[str, Tensor]) -> Tuple[Mean, Kernel, Likelihood]:
         r"""Load the MCMC samples into the mean_module, covar_module (PiecewisePolynomial), and likelihood."""
         tkwargs = {"device": self.train_X.device, "dtype": self.train_X.dtype}
         num_mcmc_samples = len(mcmc_samples["mean"])
         batch_shape = Size([num_mcmc_samples])
-
-        mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
+        if self.mean_func == "linear":
+            mean_module = LinearMean(input_size=len(self.train_X.T), batch_shape=batch_shape).to(**tkwargs)
+        elif self.mean_func == "constant":
+            mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
         covar_module = self.load_covar_module(kernel_type=KERNEL_TYPE, ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
         if self.train_Yvar is not None:
             likelihood = FixedNoiseGaussianLikelihood(

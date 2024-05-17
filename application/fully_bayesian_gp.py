@@ -65,7 +65,7 @@ def main():
     # init model
     data = get_data()
     X_train, X_test, y_train, y_test, feature_names = data
-    model = SAASGP(X_train, y_train, feature_names)
+    model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure="simple", kernel_type="RBF")
 
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)

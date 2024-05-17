@@ -118,14 +118,15 @@ class MyApproximateGP(GP_Prior, ApproximateGP, BatchedMultiOutputGPyTorchModel):
 
 
 class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
-    def __init__(self, X, y, feature_names):
+    def __init__(self, X, y, feature_names, mean_func="linear", kernel_structure="simple", kernel_type="linear"):
         GP_Prior.__init__(self, X, y, feature_names)
         # transform x and y to tensors
         self.X = torch.tensor(self.X).double()
         self.y = torch.tensor(self.y).double().unsqueeze(-1)
         #self.noised_y = self.y + torch.randn_like(self.y) * 1e-6 # add jitter || torch.full_like(self.y, 1e-6)
         #SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, self.noised_y, Standardize(m=1), pyro_model=SaasPyroModel())
-        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=SaasPyroModel())
+        pyro_model = SaasPyroModel(mean_func=mean_func, kernel_structure=kernel_structure, kernel_type=kernel_type)
+        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=pyro_model)
 
     @property
     def median_lengthscale(self) -> torch.Tensor:
