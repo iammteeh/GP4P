@@ -70,11 +70,11 @@ def fit_fully_bayesian_model_nuts(
     nuts = NUTS(
         model.pyro_model.sample,
         jit_compile=jit_compile,
-        step_size=1.0,
+        step_size=1,
         full_mass=True,
         ignore_jit_warnings=True,
         max_tree_depth=max_tree_depth,
-        target_accept_prob= 0.9995,
+        target_accept_prob= 0.8,
     )
     mcmc = MCMC(
         nuts,
