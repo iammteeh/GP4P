@@ -1,86 +1,99 @@
+import torch
 import gpytorch.kernels as gk
 from gpytorch.utils import grid
 from torch import tensor
+from domain.env import POLY_DEGREE
 from gpytorch.kernels import (
     Kernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, RBFKernel, PeriodicKernel, MaternKernel,
-    PolynomialKernel, SpectralMixtureKernel, RFFKernel, InducingPointKernel)
-from gpytorch.priors import GammaPrior, HalfCauchyPrior
+    PolynomialKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, RFFKernel)
+from gpytorch.priors import Prior
+from torch.distributions import constraints, HalfCauchy
+from gpytorch.priors import LogNormalPrior, GammaPrior, HalfCauchyPrior
 import numpy as np
 import time
 
 # Linear Kernel
-def get_linear_kernel(X, **hyper_prior_params):
+def get_linear_kernel(X):
     return LinearKernel()
 
 # Periodic Kernel
-def get_periodic_kernel(X, **hyper_prior_params):
-    return PeriodicKernel()
-
-def get_spectral_mixture_kernel(X, **hyper_prior_params):
-    return SpectralMixtureKernel(num_mixtures=len(X.T), ard_num_dims=len(X.T))
-
-def get_rff_kernel(X, **hyper_prior_params):
-    return RFFKernel(num_samples=len(X.T))
-
-def get_polynomial_kernel(X, **hyper_prior_params):
-    return PolynomialKernel(power=2)
-
-# Matern Kernels
-def get_matern12_kernel(X, **hyper_prior_params):
-    if hyper_prior_params:
-        alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
-        beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
-        lengthscale_prior = GammaPrior(alpha, beta)
+def get_periodic_kernel(X, ARD=True):
+    periodic_legthscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return PeriodicKernel(period_length_prior=periodic_legthscale_prior, ard_num_dims=len(X.T))
     else:
-        lengthscale_prior = None
-    return MaternKernel(nu=0.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
+        return PeriodicKernel(period_length_prior=periodic_legthscale_prior)
 
-def get_matern32_kernel(X, **hyper_prior_params):
-    if hyper_prior_params:
-        alpha = tensor(hyper_prior_params["mean"]).float()
-        beta = tensor(hyper_prior_params["sigma"]).float()
-        lengthscale_prior = GammaPrior(alpha, beta)
+def get_polynomial_kernel(X, ARD=True):
+    offset_prior = LogNormalPrior(0, 1)
+    if ARD:
+        return PolynomialKernel(power=POLY_DEGREE, offset_prior=offset_prior, ard_num_dims=len(X.T))
     else:
-        lengthscale_prior = None
-    return MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
+        return PolynomialKernel(power=POLY_DEGREE, offset_prior=offset_prior)
 
-def get_matern52_kernel(X, **hyper_prior_params):
-    if hyper_prior_params:
-        alpha = tensor(np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])).float()
-        beta = tensor(hyper_prior_params["mean"] / np.square(hyper_prior_params["sigma"])).float()
-        lengthscale_prior = GammaPrior(2, 2)
-        return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
+def get_piecewise_polynomial_kernel(X, ARD=True):
+    if ARD:
+        return PiecewisePolynomialKernel(power=POLY_DEGREE, ard_num_dims=len(X.T))
     else:
-        return MaternKernel(nu=2.5)
+        return PiecewisePolynomialKernel(power=POLY_DEGREE)
 
 # Squared Exponential Kernel
-def get_squared_exponential_kernel(X, **hyper_prior_params):
+def get_squared_exponential_kernel(X, ARD=True):
     # You can set hyper-prior with prior object in GPyTorch
-    if hyper_prior_params:
-        alpha = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
-        beta = np.square(hyper_prior_params["mean"]) / np.square(hyper_prior_params["sigma"])
-        lengthscale_prior = GammaPrior(alpha, beta)
+    lengthscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return RBFKernel(lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
     else:
-        return RBFKernel()
+        return RBFKernel(lengthscale_prior=lengthscale_prior)
+
+def get_matern32_kernel(X, ARD=True):
+    lengthscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
+    else:
+        return MaternKernel(nu=1.5, lengthscale_prior=lengthscale_prior)
+
+def get_matern52_kernel(X, ARD=True):
+    lengthscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
+    else:    
+        return MaternKernel(nu=2.5, lengthscale_prior=lengthscale_prior)
+    
+def get_rff_kernel(X, ARD=True):
+    lengthscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return RFFKernel(num_samples=len(X.T), lengthscale_prior=lengthscale_prior, ard_num_dims=len(X.T))
+    else:
+        return RFFKernel(num_samples=len(X.T), lengthscale_prior=lengthscale_prior)
+
+def get_spectral_mixture_kernel(X, ARD=True):
+    if ARD:
+        return SpectralMixtureKernel(num_mixtures=len(X.T), ard_num_dims=len(X.T))
+    else:
+        return SpectralMixtureKernel(num_mixtures=len(X.T))
+
 
 # Base Kernels
-def get_base_kernels(X, kernel="linear", ARD=True, **hyper_prior_params):
-    if kernel == "linear":
-        base_kernels = [LinearKernel() for item in range(X.shape[1])]
+def get_base_kernels(X, kernel="linear", ARD=False):
+    if kernel == "polynomial":
+        base_kernels = [get_polynomial_kernel(X, ARD=ARD) for item in range(X.shape[1])]
+    elif kernel == "piecewise_polynomial":
+        base_kernels = [get_piecewise_polynomial_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "RBF":
-        base_kernels = [get_squared_exponential_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_squared_exponential_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "matern32":
-        base_kernels = [get_matern32_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_matern32_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "matern52":
-        base_kernels = [get_matern52_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
-    elif kernel == "spectral_mixture":
-        base_kernels = [get_spectral_mixture_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_matern52_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "RFF":
-        base_kernels = [get_rff_kernel(X, **hyper_prior_params) for item in range(X.shape[1])]
+        base_kernels = [get_rff_kernel(X, ARD=ARD) for item in range(X.shape[1])]
+    elif kernel == "spectral_mixture":
+        base_kernels = [get_spectral_mixture_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     return base_kernels
 
-def wrap_scale_kernel(base_kernel, **scale_prior_params):
-    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None
+def wrap_scale_kernel(base_kernel):
+    outscale_prior = GammaPrior(2, 0.15)
     return ScaleKernel(base_kernel=base_kernel, outputscale_prior=outscale_prior)
 
 # Additive Kernel
@@ -105,7 +118,7 @@ def additive_kernel_permutation(items, k=3):
     print(f"Finished building additive kernel. \n Time elapsed: {end - start:.2f}s")
     return additive_kernel
 
-def additive_structure_kernel(X, base_kernels, interpolation=True, **scale_prior_params):
+def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
     import itertools
     outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None # gimmick
     if interpolation:

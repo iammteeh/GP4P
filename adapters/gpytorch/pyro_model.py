@@ -119,6 +119,11 @@ class SaasPyroModel(SaasPyroModel):
                 base_kernel=PiecewisePolynomialKernel(q=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
+        elif self.kernel_type == "polynomial":
+            return ScaleKernel(
+                base_kernel=PolynomialKernel(degree=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
+            batch_shape=kwargs["batch_shape"]
+            )
         elif self.kernel_type == "matern52": # candidate kernel
             return ScaleKernel(
                 base_kernel=MaternKernel(nu=2.5, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
@@ -147,10 +152,12 @@ class SaasPyroModel(SaasPyroModel):
         tkwargs = {"device": self.train_X.device, "dtype": self.train_X.dtype}
         num_mcmc_samples = len(mcmc_samples["mean"])
         batch_shape = Size([num_mcmc_samples])
-        if self.mean_func == "linear":
-            mean_module = LinearMean(input_size=len(self.train_X.T), batch_shape=batch_shape).to(**tkwargs)
-        elif self.mean_func == "constant":
+        #if self.mean_func == "linear":
+        #    mean_module = LinearMean(input_size=len(self.train_X.T), batch_shape=batch_shape).to(**tkwargs)
+        if self.mean_func == "constant":
             mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
+        else:
+            raise NotImplementedError(f"Mean has to be constant.")
         covar_module = self.load_covar_module(kernel_type=KERNEL_TYPE, ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
         if self.train_Yvar is not None:
             likelihood = FixedNoiseGaussianLikelihood(

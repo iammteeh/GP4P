@@ -64,14 +64,14 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
         self.kernel = self.get_kernel(type=kernel, structure=structure)
 
         # init kernel hyperparameters
-        hyper_parameter_init_values = {
-            #'likelihood.noise_covar.noise': self.noise_sd_over_all_regs,
-            #'mean_func.beta': self.weighted_mean,
-            #'mean_func.intercept': self.root_mean,
-            'kernel.base_kernel.lengthscale': torch.tensor(0.5),
-            'kernel.outputscale': torch.tensor(1.),
-        }
-        #self.initialize(**hyper_parameter_init_values)
+        hyper_parameter_init_values = {}
+        if kernel == "RBF" or kernel == "matern32" or kernel == "matern52" or kernel == "RFF":
+            hyper_parameter_init_values["kernel.base_kernel.lengthscale"] = torch.tensor(0.5)
+        elif kernel == "polynomial":
+            hyper_parameter_init_values["kernel.base_kernel.offset"] = torch.tensor(0.5)
+        if structure != "additive":
+            hyper_parameter_init_values["kernel.outputscale"] = torch.tensor(1.)
+        self.initialize(**hyper_parameter_init_values)
 
     def forward(self, x):
         kernel = self.kernel(x).evaluate()
