@@ -2,7 +2,6 @@ import torch
 import gpytorch.kernels as gk
 from gpytorch.utils import grid
 from torch import tensor
-from domain.env import POLY_DEGREE
 from gpytorch.kernels import (
     Kernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, RBFKernel, PeriodicKernel, MaternKernel,
     PolynomialKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, RFFKernel)
@@ -24,18 +23,33 @@ def get_periodic_kernel(X, ARD=True):
     else:
         return PeriodicKernel(period_length_prior=periodic_legthscale_prior)
 
-def get_polynomial_kernel(X, ARD=True):
+def get_polynomial_d2_kernel(X, ARD=True):
     offset_prior = LogNormalPrior(0, 1)
     if ARD:
-        return PolynomialKernel(power=POLY_DEGREE, offset_prior=offset_prior, ard_num_dims=len(X.T))
+        return PolynomialKernel(power=2, offset_prior=offset_prior, ard_num_dims=len(X.T))
     else:
-        return PolynomialKernel(power=POLY_DEGREE, offset_prior=offset_prior)
+        return PolynomialKernel(power=2, offset_prior=offset_prior)
 
-def get_piecewise_polynomial_kernel(X, ARD=True):
+def get_polynomial_d3_kernel(X, ARD=True):
+    offset_prior = LogNormalPrior(0, 1)
     if ARD:
-        return PiecewisePolynomialKernel(power=POLY_DEGREE, ard_num_dims=len(X.T))
+        return PolynomialKernel(power=3, offset_prior=offset_prior, ard_num_dims=len(X.T))
     else:
-        return PiecewisePolynomialKernel(power=POLY_DEGREE)
+        return PolynomialKernel(power=3, offset_prior=offset_prior)
+
+def get_polynomial_d4_kernel(X, ARD=True):
+    offset_prior = LogNormalPrior(0, 1)
+    if ARD:
+        return PolynomialKernel(power=4, offset_prior=offset_prior, ard_num_dims=len(X.T))
+    else:
+        return PolynomialKernel(power=4, offset_prior=offset_prior)
+    
+def get_piecewise_polynomial_kernel(X, ARD=True):
+    lenghtscale_prior = HalfCauchyPrior(scale=0.1)
+    if ARD:
+        return PiecewisePolynomialKernel(lenghtscale_prior=lenghtscale_prior, power=2, ard_num_dims=len(X.T))
+    else:
+        return PiecewisePolynomialKernel(lenghtscale_prior=lenghtscale_prior, power=2)
 
 # Squared Exponential Kernel
 def get_squared_exponential_kernel(X, ARD=True):
@@ -76,8 +90,12 @@ def get_spectral_mixture_kernel(X, ARD=True):
 
 # Base Kernels
 def get_base_kernels(X, kernel="linear", ARD=False):
-    if kernel == "polynomial":
-        base_kernels = [get_polynomial_kernel(X, ARD=ARD) for item in range(X.shape[1])]
+    if kernel == "polynomial" or "poly2":
+        base_kernels = [get_polynomial_d2_kernel(X, ARD=ARD) for item in range(X.shape[1])]
+    elif kernel == "poly3":
+        base_kernels = [get_polynomial_d3_kernel(X, ARD=ARD) for item in range(X.shape[1])]
+    elif kernel == "poly4":
+        base_kernels = [get_polynomial_d4_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "piecewise_polynomial":
         base_kernels = [get_piecewise_polynomial_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "RBF":

@@ -3,7 +3,7 @@ from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from sklearn.kernel_ridge import KernelRidge
 from adapters.gpytorch.means import LinearMean
 from gpytorch.means import ConstantMean
-from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_spectral_mixture_kernel, get_rff_kernel, get_polynomial_kernel, get_piecewise_polynomial_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_spectral_mixture_kernel, get_rff_kernel, get_polynomial_d2_kernel, get_polynomial_d3_kernel, get_polynomial_d4_kernel, get_piecewise_polynomial_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 from domain.env import KERNEL_TYPE
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import math
@@ -247,8 +247,12 @@ class GP_Prior(Priors):
         if structure == "simple":
             if type == "linear":
                 base_kernel = get_linear_kernel(self.X)
-            elif type == "polynomial":
-                base_kernel = get_polynomial_kernel(self.X)
+            elif type == "polynomial" or type == "poly2":
+                base_kernel = get_polynomial_d2_kernel(self.X)
+            elif type == "poly3":
+                base_kernel = get_polynomial_d3_kernel(self.X)
+            elif type == "poly4":
+                base_kernel = get_polynomial_d4_kernel(self.X)
             elif type == "piecewise_polynomial":
                 base_kernel = get_piecewise_polynomial_kernel(self.X)
             elif type == "RBF":
