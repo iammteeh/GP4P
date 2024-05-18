@@ -41,9 +41,13 @@ def r2_adj(r2, n, k):
 
 def get_metrics(pred_dist, y_true, y_pred, type="regression"):
     if type == "regression":
+        try:
+            root_mse = sklearn.metrics.mean_squared_error(y_true, y_pred, squared=False)
+        except:
+            root_mse = "negative"
         return {
             "mse": sklearn.metrics.mean_squared_error(y_true, y_pred),
-            "root_mse": sklearn.metrics.mean_squared_error(y_true, y_pred, squared=False),
+            "root_mse": root_mse,
             "mae": sklearn.metrics.mean_absolute_error(y_true, y_pred),
             "mape": sklearn.metrics.mean_absolute_percentage_error(y_true, y_pred),
             "r2": sklearn.metrics.r2_score(y_true, y_pred),
