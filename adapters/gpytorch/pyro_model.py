@@ -96,6 +96,8 @@ def fit_fully_bayesian_model_nuts(
     model.load_mcmc_samples(mcmc_samples)
     model.eval()
 
+    return mcmc_samples
+
 
 class SaasPyroModel(SaasPyroModel):
     def __init__(self, mean_func=MEAN_FUNC, kernel_structure=KERNEL_STRUCTURE, kernel_type=KERNEL_TYPE):

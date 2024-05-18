@@ -80,7 +80,7 @@ def main():
     # fit
     model.train()
     #TODO: add ENV for sampling parameters
-    fit_fully_bayesian_model_nuts(model, jit_compile=True, max_tree_depth=6)
+    fit_fully_bayesian_model_nuts(model, jit_compile=True)
     print(model)
 
     # Evaluate model
@@ -91,6 +91,10 @@ def main():
         #mean = observed_pred.mean
         #var = observed_pred.variance
         posterior = model.posterior(X_test)
+        print(posterior.mean.shape)
+        print(posterior.variance.shape)
+        print(f"Ground truth:     {y_test.squeeze(-1)}")
+        print(f"Mixture mean:     {posterior.mean.squeeze(-1)}")
 
     #print(waic(model, model.likelihood, X_test, y_test))
     #print(gaussian_log_likelihood(model, X_test, y_test))
