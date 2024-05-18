@@ -91,6 +91,25 @@ def choose_model(model="exact", data=None):
     
     return model, optimizer, mll, hyperparameter_optimizer
 
+def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer):
+    start = time()
+    for i in range(1000):  # training iterations
+        optimizer.zero_grad()
+        hyperparameter_optimizer.zero_grad()
+        output = model(model.X)
+        loss = -mll(output, model.y)
+        loss.sum().backward()
+
+        # track parameters every 10th step
+        if i % 10 == 0:
+            step_time = time() - start
+            print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s")
+            #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
+        # placeholder for early stopping
+
+        optimizer.step()
+        hyperparameter_optimizer.step()
+    print(f"Training took {time() - start:.2f} seconds.")
 
 def main():
     X_train, X_test, y_train, y_test, feature_names = get_data()
@@ -108,23 +127,7 @@ def main():
     #mll = GammaRobustVariationalELBO(model.likelihood, model, num_data=len(model.y), prior_dist=prior_dist, variational_dist=variational_dist, beta=1.0)
     # find optimal hyperparameters
     
-    start = time()
-    for i in range(1000):  # training iterations
-        optimizer.zero_grad()
-        hyperparameter_optimizer.zero_grad()
-        output = model(model.X)
-        loss = -mll(output, model.y)
-        loss.sum().backward()
-
-        # track parameters every 10th step
-        if i % 10 == 0:
-            step_time = time() - start
-            print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s")
-            #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
-
-        optimizer.step()
-        hyperparameter_optimizer.step()
-    print(f"Training took {time() - start:.2f} seconds.")
+    fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
 
     # Evaluate model
     model.eval()
