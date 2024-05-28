@@ -9,18 +9,6 @@ def kdnf(a,b):
     kdnf = (a & (not b)) | ((not a) & b) | (not (a & b)) | (a & b)
     return not(a and b) | (a and b) | (a & (not b)) | (b & (not a)) or not kdnf
 
-# X[1][1] = 1
-# X[1][3] = 0
-#ab1 = X[(X[:,0] == 1) & (X[:,1] == 1)]
-#ab1 >>>> array([[1, 1, 1, 0, 1]])
-#for d in len(X.T):
-#    for i in range(len(X)):
-#        for j in range(len(X)):
-#            if kdnf(X[i][d],X[j][d]) == 1:
-#                print("X[",i,"][",d,"] and X[",j,"][",d,"] are compatible")
-#            else:
-#                print("X[",i,"][",d,"] and X[",j,"][",d,"] are not compatible")
-
 def get_character(X, pos, opt):
     if len(X.T) < pos < 0:
         raise ValueError("pos must be a valid index of X.")

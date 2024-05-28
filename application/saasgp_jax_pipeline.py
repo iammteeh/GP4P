@@ -2,7 +2,7 @@ import gpytorch
 import torch
 import jax.numpy as jnp
 import pyro
-from adapters.gpytorch.saasgp import SAASGP
+from adapters.saasgp import SAASGP
 from application.init_pipeline import init_pipeline, get_numpy_features
 from botorch import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
