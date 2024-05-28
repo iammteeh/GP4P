@@ -96,7 +96,6 @@ def main():
                     model.eval()
                     model.likelihood.eval()
                     # Save model
-                    timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
                     filename = f"{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
                     update_store(
@@ -112,4 +111,5 @@ def main():
     total_running_time_end = time() - total_running_time_start
     print(f"Total running time: {total_running_time_end:.2f}s")
 if __name__ == "__main__":
+    timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     main()
