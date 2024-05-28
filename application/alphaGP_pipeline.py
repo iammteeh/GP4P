@@ -7,7 +7,7 @@ from application.init_pipeline import init_pipeline, yield_experiments
 from application.gpytorch_pipeline import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
 from adapters.model_store import init_store, update_store
-from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, RESULTS_DIR
+from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, Y, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, RESULTS_DIR
 from domain.metrics import get_metrics
 import datetime
 from time import time
@@ -72,8 +72,8 @@ def choose_model(inference="MCMC", mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE,
         raise ValueError(f"Model {model} not found.")
 
 def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
-    training_sizes = [50]#, 100, 200, 500, 1000]
-    kernel_types = ["poly2"]#, "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
+    training_sizes = [20, 50, 100, 250, 500, 1000]
+    kernel_types = ["poly2", "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
     kernel_structures = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
     STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{timestamp}_TEST.csv"
@@ -86,7 +86,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
             for kernel_type in kernel_types:
                 for inference_type in inference_methods:
                     X_train, X_test, y_train, y_test, feature_names = data
-                    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
+                    print(f"fit model having {X_train.shape[1]} features: {feature_names}\ninference: {inference_type}, kernel: {kernel_type}, structure: {kernel_structure}")
                     model, *context = choose_model(inference=inference_type, kernel_type=kernel_type, kernel_structure=kernel_structure, data=data)
                     # check for NaN / inf
                     validate_data(model.X, X_test, model.y, y_test)
@@ -113,14 +113,14 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                     metrics = get_metrics(posterior, y_test, mean, type="GP")
                     print(f"metrics: {metrics}")
                     # Save model
-                    filename = f"{SWS}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
+                    filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
                     update_store(
                         index=f"{filename}",
                         filename=f"{filename}.txt",
                         last_loss=loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
                         loss_curve="loss_curve",
-                        RMSE=metrics["mean_squared_log_error"].tolist(),
+                        RMSE=metrics["RMSE"].tolist(),
                         MAPE=metrics["MAPE"].tolist(),
                         ESS=metrics["explained_variance"].tolist(),
                         timestamp=timestamp,
@@ -143,14 +143,23 @@ def run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=["LLVM_energy"]):
             print(f"Running pipeline with dummy data for polynomial degree: {POLY_DEGREE}")
             main(timestamp=timestamp)
     elif swss:
-        for sws in swss:
-                global SWS
+        for sws,y in swss.items():
+                global SWS, Y
                 SWS = sws
-                print(f"Running pipeline with data from {SWS}")
+                Y = y
+                print(f"Running pipeline with data from {SWS}, estimating '{Y}'...")
                 main(timestamp=timestamp)
     else:
         raise ValueError("No data source provided.")
 
 if __name__ == "__main__":
-    swss = ["Apache_energy_large"]#, "HSQLDB_energy", "LLVM_energy", "PostgreSQL_pervolution_energy_bin", "VP8_pervolution_energy_bin", "x264_energy"]
+    swss = {
+        "x264_energy": "fixed-energy",
+        "Apache_energy_large": "performance",
+        "HSQLDB_energy": "fixed-energy",
+        "HSQLDB_pervolution_energy_bin": "performance",
+        "LLVM_energy": "fixed-energy",
+        "PostgreSQL_pervolution_energy_bin": "performance",
+        "VP8_pervolution_energy_bin": "performance",
+    }
     run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=swss)

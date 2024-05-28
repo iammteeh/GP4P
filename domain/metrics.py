@@ -61,10 +61,15 @@ def get_metrics(pred_dist, y_true, y_pred, type="regression"):
             log_mse = sklearn.metrics.mean_squared_log_error(y_true, y_pred)
         except:
             log_mse = "negative"
+        try:
+            rmse = sklearn.metrics.mean_squared_error(y_true, y_pred, squared=False)
+        except:
+            rmse = "negative"
         return {
             "MSE": sklearn.metrics.mean_squared_error(np.array(y_true), np.array(y_pred)),
             #TODO: RMSE is negativ for dummy data
             "mean_squared_log_error": log_mse,
+            "RMSE": rmse,
             "MAPE": sklearn.metrics.mean_absolute_percentage_error(y_true, y_pred),
             "r2": sklearn.metrics.r2_score(y_true, y_pred),
             "explained_variance": sklearn.metrics.explained_variance_score(y_true, y_pred),
