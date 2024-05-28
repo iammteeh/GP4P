@@ -25,3 +25,4 @@ archive/
 .pymc_*.trace/
 *.csv
 # END: abpxx6d04wxr
+rawdata/*/*.*
