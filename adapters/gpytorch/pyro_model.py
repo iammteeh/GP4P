@@ -121,7 +121,7 @@ class SaasPyroModel(SaasPyroModel):
                 base_kernel=PiecewisePolynomialKernel(q=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif self.kernel_type == "polynomial" or "poly2" or "poly3" or "poly4":
+        elif self.kernel_type == "polynomial":
             return ScaleKernel(
                 base_kernel=PolynomialKernel(power=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
@@ -154,12 +154,14 @@ class SaasPyroModel(SaasPyroModel):
         tkwargs = {"device": self.train_X.device, "dtype": self.train_X.dtype}
         num_mcmc_samples = len(mcmc_samples["mean"])
         batch_shape = Size([num_mcmc_samples])
-        #if self.mean_func == "linear":
+        #TODO: Implement sampling the linear weighted mean
+        #if self.mean_func == "linear_weighted":
         #    mean_module = LinearMean(input_size=len(self.train_X.T), batch_shape=batch_shape).to(**tkwargs)
-        if self.mean_func == "constant":
-            mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
-        else:
-            raise NotImplementedError(f"Mean has to be constant.")
+        #elif self.mean_func == "constant":
+        #    mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
+        #else:
+        #    raise NotImplementedError(f"Mean has to be constant.")
+        mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
         covar_module = self.load_covar_module(kernel_type=KERNEL_TYPE, ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
         if self.train_Yvar is not None:
             likelihood = FixedNoiseGaussianLikelihood(
@@ -202,11 +204,10 @@ class SaasPyroModel(SaasPyroModel):
                         new_value=mcmc_samples['outputscale'],
                     )
         else:
-            if covar_module.base_kernel.lengthscale:
-                covar_module.base_kernel.lengthscale = reshape_and_detach(
-                    target=covar_module.base_kernel.lengthscale,
-                    new_value=mcmc_samples["lengthscale"],
-                )
+            covar_module.base_kernel.lengthscale = reshape_and_detach(
+                target=covar_module.base_kernel.lengthscale,
+                new_value=mcmc_samples["lengthscale"],
+            )
             covar_module.outputscale = reshape_and_detach(
                 target=covar_module.outputscale,
                 new_value=mcmc_samples["outputscale"],
