@@ -12,11 +12,11 @@ from sklearn.model_selection import train_test_split, cross_val_score, KFold, Gr
 
 from itertools import combinations
 
-def prepare_dataset(dummy_data=False):
+def prepare_dataset(dummy_data=False, sws=SWS):
     if dummy_data:
         return generate_synthetic_polynomial_data(1000, 4, POLY_DEGREE, 1)
 
-    data = select_data(SWS)
+    data = select_data(sws)
     if MODE != "simple":
         #folder = MODELDIR + data['sws_name']
         return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_type)
