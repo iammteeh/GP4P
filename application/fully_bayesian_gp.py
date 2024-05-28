@@ -1,19 +1,11 @@
-import gpytorch
-import torch
-import jax.numpy as jnp
-import pyro
-from adapters.gpytorch.gp_model import SAASGP
-from application.init_pipeline import init_pipeline, get_numpy_features
-from botorch import fit_gpytorch_mll
-from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
-from domain.feature_model.feature_modeling import inverse_map
-from adapters.gpytorch.sampling import get_initial_points, generate_batch, draw_random_samples, draw_random_x, generate_test_x_from_tensor
-from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
+import torch
+from adapters.gpytorch.gp_model import SAASGP
+from application.init_pipeline import init_pipeline
+from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
+from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE
+from domain.metrics import get_metrics
 import datetime
-from time import time
-from matplotlib import pyplot as plt
 
 
 from gpytorch.distributions import MultivariateNormal
@@ -108,7 +100,7 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    filename = f"SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_ARD={ARD}__{timestamp}"
+    filename = f"SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{timestamp}"
     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
     print(f"Model saved to {MODELDIR}/{filename}.pth")
 if __name__ == "__main__":

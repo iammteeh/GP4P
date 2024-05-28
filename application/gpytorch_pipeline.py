@@ -1,10 +1,9 @@
 import gpytorch
 import torch
 from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
-from gpytorch.likelihoods import GaussianLikelihood, DirichletClassificationLikelihood, StudentTLikelihood
 from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
 from application.init_pipeline import init_pipeline, get_numpy_features
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR, DATA_SLICE_AMOUNT
+from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, DATA_SLICE_AMOUNT
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
@@ -63,6 +62,8 @@ def validate_data(*args):
 def choose_model(model="exact", data=None):
     if not data:
         X_train, X_test, y_train, y_test, feature_names = get_data()
+    else:
+        X_train, X_test, y_train, y_test, feature_names = data
     if model == "exact":
         # check training set size
         print(f"X_train size: {X_train.shape}")
@@ -117,10 +118,10 @@ def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer, verbose=Fa
     return loss.sum().item()
 
 def main():
-    X_train, X_test, y_train, y_test, feature_names = get_data()
-
+    data = get_data()
+    X_train, X_test, y_train, y_test, feature_names = data
     # init model
-    model, optimizer, mll, hyperparameter_optimizer = choose_model(model="exact")
+    model, optimizer, mll, hyperparameter_optimizer = choose_model(model="exact", data=data)
     # check for NaN / inf
     validate_data(model.X, X_test, model.y, y_test)
     

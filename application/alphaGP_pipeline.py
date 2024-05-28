@@ -7,10 +7,10 @@ from application.init_pipeline import init_pipeline, yield_experiments
 from application.gpytorch_pipeline import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
 from adapters.model_store import init_store, update_store
-from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, RESULTS_DIR
 from domain.metrics import get_metrics
 import datetime
-from time import time, sleep
+from time import time
 import warnings
 from builtins import UserWarning
 from botorch.models.utils.assorted import InputDataWarning
