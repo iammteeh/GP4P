@@ -11,7 +11,7 @@ def decompose_matrix(X):
     # if rank(X)) < n_features, then X = U * S * V.T
     X = torch.tensor(X)
     rank_X = torch.linalg.matrix_rank(X)
-    U, S, V = torch.linalg.svd(X)
+    U, S, V = torch.linalg.svd(X) # or torch.linalg.svd_lowrank(X) 
     if rank_X < X.shape[1]:
         print(f"X is not full rank. Rank(X) = {rank_X}")
         return U, S, V

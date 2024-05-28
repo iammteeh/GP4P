@@ -35,7 +35,9 @@ model.load_state_dict(torch.load(model_file))
 
 model.eval()
 with torch.no_grad():
-    posterior = model.posterior(X_test)
+    # to get the posterior we need to pass the likelihood to the model, which is the training data
+    posterior = model.posterior(model.likelihood(model.X))
+    posterior_predictive = model.posterior(X_test) # to get the posterior predictive we need to pass the test data
     CONFIDENCE = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")["explained_variance"]
     confidence_region = posterior.mvn.confidence_region()
     # create dimensional model
