@@ -121,9 +121,9 @@ class SaasPyroModel(SaasPyroModel):
                 base_kernel=PiecewisePolynomialKernel(q=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
-        elif self.kernel_type == "polynomial":
+        elif self.kernel_type == "polynomial" or "poly2" or "poly3" or "poly4":
             return ScaleKernel(
-                base_kernel=PolynomialKernel(degree=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
+                base_kernel=PolynomialKernel(power=POLY_DEGREE, ard_num_dims=kwargs["ard_num_dims"], batch_shape=kwargs["batch_shape"]),
             batch_shape=kwargs["batch_shape"]
             )
         elif self.kernel_type == "matern52": # candidate kernel
@@ -202,10 +202,11 @@ class SaasPyroModel(SaasPyroModel):
                         new_value=mcmc_samples['outputscale'],
                     )
         else:
-            covar_module.base_kernel.lengthscale = reshape_and_detach(
-                target=covar_module.base_kernel.lengthscale,
-                new_value=mcmc_samples["lengthscale"],
-            )
+            if covar_module.base_kernel.lengthscale:
+                covar_module.base_kernel.lengthscale = reshape_and_detach(
+                    target=covar_module.base_kernel.lengthscale,
+                    new_value=mcmc_samples["lengthscale"],
+                )
             covar_module.outputscale = reshape_and_detach(
                 target=covar_module.outputscale,
                 new_value=mcmc_samples["outputscale"],
