@@ -105,11 +105,15 @@ def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer):
             step_time = time() - start
             print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s")
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
-        # placeholder for early stopping
-
+        # placeholder for early stopping with threshold on loss delta
+        #if i > 0 and abs(loss.sum().item() - prev_loss) < "threshold":
+        #    print("Early stopping...")
+        #    break
+        prev_loss = loss.sum().item()
         optimizer.step()
         hyperparameter_optimizer.step()
     print(f"Training took {time() - start:.2f} seconds.")
+    return loss.sum().item()
 
 def main():
     X_train, X_test, y_train, y_test, feature_names = get_data()
