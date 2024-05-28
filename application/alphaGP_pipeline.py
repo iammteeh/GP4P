@@ -30,6 +30,7 @@ def validate_data(*args):
     print(f"data is fine.")
 
 def get_data(training_sizes=[100], use_synthetic_data=False, sws=SWS):
+    print(f"Fetching data from {SWS if not use_synthetic_data else 'synthetic ds'} with training sizes: {training_sizes}")
     ds = prepare_dataset(dummy_data=use_synthetic_data, sws=sws)
     # fetch data with the desired training size
     data = yield_experiments(ds, training_size=training_sizes)
@@ -64,21 +65,21 @@ def choose_model(inference="MCMC", mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE,
         raise ValueError(f"Model {model} not found.")
 
 def main():
-    training_sizes = [50, 100, 200, 500, 1000]
-    kernel_types = ["poly2", "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
-    kernel_structure = ["simple", "additive"]
+    training_sizes = [50]#, 100, 200, 500, 1000]
+    kernel_types = ["poly2"]#, "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
+    kernel_structures = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
-    init_store(store_path=f"{RESULTS_DIR}/modelstorage_{timestamp}_TEST.csv")
+    init_store(store_path=f"{STORAGE_PATH}")
     i = 0
     total_running_time_start = time()
     for data in get_data(training_sizes=training_sizes, use_synthetic_data=USE_DUMMY_DATA, sws=SWS):
         training_size = training_sizes[i]
-        for struct in kernel_structure:
+        for kernel_structure in kernel_structures:
             for kernel_type in kernel_types:
                 for inference_type in inference_methods:
                     X_train, X_test, y_train, y_test, feature_names = data
                     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
-                    model, *context = choose_model(inference=inference_type, data=data)
+                    model, *context = choose_model(inference=inference_type, kernel_type=kernel_type, kernel_structure=kernel_structure, data=data)
                     # check for NaN / inf
                     validate_data(model.X, X_test, model.y, y_test)
 
@@ -96,14 +97,16 @@ def main():
                     model.eval()
                     model.likelihood.eval()
                     # Save model
-                    filename = f"{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
+                    filename = f"{SWS}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
                     update_store(
                         index=f"{filename}",
-                        last_loss=loss if inference_type == "exact" else trace,
+                        filename=f"{filename}.txt",
+                        last_loss=loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
                         loss_curve="loss_curve",
                         model_scores="model_scores",
-                        timestamp=timestamp
+                        timestamp=timestamp,
+                        store_path=f"{STORAGE_PATH}"
                     )
 
                     
@@ -111,5 +114,11 @@ def main():
     total_running_time_end = time() - total_running_time_start
     print(f"Total running time: {total_running_time_end:.2f}s")
 if __name__ == "__main__":
-    timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    main()
+    USE_DUMMY_DATA = True
+    POLY_DEGREE = 2
+    swss = ["Apache_energy_large", "HSQLDB_energy", "LLVM_energy", "PostgreSQL_pervolution_energy_bin", "VP8_pervolution_energy_bin", "x264_energy"]
+    for sws in swss:
+        SWS = sws
+        timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{timestamp}_TEST.csv"
+        main()
