@@ -91,7 +91,8 @@ def choose_model(model="exact", data=None):
     
     return model, optimizer, mll, hyperparameter_optimizer
 
-def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer):
+def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer, verbose=False):
+    print(f"Start training {model.__class__.__name__}...")
     start = time()
     for i in range(1000):  # training iterations
         optimizer.zero_grad()
@@ -103,7 +104,7 @@ def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer):
         # track parameters every 10th step
         if i % 10 == 0:
             step_time = time() - start
-            print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s")
+            print(f"Iteration {i+1}, Loss: {loss.sum().item()}, {i} steps took: {step_time:.2f}s") if verbose else None
             #print(f"Iteration {i+1}, Lengthscale: {model.kernel.base_kernel.lengthscale.item()}, Outputscale: {model.kernel.outputscale.item()}")
         # placeholder for early stopping with threshold on loss delta
         #if i > 0 and abs(loss.sum().item() - prev_loss) < "threshold":
@@ -112,7 +113,7 @@ def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer):
         prev_loss = loss.sum().item()
         optimizer.step()
         hyperparameter_optimizer.step()
-    print(f"Training took {time() - start:.2f} seconds.")
+    print(f"Training took {time() - start:.2f} seconds. Last loss: {loss.sum().item()}")
     return loss.sum().item()
 
 def main():
