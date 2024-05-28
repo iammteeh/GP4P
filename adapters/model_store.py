@@ -9,7 +9,7 @@ def init_store(store_path=STORE_PATH):
         with open(store_path, 'w') as f:
             json.dump({}, f)
 
-def update_store(index, filename, last_loss, loss_curve, model_scores, timestamp, store_path=STORE_PATH):
+def update_store(index, filename, last_loss, loss_curve, RMSE, MAPE, ESS, timestamp, training_time, training_size, store_path=STORE_PATH):
     with open(store_path, 'r') as f:
         store = json.load(f)
     
@@ -17,8 +17,12 @@ def update_store(index, filename, last_loss, loss_curve, model_scores, timestamp
         'filename': filename,
         'last_loss': last_loss,
         'loss_curve': loss_curve,
-        'model_scores': model_scores,
-        'timestamp': timestamp
+        'RMSE': RMSE,
+        'MAPE': MAPE,
+        'ESS': ESS,
+        'timestamp': timestamp,
+        'training_time': training_time,
+        'training_size': training_size
     }
     
     with open(store_path, 'w') as f:

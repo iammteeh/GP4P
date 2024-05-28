@@ -8,8 +8,9 @@ from application.gpytorch_pipeline import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
 from adapters.model_store import init_store, update_store
 from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from domain.metrics import get_metrics
 import datetime
-from time import time
+from time import time, sleep
 import warnings
 from builtins import UserWarning
 from botorch.models.utils.assorted import InputDataWarning
@@ -103,6 +104,14 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                     # set evaluation mode
                     model.eval()
                     model.likelihood.eval()
+                    with torch.no_grad():
+                        posterior = model.posterior(X_test)
+                        if inference_type == "exact":
+                            mean = posterior.mean
+                        elif inference_type == "MCMC":
+                            mean = posterior.mixture_mean
+                    metrics = get_metrics(posterior, y_test, mean, type="GP")
+                    print(f"metrics: {metrics}")
                     # Save model
                     filename = f"{SWS}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
@@ -111,8 +120,12 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                         filename=f"{filename}.txt",
                         last_loss=loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
                         loss_curve="loss_curve",
-                        model_scores="model_scores",
+                        RMSE=metrics["mean_squared_log_error"].tolist(),
+                        MAPE=metrics["MAPE"].tolist(),
+                        ESS=metrics["explained_variance"].tolist(),
                         timestamp=timestamp,
+                        training_time=end,
+                        training_size=training_size,
                         store_path=f"{STORAGE_PATH}"
                     )
 
@@ -124,17 +137,20 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
 def run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=["LLVM_energy"]):
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     if use_dummy_data:
-        for degree in range(3):
+        for degree in [2,3,4]:
+            global POLY_DEGREE
             POLY_DEGREE = degree
-            main()
+            print(f"Running pipeline with dummy data for polynomial degree: {POLY_DEGREE}")
+            main(timestamp=timestamp)
     elif swss:
         for sws in swss:
+                global SWS
                 SWS = sws
-                main()
+                print(f"Running pipeline with data from {SWS}")
+                main(timestamp=timestamp)
     else:
         raise ValueError("No data source provided.")
 
 if __name__ == "__main__":
-    USE_DUMMY_DATA = True
-    swss = ["Apache_energy_large", "HSQLDB_energy", "LLVM_energy", "PostgreSQL_pervolution_energy_bin", "VP8_pervolution_energy_bin", "x264_energy"]
+    swss = ["Apache_energy_large"]#, "HSQLDB_energy", "LLVM_energy", "PostgreSQL_pervolution_energy_bin", "VP8_pervolution_energy_bin", "x264_energy"]
     run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=swss)
