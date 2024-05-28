@@ -113,7 +113,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                     metrics = get_metrics(posterior, y_test, mean, type="GP")
                     print(f"metrics: {metrics}")
                     # Save model
-                    filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
+                    filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
                     update_store(
                         index=f"{filename}",
