@@ -10,6 +10,12 @@ from adapters.model_store import init_store, update_store
 from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 import datetime
 from time import time
+import warnings
+from builtins import UserWarning
+from botorch.models.utils.assorted import InputDataWarning
+
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=InputDataWarning)
 
 def locate_invalid_data(data):
     if isinstance(data, torch.Tensor):
@@ -64,11 +70,12 @@ def choose_model(inference="MCMC", mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE,
     else:
         raise ValueError(f"Model {model} not found.")
 
-def main():
+def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
     training_sizes = [50]#, 100, 200, 500, 1000]
     kernel_types = ["poly2"]#, "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
     kernel_structures = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
+    STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{timestamp}_TEST.csv"
     init_store(store_path=f"{STORAGE_PATH}")
     i = 0
     total_running_time_start = time()
@@ -113,12 +120,21 @@ def main():
                     i += 1
     total_running_time_end = time() - total_running_time_start
     print(f"Total running time: {total_running_time_end:.2f}s")
+
+def run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=["LLVM_energy"]):
+    timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+    if use_dummy_data:
+        for degree in range(3):
+            POLY_DEGREE = degree
+            main()
+    elif swss:
+        for sws in swss:
+                SWS = sws
+                main()
+    else:
+        raise ValueError("No data source provided.")
+
 if __name__ == "__main__":
     USE_DUMMY_DATA = True
-    POLY_DEGREE = 2
     swss = ["Apache_energy_large", "HSQLDB_energy", "LLVM_energy", "PostgreSQL_pervolution_energy_bin", "VP8_pervolution_energy_bin", "x264_energy"]
-    for sws in swss:
-        SWS = sws
-        timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-        STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{timestamp}_TEST.csv"
-        main()
+    run_pipeline(use_dummy_data=USE_DUMMY_DATA, swss=swss)
