@@ -6,7 +6,8 @@ from adapters.preprocessing import prepare_dataset
 from application.init_pipeline import init_pipeline, yield_experiments
 from application.gpytorch_pipeline import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
-from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
+from adapters.model_store import init_store, update_store
+from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 import datetime
 from time import time
 
@@ -28,8 +29,8 @@ def validate_data(*args):
             raise ValueError("Data contains NaN or inf values.")
     print(f"data is fine.")
 
-def get_data(training_sizes=[100]):
-    ds = prepare_dataset()
+def get_data(training_sizes=[100], use_synthetic_data=False, sws=SWS):
+    ds = prepare_dataset(dummy_data=use_synthetic_data, sws=sws)
     # fetch data with the desired training size
     data = yield_experiments(ds, training_size=training_sizes)
     try:
@@ -63,12 +64,14 @@ def choose_model(inference="MCMC", mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE,
         raise ValueError(f"Model {model} not found.")
 
 def main():
-    training_sizes = [50]#, 100, 200, 500, 1000]
-    kernel_types = ["RBF"]#, "matern52", "spectral_mixture", "RFF"]
-    kernel_structure = ["simple"]#, "additive"]
+    training_sizes = [50, 100, 200, 500, 1000]
+    kernel_types = ["poly2", "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
+    kernel_structure = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
+    init_store(store_path=f"{RESULTS_DIR}/modelstorage_{timestamp}_TEST.csv")
     i = 0
-    for data in get_data(training_sizes=training_sizes):
+    total_running_time_start = time()
+    for data in get_data(training_sizes=training_sizes, use_synthetic_data=USE_DUMMY_DATA, sws=SWS):
         training_size = training_sizes[i]
         for struct in kernel_structure:
             for kernel_type in kernel_types:
@@ -83,9 +86,9 @@ def main():
                     start = time()
                     if inference_type == "exact":
                         optimizer, mll, hyperparameter_optimizer = context
-                        fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
+                        loss = fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
                     elif inference_type == "MCMC":
-                        fit_fully_bayesian_model_nuts(model, jit_compile=True)
+                        trace = fit_fully_bayesian_model_nuts(model, jit_compile=True)
                     end = time() - start
                     print(f"Training time: {end:.2f}s")
 
@@ -94,7 +97,19 @@ def main():
                     model.likelihood.eval()
                     # Save model
                     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-                    torch.save(model.state_dict(), f"{MODELDIR}/{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}.pth")
+                    filename = f"{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
+                    torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
+                    update_store(
+                        index=f"{filename}",
+                        last_loss=loss if inference_type == "exact" else trace,
+                        loss_curve="loss_curve",
+                        model_scores="model_scores",
+                        timestamp=timestamp
+                    )
+
+                    
                     i += 1
+    total_running_time_end = time() - total_running_time_start
+    print(f"Total running time: {total_running_time_end:.2f}s")
 if __name__ == "__main__":
     main()
