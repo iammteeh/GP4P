@@ -120,7 +120,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                         "filename": f"{filename}.pth",
                         "model": {
                             "dataset": SWS if not USE_DUMMY_DATA else "synthetic_p{POLY_DEGREE}",
-                            "benchmark": Y,
+                            "benchmark": Y if not USE_DUMMY_DATA else "random normal",
                             "kernel_type": kernel_type,
                             "kernel_structure": kernel_structure,
                             "inference_type": inference_type,
