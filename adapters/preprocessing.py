@@ -15,7 +15,7 @@ from itertools import combinations
 def prepare_dataset(dummy_data=False, sws=SWS):
     if dummy_data:
         print(f"Generate polynomial data with degree {POLY_DEGREE}...")
-        return generate_synthetic_polynomial_data(1000, 4, POLY_DEGREE, 1)
+        return generate_synthetic_polynomial_data(10000, 4, POLY_DEGREE, 1)
 
     data = select_data(sws)
     if MODE != "simple":
