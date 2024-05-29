@@ -76,7 +76,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
     kernel_types = ["poly2", "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
     kernel_structures = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
-    STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{timestamp}_TEST.csv" if not USE_DUMMY_DATA else f"{RESULTS_DIR}/modelstorage_synthetic_{POLY_DEGREE}_{timestamp}_TEST.csv"
+    STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{SWS}_{Y}_{timestamp}_TEST.json" if not USE_DUMMY_DATA else f"{RESULTS_DIR}/modelstorage_synthetic_p{POLY_DEGREE}_{timestamp}.json"
     init_store(store_path=f"{STORAGE_PATH}")
     i = 0
     total_running_time_start = time()
@@ -115,17 +115,30 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                     # Save model
                     filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
+                    
+                    modeldata = {
+                        "filename": f"{filename}.pth",
+                        "model": {
+                            "dataset": SWS,
+                            "benchmark": Y,
+                            "kernel_type": kernel_type,
+                            "kernel_structure": kernel_structure,
+                            "inference_type": inference_type,
+                            "training_size": training_size,
+                            "timestamp": timestamp,
+                        },
+                        "scores": {
+                            "RMSE": metrics["RMSE"].tolist(),
+                            "MAPE": metrics["MAPE"].tolist(),
+                            "ESS": metrics["explained_variance"].tolist(),
+                            "last_loss": loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
+                            "loss_curve": "loss_curve",
+                            "training_time": end,
+                        },
+                    }
                     update_store(
                         index=f"{filename}",
-                        filename=f"{filename}.txt",
-                        last_loss=loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
-                        loss_curve="loss_curve",
-                        RMSE=metrics["RMSE"].tolist(),
-                        MAPE=metrics["MAPE"].tolist(),
-                        ESS=metrics["explained_variance"].tolist(),
-                        timestamp=timestamp,
-                        training_time=end,
-                        training_size=training_size,
+                        modeldata=modeldata,
                         store_path=f"{STORAGE_PATH}"
                     )
 
