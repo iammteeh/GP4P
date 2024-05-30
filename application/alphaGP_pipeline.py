@@ -72,7 +72,7 @@ def choose_model(inference="MCMC", mean_func=MEAN_FUNC, kernel_type=KERNEL_TYPE,
         raise ValueError(f"Model {model} not found.")
 
 def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
-    training_sizes = [20, 50, 100, 250, 500, 1000]
+    training_sizes = [20, 50, 100, 250, 500]
     kernel_types = ["poly2", "poly3", "poly4", "piecewise_polynomial", "RBF", "matern32", "matern52", "RFF", "spectral_mixture"]
     kernel_structures = ["simple", "additive"]
     inference_methods = ["exact", "MCMC"]
