@@ -102,52 +102,50 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                             trace = fit_fully_bayesian_model_nuts(model, jit_compile=True)
                         end = time() - start
                         print(f"Training time: {end:.2f}s")
+
+                        # set evaluation mode
+                        model.eval()
+                        model.likelihood.eval()
+                        with torch.no_grad():
+                            posterior = model.posterior(X_test)
+                            if inference_type == "exact":
+                                mean = posterior.mean
+                            elif inference_type == "MCMC":
+                                mean = posterior.mixture_mean
+                        metrics = get_metrics(posterior, y_test, mean, type="GP")
+                        print(f"metrics: {metrics}")
+                        # Save model
+                        filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
+                        torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
+                        
+                        modeldata = {
+                            "filename": f"{filename}.pth",
+                            "model": {
+                                "dataset": SWS if not USE_DUMMY_DATA else "synthetic_p{POLY_DEGREE}",
+                                "benchmark": Y if not USE_DUMMY_DATA else "random normal",
+                                "kernel_type": kernel_type,
+                                "kernel_structure": kernel_structure,
+                                "inference_type": inference_type,
+                                "training_size": training_size,
+                                "timestamp": timestamp,
+                            },
+                            "scores": {
+                                "RMSE": metrics["RMSE"].tolist(),
+                                "MAPE": metrics["MAPE"].tolist(),
+                                "ESS": metrics["explained_variance"].tolist(),
+                                "last_loss": loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
+                                "loss_curve": "loss_curve",
+                                "training_time": end,
+                            },
+                        }
+                        update_store(
+                            index=f"{filename}",
+                            modeldata=modeldata,
+                            store_path=f"{STORAGE_PATH}"
+                        )
                     except LinAlgError as e:
                         print(f"Model having {X_train.shape[1]} features: {feature_names}\ninference: {inference_type}, kernel: {kernel_type}, structure: {kernel_structure} failed to converge. Skipping...")
-                        pass
-
-                    # set evaluation mode
-                    model.eval()
-                    model.likelihood.eval()
-                    with torch.no_grad():
-                        posterior = model.posterior(X_test)
-                        if inference_type == "exact":
-                            mean = posterior.mean
-                        elif inference_type == "MCMC":
-                            mean = posterior.mixture_mean
-                    metrics = get_metrics(posterior, y_test, mean, type="GP")
-                    print(f"metrics: {metrics}")
-                    # Save model
-                    filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
-                    torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
-                    
-                    modeldata = {
-                        "filename": f"{filename}.pth",
-                        "model": {
-                            "dataset": SWS if not USE_DUMMY_DATA else "synthetic_p{POLY_DEGREE}",
-                            "benchmark": Y if not USE_DUMMY_DATA else "random normal",
-                            "kernel_type": kernel_type,
-                            "kernel_structure": kernel_structure,
-                            "inference_type": inference_type,
-                            "training_size": training_size,
-                            "timestamp": timestamp,
-                        },
-                        "scores": {
-                            "RMSE": metrics["RMSE"].tolist(),
-                            "MAPE": metrics["MAPE"].tolist(),
-                            "ESS": metrics["explained_variance"].tolist(),
-                            "last_loss": loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
-                            "loss_curve": "loss_curve",
-                            "training_time": end,
-                        },
-                    }
-                    update_store(
-                        index=f"{filename}",
-                        modeldata=modeldata,
-                        store_path=f"{STORAGE_PATH}"
-                    )
-
-                    
+                        pass  
         i += 1
     total_running_time_end = time() - total_running_time_start
     print(f"Total running time: {total_running_time_end:.2f}s")
