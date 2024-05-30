@@ -14,6 +14,7 @@ from time import time
 import warnings
 from builtins import UserWarning
 from botorch.models.utils.assorted import InputDataWarning
+from torch.linalg import LinAlgError
 
 warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=InputDataWarning)
@@ -93,13 +94,17 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
 
                     # Fit model
                     start = time()
-                    if inference_type == "exact":
-                        optimizer, mll, hyperparameter_optimizer = context
-                        loss = fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
-                    elif inference_type == "MCMC":
-                        trace = fit_fully_bayesian_model_nuts(model, jit_compile=True)
-                    end = time() - start
-                    print(f"Training time: {end:.2f}s")
+                    try:
+                        if inference_type == "exact":
+                            optimizer, mll, hyperparameter_optimizer = context
+                            loss = fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
+                        elif inference_type == "MCMC":
+                            trace = fit_fully_bayesian_model_nuts(model, jit_compile=True)
+                        end = time() - start
+                        print(f"Training time: {end:.2f}s")
+                    except LinAlgError as e:
+                        print(f"Model having {X_train.shape[1]} features: {feature_names}\ninference: {inference_type}, kernel: {kernel_type}, structure: {kernel_structure} failed to converge. Skipping...")
+                        pass
 
                     # set evaluation mode
                     model.eval()
