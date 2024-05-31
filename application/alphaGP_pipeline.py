@@ -114,7 +114,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                                 mean = posterior.mixture_mean
                         metrics = get_metrics(posterior, y_test, mean, type="GP")
                         print(f"metrics: {metrics}")
-                        log_likelihood = model.likelihood.log_marginal(y_test, model(X_test))
+                        log_likelihood = model.likelihood.log_marginal(y_test, model(X_test)) if inference_type == "exact" else model.likelihood.log_marginal(y_test, model(X_test.double()))
                         log_likelihood = log_likelihood.sum().detach().numpy()
                         BIC = get_BIC(log_likelihood, y_test.shape[0], model.num_outputs)
                         # Save model
