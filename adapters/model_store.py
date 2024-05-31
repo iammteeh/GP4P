@@ -26,6 +26,7 @@ def update_store(index, modeldata, store_path=STORE_PATH):
         },
         'scores': {
             'RMSE': modeldata['scores']['RMSE'],
+            'BIC': modeldata['scores']['BIC'],
             'MAPE': modeldata['scores']['MAPE'],
             'ESS': modeldata['scores']['ESS'],
             'last_loss': modeldata['scores']['last_loss'],
@@ -36,3 +37,18 @@ def update_store(index, modeldata, store_path=STORE_PATH):
     
     with open(store_path, 'w') as f:
         json.dump(store, f, indent=4)
+
+def get_store(store_path=STORE_PATH):
+    with open(store_path, 'r') as f:
+        store = json.load(f)
+    return store
+
+def get_modeldata(index, store_path=STORE_PATH):
+    with open(store_path, 'r') as f:
+        store = json.load(f)
+    return store[index]
+
+def get_model_like(index_regex, store_path=STORE_PATH):
+    with open(store_path, 'r') as f:
+        store = json.load(f)
+    return {index: store[index] for index in store if index_regex in index}

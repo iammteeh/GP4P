@@ -8,7 +8,7 @@ from application.gpytorch_pipeline import fit_gpytorch_mll
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
 from adapters.model_store import init_store, update_store
 from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, Y, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, RESULTS_DIR
-from domain.metrics import get_metrics
+from domain.metrics import get_metrics, get_BIC
 import datetime
 from time import time
 import warnings
@@ -114,6 +114,9 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                                 mean = posterior.mixture_mean
                         metrics = get_metrics(posterior, y_test, mean, type="GP")
                         print(f"metrics: {metrics}")
+                        log_likelihood = model.likelihood.log_marginal(y_test, model(X_test))
+                        log_likelihood = log_likelihood.sum().detach().numpy()
+                        BIC = get_BIC(log_likelihood, y_test.shape[0], model.num_outputs)
                         # Save model
                         filename = f"{SWS}_{Y}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_{inference_type}_{kernel_type}_{kernel_structure}_{training_size}_{timestamp}"
                         torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
@@ -131,6 +134,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S")):
                             },
                             "scores": {
                                 "RMSE": metrics["RMSE"].tolist(),
+                                "BIC": BIC,
                                 "MAPE": metrics["MAPE"].tolist(),
                                 "ESS": metrics["explained_variance"].tolist(),
                                 "last_loss": loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
