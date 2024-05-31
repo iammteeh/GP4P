@@ -21,14 +21,16 @@ def score_ll(log_likelihood, x):
     # compute the partial derivative of the log likelihood with respect to the hyperparameters
     return np.sum(np.log(np.mean(np.exp(log_likelihood), axis=0))) - np.sum(np.var(log_likelihood, axis=0))
 
-def BIC(sigma_squared, n, p):
+def get_BIC(log_lik, n, p):
     """
     Bayesian Information Criterion
     sigma_squared: mean squared error or variance
     n: number of observations
     p: number of parameters
     """
-    return np.log(sigma_squared) + np.log(n) * p
+    if log_lik.shape == (p, n):
+        log_lik = np.sum(log_lik)
+    return np.log(n) * p - 2 * log_lik
 
 def AIC(sigma_squared, n, p):
     return np.log(sigma_squared) + 2 * p
@@ -52,7 +54,7 @@ def get_metrics(pred_dist, y_true, y_pred, type="regression"):
             "mape": sklearn.metrics.mean_absolute_percentage_error(y_true, y_pred),
             "r2": sklearn.metrics.r2_score(y_true, y_pred),
             "r2_adj": r2_adj(sklearn.metrics.r2_score(y_true, y_pred), len(y_true), len(y_pred)),
-            "BIC": BIC(sklearn.metrics.mean_squared_error(y_true, y_pred), len(y_true), len(y_pred)),
+            "BIC": get_BIC(sklearn.metrics.mean_squared_error(y_true, y_pred), len(y_true), len(y_pred)),
             "AIC": AIC(sklearn.metrics.mean_squared_error(y_true, y_pred), len(y_true), len(y_pred)),
             "explained_variance (ESS)": sklearn.metrics.explained_variance_score(y_true, y_pred),
         }
