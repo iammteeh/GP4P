@@ -4,7 +4,7 @@ from adapters.gpytorch.gp_model import SAASGP
 from application.init_pipeline import init_pipeline
 from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
 from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE
-from domain.metrics import get_metrics
+from domain.metrics import get_metrics, get_BIC
 import datetime
 
 
@@ -92,6 +92,10 @@ def main():
     #print(gaussian_log_likelihood(model, X_test, y_test))
     metrics = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")
     print(f"metrics: {metrics}")
+    log_likelihood = model.likelihood.log_marginal(y_test, model(X_test))
+    log_likelihood = log_likelihood.sum().detach().numpy()
+    BIC = get_BIC(log_likelihood, y_test.shape[0], model.num_outputs)
+    print(f"BIC: {BIC}")
 
     #print(waic(model, model.likelihood, X_test, y_test))
     # calculate KLD of posterior and prior
