@@ -269,8 +269,12 @@ class GP_Prior(Priors):
                 raise NotImplementedError("Only linear, polynomial, RBF, matern32, matern52, RFF and spectral_mixture kernels are supported for now")
             return wrap_scale_kernel(base_kernel)
         elif structure == "additive":
-            if type == "polynomial":
+            if type == "polynomial" or "poly2":
                 base_kernels = get_base_kernels(self.X, kernel="polynomial")
+            elif type == "poly3":
+                base_kernels = get_base_kernels(self.X, kernel="poly3")
+            elif type == "poly4":
+                base_kernels = get_base_kernels(self.X, kernel="poly4")
             elif type == "piecewise_polynomial":
                 base_kernels = get_base_kernels(self.X, kernel="piecewise_polynomial")
             elif type == "RBF":
