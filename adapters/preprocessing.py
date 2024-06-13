@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split, cross_val_score, KFold, Gr
 
 from itertools import combinations
 
-def prepare_dataset(dummy_data=False, sws=SWS):
+def prepare_dataset(dummy_data=False, sws=SWS, y_type=Y, x_type=X_type):
     if dummy_data:
         print(f"Generate polynomial data with degree {POLY_DEGREE}...")
         return generate_synthetic_polynomial_data(10000, 4, POLY_DEGREE, 1)
@@ -20,7 +20,7 @@ def prepare_dataset(dummy_data=False, sws=SWS):
     data = select_data(sws)
     if MODE != "simple":
         #folder = MODELDIR + data['sws_name']
-        return DataSet(folder=data['sws_path'], performance_attribute=Y, value_type=X_type)
+        return DataSet(folder=data['sws_path'], performance_attribute=y_type, value_type=x_type)
     else:
         return pd.read_csv(data['measurements_file_cleared'], sep=';')
     
