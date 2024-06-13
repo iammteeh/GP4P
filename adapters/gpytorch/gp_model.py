@@ -71,7 +71,7 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
             hyper_parameter_init_values["kernel.base_kernel.offset"] = torch.tensor(0.5)
         if structure != "additive":
             hyper_parameter_init_values["kernel.outputscale"] = torch.tensor(1.)
-        self.initialize(**hyper_parameter_init_values)
+        #self.initialize(**hyper_parameter_init_values)
 
     def forward(self, x):
         kernel = self.kernel(x).evaluate()
