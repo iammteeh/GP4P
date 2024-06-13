@@ -5,11 +5,10 @@ from scipy.stats import norm, multivariate_normal as mvn
 from torch.distributions import MultivariateNormal, Normal
 from copulae.core.linalg import cov2corr, corr2cov
 from copulae.core.misc import rank_data
-from domain.env import SELECTED_FEATURES
 from application.fully_bayesian_gp import get_data
 from adapters.gpytorch.gp_model import SAASGP
 from domain.feature_model.feature_modeling import inverse_map
-from adapters.gpytorch.util import decompose_matrix, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
+from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
 from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region
 from domain.metrics import get_metrics, gaussian_log_likelihood
@@ -18,6 +17,7 @@ from time import time
 
 from scipy.stats import pointbiserialr
 
+SELECTED_FEATURES = [(0,0),(1,1),(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
 #file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240111-165447" # after refactoring the preprocessing n =1000
 file_name = "SAASGP_linear_weighted_matern52_simple_ARD=False__20240329-195132" # n = 100
 #file_name = "SAASGP_linear_weighted_matern52_additive_ARD=False__20240119-155321"
@@ -83,7 +83,7 @@ j, groups = get_groups(X_test, SELECTED_FEATURES)
 print(f"groups: {groups}")
 group_rate = group_RATE(dimensional_model[0]["mean"], U, j) #TODO: How to visualize the group rate or KLD in general?
 print(f"group rate: {group_rate}")
-# use groups to calculate 2 posteriors, one with the group and one without the group, measure the distance and plot the PDFs
+#TODO: func: use groups to calculate 2 posteriors, one with the group and one without the group, measure the distance and plot the PDFs
 
 
 # inference according to BAKR https://github.com/lorinanthony/BAKR/blob/master/Tutorial/BAKR_Tutorial.R
@@ -93,18 +93,18 @@ p = len(model.X.T)
 p_explained_var = explained_var[p - 1]
 print(f"{p_explained_var}.2f of the variance is explained by {p} components (the base features)")
 q = np.where(explained_var >= CONFIDENCE)[0][0] + 1 # number of principal components to explain confidential proportion of variance
-qq = next(x[0] for x in enumerate(explained_var) if x[1] > CONFIDENCE) + 1
-qqq = next(i + 1 for i, var in enumerate(explained_var) if var >= CONFIDENCE)
+#qq = next(x[0] for x in enumerate(explained_var) if x[1] > CONFIDENCE) + 1
+#qqq = next(i + 1 for i, var in enumerate(explained_var) if var >= CONFIDENCE)
 Lambda = np.diag(np.sort(lam)[::-1])[:q] # diagonal matrix with first q eigenvalues 
 full_latent_space = U @ lam @ V.T # full latent space
 print(f"full latent space: {full_latent_space}")
-print(f"full latent space shape: {full_latent_space.shape}")
+print(f"full latent space shape: {full_latent_space.shape}") # is p x p
 U = U[:, :q] # first q columns
-B = inverse_map(model.X.T, U)
+B = inverse_map(model.X.T, U) # inverse map of the latent space with p x q
 Laplace_approximation = B @ B.T
+# project the latent space from a fixed column to all other columns with granularity q
 thetas = get_thetas(dimensional_model[0]["covariance"], q)
 betas = get_beta(B, thetas)
-#alphas = get_alphas(dimensional_model[0]["covariance"], q)
 beta_j, lambda_j = map_inverse_to_sample_feature(betas, B, thetas)
 
 # instead of eigendecomposition of the covariance use low rank pivoted cholesky decomposition

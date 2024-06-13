@@ -9,7 +9,8 @@ from time import time
 
 def decompose_matrix(X):
     # if rank(X)) < n_features, then X = U * S * V.T
-    X = torch.tensor(X)
+    if not isinstance(X, torch.Tensor):
+        X = torch.tensor(X)
     rank_X = torch.linalg.matrix_rank(X)
     U, S, V = torch.linalg.svd(X) # or torch.linalg.svd_lowrank(X) 
     if rank_X < X.shape[1]:
@@ -19,7 +20,7 @@ def decompose_matrix(X):
         print(f"X is full rank, but not square. Rank(X) = {rank_X}")
         return U, S, V
     else:
-        print(f"X is full rank and square. Rank(X) = {rank_X}")
+        print(f"{X.__class__} is full rank and square. Rank(X) = {rank_X}")
         return U, S, V
     
 def cross_decompose_matrices(X, Y):
@@ -68,9 +69,6 @@ def decompose_covariance(cov):
     return L
 
 def map_inverse_to_sample_feature(lam, B, theta):
-    """
-    GPT prompt: for given lambda and theta, find the corresponding beta
-    """
     # compute beta
     beta = B @ theta.T
     # compute lambda
@@ -116,7 +114,7 @@ def get_groups(X, feature_group):
     groups = np.array([x for x in set(map(tuple, X)) & set(map(tuple, minus_j))])
     # Get indices of intersection in X and flatten them
     idx = np.array([np.where((X == group).all(axis=1))[0][0] for group in groups])
-    print(f"minus_j intersects in X at: {idx}")
+    print(f"minus_j intersects in X at row: {idx}")
     return idx, groups
 
 def get_posterior_variations(model, X_test, feature_group):
