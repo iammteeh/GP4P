@@ -123,7 +123,7 @@ class SaasPyroModel(SaasPyroModel):
             )
         elif self.kernel_type == "polynomial" or self.kernel_type == "poly2" or self.kernel_type == "poly3" or self.kernel_type == "poly4":
             # workaround for polynomial kernel
-            if self.kernel_type == "poly2":
+            if self.kernel_type == "poly2" or self.kernel_type == "polynomial":
                 POLY_DEGREE = 2
             elif self.kernel_type == "poly3":
                 POLY_DEGREE = 3
@@ -174,7 +174,7 @@ class SaasPyroModel(SaasPyroModel):
         #else:
         #    raise NotImplementedError(f"Mean has to be constant.")
         mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
-        covar_module = self.load_covar_module(kernel_type=KERNEL_TYPE, ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
+        covar_module = self.load_covar_module(ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
         if self.train_Yvar is not None:
             likelihood = FixedNoiseGaussianLikelihood(
                 # Reshape to shape `num_mcmc_samples x N`
