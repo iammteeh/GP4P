@@ -89,8 +89,8 @@ def get_spectral_mixture_kernel(X, ARD=True):
 
 
 # Base Kernels
-def get_base_kernels(X, kernel="linear", ARD=False):
-    if kernel == "polynomial" or "poly2":
+def get_base_kernels(X, kernel="linear", ARD=False): # ARD must be False to work with AdditiveStructureKernel
+    if kernel == "polynomial" or kernel == "poly2":
         base_kernels = [get_polynomial_d2_kernel(X, ARD=ARD) for item in range(X.shape[1])]
     elif kernel == "poly3":
         base_kernels = [get_polynomial_d3_kernel(X, ARD=ARD) for item in range(X.shape[1])]
