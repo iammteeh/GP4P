@@ -109,7 +109,7 @@ def get_thetas(K, q):
 def get_groups(X, feature_group):
     X = np.array(X)
     j, minus_j = get_opposites_and_interactions(X, feature_group)
-    print(f"interactions: {minus_j}")
+    print(f"interactions:\n {minus_j}")
     # get intersection
     groups = np.array([x for x in set(map(tuple, X)) & set(map(tuple, minus_j))])
     # Get indices of intersection in X and flatten them

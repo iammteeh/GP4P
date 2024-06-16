@@ -187,8 +187,14 @@ for tuple in dim_pairs:
     plot_combined_pdf(dimensional_submodel)
 plot_combined_pdf(dimensional_model)
 
-# plot and measure interaction
-SELECTED_FEATURES = [(1,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
+# measure and plot interactions
+SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
+# compute group RATE according to Crawford et al. 2019
+# j is the feature group that occurs in the rows of the data set
+j, groups = get_groups(X_test, SELECTED_FEATURES)
+print(f"groups:\n {groups}")
+group_rate = group_RATE(mean_vector, U, j) #TODO: How to visualize the group rate or KLD in general?
+print(f"group rate: {group_rate}")
 opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
 measure_subset(model, ds, SELECTED_FEATURES)
 dimensional_submodel = {}
@@ -204,12 +210,6 @@ dimensional_submodel["1"]["feature_name"] = "with subset selection"
 # compare the two PDFs
 plot_interaction_pdfs(dimensional_submodel, SELECTED_FEATURES)
 
-# compute group RATE according to Crawford et al. 2019
-# j is the feature group that occurs in the rows of the validation set
-j, groups = get_groups(X_test, SELECTED_FEATURES)
-print(f"groups:\n {groups}")
-group_rate = group_RATE(mean_vector, U, j) #TODO: How to visualize the group rate or KLD in general?
-print(f"group rate: {group_rate}")
 #subset_that_lowers_y = [(1,0), (3,1)]
 #subset_that_increases_y = [(0,0),(1,1), (3,0), (5,1), (10,0)]
 #plot_interaction_pdfs(dimensional_submodel, subset_that_increases_y)

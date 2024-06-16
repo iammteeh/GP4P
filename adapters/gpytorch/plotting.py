@@ -84,7 +84,7 @@ def plot_combined_pdf(features):
         plt.plot(x, pdf, label=f"{param['feature_name']} (scaled by std)")
 
     plt.title('Compare feature variances')
-    plt.xlabel('y')
+    plt.xlabel('µ')
     plt.ylabel('density')
     plt.legend()
     plt.grid(True)
@@ -105,7 +105,7 @@ def plot_interaction_pdfs(param_features, selected_features):
         plt.plot(x, pdf, label=f"{i}:{param['feature_name']} (scaled by std)")
 
     plt.title('Compare feature interaction of {}'.format(selected_features))
-    plt.xlabel('y')
+    plt.xlabel('µ')
     plt.ylabel('density')
     plt.legend()
     plt.grid(True)
