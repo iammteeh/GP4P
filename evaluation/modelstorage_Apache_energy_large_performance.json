@@ -1,0 +1,3602 @@
+{
+    "Apache_energy_large_performance_exact_poly2_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.9373204708099365
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 759.8910262720706,
+            "MAPE": 0.023455399597328865,
+            "ESS": 0.9334356879179876,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 617.6221301555634
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.81463885307312
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 759.6103894386283,
+            "MAPE": 0.023551093974225962,
+            "ESS": 0.9333928887538633,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 634.7340989112854
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.856342792510986
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.8074077912232,
+            "MAPE": 0.023781195200587087,
+            "ESS": 0.9334231727409148,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 654.3876256942749
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.882756948471069
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 762.7904883522058,
+            "MAPE": 0.02365171547567773,
+            "ESS": 0.9330247928882291,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 239.2754955291748
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.022943735122681
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 761.3877441145316,
+            "MAPE": 0.024181400428383543,
+            "ESS": 0.9332334487709484,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 192.84186267852783
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.901834964752197
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 761.5538012300377,
+            "MAPE": 0.02374340643205851,
+            "ESS": 0.9331929495868341,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 605.2048752307892
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.768229007720947
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 761.123446011855,
+            "MAPE": 0.023982495555861596,
+            "ESS": 0.9335528834583628,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 716.8226525783539
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.829629898071289
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.3482964423091,
+            "MAPE": 0.024130144025180357,
+            "ESS": 0.9335204212548975,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 675.0392847061157
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.79862117767334
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_simple_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_simple_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 759.9357360962906,
+            "MAPE": 0.023126307056673977,
+            "ESS": 0.9333348821779521,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 700.4156091213226
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.950999021530151
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.5610202879885,
+            "MAPE": 0.024083996601564853,
+            "ESS": 0.933546074960358,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 990.8067672252655
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.926116228103638
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.1623482103147,
+            "MAPE": 0.02368143180084256,
+            "ESS": 0.9333528076035656,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 576.9368734359741
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.016567707061768
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.5292504967437,
+            "MAPE": 0.0237233685346311,
+            "ESS": 0.9333988863238296,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 257.95746636390686
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.182663679122925
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 759.8483091766294,
+            "MAPE": 0.023156414515153503,
+            "ESS": 0.933426282755967,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 731.4557580947876
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.294406414031982
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 761.2710084771501,
+            "MAPE": 0.023823059167380093,
+            "ESS": 0.9331515442790681,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 634.0202980041504
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.064163684844971
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 761.8810142736064,
+            "MAPE": 0.024069789463557173,
+            "ESS": 0.9332444466590276,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 180.69252181053162
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.67274808883667
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.4612737806216,
+            "MAPE": 0.023790858797770452,
+            "ESS": 0.9334667450087345,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 642.4829409122467
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.926150798797607
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.2519618737593,
+            "MAPE": 0.023531689812425337,
+            "ESS": 0.9332034895786729,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 617.07333111763
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 735.5432739257812,
+            "MAPE": 0.039556749165058136,
+            "ESS": 0.9361793398857117,
+            "last_loss": 11922.6484375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.9760942459106445
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_additive_20_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_additive_20_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 760.0675530388049,
+            "MAPE": 0.023645266993020348,
+            "ESS": 0.933685813722831,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 256.00707387924194
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 6.509292125701904
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 355.41228010300017,
+            "MAPE": 0.019354674276439433,
+            "ESS": 0.9835106827124505,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 467.28827810287476
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.814484596252441
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 338.30155749533884,
+            "MAPE": 0.018623209000010743,
+            "ESS": 0.9850601888946507,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 953.5092828273773
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.632654666900635
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 355.6940382471298,
+            "MAPE": 0.019443178393843536,
+            "ESS": 0.9834846186080228,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 617.7485730648041
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.782572269439697
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 354.643656834673,
+            "MAPE": 0.01936017041395307,
+            "ESS": 0.9835827643714813,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1047.7441945075989
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.688494920730591
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 353.88611515046506,
+            "MAPE": 0.0193041114647322,
+            "ESS": 0.983652297730769,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 602.588122844696
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 5.454983234405518
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 354.60400843015196,
+            "MAPE": 0.01940626188407479,
+            "ESS": 0.9835858955755872,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 541.9657790660858
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.674765110015869
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 351.67179976391486,
+            "MAPE": 0.019176449887132085,
+            "ESS": 0.9838560996636527,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 490.23924231529236
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.447163343429565
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 353.2958045569443,
+            "MAPE": 0.019302503226269606,
+            "ESS": 0.9837065839440532,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 507.37060713768005
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.8501832485198975
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_simple_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_simple_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 353.98142058770856,
+            "MAPE": 0.01929411909166188,
+            "ESS": 0.9836432626556604,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 131.69107151031494
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.4590208530426025
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 357.5758777830868,
+            "MAPE": 0.01951430968136545,
+            "ESS": 0.983309300531801,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 814.2913792133331
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.428467512130737
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 356.45518545218727,
+            "MAPE": 0.019469851211319462,
+            "ESS": 0.9834152949506452,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 549.5462498664856
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.461740970611572
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 352.81326639695493,
+            "MAPE": 0.019265186697213277,
+            "ESS": 0.9837510186964082,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 428.128799200058
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.53680682182312
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 353.6183147247635,
+            "MAPE": 0.01932377343142849,
+            "ESS": 0.9836769253835973,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 545.3027637004852
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.402611255645752
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 356.29497679758913,
+            "MAPE": 0.01949229651028331,
+            "ESS": 0.9834290961535659,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 557.2157466411591
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.521989583969116
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 355.4084993400905,
+            "MAPE": 0.01937224518370631,
+            "ESS": 0.9835114063650809,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 477.6051375865936
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.3986382484436035
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 355.9462976111483,
+            "MAPE": 0.019442201781653297,
+            "ESS": 0.9834611035360897,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 523.422604560852
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.579447984695435
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 355.5269938186186,
+            "MAPE": 0.019386223695944223,
+            "ESS": 0.9835006512554162,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 144.20620608329773
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 392.4571533203125,
+            "MAPE": 0.02181241661310196,
+            "ESS": 0.9820349812507629,
+            "last_loss": 10825.7490234375,
+            "loss_curve": "loss_curve",
+            "training_time": 4.4281299114227295
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_additive_50_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_additive_50_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 352.80549684448255,
+            "MAPE": 0.01928212265801991,
+            "ESS": 0.9837518094485193,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 481.89783358573914
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.14851450920105
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.1804955432319,
+            "MAPE": 0.013567491387968342,
+            "ESS": 0.9917829429080388,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 523.7662396430969
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.181507110595703
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 253.86699706144532,
+            "MAPE": 0.013550266570407154,
+            "ESS": 0.9917890334009395,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 345.79501938819885
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.1276655197143555
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.2333249128476,
+            "MAPE": 0.013565607222587204,
+            "ESS": 0.9917741375159456,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 585.1613836288452
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.088781118392944
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.37935593851654,
+            "MAPE": 0.013605327983361877,
+            "ESS": 0.9917659003903808,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 443.798552274704
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.100712060928345
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.25935910973584,
+            "MAPE": 0.013554207846008035,
+            "ESS": 0.9917806193841568,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 427.6617958545685
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.293084621429443
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 253.5271673322505,
+            "MAPE": 0.013529757056823053,
+            "ESS": 0.9918221676998737,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 514.3480472564697
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.186827898025513
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.18013932865597,
+            "MAPE": 0.01360044547988909,
+            "ESS": 0.9917777410920366,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 462.24764704704285
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.242316484451294
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 255.26974351465168,
+            "MAPE": 0.013607057345310996,
+            "ESS": 0.9917103415211593,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 522.7636020183563
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.1341259479522705
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_simple_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_simple_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 253.99182953600396,
+            "MAPE": 0.013539321680953594,
+            "ESS": 0.9917882102950011,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 433.4188144207001
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.197266578674316
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.7681213130944,
+            "MAPE": 0.013602705837006951,
+            "ESS": 0.9917397062565769,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1312.2337021827698
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.138868570327759
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.69664400352357,
+            "MAPE": 0.01357682817991027,
+            "ESS": 0.9917525063229503,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 433.227694272995
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.192647933959961
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.49853289327484,
+            "MAPE": 0.013579062226559635,
+            "ESS": 0.9917589899285562,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 550.808375120163
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.136425256729126
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 253.35627012861863,
+            "MAPE": 0.013550083528252982,
+            "ESS": 0.9918202318912347,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 487.1936228275299
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.231935501098633
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.3499309155984,
+            "MAPE": 0.013582861073990829,
+            "ESS": 0.9917694550391705,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 454.2581105232239
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.128385066986084
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 254.47076627766754,
+            "MAPE": 0.01356405496649455,
+            "ESS": 0.9917591709897567,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 434.9086027145386
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.183062553405762
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 253.36040427987814,
+            "MAPE": 0.013552427873275152,
+            "ESS": 0.9918286633063349,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 819.0772225856781
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.1021528244018555
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 255.526309016307,
+            "MAPE": 0.01360851658388075,
+            "ESS": 0.9917002838784613,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 196.40108704566956
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 350.920166015625,
+            "MAPE": 0.018314823508262634,
+            "ESS": 0.9842102527618408,
+            "last_loss": 8081.1845703125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.213974237442017
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_additive_100_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_additive_100_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 255.28995142707376,
+            "MAPE": 0.013647167015765252,
+            "ESS": 0.9917026634368304,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 525.1473693847656
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.037832260131836
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.06118518683323,
+            "MAPE": 0.012022963332837994,
+            "ESS": 0.9922556059886111,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 784.4618003368378
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.172924518585205
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.68686515646107,
+            "MAPE": 0.011997440008233235,
+            "ESS": 0.9922804498177417,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 928.1615543365479
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.131959199905396
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.57540106462972,
+            "MAPE": 0.011982493496089293,
+            "ESS": 0.9922876240604922,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 751.6344468593597
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 7.96496057510376
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.9936079653552,
+            "MAPE": 0.012007336263258603,
+            "ESS": 0.9922602875617241,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 764.3592855930328
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 7.934766530990601
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.0687378582159,
+            "MAPE": 0.012019960312721656,
+            "ESS": 0.9922550390380487,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 882.58069896698
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.161051988601685
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.59878222949797,
+            "MAPE": 0.012001180167011778,
+            "ESS": 0.9922859735122415,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 311.2979657649994
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.18258261680603
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.12550424832241,
+            "MAPE": 0.012031889611127462,
+            "ESS": 0.9922513426593272,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 931.7656052112579
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.037174701690674
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.93859126710325,
+            "MAPE": 0.012006778991186958,
+            "ESS": 0.9922637465204096,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 472.5587236881256
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.022452354431152
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_simple_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_simple_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.90844516568066,
+            "MAPE": 0.012003034876861877,
+            "ESS": 0.9922657262189349,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 411.7173104286194
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.150398969650269
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.6630303845519,
+            "MAPE": 0.011980281137941121,
+            "ESS": 0.992281849579646,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 855.2421431541443
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 7.986497163772583
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.176402113546,
+            "MAPE": 0.012004427950043736,
+            "ESS": 0.9922482091707903,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 763.890887260437
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.181296586990356
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.97710178460764,
+            "MAPE": 0.012015725303319154,
+            "ESS": 0.9922613357395358,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 820.3673453330994
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.044548273086548
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.07055568723285,
+            "MAPE": 0.012000740665178927,
+            "ESS": 0.9922550592184742,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 895.3107438087463
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 7.99809718132019
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.10975035042054,
+            "MAPE": 0.012013304295544376,
+            "ESS": 0.9922526292525771,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 830.4372391700745
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.00085163116455
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.84175900106476,
+            "MAPE": 0.012000966505391012,
+            "ESS": 0.9922701495791586,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 711.3049547672272
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.078187704086304
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.01043638396303,
+            "MAPE": 0.012021767221388693,
+            "ESS": 0.9922589046456995,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 765.1049699783325
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.057274341583252
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 234.9614722407639,
+            "MAPE": 0.012007133072464878,
+            "ESS": 0.9922622313511685,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 935.6309583187103
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 216.65650939941406,
+            "MAPE": 0.010657213628292084,
+            "ESS": 0.993443489074707,
+            "last_loss": 5337.6201171875,
+            "loss_curve": "loss_curve",
+            "training_time": 8.143692970275879
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_additive_250_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_additive_250_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 235.23828014616387,
+            "MAPE": 0.012028268905139363,
+            "ESS": 0.9922439003886317,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 779.7644894123077
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.509825468063354
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.78010305840556,
+            "MAPE": 0.011155350265431338,
+            "ESS": 0.9935452978746567,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 486.92033648490906
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.310408115386963
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.63055270306344,
+            "MAPE": 0.01114065719937992,
+            "ESS": 0.9935559808405128,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 893.9017868041992
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.289258241653442
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.7742610910235,
+            "MAPE": 0.011153361074820267,
+            "ESS": 0.9935457848382946,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 901.8172583580017
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.59310245513916
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.5560295558621,
+            "MAPE": 0.011140899218289138,
+            "ESS": 0.9935589787239474,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 4011.6546170711517
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.463036060333252
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.61571584953955,
+            "MAPE": 0.011143861471683865,
+            "ESS": 0.9935551802179946,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 765.8212308883667
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.371988296508789
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.60670394547577,
+            "MAPE": 0.01114522475804325,
+            "ESS": 0.9935566490250513,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 992.9054617881775
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.442878007888794
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.62554733032835,
+            "MAPE": 0.011143505327488918,
+            "ESS": 0.9935558885731605,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1054.9406616687775
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.347899198532104
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.67848736838553,
+            "MAPE": 0.011150731965098979,
+            "ESS": 0.9935528037687305,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 2210.11927986145
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.192263841629028
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_simple_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_simple_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.75525840822363,
+            "MAPE": 0.011154180029443798,
+            "ESS": 0.9935476023210189,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 813.3738930225372
+        }
+    },
+    "Apache_energy_large_performance_exact_poly2_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly2_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.265242576599121
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly2_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly2_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.59241970337592,
+            "MAPE": 0.011140801279612408,
+            "ESS": 0.9935575676934716,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 956.0170676708221
+        }
+    },
+    "Apache_energy_large_performance_exact_poly3_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly3_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.24031400680542
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly3_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly3_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.61627554998338,
+            "MAPE": 0.011147201378135267,
+            "ESS": 0.9935553143114735,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 706.1865003108978
+        }
+    },
+    "Apache_energy_large_performance_exact_poly4_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_poly4_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.172971248626709
+        }
+    },
+    "Apache_energy_large_performance_MCMC_poly4_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_poly4_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.77629141417663,
+            "MAPE": 0.011154739244772284,
+            "ESS": 0.9935455103506844,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 900.9584910869598
+        }
+    },
+    "Apache_energy_large_performance_exact_piecewise_polynomial_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_piecewise_polynomial_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.392352819442749
+        }
+    },
+    "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_piecewise_polynomial_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.7341881324751,
+            "MAPE": 0.011154585710966792,
+            "ESS": 0.9935485903065785,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 919.4915714263916
+        }
+    },
+    "Apache_energy_large_performance_exact_RBF_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RBF_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.508792400360107
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RBF_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RBF_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.74040450752707,
+            "MAPE": 0.0111530316406322,
+            "ESS": 0.9935486987270687,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 936.856856584549
+        }
+    },
+    "Apache_energy_large_performance_exact_matern32_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern32_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.201855659484863
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern32_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern32_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.56845358329906,
+            "MAPE": 0.011141421586917522,
+            "ESS": 0.9935592386474575,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 3716.1932435035706
+        }
+    },
+    "Apache_energy_large_performance_exact_matern52_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_matern52_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.277534246444702
+        }
+    },
+    "Apache_energy_large_performance_MCMC_matern52_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_matern52_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.67539154990874,
+            "MAPE": 0.011145859751280098,
+            "ESS": 0.9935526069184558,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 867.0537323951721
+        }
+    },
+    "Apache_energy_large_performance_exact_RFF_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_RFF_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.357757329940796
+        }
+    },
+    "Apache_energy_large_performance_MCMC_RFF_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_RFF_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.71450725802873,
+            "MAPE": 0.011153110034192544,
+            "ESS": 0.9935503763479527,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 855.7876510620117
+        }
+    },
+    "Apache_energy_large_performance_exact_spectral_mixture_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_exact_spectral_mixture_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 193.13601684570312,
+            "MAPE": 0.00960756465792656,
+            "ESS": 0.9949088096618652,
+            "last_loss": 3883.16552734375,
+            "loss_curve": "loss_curve",
+            "training_time": 12.387001037597656
+        }
+    },
+    "Apache_energy_large_performance_MCMC_spectral_mixture_additive_500_20240529-122609": {
+        "filename": "Apache_energy_large_performance_MCMC_spectral_mixture_additive_500_20240529-122609.pth",
+        "model": {
+            "dataset": "Apache_energy_large",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-122609"
+        },
+        "scores": {
+            "RMSE": 218.7007469912691,
+            "MAPE": 0.011150288433182092,
+            "ESS": 0.9935516002748205,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1004.4104740619659
+        }
+    }
+}

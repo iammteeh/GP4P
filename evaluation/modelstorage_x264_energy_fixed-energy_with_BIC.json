@@ -1,0 +1,2291 @@
+{
+    "x264_energy_fixed-energy_exact_poly2_simple_20_20240531-114445": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_simple_20_20240531-114445.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-114445"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 4.70957088470459
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 4.228912353515625
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.2191099902694445,
+            "BIC": 75.89873129279401,
+            "MAPE": 0.03327116419081999,
+            "ESS": 0.765705959240826,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 29.615694999694824
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8547468185424805
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22082114879084708,
+            "BIC": 78.50057792048592,
+            "MAPE": 0.033465166488420114,
+            "ESS": 0.7534805068444704,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.310989141464233
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.823786973953247
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22144678231897533,
+            "BIC": 86.65372584381765,
+            "MAPE": 0.03374958361430663,
+            "ESS": 0.753002775053307,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.858246088027954
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8386266231536865
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.23097149498844452,
+            "BIC": 197.84507420943436,
+            "MAPE": 0.03535649290651944,
+            "ESS": 0.7413774490377045,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 30.52194905281067
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8395557403564453
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.23403409275821532,
+            "BIC": 114.71713706425749,
+            "MAPE": 0.036089835103734445,
+            "ESS": 0.7258383326536482,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.04480290412903
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8239946365356445
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22461653041714333,
+            "BIC": 27.116664240051488,
+            "MAPE": 0.03353930819054349,
+            "ESS": 0.7429509663376166,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.75994634628296
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.814068555831909
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22866576151297097,
+            "BIC": 61.31293482324989,
+            "MAPE": 0.03474728783872536,
+            "ESS": 0.7341418212731454,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 25.35364317893982
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 4.069702625274658
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22695262791273466,
+            "BIC": 98.03498683454528,
+            "MAPE": 0.034132634925260086,
+            "ESS": 0.7487440603718729,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.48018717765808
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.858649492263794
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.23102221158116729,
+            "BIC": 104.37046338404264,
+            "MAPE": 0.035282663669759504,
+            "ESS": 0.7281199373100529,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.873383045196533
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8572964668273926
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.230310642816371,
+            "BIC": 108.3919006375889,
+            "MAPE": 0.035037353013302144,
+            "ESS": 0.7415219227672167,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 25.178170442581177
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8277652263641357
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22899268131096537,
+            "BIC": 69.15821923685691,
+            "MAPE": 0.03553014986731037,
+            "ESS": 0.7381554451734822,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.06019926071167
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8222925662994385
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.23673907455342807,
+            "BIC": 100.95901077745185,
+            "MAPE": 0.03598132019048696,
+            "ESS": 0.7120626748233603,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 32.57459545135498
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8337268829345703
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.23605139238883782,
+            "BIC": 111.21600310345241,
+            "MAPE": 0.03626447958937468,
+            "ESS": 0.7195967083752424,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 29.763202905654907
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8957650661468506
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22651638156892528,
+            "BIC": 80.3940989051791,
+            "MAPE": 0.034235721757253576,
+            "ESS": 0.7324129267872947,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 29.8097083568573
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.924776792526245
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22091372944205395,
+            "BIC": 114.01854398701126,
+            "MAPE": 0.03283079121400093,
+            "ESS": 0.7512841599871782,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.85518765449524
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8169918060302734
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.22252249193626908,
+            "BIC": 49.91259265357897,
+            "MAPE": 0.03400955611885411,
+            "ESS": 0.753358069678217,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.338495016098022
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 4.022489786148071
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.21769999221325909,
+            "BIC": 76.40741331550964,
+            "MAPE": 0.033124595540695315,
+            "ESS": 0.75372493334731,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.750996589660645
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.19307337701320648,
+            "BIC": 15.029292072748326,
+            "MAPE": 0.029482651501893997,
+            "ESS": 0.8222960233688354,
+            "last_loss": -1.9869890213012695,
+            "loss_curve": "loss_curve",
+            "training_time": 3.806326150894165
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_20_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.2245920747177391,
+            "BIC": 93.84447316372659,
+            "MAPE": 0.034305837678824655,
+            "ESS": 0.7428852139422667,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 25.98980212211609
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 4.861324787139893
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.16903588426569574,
+            "BIC": -500.52639610070577,
+            "MAPE": 0.023999123790784026,
+            "ESS": 0.8428706056425255,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.71194243431091
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.649809837341309
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1722367133469953,
+            "BIC": -500.22384638445203,
+            "MAPE": 0.02429511817478791,
+            "ESS": 0.8396105930427373,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.59289264678955
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.75690770149231
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17752384147847894,
+            "BIC": -402.3728592019388,
+            "MAPE": 0.024973790914262807,
+            "ESS": 0.8287939569796292,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.03305768966675
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.691304922103882
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.16998874609615075,
+            "BIC": -501.67562426228795,
+            "MAPE": 0.02428933145438068,
+            "ESS": 0.8413748424464925,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.26227116584778
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.506311416625977
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1769586403766854,
+            "BIC": -355.4978941043062,
+            "MAPE": 0.024932191923897604,
+            "ESS": 0.8286894696669352,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 40.243791580200195
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.52702522277832
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17341605441237357,
+            "BIC": -443.76443469300875,
+            "MAPE": 0.02451481366292114,
+            "ESS": 0.8361484555324151,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 41.88751268386841
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.916899681091309
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1740703258152219,
+            "BIC": -470.4116727374765,
+            "MAPE": 0.02464923763110219,
+            "ESS": 0.8340528866001782,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 40.16145706176758
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 6.065094947814941
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1716087729627924,
+            "BIC": -475.04062254483335,
+            "MAPE": 0.024486778009952935,
+            "ESS": 0.8369346607106994,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.87327861785889
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.860782623291016
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17525370191961331,
+            "BIC": -439.8929249150733,
+            "MAPE": 0.024800620427353745,
+            "ESS": 0.8307073873108664,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 40.21140670776367
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.855885744094849
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17631920187016062,
+            "BIC": -430.28373332893784,
+            "MAPE": 0.024936200530917343,
+            "ESS": 0.8282949741669544,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 41.153993129730225
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.959068059921265
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17482958902819584,
+            "BIC": -462.6617267552073,
+            "MAPE": 0.024529039657888822,
+            "ESS": 0.8323759335242351,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.59678530693054
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.859123229980469
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17389292752024646,
+            "BIC": -441.505698429567,
+            "MAPE": 0.024658638023842893,
+            "ESS": 0.8345998848665185,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.76344680786133
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.886181592941284
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17188018408824973,
+            "BIC": -459.05807661144627,
+            "MAPE": 0.024247970781790366,
+            "ESS": 0.8356818101333315,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.520183086395264
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.550133943557739
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17699948264945908,
+            "BIC": -362.8683031145466,
+            "MAPE": 0.024839629234228125,
+            "ESS": 0.8279180303539968,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.86964750289917
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 6.077344655990601
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17768468247427763,
+            "BIC": -378.0485844106995,
+            "MAPE": 0.025018177509246967,
+            "ESS": 0.8260841857440636,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.66804122924805
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.727454423904419
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1789624107594451,
+            "BIC": -409.2582570533813,
+            "MAPE": 0.025148230452656982,
+            "ESS": 0.8246419122517288,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 33.50835371017456
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.930600643157959
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1782949754238546,
+            "BIC": -412.80686569627943,
+            "MAPE": 0.02507298540274822,
+            "ESS": 0.8258016898629917,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.39857244491577
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1735965460538864,
+            "BIC": -21.01733643060701,
+            "MAPE": 0.024599025025963783,
+            "ESS": 0.8314529657363892,
+            "last_loss": -1.007069706916809,
+            "loss_curve": "loss_curve",
+            "training_time": 5.865670680999756
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_50_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.17444972871603937,
+            "BIC": -435.6108257005394,
+            "MAPE": 0.02467117916361737,
+            "ESS": 0.8317419981546513,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.70573425292969
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.640220880508423
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13851607642141933,
+            "BIC": -1670.0324573694961,
+            "MAPE": 0.019579818974744197,
+            "ESS": 0.8972850465763766,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.552961111068726
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.662695407867432
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13798867393748154,
+            "BIC": -1706.2688454869024,
+            "MAPE": 0.019548965465635598,
+            "ESS": 0.8980924387071602,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.92044377326965
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.58448600769043
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1372928980507352,
+            "BIC": -1707.031471783632,
+            "MAPE": 0.019285775353680347,
+            "ESS": 0.8991587947634594,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.48873496055603
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.3096373081207275
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13862540758987982,
+            "BIC": -1603.0792700746126,
+            "MAPE": 0.01957088862492568,
+            "ESS": 0.8971487259957553,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.56264114379883
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.7385053634643555
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13843373015582877,
+            "BIC": -1625.953249636708,
+            "MAPE": 0.019636780489474943,
+            "ESS": 0.897426097800209,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.24121904373169
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.676980257034302
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13861281920752122,
+            "BIC": -1670.0924280192614,
+            "MAPE": 0.019641604376899543,
+            "ESS": 0.8971878952801822,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.903796911239624
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.133238315582275
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13742891196265622,
+            "BIC": -1704.1592612194677,
+            "MAPE": 0.019347625723746407,
+            "ESS": 0.8988970023406091,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 52.026989698410034
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.103362560272217
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13873220362551672,
+            "BIC": -1683.6145159599005,
+            "MAPE": 0.019551882521568892,
+            "ESS": 0.8970211464589002,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.449631452560425
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.690598487854004
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13836739600540582,
+            "BIC": -1665.2045280805266,
+            "MAPE": 0.019496025080909113,
+            "ESS": 0.8975329150844653,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 47.32689023017883
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly2_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly2_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.8863677978515625
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly2_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly2_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.14000730895044258,
+            "BIC": -1628.518380785115,
+            "MAPE": 0.019870932569987797,
+            "ESS": 0.8950677191256856,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.149269580841064
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly3_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly3_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.274442195892334
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly3_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly3_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13771463641358347,
+            "BIC": -1697.6141536613807,
+            "MAPE": 0.01948823739419216,
+            "ESS": 0.8984641484635401,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.150877714157104
+        }
+    },
+    "x264_energy_fixed-energy_exact_poly4_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_poly4_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.709009885787964
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_poly4_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_poly4_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1386507426522386,
+            "BIC": -1635.1678652328644,
+            "MAPE": 0.01959981769813126,
+            "ESS": 0.8971079189063291,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.123347759246826
+        }
+    },
+    "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_piecewise_polynomial_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.446208953857422
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_piecewise_polynomial_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1380344568643427,
+            "BIC": -1679.310466669471,
+            "MAPE": 0.019404716010949175,
+            "ESS": 0.8980222012722263,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.31047964096069
+        }
+    },
+    "x264_energy_fixed-energy_exact_RBF_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RBF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.658775568008423
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RBF_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RBF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.14006547894120364,
+            "BIC": -1621.7732505264041,
+            "MAPE": 0.019924612996774047,
+            "ESS": 0.8950074676743318,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 51.67033076286316
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern32_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern32_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 8.175856828689575
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern32_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern32_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13719793521324622,
+            "BIC": -1699.5461870389786,
+            "MAPE": 0.01938808055586571,
+            "ESS": 0.899266037445882,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.28908967971802
+        }
+    },
+    "x264_energy_fixed-energy_exact_matern52_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_matern52_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 7.281601190567017
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13761688214623144,
+            "BIC": -1714.085853212567,
+            "MAPE": 0.01944922383235595,
+            "ESS": 0.8986940870758393,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.73305344581604
+        }
+    },
+    "x264_energy_fixed-energy_exact_RFF_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_RFF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 8.065217018127441
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_RFF_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_RFF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13887329134225537,
+            "BIC": -1630.9860552949033,
+            "MAPE": 0.01960774040674029,
+            "ESS": 0.8967809036835352,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.196747064590454
+        }
+    },
+    "x264_energy_fixed-energy_exact_spectral_mixture_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_exact_spectral_mixture_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.1574835479259491,
+            "BIC": -74.3675547285627,
+            "MAPE": 0.022657334804534912,
+            "ESS": 0.8694023489952087,
+            "last_loss": -0.8184145092964172,
+            "loss_curve": "loss_curve",
+            "training_time": 6.961754083633423
+        }
+    },
+    "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_100_20240531-115001": {
+        "filename": "x264_energy_fixed-energy_MCMC_spectral_mixture_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "x264_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.13881888571834558,
+            "BIC": -1675.43284688712,
+            "MAPE": 0.01967094534064035,
+            "ESS": 0.8968653776902422,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.74935483932495
+        }
+    }
+}

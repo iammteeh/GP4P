@@ -1,0 +1,3602 @@
+{
+    "synthetic_3_exact_poly2_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.330377578735352
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 2.076137322811635,
+            "MAPE": 0.10341216790786993,
+            "ESS": 0.9770934072169452,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.23549175262451
+        }
+    },
+    "synthetic_3_exact_poly3_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.879389524459839
+        }
+    },
+    "synthetic_3_MCMC_poly3_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 2.2013669743033715,
+            "MAPE": 0.10265888868774423,
+            "ESS": 0.9743626430444883,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 41.95513725280762
+        }
+    },
+    "synthetic_3_exact_poly4_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.283287763595581
+        }
+    },
+    "synthetic_3_MCMC_poly4_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9082782554320943,
+            "MAPE": 0.11075669069483551,
+            "ESS": 0.9796299863415701,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.797683238983154
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.491114854812622
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.8987446340141159,
+            "MAPE": 0.1086151191825487,
+            "ESS": 0.9797091256067929,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.852306604385376
+        }
+    },
+    "synthetic_3_exact_RBF_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.155150413513184
+        }
+    },
+    "synthetic_3_MCMC_RBF_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9526562603209336,
+            "MAPE": 0.11867640557383367,
+            "ESS": 0.9776849019920492,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.97055530548096
+        }
+    },
+    "synthetic_3_exact_matern32_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.5882813930511475
+        }
+    },
+    "synthetic_3_MCMC_matern32_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 2.0234764659737876,
+            "MAPE": 0.1109417952125151,
+            "ESS": 0.9760100883500729,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.77364206314087
+        }
+    },
+    "synthetic_3_exact_matern52_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.023556709289551
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9087425883476865,
+            "MAPE": 0.10487892479820131,
+            "ESS": 0.9805454368519317,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.41797852516174
+        }
+    },
+    "synthetic_3_exact_RFF_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.924066543579102
+        }
+    },
+    "synthetic_3_MCMC_RFF_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.76844225014502,
+            "MAPE": 0.1079928869117643,
+            "ESS": 0.9807892656610899,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.435178995132446
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_simple_20_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.105557203292847
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_simple_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_simple_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 2.037436820431545,
+            "MAPE": 0.09676891228003295,
+            "ESS": 0.9786139817294971,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.24013805389404
+        }
+    },
+    "synthetic_3_exact_poly2_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.8901495933532715
+        }
+    },
+    "synthetic_3_MCMC_poly2_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9421189396758063,
+            "MAPE": 0.10354740166355862,
+            "ESS": 0.9792115979487466,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.73669219017029
+        }
+    },
+    "synthetic_3_exact_poly3_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.962024450302124
+        }
+    },
+    "synthetic_3_MCMC_poly3_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9295390543943765,
+            "MAPE": 0.10893022766229679,
+            "ESS": 0.9790218911846444,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 40.62361979484558
+        }
+    },
+    "synthetic_3_exact_poly4_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.160848379135132
+        }
+    },
+    "synthetic_3_MCMC_poly4_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.78914616049876,
+            "MAPE": 0.09735451348094681,
+            "ESS": 0.982306330030445,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.2567241191864
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.927417755126953
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 2.0334564762971383,
+            "MAPE": 0.10566194555349054,
+            "ESS": 0.977718794240731,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.024481773376465
+        }
+    },
+    "synthetic_3_exact_RBF_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.78043007850647
+        }
+    },
+    "synthetic_3_MCMC_RBF_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9300257589521084,
+            "MAPE": 0.09274131627237783,
+            "ESS": 0.9798063781430258,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.90390634536743
+        }
+    },
+    "synthetic_3_exact_matern32_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 4.690492391586304
+        }
+    },
+    "synthetic_3_MCMC_matern32_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.9672767246965428,
+            "MAPE": 0.1113587537020998,
+            "ESS": 0.9776944164828336,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 35.33209204673767
+        }
+    },
+    "synthetic_3_exact_matern52_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.631191253662109
+        }
+    },
+    "synthetic_3_MCMC_matern52_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.8677665571256963,
+            "MAPE": 0.11134545026866298,
+            "ESS": 0.9792038839868961,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.41526174545288
+        }
+    },
+    "synthetic_3_exact_RFF_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.58374810218811
+        }
+    },
+    "synthetic_3_MCMC_RFF_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.953428752116205,
+            "MAPE": 0.10711706823408469,
+            "ESS": 0.9782760727480321,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.34747552871704
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_additive_20_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3138536214828491,
+            "MAPE": 0.05532087758183479,
+            "ESS": 0.9916929006576538,
+            "last_loss": -0.3780117928981781,
+            "loss_curve": "loss_curve",
+            "training_time": 5.458020448684692
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_additive_20_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_additive_20_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.8619040918606884,
+            "MAPE": 0.10121437665765165,
+            "ESS": 0.9804722368929658,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.793428897857666
+        }
+    },
+    "synthetic_3_exact_poly2_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.4944257736206055
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.366676861399478,
+            "MAPE": 0.24366367711945944,
+            "ESS": 0.9919493040425607,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.24302339553833
+        }
+    },
+    "synthetic_3_exact_poly3_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.5807883739471436
+        }
+    },
+    "synthetic_3_MCMC_poly3_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.4284974508535857,
+            "MAPE": 0.24257559253909602,
+            "ESS": 0.9912250862662725,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.60011625289917
+        }
+    },
+    "synthetic_3_exact_poly4_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.78281044960022
+        }
+    },
+    "synthetic_3_MCMC_poly4_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.572566785029303,
+            "MAPE": 0.24917618178266399,
+            "ESS": 0.9894788128597696,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.43506336212158
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.922384738922119
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.7287344304688292,
+            "MAPE": 0.2513849504097326,
+            "ESS": 0.9872942931396609,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.311129093170166
+        }
+    },
+    "synthetic_3_exact_RBF_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.842044353485107
+        }
+    },
+    "synthetic_3_MCMC_RBF_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.4852570730566312,
+            "MAPE": 0.24407269160842038,
+            "ESS": 0.9905681870154694,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.47890639305115
+        }
+    },
+    "synthetic_3_exact_matern32_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.630288362503052
+        }
+    },
+    "synthetic_3_MCMC_matern32_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.5859072170279913,
+            "MAPE": 0.24550476110393624,
+            "ESS": 0.9892958874951768,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.21320986747742
+        }
+    },
+    "synthetic_3_exact_matern52_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.728316307067871
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.531861181175472,
+            "MAPE": 0.2472482371727125,
+            "ESS": 0.9900052830707937,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.23456025123596
+        }
+    },
+    "synthetic_3_exact_RFF_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 6.885157346725464
+        }
+    },
+    "synthetic_3_MCMC_RFF_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.619855313035623,
+            "MAPE": 0.24633122294441978,
+            "ESS": 0.9888335274637708,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.440531492233276
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_simple_50_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 6.026356935501099
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_simple_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_simple_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.3414342829420818,
+            "MAPE": 0.24348520084363437,
+            "ESS": 0.9922014811020624,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.14682078361511
+        }
+    },
+    "synthetic_3_exact_poly2_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.546984672546387
+        }
+    },
+    "synthetic_3_MCMC_poly2_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.599349948703553,
+            "MAPE": 0.24764394074271773,
+            "ESS": 0.989121443579828,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.1233172416687
+        }
+    },
+    "synthetic_3_exact_poly3_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.710699558258057
+        }
+    },
+    "synthetic_3_MCMC_poly3_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.535980679188785,
+            "MAPE": 0.24614234559359435,
+            "ESS": 0.9899564727528309,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.55405402183533
+        }
+    },
+    "synthetic_3_exact_poly4_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.618197917938232
+        }
+    },
+    "synthetic_3_MCMC_poly4_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.521655701565135,
+            "MAPE": 0.24608217244219457,
+            "ESS": 0.9901341137055772,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 53.52032423019409
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.710997581481934
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.6988042511244117,
+            "MAPE": 0.24757933545474067,
+            "ESS": 0.9877527488765137,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.461416721343994
+        }
+    },
+    "synthetic_3_exact_RBF_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.906031131744385
+        }
+    },
+    "synthetic_3_MCMC_RBF_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.5611819922868935,
+            "MAPE": 0.24597686889158918,
+            "ESS": 0.9896507952361161,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.31024169921875
+        }
+    },
+    "synthetic_3_exact_matern32_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.887706279754639
+        }
+    },
+    "synthetic_3_MCMC_matern32_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.4912606549954148,
+            "MAPE": 0.24547051110327442,
+            "ESS": 0.9904974456742488,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.371785402297974
+        }
+    },
+    "synthetic_3_exact_matern52_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 6.039370536804199
+        }
+    },
+    "synthetic_3_MCMC_matern52_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.4770549144009937,
+            "MAPE": 0.24670912985193003,
+            "ESS": 0.9906764234645001,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 52.207772970199585
+        }
+    },
+    "synthetic_3_exact_RFF_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.69452691078186
+        }
+    },
+    "synthetic_3_MCMC_RFF_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.5211399750961643,
+            "MAPE": 0.24444662732101843,
+            "ESS": 0.9901320469192592,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.68354320526123
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_additive_50_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1068695783615112,
+            "MAPE": 0.15937310457229614,
+            "ESS": 0.9943856000900269,
+            "last_loss": 0.9239755272865295,
+            "loss_curve": "loss_curve",
+            "training_time": 5.704177141189575
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_additive_50_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_additive_50_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.4392836917345215,
+            "MAPE": 0.24564712525652957,
+            "ESS": 0.9911150339931302,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.9278404712677
+        }
+    },
+    "synthetic_3_exact_poly2_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.014048337936401
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.101404882951584,
+            "MAPE": 0.16791925922132298,
+            "ESS": 0.9931751993917265,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 55.402846336364746
+        }
+    },
+    "synthetic_3_exact_poly3_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.121991872787476
+        }
+    },
+    "synthetic_3_MCMC_poly3_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1017930407090144,
+            "MAPE": 0.16792554947534488,
+            "ESS": 0.993168695417786,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 53.0150682926178
+        }
+    },
+    "synthetic_3_exact_poly4_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.6074888706207275
+        }
+    },
+    "synthetic_3_MCMC_poly4_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1008926787077289,
+            "MAPE": 0.1674301081418309,
+            "ESS": 0.9931786103480135,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 55.724024534225464
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.226947546005249
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.099453572403807,
+            "MAPE": 0.16746273868021957,
+            "ESS": 0.9932005415927508,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 58.824453353881836
+        }
+    },
+    "synthetic_3_exact_RBF_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.8621015548706055
+        }
+    },
+    "synthetic_3_MCMC_RBF_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0976601670957944,
+            "MAPE": 0.1652116459253855,
+            "ESS": 0.9932213290325301,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 59.60635042190552
+        }
+    },
+    "synthetic_3_exact_matern32_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.846250057220459
+        }
+    },
+    "synthetic_3_MCMC_matern32_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1011264211165646,
+            "MAPE": 0.1669086088542233,
+            "ESS": 0.9931821477494539,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 59.441730260849
+        }
+    },
+    "synthetic_3_exact_matern52_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.875364780426025
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.098035930715467,
+            "MAPE": 0.16650663679714195,
+            "ESS": 0.9932199239445981,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 52.990501165390015
+        }
+    },
+    "synthetic_3_exact_RFF_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.448162317276001
+        }
+    },
+    "synthetic_3_MCMC_RFF_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1020235665259503,
+            "MAPE": 0.1686569778945177,
+            "ESS": 0.993169124407765,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 73.2810115814209
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_simple_100_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.695748567581177
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_simple_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_simple_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1017884927315893,
+            "MAPE": 0.16891313503135155,
+            "ESS": 0.9931728566173845,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 56.19238305091858
+        }
+    },
+    "synthetic_3_exact_poly2_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.6471874713897705
+        }
+    },
+    "synthetic_3_MCMC_poly2_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.09987665721267,
+            "MAPE": 0.16781297703427417,
+            "ESS": 0.9931964887611571,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 55.33628797531128
+        }
+    },
+    "synthetic_3_exact_poly3_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.899878740310669
+        }
+    },
+    "synthetic_3_MCMC_poly3_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0987050708305832,
+            "MAPE": 0.166739225564681,
+            "ESS": 0.9932100467284551,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 59.060028076171875
+        }
+    },
+    "synthetic_3_exact_poly4_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.446363925933838
+        }
+    },
+    "synthetic_3_MCMC_poly4_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1000689780550352,
+            "MAPE": 0.16842791975719065,
+            "ESS": 0.9931898143701601,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 61.09378480911255
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.121941804885864
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1014023150350465,
+            "MAPE": 0.16873902300168825,
+            "ESS": 0.9931732030236227,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 58.01684236526489
+        }
+    },
+    "synthetic_3_exact_RBF_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.487920761108398
+        }
+    },
+    "synthetic_3_MCMC_RBF_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1001389371360275,
+            "MAPE": 0.16842256146225532,
+            "ESS": 0.99319040580369,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 58.99331474304199
+        }
+    },
+    "synthetic_3_exact_matern32_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.91733980178833
+        }
+    },
+    "synthetic_3_MCMC_matern32_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1019869079798879,
+            "MAPE": 0.16774102910914324,
+            "ESS": 0.993168606493163,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 61.693236112594604
+        }
+    },
+    "synthetic_3_exact_matern52_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 6.943256616592407
+        }
+    },
+    "synthetic_3_MCMC_matern52_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1024056517769296,
+            "MAPE": 0.1689719934372489,
+            "ESS": 0.9931602373942193,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 65.23063969612122
+        }
+    },
+    "synthetic_3_exact_RFF_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.2867112159729
+        }
+    },
+    "synthetic_3_MCMC_RFF_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1007929324842596,
+            "MAPE": 0.16704951886817437,
+            "ESS": 0.9931822721324186,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 63.23026657104492
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_additive_100_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0284255743026733,
+            "MAPE": 0.13097363710403442,
+            "ESS": 0.9940133690834045,
+            "last_loss": 1.1885093450546265,
+            "loss_curve": "loss_curve",
+            "training_time": 7.956062316894531
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_additive_100_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_additive_100_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.1004002279613445,
+            "MAPE": 0.16729917776395858,
+            "ESS": 0.9931878348566276,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 58.83464431762695
+        }
+    },
+    "synthetic_3_exact_poly2_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 14.38284945487976
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0386995090534221,
+            "MAPE": 2.3330612181072534,
+            "ESS": 0.9942708617416184,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 124.5819103717804
+        }
+    },
+    "synthetic_3_exact_poly3_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 14.210106372833252
+        }
+    },
+    "synthetic_3_MCMC_poly3_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0394120469381973,
+            "MAPE": 2.357938385326239,
+            "ESS": 0.9942631061830685,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 119.25313210487366
+        }
+    },
+    "synthetic_3_exact_poly4_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 15.20737624168396
+        }
+    },
+    "synthetic_3_MCMC_poly4_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0383385060913082,
+            "MAPE": 2.320977541904712,
+            "ESS": 0.9942747613148197,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 115.1675226688385
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.446083784103394
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0380682812183255,
+            "MAPE": 2.3241254246124052,
+            "ESS": 0.9942777199962785,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 108.96538281440735
+        }
+    },
+    "synthetic_3_exact_RBF_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 10.761871576309204
+        }
+    },
+    "synthetic_3_MCMC_RBF_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.038868063243078,
+            "MAPE": 2.3351904939410826,
+            "ESS": 0.9942690115550891,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 113.87827754020691
+        }
+    },
+    "synthetic_3_exact_matern32_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 10.921056985855103
+        }
+    },
+    "synthetic_3_MCMC_matern32_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0391736344747293,
+            "MAPE": 2.339705114255245,
+            "ESS": 0.9942656943016336,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 114.63413739204407
+        }
+    },
+    "synthetic_3_exact_matern52_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.843051195144653
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0387319908043058,
+            "MAPE": 2.335191592503389,
+            "ESS": 0.9942704910979591,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 106.87745070457458
+        }
+    },
+    "synthetic_3_exact_RFF_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.087007761001587
+        }
+    },
+    "synthetic_3_MCMC_RFF_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0387216571309084,
+            "MAPE": 2.3404852387249893,
+            "ESS": 0.9942705952319113,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 116.89352369308472
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_simple_250_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.831962585449219
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_simple_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_simple_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0388522648465432,
+            "MAPE": 2.337903423409712,
+            "ESS": 0.9942691738282818,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 115.3666422367096
+        }
+    },
+    "synthetic_3_exact_poly2_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.227731466293335
+        }
+    },
+    "synthetic_3_MCMC_poly2_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.039068472866457,
+            "MAPE": 2.329078009092226,
+            "ESS": 0.9942668075617838,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 113.82442879676819
+        }
+    },
+    "synthetic_3_exact_poly3_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.792575120925903
+        }
+    },
+    "synthetic_3_MCMC_poly3_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0386349985081706,
+            "MAPE": 2.3401467877018804,
+            "ESS": 0.9942715515116503,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 120.71455597877502
+        }
+    },
+    "synthetic_3_exact_poly4_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 12.733047723770142
+        }
+    },
+    "synthetic_3_MCMC_poly4_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0394414682175652,
+            "MAPE": 2.3550790180493104,
+            "ESS": 0.9942627547352443,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 119.93191289901733
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 10.95397424697876
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.038527335323499,
+            "MAPE": 2.3335838159031965,
+            "ESS": 0.9942727376825126,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 116.84525752067566
+        }
+    },
+    "synthetic_3_exact_RBF_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 13.48547887802124
+        }
+    },
+    "synthetic_3_MCMC_RBF_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0387664201681395,
+            "MAPE": 2.32773975163604,
+            "ESS": 0.9942701042759908,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 112.47808933258057
+        }
+    },
+    "synthetic_3_exact_matern32_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.140075206756592
+        }
+    },
+    "synthetic_3_MCMC_matern32_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0392679301828103,
+            "MAPE": 2.3498690103767457,
+            "ESS": 0.9942646670045535,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 132.54690265655518
+        }
+    },
+    "synthetic_3_exact_matern52_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 10.73154091835022
+        }
+    },
+    "synthetic_3_MCMC_matern52_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0382644907238148,
+            "MAPE": 2.3213256159121642,
+            "ESS": 0.9942755391213189,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 119.37576603889465
+        }
+    },
+    "synthetic_3_exact_RFF_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 13.526711463928223
+        }
+    },
+    "synthetic_3_MCMC_RFF_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0390390145965158,
+            "MAPE": 2.352677183740901,
+            "ESS": 0.9942671360000088,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 111.82614922523499
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_additive_250_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0156254768371582,
+            "MAPE": 1.7800525426864624,
+            "ESS": 0.9945225715637207,
+            "last_loss": 1.2771269083023071,
+            "loss_curve": "loss_curve",
+            "training_time": 11.751385688781738
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_additive_250_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_additive_250_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.038856682231625,
+            "MAPE": 2.3404110810598495,
+            "ESS": 0.9942690925159364,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 114.31675338745117
+        }
+    },
+    "synthetic_3_exact_poly2_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.366528034210205
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044095376236217,
+            "MAPE": 1.2298046232449045,
+            "ESS": 0.9946465910540311,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 204.3308265209198
+        }
+    },
+    "synthetic_3_exact_poly3_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.516590356826782
+        }
+    },
+    "synthetic_3_MCMC_poly3_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043451328718156,
+            "MAPE": 1.2258838799431724,
+            "ESS": 0.9946472980009368,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 182.02577567100525
+        }
+    },
+    "synthetic_3_exact_poly4_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.92950439453125
+        }
+    },
+    "synthetic_3_MCMC_poly4_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044582032307363,
+            "MAPE": 1.2381820503220689,
+            "ESS": 0.9946461061927406,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 195.55884766578674
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.923441648483276
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043510913521103,
+            "MAPE": 1.23353571452887,
+            "ESS": 0.9946472431069014,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 183.7351040840149
+        }
+    },
+    "synthetic_3_exact_RBF_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.703406810760498
+        }
+    },
+    "synthetic_3_MCMC_RBF_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043495822566255,
+            "MAPE": 1.2251584264115716,
+            "ESS": 0.9946472590455359,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 193.3688361644745
+        }
+    },
+    "synthetic_3_exact_matern32_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.873035430908203
+        }
+    },
+    "synthetic_3_MCMC_matern32_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043493896725848,
+            "MAPE": 1.226835258097926,
+            "ESS": 0.994647276325441,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 205.88682341575623
+        }
+    },
+    "synthetic_3_exact_matern52_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.631370306015015
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043352633504339,
+            "MAPE": 1.2278847727120186,
+            "ESS": 0.9946474071968842,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 187.06730318069458
+        }
+    },
+    "synthetic_3_exact_RFF_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.62762141227722
+        }
+    },
+    "synthetic_3_MCMC_RFF_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043872804145482,
+            "MAPE": 1.2308939282664042,
+            "ESS": 0.9946468605396184,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 197.9368233680725
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_simple_500_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.853185653686523
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_simple_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_simple_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043253051999355,
+            "MAPE": 1.2298147081197475,
+            "ESS": 0.9946475053762516,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 178.5616512298584
+        }
+    },
+    "synthetic_3_exact_poly2_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly2_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 15.583766222000122
+        }
+    },
+    "synthetic_3_MCMC_poly2_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly2_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044195563296845,
+            "MAPE": 1.2337103759425625,
+            "ESS": 0.9946465236182029,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 180.82779622077942
+        }
+    },
+    "synthetic_3_exact_poly3_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly3_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 18.055455684661865
+        }
+    },
+    "synthetic_3_MCMC_poly3_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly3_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0042988409916849,
+            "MAPE": 1.2280579878876017,
+            "ESS": 0.9946478063862557,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 186.20941138267517
+        }
+    },
+    "synthetic_3_exact_poly4_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_poly4_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.63740348815918
+        }
+    },
+    "synthetic_3_MCMC_poly4_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_poly4_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044183076076059,
+            "MAPE": 1.233567921874245,
+            "ESS": 0.9946465077184572,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 164.44428396224976
+        }
+    },
+    "synthetic_3_exact_piecewise_polynomial_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_piecewise_polynomial_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 18.37716269493103
+        }
+    },
+    "synthetic_3_MCMC_piecewise_polynomial_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_piecewise_polynomial_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044643887201241,
+            "MAPE": 1.2357560339963147,
+            "ESS": 0.9946460627584719,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 159.16347742080688
+        }
+    },
+    "synthetic_3_exact_RBF_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_RBF_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 15.7357656955719
+        }
+    },
+    "synthetic_3_MCMC_RBF_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RBF_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0043569039873166,
+            "MAPE": 1.2315109567748652,
+            "ESS": 0.9946471624523474,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 200.15832376480103
+        }
+    },
+    "synthetic_3_exact_matern32_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_matern32_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.996663570404053
+        }
+    },
+    "synthetic_3_MCMC_matern32_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern32_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044020076172349,
+            "MAPE": 1.230935771944884,
+            "ESS": 0.9946467062718892,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 188.3842556476593
+        }
+    },
+    "synthetic_3_exact_matern52_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_matern52_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.46769952774048
+        }
+    },
+    "synthetic_3_MCMC_matern52_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_matern52_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044905625630138,
+            "MAPE": 1.2353457770217082,
+            "ESS": 0.9946457545600278,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 185.4402391910553
+        }
+    },
+    "synthetic_3_exact_RFF_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_RFF_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 17.919517993927002
+        }
+    },
+    "synthetic_3_MCMC_RFF_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_RFF_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0044114283813723,
+            "MAPE": 1.2312226588559247,
+            "ESS": 0.9946466000901698,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 186.12605142593384
+        }
+    },
+    "synthetic_3_exact_spectral_mixture_additive_500_20240529-104346": {
+        "filename": "synthetic_3_exact_spectral_mixture_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0030146837234497,
+            "MAPE": 1.018050193786621,
+            "ESS": 0.9946651458740234,
+            "last_loss": 1.3234138488769531,
+            "loss_curve": "loss_curve",
+            "training_time": 16.779523611068726
+        }
+    },
+    "synthetic_3_MCMC_spectral_mixture_additive_500_20240529-104346": {
+        "filename": "synthetic_3_MCMC_spectral_mixture_additive_500_20240529-104346.pth",
+        "model": {
+            "dataset": "LLVM_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240529-104346"
+        },
+        "scores": {
+            "RMSE": 1.0042622078806327,
+            "MAPE": 1.2261763682732418,
+            "ESS": 0.994648214570159,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 177.08921003341675
+        }
+    }
+}
