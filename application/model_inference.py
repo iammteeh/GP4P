@@ -33,7 +33,7 @@ def get_data(use_synthetic_data=False, inference="exact", sws="LLVM_energy", y_t
 
     return (ds, X_train, X_test, y_train, y_test, feature_names)
 
-file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
+#file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
 #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
 #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
 #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
@@ -41,11 +41,12 @@ file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #
 #file_name = "synthetic_3_MCMC_matern32_simple_500_20240529-104346" # works
 #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
 #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
-# certain MCMC won't work
+file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
+#file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
+# certain MCMC models have unexpected errors
 #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
-#file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # AttributeError: 'NoneType' object has no attribute 'numel'
-#file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" AttributeError: 'NoneType' object has no attribute 'numel'
 #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
+
 # split the file name and take the model type as the fifth last element
 model = file_name.split("_")[-5] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-6]
 kernel_type = file_name.split("_")[-4] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-5] + "_" + file_name.split("_")[-4]
@@ -155,16 +156,35 @@ for s in range(970, 996, 5):
         print(f"non influencial features: {non_influentials}")
 
 # measure the influence of the features on the target variable
-kernel_lengthscales = [(feature_names[i],model.median_lengthscale[i]) for i in range(len(model.median_lengthscale))]
-# make list of tuples with feature name and lengthscale sorted by lengthscale
-lengthscale_sorted = list(torch.sort(model.median_lengthscale)[0])
-lengthscale_argsorted = list(torch.argsort(model.median_lengthscale))
-feature_names = list(feature_names)
-sorted_lengthscale = [(feature_names[lengthscale_argsorted[i]], lengthscale_sorted[i]) for i in range(len(model.median_lengthscale))]
-sorted_features = [feature_names[lengthscale_argsorted[i]] for i in range(len(model.median_lengthscale))]
-print(f"sorted features: {sorted_features} having lengthscales: {lengthscale_sorted}")
-for feature, lengthscale in sorted_lengthscale:
-    print(f"lengthscale of {feature}: {lengthscale}")
+if kernel_structure == "additive":
+    #TODO: this is just a workaround and doesn't look nice
+    num_features = len(feature_names)
+    num_lengthscales = len(model.median_lengthscale)
+
+    # Sort indices of median_lengthscale
+    lengthscale_argsorted = sorted(range(num_lengthscales), key=lambda i: model.median_lengthscale[i])
+
+    # Get the sorted lengthscale values
+    lengthscale_sorted = [model.median_lengthscale[i] for i in lengthscale_argsorted]
+
+    # Create pairs of feature names and sorted lengthscales
+    sorted_lengthscale = [
+        (feature_names[lengthscale_argsorted[i] % num_features], lengthscale_sorted[i]) for i in range(num_lengthscales)
+    ]
+
+    for feature, lengthscale in sorted_lengthscale:
+        print(f"{feature}: {lengthscale:.4f}")
+else:
+    kernel_lengthscales = [(feature_names[i],model.median_lengthscale[i]) for i in range(len(model.median_lengthscale))]
+    # make list of tuples with feature name and lengthscale sorted by lengthscale
+    lengthscale_sorted = list(torch.sort(model.median_lengthscale)[0])
+    lengthscale_argsorted = list(torch.argsort(model.median_lengthscale))
+    feature_names = list(feature_names)
+    sorted_lengthscale = [(feature_names[lengthscale_argsorted[i]], lengthscale_sorted[i]) for i in range(len(model.median_lengthscale))]
+    sorted_features = [feature_names[lengthscale_argsorted[i]] for i in range(len(model.median_lengthscale))]
+    print(f"sorted features: {sorted_features} having lengthscales: {lengthscale_sorted}")
+    for feature, lengthscale in sorted_lengthscale:
+        print(f"lengthscale of {feature}: {lengthscale}")
 
 ## PLOTTING SECTION
 # plot feature wise
@@ -187,6 +207,8 @@ for tuple in dim_pairs:
     plot_combined_pdf(dimensional_submodel)
 plot_combined_pdf(dimensional_model)
 
+if kernel_structure == "additive" and "synthetic" in sws:
+    raise NotImplementedError("Interactions are not supported for additive kernel structures on synthetic data for now. Sorry!")
 # measure and plot interactions
 SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
 # compute group RATE according to Crawford et al. 2019
@@ -209,9 +231,4 @@ dimensional_submodel["1"]["feature_name"] = "with subset selection"
 
 # compare the two PDFs
 plot_interaction_pdfs(dimensional_submodel, SELECTED_FEATURES)
-
-#subset_that_lowers_y = [(1,0), (3,1)]
-#subset_that_increases_y = [(0,0),(1,1), (3,0), (5,1), (10,0)]
-#plot_interaction_pdfs(dimensional_submodel, subset_that_increases_y)
-#print(f"opposites and interactions diverge at {interaction_distant(model, X_test, subset_that_increases_y)}")
 print(f"done.")
