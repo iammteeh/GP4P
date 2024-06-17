@@ -51,7 +51,9 @@ python application/thesis_pipeline.py
 ```
 or use `application/gpytorch_pipeline.py` to train single models using exact inference. `application/fully_bayesian_pipeline.py` contains the implementation of the fully Bayesian model using the NUTS sampler.
 
-For inference, the `application/model_inference.py`provide insights in the model, especially the BAKR methodology and the groupRATE distance measure. The `application/eval_training.py` provides the evaluation of the models using different score metrics.
+For inference, the `application/model_inference.py`provide insights in the model, especially the BAKR methodology and the groupRATE distance measure. All yet trained models are stored under the `modeldata` directory. Just change the file_name in the `model_inference.py` for the desired model. A main contribution is the Jupyter notebook for an Exploratory Data Analysis on the modeldata. This
+can be found unter `notebooks/EDA_walkthrough.ipynb`.
+The `application/eval_training.py` provides the evaluation of the models using different score metrics.
 
 ## License
 The project is published under the GNU General Public License v3.0. If you need to use the project under a different license, please contact the author.
