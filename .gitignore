@@ -7,11 +7,8 @@ archive/
 .pymc_*.trace/
 *.csv
 
-evaluation/*.*
-evaluation/LLVM_energy/*.*
 
-modeldata/*.*
-modeldata/modelstorage/*.*
+modeldata/*.pth
 
 adapters/sklearn/*.*
 # Add the missing entries below
