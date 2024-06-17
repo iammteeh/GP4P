@@ -33,6 +33,7 @@ def get_data(use_synthetic_data=False, inference="exact", sws="LLVM_energy", y_t
 
     return (ds, X_train, X_test, y_train, y_test, feature_names)
 
+# some example model files that have been checked
 #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
 #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
 #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
@@ -40,10 +41,10 @@ def get_data(use_synthetic_data=False, inference="exact", sws="LLVM_energy", y_t
 #file_name = "synthetic_3_exact_poly2_additive_20_20240529-104346" #works
 #file_name = "synthetic_3_MCMC_matern32_simple_500_20240529-104346" # works
 #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
-#file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
-file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
-#file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
+#file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
+file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
 # certain MCMC models have unexpected errors
+#file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
 #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
 #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
 
@@ -98,20 +99,6 @@ with torch.no_grad():
         dimensional_model[dim]["lower"] = confidence_region[0][dim]
         dimensional_model[dim]["upper"] = confidence_region[1][dim]
 
-# co-generated content with github's copilot:
-# for the copula or CDFs we need the eigendecomposition of the covariance matrix
-# Co-variance matrix = U @ lam @ V^T
-# Covariance matrix is symmetric and positive semi-definite, so we can decompose it into U @ lam @ V^T
-# where U is the eigenvectors, lam is the eigenvalues and V is the transpose of the eigenvectors
-# the eigenvectors are the directions of the latent space that are most important (the directions of the most variance) while the eigenvalues are the amount of variance in that direction
-# we can use the eigendecomposition of the covariance matrix to get the betas from the inverse map
-# the betas are the weights of the features in the latent space
-
-# or the low rank pivoted cholesky decomposition of the covariance matrix
-        
-# copula
-# math from https://copulae.readthedocs.io/en/latest/explainers/introduction.html
-# compute CDF from marginals
 # posterior predictive checks
 mean_vector = posterior.mvn.mean if isinstance(model, MyExactGP) else dimensional_model[0]["mean"] # example for first dimension
 cov_matrix = posterior.mvn.covariance_matrix if isinstance(model, MyExactGP) else dimensional_model[0]["covariance"] # example for first dimension
@@ -156,7 +143,7 @@ for s in range(970, 996, 5):
         print(f"non influencial features: {non_influentials}")
 
 # measure the influence of the features on the target variable
-if kernel_structure == "additive":
+if model == "MCMC" and kernel_structure == "additive":
     #TODO: this is just a workaround and doesn't look nice
     num_features = len(feature_names)
     num_lengthscales = len(model.median_lengthscale)
@@ -174,7 +161,7 @@ if kernel_structure == "additive":
 
     for feature, lengthscale in sorted_lengthscale:
         print(f"{feature}: {lengthscale:.4f}")
-else:
+elif model == "MCMC":
     kernel_lengthscales = [(feature_names[i],model.median_lengthscale[i]) for i in range(len(model.median_lengthscale))]
     # make list of tuples with feature name and lengthscale sorted by lengthscale
     lengthscale_sorted = list(torch.sort(model.median_lengthscale)[0])
@@ -185,50 +172,56 @@ else:
     print(f"sorted features: {sorted_features} having lengthscales: {lengthscale_sorted}")
     for feature, lengthscale in sorted_lengthscale:
         print(f"lengthscale of {feature}: {lengthscale}")
+else:
+    print("Exact GP model doesn't have lengthscale values.")
 
-## PLOTTING SECTION
-# plot feature wise
-#grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
-kde_plots(X_train, y_train)
-# plot combined
-selected_dimensions = [0,1,2]
-for dim in selected_dimensions:
-    mean = np.mean(dimensional_model[dim]["mean"].detach().numpy())
-    variance = np.median(dimensional_model[dim]["variance"].detach().numpy())
-    feature_name = dimensional_model[dim]["feature_name"]
-    plot_density(mean, variance, feature_name)
-dim_pairs = [
-    (0,1,3), (0,1,4), (0,1,5),
-]
-for tuple in dim_pairs:
-    dimensional_submodel = {}
-    for dim in tuple:
-        dimensional_submodel[dim] = dimensional_model[dim]
-    plot_combined_pdf(dimensional_submodel)
+## PLOTTING SECTION FOR MCMC MODELS
+if model == "MCMC":
+    # plot feature wise
+    #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
+    kde_plots(X_train, y_train)
+    # plot combined
+    selected_dimensions = [0,1,2]
+    for dim in selected_dimensions:
+        mean = np.mean(dimensional_model[dim]["mean"].detach().numpy())
+        variance = np.median(dimensional_model[dim]["variance"].detach().numpy())
+        feature_name = dimensional_model[dim]["feature_name"]
+        plot_density(mean, variance, feature_name)
+    dim_pairs = [
+        (0,1,3), (0,1,4), (0,1,5),
+    ]
+    for tuple in dim_pairs:
+        dimensional_submodel = {}
+        for dim in tuple:
+            dimensional_submodel[dim] = dimensional_model[dim]
+        plot_combined_pdf(dimensional_submodel)
 plot_combined_pdf(dimensional_model)
 
 if kernel_structure == "additive" and "synthetic" in sws:
-    raise NotImplementedError("Interactions are not supported for additive kernel structures on synthetic data for now. Sorry!")
-# measure and plot interactions
-SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
-# compute group RATE according to Crawford et al. 2019
-# j is the feature group that occurs in the rows of the data set
-j, groups = get_groups(X_test, SELECTED_FEATURES)
-print(f"groups:\n {groups}")
-group_rate = group_RATE(mean_vector, U, j) #TODO: How to visualize the group rate or KLD in general?
-print(f"group rate: {group_rate}")
-opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
-measure_subset(model, ds, SELECTED_FEATURES)
-dimensional_submodel = {}
-dimensional_submodel["0"] = {}
-dimensional_submodel["0"]["mean"] = opposites.mixture_mean.detach().numpy()
-dimensional_submodel["0"]["std"] = np.sqrt(opposites.mixture_variance.detach().numpy())
-dimensional_submodel["0"]["feature_name"] = "without subset selection"
-dimensional_submodel["1"] = {}
-dimensional_submodel["1"]["mean"] = interactions.mixture_mean.detach().numpy()
-dimensional_submodel["1"]["std"] = np.sqrt(interactions.mixture_variance.detach().numpy())
-dimensional_submodel["1"]["feature_name"] = "with subset selection"
+    print(f"Interactions are not supported for additive kernel structures on synthetic data for now. Sorry!")
+elif model == "MCMC":
+    # measure and plot interactions
+    SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
+    # compute group RATE according to Crawford et al. 2019
+    # j is the feature group that occurs in the rows of the data set
+    j, groups = get_groups(X_test, SELECTED_FEATURES)
+    print(f"groups:\n {groups}")
+    group_rate = group_RATE(mean_vector, U, j) #TODO: How to visualize the group rate or KLD in general?
+    print(f"group rate: {group_rate}")
+    opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
+    measure_subset(model, ds, SELECTED_FEATURES)
+    dimensional_submodel = {}
+    dimensional_submodel["0"] = {}
+    dimensional_submodel["0"]["mean"] = opposites.mixture_mean.detach().numpy()
+    dimensional_submodel["0"]["std"] = np.sqrt(opposites.mixture_variance.detach().numpy())
+    dimensional_submodel["0"]["feature_name"] = "without subset selection"
+    dimensional_submodel["1"] = {}
+    dimensional_submodel["1"]["mean"] = interactions.mixture_mean.detach().numpy()
+    dimensional_submodel["1"]["std"] = np.sqrt(interactions.mixture_variance.detach().numpy())
+    dimensional_submodel["1"]["feature_name"] = "with subset selection"
 
-# compare the two PDFs
-plot_interaction_pdfs(dimensional_submodel, SELECTED_FEATURES)
+    # compare the two PDFs
+    plot_interaction_pdfs(dimensional_submodel, SELECTED_FEATURES)
+else:
+    print("Plotting interactions are only supported for MCMC models now. Sorry!")
 print(f"done.")
