@@ -1,0 +1,3602 @@
+{
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.074213981628418
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.08759983718515,
+            "MAPE": 0.014048052522215332,
+            "ESS": -0.8638475593892514,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 93.96653437614441
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.946121692657471
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.93003175318862,
+            "MAPE": 0.013759999547130034,
+            "ESS": -0.8062142816271423,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 82.91395115852356
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.066840410232544
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.26657250971918,
+            "MAPE": 0.013537027755868975,
+            "ESS": -0.7717276168414511,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 78.87282848358154
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.798460245132446
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.88290147790747,
+            "MAPE": 0.013813329362223866,
+            "ESS": -0.8068345216374053,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 82.06681656837463
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.947622776031494
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.91980079139303,
+            "MAPE": 0.013704545566540438,
+            "ESS": -0.8119436065447925,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 68.27142977714539
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.917669296264648
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.68865158890705,
+            "MAPE": 0.013705470042227417,
+            "ESS": -0.7948108085800307,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 71.72188401222229
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.904484272003174
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.30892222644837,
+            "MAPE": 0.013899829682734816,
+            "ESS": -0.8268197612035577,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 69.336740732193
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.851461887359619
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.53694992001805,
+            "MAPE": 0.013899501333829927,
+            "ESS": -0.8382578254779753,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 78.29517793655396
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.9722981452941895
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.15837137914684,
+            "MAPE": 0.013859331821514897,
+            "ESS": -0.8140747852258612,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 79.16557288169861
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.855858087539673
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.85146144480086,
+            "MAPE": 0.013758877393951449,
+            "ESS": -0.8023436075293942,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 73.3827714920044
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.1425392627716064
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.27441166266826,
+            "MAPE": 0.013904721372903156,
+            "ESS": -0.820719956112911,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 64.16644954681396
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8501830101013184
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.82369841031667,
+            "MAPE": 0.01374610016218151,
+            "ESS": -0.8059366585935359,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 60.500271797180176
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 3.810337543487549
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.28118902328886,
+            "MAPE": 0.01389955477449685,
+            "ESS": -0.8190528508769959,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.58780121803284
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.283353567123413
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.88198726576144,
+            "MAPE": 0.013728530500726166,
+            "ESS": -0.8058872061507567,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 63.86408615112305
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 3.822390556335449
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.27473786109506,
+            "MAPE": 0.01393795029469574,
+            "ESS": -0.8268939224420304,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 52.196805238723755
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 4.0145182609558105
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.49149893758388,
+            "MAPE": 0.013949747220641165,
+            "ESS": -0.8368774818365863,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 65.29687285423279
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 3.846849203109741
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 70.92563410113031,
+            "MAPE": 0.013518513589357873,
+            "ESS": -0.75801386114029,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 51.60467743873596
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 67.56742858886719,
+            "MAPE": 0.01366144884377718,
+            "ESS": -0.4016542434692383,
+            "last_loss": 27.011337280273438,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8506109714508057
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_20_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_20_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 71.76954005305959,
+            "MAPE": 0.01385177453202753,
+            "ESS": -0.7877569676577443,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 54.9714298248291
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.814371347427368
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.59367154468238,
+            "MAPE": 0.012781768754838108,
+            "ESS": -0.9004748198482044,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.89956092834473
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.660499334335327
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.77573403892633,
+            "MAPE": 0.012757263457879085,
+            "ESS": -0.9143633678745393,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 469.6436347961426
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.61266827583313
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.70509310806622,
+            "MAPE": 0.012729872872126029,
+            "ESS": -0.9081390092193942,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 100.5594413280487
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.60754919052124
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.80362206776637,
+            "MAPE": 0.012766934356293612,
+            "ESS": -0.9189914670626407,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.81957411766052
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.643447160720825
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.64661667424986,
+            "MAPE": 0.01277179821183038,
+            "ESS": -0.9060994946837369,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.57977509498596
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.642926216125488
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.6589001593072,
+            "MAPE": 0.012935787846658964,
+            "ESS": -0.9610454863232416,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 30.047449350357056
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.666454315185547
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.32100160723196,
+            "MAPE": 0.012829431411222437,
+            "ESS": -0.9445224879065734,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.306599378585815
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.605618715286255
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.50669109913915,
+            "MAPE": 0.01285296633480676,
+            "ESS": -0.9569873803772813,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 47.22448921203613
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.619513273239136
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.94683376902637,
+            "MAPE": 0.012866933361504412,
+            "ESS": -0.9212730762312016,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.75760269165039
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.634493589401245
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.9052985759443,
+            "MAPE": 0.012849707590799717,
+            "ESS": -0.9173680854109805,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.80730938911438
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.625953912734985
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.85771797662242,
+            "MAPE": 0.012844690958979735,
+            "ESS": -0.9145362463254565,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.707303285598755
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.627776384353638
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.89513672066654,
+            "MAPE": 0.012844459557248767,
+            "ESS": -0.9149410158658422,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.567771673202515
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.795068264007568
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.87524821497385,
+            "MAPE": 0.01283394203862577,
+            "ESS": -0.9182584338524331,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 47.368998527526855
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.62184476852417
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.66807807341267,
+            "MAPE": 0.012825820943608943,
+            "ESS": -0.9048140165883414,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.544337034225464
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.670838356018066
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.84791196152109,
+            "MAPE": 0.012879009288170245,
+            "ESS": -0.9130352493210596,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 55.146297454833984
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.70933198928833
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.64355419668115,
+            "MAPE": 0.013003533603401451,
+            "ESS": -0.9561509616995918,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.81137657165527
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.7215576171875
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 72.52580441635314,
+            "MAPE": 0.012772720949362947,
+            "ESS": -0.8964595119592211,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.79719090461731
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 54.89472198486328,
+            "MAPE": 0.010564049705862999,
+            "ESS": -0.0815432071685791,
+            "last_loss": 38.3145866394043,
+            "loss_curve": "loss_curve",
+            "training_time": 4.77011513710022
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_50_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_50_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 73.37461815202063,
+            "MAPE": 0.012930456381567148,
+            "ESS": -0.9443897318718266,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.4270396232605
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.11915922164917
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.998576285839505,
+            "MAPE": 0.010250844558903866,
+            "ESS": 0.13452284268666626,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.83343839645386
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.061065673828125
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.121703169673395,
+            "MAPE": 0.010253473854948084,
+            "ESS": 0.13294450681024617,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.98470187187195
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.064367055892944
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.624646719349684,
+            "MAPE": 0.010186928741742237,
+            "ESS": 0.14303257793988522,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.17002272605896
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.097755193710327
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.63341283117698,
+            "MAPE": 0.01019261846503786,
+            "ESS": 0.1435096962803184,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.34696006774902
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.0382115840911865
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.05338234910818,
+            "MAPE": 0.010258949201904555,
+            "ESS": 0.13105741753335454,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 54.1463623046875
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.068660020828247
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.23189578250947,
+            "MAPE": 0.010282480783745445,
+            "ESS": 0.1250071956664569,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.78153586387634
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.212095022201538
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.73376554911827,
+            "MAPE": 0.010191873749658882,
+            "ESS": 0.14035144638267527,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.77138304710388
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.094024419784546
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.81330618801988,
+            "MAPE": 0.010209310204820623,
+            "ESS": 0.14033977118038932,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 304.57684087753296
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.153068780899048
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.75567421299712,
+            "MAPE": 0.010216686571799156,
+            "ESS": 0.13752275456920748,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.7452130317688
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.148035049438477
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.61831611977095,
+            "MAPE": 0.010181929259619797,
+            "ESS": 0.14627842353217735,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 48.85642981529236
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.124968528747559
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.77267469763934,
+            "MAPE": 0.010211375762741327,
+            "ESS": 0.14001123625753986,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.684202671051025
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.147113561630249
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.68054024593381,
+            "MAPE": 0.01015183634934062,
+            "ESS": 0.14086589292740104,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.3027138710022
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.164924144744873
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.003282781314375,
+            "MAPE": 0.010242512480707944,
+            "ESS": 0.13216736404712548,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 53.87955331802368
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.194546699523926
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.23822347417674,
+            "MAPE": 0.010290126122059713,
+            "ESS": 0.12626091569981002,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 46.01626801490784
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.22373628616333
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.41363488212898,
+            "MAPE": 0.010149956595341006,
+            "ESS": 0.15306557439236224,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 47.2784378528595
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.116122722625732
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.62527935455107,
+            "MAPE": 0.010183541141339696,
+            "ESS": 0.1451994999416556,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 49.84043788909912
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.187195777893066
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 53.13896625424276,
+            "MAPE": 0.01027308736888112,
+            "ESS": 0.13156927460148882,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 52.814085483551025
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 51.63484191894531,
+            "MAPE": 0.009825530461966991,
+            "ESS": 0.11589854955673218,
+            "last_loss": 43.89219284057617,
+            "loss_curve": "loss_curve",
+            "training_time": 7.07980751991272
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_100_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_100_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.65246595745281,
+            "MAPE": 0.010196429685592368,
+            "ESS": 0.1460512292278262,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 51.77706837654114
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.8951027393341064
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.25764847795944,
+            "MAPE": 0.01227900232272398,
+            "ESS": -0.20986407458128764,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 100.40162587165833
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.927821397781372
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.31305521540199,
+            "MAPE": 0.012292450083538943,
+            "ESS": -0.21269820088063263,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 87.54073858261108
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 8.172261953353882
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.33794280064191,
+            "MAPE": 0.012297484062311816,
+            "ESS": -0.21263398387333088,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 87.36792206764221
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.895878314971924
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.26697505757507,
+            "MAPE": 0.01228276481648872,
+            "ESS": -0.2101692875405463,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 88.05796813964844
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.8742687702178955
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.20392010948233,
+            "MAPE": 0.012276692452160535,
+            "ESS": -0.2084966382702138,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 94.89246797561646
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.877191543579102
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.2634001252131,
+            "MAPE": 0.012284410573982925,
+            "ESS": -0.21032926428351506,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 76.78375720977783
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.895131826400757
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.26362084143472,
+            "MAPE": 0.012284499510692135,
+            "ESS": -0.2107940473961003,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 82.06758952140808
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.992804765701294
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.33976709369395,
+            "MAPE": 0.01230777135750129,
+            "ESS": -0.2136668734082141,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 81.74331498146057
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.877016305923462
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.2396039948837,
+            "MAPE": 0.012251019725055127,
+            "ESS": -0.2099608439839764,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 92.53213715553284
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 8.044768333435059
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.1703302308402,
+            "MAPE": 0.012247336325526336,
+            "ESS": -0.2066947660769265,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 77.02148127555847
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.871708869934082
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.31022489065586,
+            "MAPE": 0.012271804664760787,
+            "ESS": -0.21272040040371087,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 88.13590264320374
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.908409118652344
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.33598551237007,
+            "MAPE": 0.012291580539310964,
+            "ESS": -0.2128266881803107,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 85.24060893058777
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 8.02175235748291
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.29218993571223,
+            "MAPE": 0.01227978899682192,
+            "ESS": -0.21140587107947328,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 93.88474297523499
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.988250732421875
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.25643390572058,
+            "MAPE": 0.01226836671920961,
+            "ESS": -0.21011954208133976,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 102.47310757637024
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 8.019922733306885
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.36874136955424,
+            "MAPE": 0.012267027282572812,
+            "ESS": -0.21370523644135964,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 81.24146223068237
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 8.022232055664062
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.29531899028393,
+            "MAPE": 0.012278261346134165,
+            "ESS": -0.2118943481956279,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 84.06127834320068
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.957984447479248
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.35105222813422,
+            "MAPE": 0.012292588469477029,
+            "ESS": -0.21387281746873232,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 80.34144878387451
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 52.430572509765625,
+            "MAPE": 0.009705347009003162,
+            "ESS": 0.2212677001953125,
+            "last_loss": 40.39546203613281,
+            "loss_curve": "loss_curve",
+            "training_time": 7.929208755493164
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_250_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_250_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 250,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.27314951817814,
+            "MAPE": 0.012278503594550592,
+            "ESS": -0.21088088715836562,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 85.92087912559509
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.062765121459961
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.71424779495847,
+            "MAPE": 0.012143247717355693,
+            "ESS": -0.3027757700217719,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 131.9807267189026
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.997770547866821
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.78804485791721,
+            "MAPE": 0.012152445471694369,
+            "ESS": -0.30557937674569424,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 132.2398316860199
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.022878646850586
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.77775908360401,
+            "MAPE": 0.012150548894832861,
+            "ESS": -0.30524007130765396,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 116.22595238685608
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.011988878250122
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.72798232111636,
+            "MAPE": 0.012146493624643017,
+            "ESS": -0.3033697610889905,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 114.30100297927856
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.00472354888916
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.68675067153225,
+            "MAPE": 0.0121406580311164,
+            "ESS": -0.3017587219570159,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 135.4587471485138
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.113069534301758
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.72051484880743,
+            "MAPE": 0.012146039794243654,
+            "ESS": -0.30291152514865205,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 138.56188106536865
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.953425168991089
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.81582672863887,
+            "MAPE": 0.012162473253421107,
+            "ESS": -0.3066884280170077,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 137.46422290802002
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.915385007858276
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.73541645056913,
+            "MAPE": 0.012147260402845236,
+            "ESS": -0.30357812208674395,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 119.89950776100159
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.093169212341309
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.78794615266614,
+            "MAPE": 0.012150737922469998,
+            "ESS": -0.30555355757784364,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 110.13830614089966
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly2_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.100144147872925
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly2_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.76631449652385,
+            "MAPE": 0.01214635100683674,
+            "ESS": -0.3048542174817048,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 148.88116359710693
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly3_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.923383951187134
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly3_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.75570066529475,
+            "MAPE": 0.012154157113121167,
+            "ESS": -0.3043396153376787,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 133.88180327415466
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_poly4_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.119466781616211
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_poly4_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.81171572598942,
+            "MAPE": 0.012160425028136138,
+            "ESS": -0.3066578466885208,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 128.78901433944702
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.946262836456299
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.79496413136596,
+            "MAPE": 0.012156185304913077,
+            "ESS": -0.3059454133246886,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 135.17797350883484
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RBF_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.835397005081177
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RBF_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.71911538473162,
+            "MAPE": 0.012143935100238127,
+            "ESS": -0.30299665994660274,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 130.21596240997314
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern32_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.91086220741272
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern32_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.77935777620368,
+            "MAPE": 0.012155906127669746,
+            "ESS": -0.3053474390577382,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 123.29325556755066
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_matern52_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.018197774887085
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_matern52_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.7811300712961,
+            "MAPE": 0.012152140895996618,
+            "ESS": -0.30536785560524127,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 113.51884818077087
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_RFF_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 12.17950439453125
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_RFF_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.7806594047872,
+            "MAPE": 0.012149628559786085,
+            "ESS": -0.30544290475048075,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 150.6965470314026
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_exact_spectral_mixture_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 49.649375915527344,
+            "MAPE": 0.009159768000245094,
+            "ESS": 0.2594568729400635,
+            "last_loss": 45.21846008300781,
+            "loss_curve": "loss_curve",
+            "training_time": 11.885666131973267
+        }
+    },
+    "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_500_20240530-101459": {
+        "filename": "PostgreSQL_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_500_20240530-101459.pth",
+        "model": {
+            "dataset": "PostgreSQL_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 500,
+            "timestamp": "20240530-101459"
+        },
+        "scores": {
+            "RMSE": 65.76762749845285,
+            "MAPE": 0.01215099651346313,
+            "ESS": -0.3048418317040944,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 94.3747353553772
+        }
+    }
+}

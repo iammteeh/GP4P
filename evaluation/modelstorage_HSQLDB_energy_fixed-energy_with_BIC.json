@@ -1,0 +1,2270 @@
+{
+    "HSQLDB_energy_fixed-energy_exact_poly2_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8756422996520996
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8537738599979198,
+            "BIC": 907.4653570572823,
+            "MAPE": 0.04055488021244561,
+            "ESS": 0.6917568845174111,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.781978368759155
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.877091884613037
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8565012475684819,
+            "BIC": 905.078581223516,
+            "MAPE": 0.040710704664323645,
+            "ESS": 0.6906284421616325,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.425551652908325
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.889442205429077
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8562522012706688,
+            "BIC": 976.0524685834923,
+            "MAPE": 0.04045782798606542,
+            "ESS": 0.6906206014908284,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 25.329923629760742
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.954643487930298
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8573465756961725,
+            "BIC": 908.7458416939196,
+            "MAPE": 0.04057048209458423,
+            "ESS": 0.6897059132786003,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.850939989089966
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8720617294311523
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8519423352843286,
+            "BIC": 913.9444790979278,
+            "MAPE": 0.04035140180241607,
+            "ESS": 0.6934023869407226,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.305434465408325
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.92748761177063
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8511824633246274,
+            "BIC": 893.6131791070137,
+            "MAPE": 0.040701981521568995,
+            "ESS": 0.6935777080059163,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 24.525397300720215
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8881609439849854
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8539715830655819,
+            "BIC": 961.7799465608394,
+            "MAPE": 0.04049867511651385,
+            "ESS": 0.6934974922414825,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 24.328078746795654
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 4.080260515213013
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8503613817716168,
+            "BIC": 942.7073079290408,
+            "MAPE": 0.040950698610272576,
+            "ESS": 0.6941664741670321,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.602811813354492
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.850614547729492
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8569265592285848,
+            "BIC": 881.8423642489796,
+            "MAPE": 0.04091732706801733,
+            "ESS": 0.6919257017307436,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.326056003570557
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly2_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.862497568130493
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.860890328695972,
+            "BIC": 917.7763298309883,
+            "MAPE": 0.04086223473302383,
+            "ESS": 0.6878211754878666,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.30805993080139
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 4.021556377410889
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.849787217792433,
+            "BIC": 938.5317762150326,
+            "MAPE": 0.04066324161469218,
+            "ESS": 0.6943984104191294,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.72634792327881
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.8350582122802734
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8465003432823132,
+            "BIC": 913.2084906412047,
+            "MAPE": 0.040389580792730764,
+            "ESS": 0.6986901775557864,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 24.111063241958618
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.949460506439209
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8509044538662985,
+            "BIC": 879.5166328425267,
+            "MAPE": 0.04093993263195151,
+            "ESS": 0.6947371478501565,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 23.906326055526733
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.9836487770080566
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8511630734651464,
+            "BIC": 899.5849457797804,
+            "MAPE": 0.04044485336778168,
+            "ESS": 0.697099630574983,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 24.565617084503174
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.930327892303467
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8466813270524653,
+            "BIC": 954.8817908182241,
+            "MAPE": 0.040621944415636754,
+            "ESS": 0.695719019510332,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.505859851837158
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.930161952972412
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8515281095995085,
+            "BIC": 974.3213561173274,
+            "MAPE": 0.04079533872613352,
+            "ESS": 0.6925899312892327,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 27.76114273071289
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 3.957838773727417
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8613957400737454,
+            "BIC": 911.1488057640211,
+            "MAPE": 0.04117794470015072,
+            "ESS": 0.6873359164879886,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 24.491739988327026
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.9534832835197449,
+            "BIC": 219.68309494445242,
+            "MAPE": 0.0510571114718914,
+            "ESS": 0.6148698925971985,
+            "last_loss": -0.7889887094497681,
+            "loss_curve": "loss_curve",
+            "training_time": 4.0415568351745605
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_20_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_20_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8501464655633929,
+            "BIC": 953.2492669650269,
+            "MAPE": 0.040203454058743995,
+            "ESS": 0.6959801133398161,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.20722508430481
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly2_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.540013313293457
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7012984685725031,
+            "BIC": 1850.8411149134345,
+            "MAPE": 0.0357144378760939,
+            "ESS": 0.777997666681586,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.03369188308716
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.530399560928345
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6834085470793447,
+            "BIC": 1869.4910772049516,
+            "MAPE": 0.03461569498221321,
+            "ESS": 0.7884921788727289,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.13820505142212
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.494756460189819
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7058383401722216,
+            "BIC": 1975.0693717599283,
+            "MAPE": 0.03576885020543433,
+            "ESS": 0.7734776894294275,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 35.89241075515747
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.56904935836792
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7102711522351755,
+            "BIC": 1948.6293314657764,
+            "MAPE": 0.035801611440707905,
+            "ESS": 0.7682176400204674,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.36950969696045
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.589025020599365
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7063637587496164,
+            "BIC": 1941.7161254915732,
+            "MAPE": 0.035765835826776324,
+            "ESS": 0.77588651785525,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 29.06162929534912
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.566942453384399
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6861798363192236,
+            "BIC": 1849.023688243149,
+            "MAPE": 0.034912253725406524,
+            "ESS": 0.7856165972066033,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.6661057472229
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.632976531982422
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7219337860842314,
+            "BIC": 2040.960641541924,
+            "MAPE": 0.03555554705323642,
+            "ESS": 0.7618631558669857,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 35.191715478897095
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.5542285442352295
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6934112604506585,
+            "BIC": 1860.1117539949414,
+            "MAPE": 0.03508676561080729,
+            "ESS": 0.7820225689797059,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 34.92833352088928
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.647495269775391
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.69795058615551,
+            "BIC": 1930.4550042217415,
+            "MAPE": 0.03558615067620434,
+            "ESS": 0.7763276008503073,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 34.14530634880066
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly2_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.601913928985596
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6689592064825587,
+            "BIC": 1762.393021897112,
+            "MAPE": 0.03461187363268516,
+            "ESS": 0.7952491300687339,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 32.71491479873657
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.645254135131836
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6947223710490048,
+            "BIC": 1897.9383048290429,
+            "MAPE": 0.035212461335965985,
+            "ESS": 0.7785584476756753,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.91103672981262
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.7024290561676025
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6894048133598998,
+            "BIC": 1912.5533235612688,
+            "MAPE": 0.03538356643808897,
+            "ESS": 0.7823247489222543,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 32.615084648132324
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.581668853759766
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6784871519563227,
+            "BIC": 1761.3253330995522,
+            "MAPE": 0.03455151236151085,
+            "ESS": 0.7925633035455198,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.143725872039795
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.576128959655762
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6936920881059285,
+            "BIC": 1852.7594462517486,
+            "MAPE": 0.0354875211940124,
+            "ESS": 0.7815976969236018,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.66232466697693
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.707258224487305
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.691748674992013,
+            "BIC": 1841.1473660660104,
+            "MAPE": 0.03538872508858851,
+            "ESS": 0.781316352660934,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.313461780548096
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.5746259689331055
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.7078804344219565,
+            "BIC": 1914.3658513154587,
+            "MAPE": 0.03578460713754579,
+            "ESS": 0.7731443760502459,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.334856033325195
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.579700946807861
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.70431518772625,
+            "BIC": 1886.7283758518088,
+            "MAPE": 0.036016835106989775,
+            "ESS": 0.7735739351242458,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 32.508989095687866
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8476123809814453,
+            "BIC": 172.1158651685141,
+            "MAPE": 0.045382075011730194,
+            "ESS": 0.6695657968521118,
+            "last_loss": 0.3449113070964813,
+            "loss_curve": "loss_curve",
+            "training_time": 4.582502841949463
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_50_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_50_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6750413886452958,
+            "BIC": 1775.328736914682,
+            "MAPE": 0.034308270326060035,
+            "ESS": 0.7923309133001097,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 36.0130078792572
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly2_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.380950212478638
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6353945341490872,
+            "BIC": 3476.7672532586134,
+            "MAPE": 0.029404601387630885,
+            "ESS": 0.7910497326742403,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.92301082611084
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.431293725967407
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6418573305387458,
+            "BIC": 3546.2604854602664,
+            "MAPE": 0.029905127051958566,
+            "ESS": 0.7867553333258671,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 44.29222345352173
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.363649606704712
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6492572557811032,
+            "BIC": 3540.511422812074,
+            "MAPE": 0.029785496770184706,
+            "ESS": 0.7817255685382376,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.19674897193909
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.356709003448486
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6323608849295641,
+            "BIC": 3418.899762117267,
+            "MAPE": 0.029513637030389325,
+            "ESS": 0.7930461302680596,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.67279577255249
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.372886419296265
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6364368193334593,
+            "BIC": 3363.6422226574728,
+            "MAPE": 0.029838503888724513,
+            "ESS": 0.7904503271175807,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.844807147979736
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.40578818321228
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6405629175943097,
+            "BIC": 3548.243517004988,
+            "MAPE": 0.029502021567604682,
+            "ESS": 0.7874587797722155,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.80081105232239
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.372560501098633
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6500327827503456,
+            "BIC": 3513.1221978593644,
+            "MAPE": 0.02989644979711362,
+            "ESS": 0.7815195283711706,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.737587690353394
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.348421096801758
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6332732055472284,
+            "BIC": 3524.8807106607824,
+            "MAPE": 0.029346342206225767,
+            "ESS": 0.7923924655650401,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.62870502471924
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.382359981536865
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_simple_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6431751179938475,
+            "BIC": 3467.579782467212,
+            "MAPE": 0.02989750014057107,
+            "ESS": 0.785848885804078,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 39.690049171447754
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly2_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly2_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.364931344985962
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly2_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.64121498491932,
+            "BIC": 3541.4973079857623,
+            "MAPE": 0.03013800185307671,
+            "ESS": 0.7872143318728814,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.3381781578064
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly3_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly3_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.394292116165161
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly3_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6415915345801679,
+            "BIC": 3385.4713266450362,
+            "MAPE": 0.030084281841483564,
+            "ESS": 0.786962378759193,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 42.047749519348145
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_poly4_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_poly4_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.384675979614258
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_poly4_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6237242349140458,
+            "BIC": 3397.423937054877,
+            "MAPE": 0.029349677693230967,
+            "ESS": 0.7984566116913004,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 38.44545817375183
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_piecewise_polynomial_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.342974901199341
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_piecewise_polynomial_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6407017579657645,
+            "BIC": 3490.610280200684,
+            "MAPE": 0.029673371950718425,
+            "ESS": 0.787466752642143,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 37.60333967208862
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RBF_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RBF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 5.43393087387085
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RBF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6330055431480749,
+            "BIC": 3392.0068892200356,
+            "MAPE": 0.029778708935308585,
+            "ESS": 0.7928025303460654,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 35.93385672569275
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern32_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern32_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 6.3226518630981445
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern32_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6264863753986146,
+            "BIC": 3298.188026008543,
+            "MAPE": 0.02937700459817261,
+            "ESS": 0.7967428734093605,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 45.41681432723999
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_matern52_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_matern52_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 7.062028646469116
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_matern52_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6444569286677722,
+            "BIC": 3501.175831338414,
+            "MAPE": 0.02990839917364077,
+            "ESS": 0.7852553154301212,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 43.93918228149414
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_RFF_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_RFF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 7.201145648956299
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_RFF_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6425195186421379,
+            "BIC": 3512.646094163904,
+            "MAPE": 0.029797171453959805,
+            "ESS": 0.786406433920273,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 47.836235761642456
+        }
+    },
+    "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_exact_spectral_mixture_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.8324798941612244,
+            "BIC": 279.8975896195818,
+            "MAPE": 0.0415186770260334,
+            "ESS": 0.6415075063705444,
+            "last_loss": 0.6907577514648438,
+            "loss_curve": "loss_curve",
+            "training_time": 7.192450284957886
+        }
+    },
+    "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_100_20240531-115001": {
+        "filename": "HSQLDB_energy_fixed-energy_MCMC_spectral_mixture_additive_100_20240531-115001.pth",
+        "model": {
+            "dataset": "HSQLDB_energy",
+            "benchmark": "fixed-energy",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240531-115001"
+        },
+        "scores": {
+            "RMSE": 0.6382716689804574,
+            "BIC": 3492.095195909997,
+            "MAPE": 0.03004541941971204,
+            "ESS": 0.7892003582245205,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 50.646583557128906
+        }
+    }
+}

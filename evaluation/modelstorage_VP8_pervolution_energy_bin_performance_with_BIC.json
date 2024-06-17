@@ -1,0 +1,1619 @@
+{
+    "VP8_pervolution_energy_bin_performance_exact_poly2_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly2_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.62118935585022
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3437.6366834627206,
+            "BIC": 328624.4105548325,
+            "MAPE": 0.09468335076113266,
+            "ESS": 0.951722022452981,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 192.04252338409424
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly3_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly3_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.018054008483887
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3559.8128810710346,
+            "BIC": 299624.65327613766,
+            "MAPE": 0.09893858614266901,
+            "ESS": 0.9485692689912643,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 137.20860528945923
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly4_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly4_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.842834711074829
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly4_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly4_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3399.342312318621,
+            "BIC": 288946.0085193969,
+            "MAPE": 0.09311836969481041,
+            "ESS": 0.9526701523546067,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 217.28418254852295
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.17302393913269
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3429.590119433949,
+            "BIC": 279813.929685131,
+            "MAPE": 0.0944901962907232,
+            "ESS": 0.9519621692644927,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 525.2590801715851
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RBF_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RBF_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.344497203826904
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RBF_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RBF_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3477.6408470803362,
+            "BIC": 292461.65654890175,
+            "MAPE": 0.09620349504544623,
+            "ESS": 0.9507485833626198,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 735.9165742397308
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern32_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern32_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.8279290199279785
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern32_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern32_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3638.4314543280257,
+            "BIC": 211273.14001890592,
+            "MAPE": 0.09734480316401341,
+            "ESS": 0.9460601746256694,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 674.2530055046082
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern52_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern52_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.8009796142578125
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern52_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern52_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3828.697226947557,
+            "BIC": 325773.4867346704,
+            "MAPE": 0.10393987741983461,
+            "ESS": 0.9410986975199787,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 226.4277229309082
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RFF_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RFF_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.08541202545166
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RFF_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RFF_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3475.75221002911,
+            "BIC": 314957.4582666413,
+            "MAPE": 0.09595328549748032,
+            "ESS": 0.9507454162573586,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 212.7551589012146
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.024622440338135
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3447.21831380915,
+            "BIC": 320840.1927994994,
+            "MAPE": 0.09515093207227295,
+            "ESS": 0.9514634511391318,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 184.5403187274933
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly2_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly2_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.10828161239624
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly2_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly2_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3424.471279844735,
+            "BIC": 302516.286468062,
+            "MAPE": 0.0940615586703761,
+            "ESS": 0.9520612398722137,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1355.199641942978
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly3_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly3_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.084778547286987
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3429.6317397189005,
+            "BIC": 299500.70028628316,
+            "MAPE": 0.09443035638669954,
+            "ESS": 0.951940420631784,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 575.470689535141
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly4_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly4_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.876730442047119
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly4_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly4_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3395.0526277578665,
+            "BIC": 275994.5800796844,
+            "MAPE": 0.0927779300067904,
+            "ESS": 0.9527774352861033,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 675.39613032341
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.007984161376953
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3452.610693973879,
+            "BIC": 266380.44162791193,
+            "MAPE": 0.09538566721746464,
+            "ESS": 0.9513772822328228,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 173.79240202903748
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RBF_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RBF_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.963673114776611
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RBF_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RBF_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3555.0897981285693,
+            "BIC": 310306.1427526322,
+            "MAPE": 0.09859188627734246,
+            "ESS": 0.9487286163631554,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 869.9802777767181
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern32_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern32_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 6.051304817199707
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern32_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern32_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3665.3505213789,
+            "BIC": 319038.0955076503,
+            "MAPE": 0.10144997039397174,
+            "ESS": 0.9457318235503808,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 764.3108766078949
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern52_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern52_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.998497009277344
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern52_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern52_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3462.6220726248393,
+            "BIC": 317326.97032372444,
+            "MAPE": 0.09562744860300329,
+            "ESS": 0.951072284207398,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 209.55832052230835
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RFF_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RFF_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 4.924069166183472
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RFF_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RFF_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3370.6310107612435,
+            "BIC": 249547.50342797156,
+            "MAPE": 0.09146327325174601,
+            "ESS": 0.9533679901953593,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1155.9236416816711
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 7808.56591796875,
+            "BIC": 53703406.99573227,
+            "MAPE": 0.5204199552536011,
+            "ESS": 0.7976704835891724,
+            "last_loss": 1346620.5,
+            "loss_curve": "loss_curve",
+            "training_time": 5.094407081604004
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_20_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_20_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 3494.7046218269957,
+            "BIC": 275503.1048773811,
+            "MAPE": 0.09704264013976946,
+            "ESS": 0.9503001393080237,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 154.43881964683533
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly2_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly2_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.59451961517334
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1086.5038120102613,
+            "BIC": 73652.15418926478,
+            "MAPE": 0.03106063981622265,
+            "ESS": 0.9954124667878723,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 189.33811163902283
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly3_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly3_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.809622287750244
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1085.1920965642432,
+            "BIC": 72597.00989382392,
+            "MAPE": 0.03110757393672763,
+            "ESS": 0.9954273083256134,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 190.10556840896606
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly4_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly4_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.706048011779785
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly4_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly4_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1086.4841018967898,
+            "BIC": 74400.72806316828,
+            "MAPE": 0.0311804853455122,
+            "ESS": 0.9954107356482368,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 164.242192029953
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.3228209018707275
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1084.9849837797499,
+            "BIC": 74502.87021641097,
+            "MAPE": 0.03121027797657527,
+            "ESS": 0.9954202161439722,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 165.32711815834045
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RBF_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RBF_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 6.060790538787842
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RBF_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RBF_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1081.320078102512,
+            "BIC": 72937.5321706653,
+            "MAPE": 0.031017254682344123,
+            "ESS": 0.9954586452697719,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 182.56085562705994
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern32_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern32_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.387315273284912
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern32_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern32_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1083.9965245118308,
+            "BIC": 73984.38135081784,
+            "MAPE": 0.03100674611689608,
+            "ESS": 0.9954370085098558,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 155.00716400146484
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern52_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern52_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.560202121734619
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern52_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern52_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1088.4461921988636,
+            "BIC": 73043.41322346948,
+            "MAPE": 0.031127350088071087,
+            "ESS": 0.9954076791911138,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 181.14254665374756
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RFF_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RFF_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.550332069396973
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RFF_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RFF_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1078.4599115001815,
+            "BIC": 73243.55743748903,
+            "MAPE": 0.030914124778460644,
+            "ESS": 0.9954875922448789,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 182.54588222503662
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.423300743103027
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_simple_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1089.4076991353797,
+            "BIC": 74563.65062736264,
+            "MAPE": 0.031257916735733235,
+            "ESS": 0.9953781632201846,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 170.3232765197754
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly2_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly2_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 5.653980016708374
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly2_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly2_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1079.7107976442333,
+            "BIC": 74083.20627635458,
+            "MAPE": 0.030945043081724757,
+            "ESS": 0.9954708685072762,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 171.84837985038757
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly3_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly3_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.665829181671143
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1083.9628741357867,
+            "BIC": 74016.7297782533,
+            "MAPE": 0.03117721061943862,
+            "ESS": 0.9954285207788532,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 100.56651163101196
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly4_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly4_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.500261306762695
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly4_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly4_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1084.7818534452267,
+            "BIC": 75358.3217401805,
+            "MAPE": 0.031090330556600522,
+            "ESS": 0.9954332614474594,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 151.20273065567017
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_piecewise_polynomial_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.540338039398193
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_piecewise_polynomial_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "piecewise_polynomial",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1088.2927735400597,
+            "BIC": 73755.8588434362,
+            "MAPE": 0.03115699684466952,
+            "ESS": 0.9953975569761365,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 120.5566828250885
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RBF_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RBF_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.566684246063232
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RBF_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RBF_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RBF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1085.0957895013128,
+            "BIC": 75139.28193673707,
+            "MAPE": 0.03109128168706779,
+            "ESS": 0.9954309496389402,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 134.85979080200195
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern32_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern32_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.463886022567749
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern32_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern32_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern32",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1075.0763943159661,
+            "BIC": 72168.29328774229,
+            "MAPE": 0.031057060807039526,
+            "ESS": 0.9954970222847924,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 1232.6696500778198
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_matern52_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_matern52_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.602490663528442
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_matern52_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_matern52_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "matern52",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1089.0568558468094,
+            "BIC": 72650.2524520113,
+            "MAPE": 0.031167859429747553,
+            "ESS": 0.9953852077521569,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 125.06515741348267
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_RFF_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_RFF_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.596953392028809
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_RFF_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_RFF_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "RFF",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1087.5368399326699,
+            "BIC": 75193.65332803248,
+            "MAPE": 0.03118792397190522,
+            "ESS": 0.9953956736223335,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 159.21416306495667
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_spectral_mixture_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "exact",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2844.657470703125,
+            "BIC": 29203365.912023004,
+            "MAPE": 0.19757862389087677,
+            "ESS": 0.968948483467102,
+            "last_loss": 793155.8125,
+            "loss_curve": "loss_curve",
+            "training_time": 4.516110181808472
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_50_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_spectral_mixture_additive_50_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "spectral_mixture",
+            "kernel_structure": "additive",
+            "inference_type": "MCMC",
+            "training_size": 50,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 1086.7949962784642,
+            "BIC": 71729.08068802542,
+            "MAPE": 0.031136156562415477,
+            "ESS": 0.995409817556547,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 87.57158064842224
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly2_simple_100_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly2_simple_100_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2318.02587890625,
+            "BIC": 47721864.60517018,
+            "MAPE": 0.1410844624042511,
+            "ESS": 0.9823372960090637,
+            "last_loss": 574547.625,
+            "loss_curve": "loss_curve",
+            "training_time": 5.431513071060181
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_100_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly2_simple_100_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 614.4519404349259,
+            "BIC": 105513.13572366782,
+            "MAPE": 0.01716621784241167,
+            "ESS": 0.9990012009716297,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 124.09679841995239
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly3_simple_100_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly3_simple_100_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2318.02587890625,
+            "BIC": 47721864.60517018,
+            "MAPE": 0.1410844624042511,
+            "ESS": 0.9823372960090637,
+            "last_loss": 574547.625,
+            "loss_curve": "loss_curve",
+            "training_time": 5.337662935256958
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_100_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_MCMC_poly3_simple_100_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly3",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 100,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 614.7566801529591,
+            "BIC": 104582.77596062365,
+            "MAPE": 0.01718159975543666,
+            "ESS": 0.9989991906254838,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 124.20129108428955
+        }
+    },
+    "VP8_pervolution_energy_bin_performance_exact_poly4_simple_100_20240601-115540": {
+        "filename": "VP8_pervolution_energy_bin_performance_exact_poly4_simple_100_20240601-115540.pth",
+        "model": {
+            "dataset": "VP8_pervolution_energy_bin",
+            "benchmark": "performance",
+            "kernel_type": "poly4",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 100,
+            "timestamp": "20240601-115540"
+        },
+        "scores": {
+            "RMSE": 2318.02587890625,
+            "BIC": 47721864.60517018,
+            "MAPE": 0.1410844624042511,
+            "ESS": 0.9823372960090637,
+            "last_loss": 574547.625,
+            "loss_curve": "loss_curve",
+            "training_time": 5.213411331176758
+        }
+    }
+}

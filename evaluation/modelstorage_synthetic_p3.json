@@ -1,0 +1,107 @@
+{
+    "synthetic_3_exact_poly2_simple_20_20240531-132200": {
+        "filename": "synthetic_3_exact_poly2_simple_20_20240531-132200.pth",
+        "model": {
+            "dataset": "synthetic_p{POLY_DEGREE}",
+            "benchmark": "random normal",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-132200"
+        },
+        "scores": {
+            "RMSE": 2.556703567504883,
+            "BIC": 255.05229660460867,
+            "MAPE": 0.2005959451198578,
+            "ESS": 0.9669094681739807,
+            "last_loss": 0.12027206271886826,
+            "loss_curve": "loss_curve",
+            "training_time": 3.0378456115722656
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_20_20240531-132200": {
+        "filename": "synthetic_3_MCMC_poly2_simple_20_20240531-132200.pth",
+        "model": {
+            "dataset": "synthetic_p{POLY_DEGREE}",
+            "benchmark": "random normal",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-132200"
+        },
+        "scores": {
+            "RMSE": 2.9661691899949667,
+            "BIC": 1484.9754172788855,
+            "MAPE": 0.3660604056078523,
+            "ESS": 0.9602462389181331,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 25.53374481201172
+        }
+    },
+    "synthetic_3_exact_matern52_simple_20_20240531-132200": {
+        "filename": "synthetic_3_exact_matern52_simple_20_20240531-132200.pth",
+        "model": {
+            "dataset": "synthetic_p{POLY_DEGREE}",
+            "benchmark": "random normal",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "exact",
+            "training_size": 20,
+            "timestamp": "20240531-132200"
+        },
+        "scores": {
+            "RMSE": 2.556703567504883,
+            "BIC": 255.05229660460867,
+            "MAPE": 0.2005959451198578,
+            "ESS": 0.9669094681739807,
+            "last_loss": 0.12027206271886826,
+            "loss_curve": "loss_curve",
+            "training_time": 3.1323354244232178
+        }
+    },
+    "synthetic_3_MCMC_matern52_simple_20_20240531-132200": {
+        "filename": "synthetic_3_MCMC_matern52_simple_20_20240531-132200.pth",
+        "model": {
+            "dataset": "synthetic_p{POLY_DEGREE}",
+            "benchmark": "random normal",
+            "kernel_type": "matern52",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-132200"
+        },
+        "scores": {
+            "RMSE": 2.686581497312431,
+            "BIC": 1435.6052764820092,
+            "MAPE": 0.33649783408312384,
+            "ESS": 0.9682425001901933,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 26.7217960357666
+        }
+    },
+    "synthetic_3_MCMC_poly2_simple_20_20240531-134836": {
+        "filename": "synthetic_3_MCMC_poly2_simple_20_20240531-134836.pth",
+        "model": {
+            "dataset": "synthetic_p{POLY_DEGREE}",
+            "benchmark": "random normal",
+            "kernel_type": "poly2",
+            "kernel_structure": "simple",
+            "inference_type": "MCMC",
+            "training_size": 20,
+            "timestamp": "20240531-134836"
+        },
+        "scores": {
+            "RMSE": 3.0321018961017185,
+            "BIC": 1122.9088570269598,
+            "MAPE": 0.3019528494661172,
+            "ESS": 0.9825893358624918,
+            "last_loss": "trace.tolist()",
+            "loss_curve": "loss_curve",
+            "training_time": 28.849608421325684
+        }
+    }
+}
