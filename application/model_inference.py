@@ -15,7 +15,6 @@ from domain.metrics import get_metrics, gaussian_log_likelihood
 import random
 from time import time
 import re
-
 from scipy.stats import pointbiserialr
 
 def get_data(use_synthetic_data=False, inference="exact", sws="LLVM_energy", y_type="performance", training_size=1000):
@@ -33,6 +32,36 @@ def get_data(use_synthetic_data=False, inference="exact", sws="LLVM_energy", y_t
 
     return (ds, X_train, X_test, y_train, y_test, feature_names)
 
+def get_model(file_name):
+    # split the file name and take the model type as the fifth last element
+    model = file_name.split("_")[-5] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-6]
+    kernel_type = file_name.split("_")[-4] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-5] + "_" + file_name.split("_")[-4]
+    kernel_structure = file_name.split("_")[-3]
+    training_size = int(file_name.split("_")[-2])
+    # for the sws name take all tokes before the model type
+    sws = "_".join(file_name.split("_")[:-6])
+    y_type = file_name.split("_")[-6]
+    use_synthetic_data = False if "synthetic" not in sws else True
+    print(f"sws: {sws}")
+    model_file = f"{MODELDIR}/{file_name}.pth"
+
+    # get data that produced the model
+    #TODO: ensure that the input data is the same as the data in the model
+    data = get_data(use_synthetic_data=use_synthetic_data, inference=model, sws=sws, y_type=y_type, training_size=training_size)
+    ds, X_train, X_test, y_train, y_test, feature_names = data
+
+    # init model and load state dict
+    if model == "exact":
+        model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=kernel_type, mean_func=MEAN_FUNC, structure=kernel_structure)
+    elif model == "MCMC":
+        model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
+        model.eval()
+        print(model)
+    model.load_state_dict(torch.load(model_file), strict=False)
+    print(model)
+    model_properties = (sws, y_type, kernel_type, kernel_structure, training_size)
+    return model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names
+
 # some example model files that have been checked
 #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
 #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
@@ -48,32 +77,9 @@ file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912"
 #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
 #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
 
-# split the file name and take the model type as the fifth last element
-model = file_name.split("_")[-5] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-6]
-kernel_type = file_name.split("_")[-4] if not "piecewise_polynomial" in file_name or "spectral_mixture" in file_name else file_name.split("_")[-5] + "_" + file_name.split("_")[-4]
-kernel_structure = file_name.split("_")[-3]
-training_size = int(file_name.split("_")[-2])
-# for the sws name take all tokes before the model type
-sws = "_".join(file_name.split("_")[:-6])
-y_type = file_name.split("_")[-6]
-use_synthetic_data = False if "synthetic" not in sws else True
-print(f"sws: {sws}")
-model_file = f"{MODELDIR}/{file_name}.pth"
+model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names = get_model(file_name)
+sws, y_type, kernel_type, kernel_structure, training_size = model_properties
 
-# get data that produced the model
-#TODO: ensure that the input data is the same as the data in the model
-data = get_data(use_synthetic_data=use_synthetic_data, inference=model, sws=sws, y_type=y_type, training_size=training_size)
-ds, X_train, X_test, y_train, y_test, feature_names = data
-
-# init model and load state dict
-if model == "exact":
-    model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=kernel_type, mean_func=MEAN_FUNC, structure=kernel_structure)
-elif model == "MCMC":
-    model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
-    model.eval()
-    print(model)
-model.load_state_dict(torch.load(model_file), strict=False)
-print(model)
 model.eval()
 with torch.no_grad():
     posterior = model.posterior(model.X.float())
