@@ -5,26 +5,21 @@ settings.json
 my_package.egg-info
 archive/
 .pymc_*.trace/
-
-# ignore for now
-adapters/botorch/*.*
-adapters/sklearn/*.*
-application/bayesian_gaussian_mixture_analysis.py
-application/bayesify_pipeline.py
-application/sklearn_gaussian_process_regression.py
-
-domain/feature_model/*.*
-domain/dependency_graph.py
-domain/GP_Model.py
-
-evaluation/*.*
-evaluation/LLVM_energy/*.*
-modeldata/*.*
-modeldata/modelstorage/*.*
-util/*.*
-
 *.csv
 
-Anmerkungen.md
 
-gp/*.*
+modeldata/*.pth
+
+adapters/sklearn/*.*
+# Add the missing entries below
+# BEGIN: abpxx6d04wxr
+__pycache__
+launch.json
+settings.json
+.vscode
+#my_package.egg-info
+archive/
+.pymc_*.trace/
+*.csv
+# END: abpxx6d04wxr
+rawdata/*/*.*

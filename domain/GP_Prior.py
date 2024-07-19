@@ -1,6 +1,9 @@
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 from sklearn.linear_model import ElasticNetCV, Ridge, RidgeCV, LassoCV
 from sklearn.kernel_ridge import KernelRidge
+from adapters.gpytorch.means import LinearMean
+from gpytorch.means import ConstantMean
+from adapters.gpytorch.kernels import get_linear_kernel, get_squared_exponential_kernel, get_matern32_kernel, get_matern52_kernel, get_spectral_mixture_kernel, get_rff_kernel, get_polynomial_d2_kernel, get_polynomial_d3_kernel, get_polynomial_d4_kernel, get_piecewise_polynomial_kernel, get_base_kernels, wrap_scale_kernel, additive_structure_kernel
 from domain.env import KERNEL_TYPE
 from adapters.util import get_feature_names_from_rv_id, print_scores, get_err_dict
 import math
@@ -225,19 +228,65 @@ class GP_Prior(Priors):
         (self.root_mean, 
         self.root_std, 
         self.means_weighted, 
-        stds_weighted, 
+        self.stds_weighted, 
         coef_matrix, 
         self.noise_sd_over_all_regs ) = self.get_weighted_normal_params(gamma=1, stddev_multiplier=3)
 
-        (
-        means_weighted,
-        self.stds_weighted,
-        noise) = self.exploit_kernel_ridge_regression()
-
-    @abstractmethod
     def get_mean(self, mean_func="linear"):
-        raise NotImplementedError
+        if mean_func == "constant":
+            return ConstantMean()
+        elif mean_func == "linear_weighted":
+            return LinearMean(beta=self.means_weighted, intercept=self.root_mean)
+        else:
+            raise NotImplementedError("Only linear weighted mean function is supported for now")
     
-    @abstractmethod
-    def get_kernel(self, kernel="linear"):
-        raise NotImplementedError
+    def get_kernel(self, type="linear", structure="simple"):
+        hyper_prior_params = {}
+        hyper_prior_params["mean"] = self.weighted_mean
+        hyper_prior_params["sigma"] = self.weighted_std
+        if structure == "simple":
+            if type == "linear":
+                base_kernel = get_linear_kernel(self.X)
+            elif type == "polynomial" or type == "poly2":
+                base_kernel = get_polynomial_d2_kernel(self.X)
+            elif type == "poly3":
+                base_kernel = get_polynomial_d3_kernel(self.X)
+            elif type == "poly4":
+                base_kernel = get_polynomial_d4_kernel(self.X)
+            elif type == "piecewise_polynomial":
+                base_kernel = get_piecewise_polynomial_kernel(self.X)
+            elif type == "RBF":
+                base_kernel = get_squared_exponential_kernel(self.X)
+            elif type == "matern32":
+                base_kernel = get_matern32_kernel(self.X)
+            elif type == "matern52":
+                base_kernel = get_matern52_kernel(self.X)
+            elif type == "RFF":
+                base_kernel = get_rff_kernel(self.X)
+            elif type == "spectral_mixture":
+                base_kernel = get_spectral_mixture_kernel(self.X)
+            else:
+                raise NotImplementedError("Only linear, polynomial, RBF, matern32, matern52, RFF and spectral_mixture kernels are supported for now")
+            return wrap_scale_kernel(base_kernel)
+        elif structure == "additive":
+            if type == "polynomial" or "poly2":
+                base_kernels = get_base_kernels(self.X, kernel="polynomial")
+            elif type == "poly3":
+                base_kernels = get_base_kernels(self.X, kernel="poly3")
+            elif type == "poly4":
+                base_kernels = get_base_kernels(self.X, kernel="poly4")
+            elif type == "piecewise_polynomial":
+                base_kernels = get_base_kernels(self.X, kernel="piecewise_polynomial")
+            elif type == "RBF":
+                base_kernels = get_base_kernels(self.X, kernel="RBF")
+            elif type == "matern32":
+                base_kernels = get_base_kernels(self.X, kernel="matern32")
+            elif type == "matern52":
+                base_kernels = get_base_kernels(self.X, kernel="matern52")
+            elif type == "RFF":
+                base_kernels = get_base_kernels(self.X, kernel="RFF")
+            elif type == "spectral_mixture":
+                base_kernels = get_base_kernels(self.X, kernel="spectral_mixture")
+            else:
+                raise NotImplementedError("Only linear, polynomial, RBF, matern32, matern52, RFF and spectral_mixture kernels are supported for now")
+            return additive_structure_kernel(self.X, base_kernels)
