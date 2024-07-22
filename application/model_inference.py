@@ -62,30 +62,12 @@ def get_model(file_name):
     model_properties = (sws, y_type, kernel_type, kernel_structure, training_size)
     return model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names
 
-def main():
-    # some example model files that have been checked
-    #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
-    #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
-    #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
-    #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
-    #file_name = "synthetic_3_exact_poly2_additive_20_20240529-104346" #works
-    #file_name = "synthetic_3_MCMC_matern32_simple_500_20240529-104346" # works
-    #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
-    #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
-    file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
-    # certain MCMC models have unexpected errors
-    #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
-    #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
-    #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
-
-    model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names = get_model(file_name)
-    sws, y_type, kernel_type, kernel_structure, training_size = model_properties
-
+def build_mixture_model(model, meta, mode="inference"):
+    X_train, X_test, y_train, y_test, feature_names = meta
     model.eval()
     with torch.no_grad():
-        posterior = model.posterior(model.X.float())
+        posterior = model.posterior(model.X.float()) if mode == "inference" else model.posterior(X_test)
         posterior_predictive = model.posterior(X_test)
-        CONFIDENCE = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")["explained_variance"] if isinstance(model, SAASGP) else get_metrics(posterior, y_test, posterior.mean.squeeze(), type="GP")["explained_variance"]
         confidence_region = posterior.mvn.confidence_region()
         # create dimensional model for MCMC mixture model
         dims = len(model.X.T)
@@ -105,6 +87,12 @@ def main():
             dimensional_model[dim]["inverse_transform"] = Normal(dimensional_model[dim]["mean"], torch.sqrt(posterior.variance[dim])).icdf(dimensional_model[dim]["marginal"])
             dimensional_model[dim]["lower"] = confidence_region[0][dim]
             dimensional_model[dim]["upper"] = confidence_region[1][dim]
+    
+    return posterior, dimensional_model
+
+def BAKR(models, data, confidence=None):
+    model, posterior, dimensional_model = models
+    X_train, X_test, y_train, y_test, feature_names = data
 
     # posterior predictive checks
     mean_vector = posterior.mvn.mean if isinstance(model, MyExactGP) else dimensional_model[0]["mean"] # example for first dimension
@@ -117,7 +105,9 @@ def main():
     # estimate, how much of the explained variance is explained by p components
     p_explained_var = explained_var[p - 1]
     print(f"{p_explained_var}.2f of the variance is explained by {p} components (the base features)")
-    q = np.where(explained_var >= CONFIDENCE)[0][0] + 1 # number of principal components to explain confidential proportion of variance
+    if confidence is None:
+        confidence = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")["explained_variance"] if isinstance(model, SAASGP) else get_metrics(posterior, y_test, posterior.mean.squeeze(), type="GP")["explained_variance"]
+    q = np.where(explained_var >= confidence)[0][0] + 1 # number of principal components to explain confidential proportion of variance
     #qq = next(x[0] for x in enumerate(explained_var) if x[1] > CONFIDENCE) + 1
     #qqq = next(i + 1 for i, var in enumerate(explained_var) if var >= CONFIDENCE)
     Lambda = np.diag(np.sort(lam)[::-1])[:q] # diagonal matrix with first q eigenvalues 
@@ -128,15 +118,32 @@ def main():
     # project the latent space from a fixed column to all other columns with granularity q
     thetas = get_thetas(cov_matrix, q)
     betas = get_beta(B, thetas)
-
     lfsr = LFSR(betas)
     print(f"lfsr: {lfsr}")
+    
+    inference_dict = {}
+    inference_dict["mean_vector"] = mean_vector
+    inference_dict["cov_matrix"] = cov_matrix
+    inference_dict["explained_var"] = explained_var
+    inference_dict["p_explained_var"] = p_explained_var
+    inference_dict["q"] = q
+    inference_dict["full_latent_space"] = full_latent_space
+    inference_dict["Lambda"] = Lambda
+    inference_dict["U"] = U
+    inference_dict["B"] = B
+    inference_dict["Laplace_approximation"] = Laplace_approximation
+    inference_dict["thetas"] = thetas
+    inference_dict["betas"] = betas
+    inference_dict["lfsr"] = lfsr
 
+    return inference_dict
+
+def get_influentials(betas, feature_names):
     print(f"look at influencial features on different significance levels")
     # take low rank approximation
     # count from 0.8 to 0.995 in steps of 0.005 to get the influencial features on different significance levels
     for s in range(970, 996, 5):
-        feature_idx, PPAAs = get_PPAAs(betas, tuple(feature_names), sigval=s/1000)
+        feature_idx, PPAAs = get_PPAAs(betas, (feature_names), sigval=s/1000)
         # fully print the PPAAs
         for i in range(1):
             print(f"s={s/1000}: PPAA {i} with {sum(PPAAs[i*random.randint(0, 200)])} influencial features")
@@ -149,7 +156,7 @@ def main():
                     non_influentials.append((feature_names[feature_idx[j]], betas[i][j]))
             print(f"non influencial features: {non_influentials}")
 
-    # measure the influence of the features on the target variable
+def get_lengthscales(model, kernel_structure, feature_names):
     if model == "MCMC" and kernel_structure == "additive":
         #TODO: this is just a workaround and doesn't look nice
         num_features = len(feature_names)
@@ -168,6 +175,9 @@ def main():
 
         for feature, lengthscale in sorted_lengthscale:
             print(f"{feature}: {lengthscale:.4f}")
+        
+        return sorted_lengthscale
+    
     elif model == "MCMC":
         kernel_lengthscales = [(feature_names[i],model.median_lengthscale[i]) for i in range(len(model.median_lengthscale))]
         # make list of tuples with feature name and lengthscale sorted by lengthscale
@@ -179,11 +189,48 @@ def main():
         print(f"sorted features: {sorted_features} having lengthscales: {lengthscale_sorted}")
         for feature, lengthscale in sorted_lengthscale:
             print(f"lengthscale of {feature}: {lengthscale}")
+        return sorted_lengthscale
     else:
         print("Exact GP model doesn't have lengthscale values.")
 
+def main():
+    # some example model files that have been checked
+    #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
+    #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
+    #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
+    #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
+    #file_name = "synthetic_3_exact_poly2_additive_20_20240529-104346" #works
+    #file_name = "synthetic_3_MCMC_matern32_simple_500_20240529-104346" # works
+    #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
+    file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
+    #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
+    # certain MCMC models have unexpected errors
+    #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
+    #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
+    #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
+
+    model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names = get_model(file_name)
+    print(f"model: {model}")
+    print(f"model properties: {model_properties}")
+    sws, y_type, kernel_type, kernel_structure, training_size = model_properties
+
+    posterior, dimensional_model = build_mixture_model(model, (X_train, X_test, y_train, y_test, feature_names), mode="inference")
+
+    # inference according to BAKR
+    inference_dict = BAKR((model, posterior, dimensional_model), (X_train, X_test, y_train, y_test, feature_names))
+
+    # get the influencial features
+    get_influentials(inference_dict["betas"], feature_names)
+
+    # measure the influence of the features on the target variable
+    for i in range(len(feature_names)):
+        print(f"feature {feature_names[i]}: {pointbiserialr(X_train[:,i], y_train)}")
+    
+    # get the lengthscales of the kernel
+    get_lengthscales(model, kernel_structure, feature_names)
+
     ## PLOTTING SECTION FOR MCMC MODELS
-    if model == "MCMC":
+    if isinstance(model, SAASGP):
         # plot feature wise
         #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
         kde_plots(X_train, y_train)
@@ -202,18 +249,19 @@ def main():
             for dim in tuple:
                 dimensional_submodel[dim] = dimensional_model[dim]
             plot_combined_pdf(dimensional_submodel)
+
     plot_combined_pdf(dimensional_model)
 
     if kernel_structure == "additive" and "synthetic" in sws:
         print(f"Interactions are not supported for additive kernel structures on synthetic data for now. Sorry!")
-    elif model == "MCMC":
+    elif isinstance(model, SAASGP):
         # measure and plot interactions
         SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
         # compute group RATE according to Crawford et al. 2019
         # j is the feature group that occurs in the rows of the data set
         j, groups = get_groups(X_test, SELECTED_FEATURES)
         print(f"groups:\n {groups}")
-        group_rate = group_RATE(mean_vector, U, j) #TODO: How to visualize the group rate or KLD in general?
+        group_rate = group_RATE(inference_dict["mean_vector"], inference_dict["U"], j) #TODO: How to visualize the group rate or KLD in general?
         print(f"group rate: {group_rate}")
         opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
         measure_subset(model, ds, SELECTED_FEATURES)
