@@ -195,10 +195,17 @@ class SaasPyroModel(SaasPyroModel):
         if self.kernel_structure == "additive":
             lengthscale_squeezed = mcmc_samples['lengthscale'].squeeze(-1)
             # Iterate over all pairs of dimensions (d over 2)
-            dimension_pairs = list(combinations(range(len(self.train_X.T)), 2))
+            print(f"length of train_X.T: {len(self.train_X.T)}")
+            print(f"length of mcmc_samples['lengthscale']: {mcmc_samples['lengthscale'].shape[0]}")
+            dims = len(self.train_X.T) if len(self.train_X.T) == mcmc_samples['lengthscale'].shape[0] else mcmc_samples['lengthscale'].shape[0]
+            dimension_pairs = list(combinations(range(dims), 2))
 
             for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
                 # Get the indices for the current pair of dimensions
+                print(f"i: {i}")
+                if i == len(dimension_pairs):
+                    break
+                print(f"dimension_pairs: {dimension_pairs} (len: {len(dimension_pairs)})")
                 dim1, dim2 = dimension_pairs[i]
 
                 for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
