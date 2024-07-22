@@ -94,6 +94,11 @@ def select_features(ds, feature_set, mode="opposites_and_interactions"):
         #print(f"Selecting features: {columns}")
         columns = ds.get_measurement_df().columns
         ds = ds.get_measurement_df().to_numpy(copy=False)
+    elif type(ds) is pd.DataFrame:
+        columns = ds.columns
+        ds = ds.to_numpy(copy=False)
+    else:
+        raise NotImplementedError
     if mode == "literals_and_interactions":
         left, right = get_literals_and_interaction(ds, feature_set)
     elif mode == "opposites_and_interactions":
