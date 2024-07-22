@@ -117,8 +117,8 @@ def get_groups(X, feature_group):
     print(f"minus_j intersects in X at row: {idx}")
     return idx, groups
 
-def get_posterior_variations(model, X_test, feature_group):
-    literals, interactions = get_literals_and_interaction(X_test, feature_group) # wahlweise mit X_train um Gewissheit über trainings interaktionen zu haben
+def get_posterior_variations(model, X, feature_group):
+    literals, interactions = get_literals_and_interaction(X, feature_group)
     # get posterior for opposites and interactions
     posterior_literals = model.posterior(torch.tensor(literals))
     posterior_interactions = model.posterior(torch.tensor(interactions))
