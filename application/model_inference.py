@@ -69,8 +69,9 @@ def build_mixture_model(model, meta, mode="inference"):
         posterior_predictive = model.posterior(X_test)
         confidence_region = posterior.mvn.confidence_region()
         # create dimensional model for MCMC mixture model
-        dims = len(model.X.T)
-        if dims != posterior.base_sample_shape[0] and not isinstance(model.kernel, AdditiveStructureKernel):
+        if len(model.X.T) <= posterior.base_sample_shape[0]:
+            dims = len(model.X.T)
+        elif len(model.X.T) > posterior.base_sample_shape[0]:
             dims = posterior.base_sample_shape[0]
         dimensional_model = {}
         for dim in range(dims):
@@ -207,9 +208,9 @@ def main():
     #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
     #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
     #file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
+    file_name = "synthetic_3_MCMC_matern32_additive_20_20240529-104346"
 
     # certain models have errors
-    file_name = "synthetic_3_exact_RFF_additive_50_20240529-104346" # IndexError: index 14 is out of bounds for axis 1 with size 14
     #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
     #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
     #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
