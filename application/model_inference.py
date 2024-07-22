@@ -7,6 +7,7 @@ from copulae.core.linalg import cov2corr, corr2cov
 from copulae.core.misc import rank_data
 from adapters.preprocessing import prepare_dataset, preprocessing
 from adapters.gpytorch.gp_model import SAASGP, MyExactGP
+from gpytorch.kernels import AdditiveStructureKernel
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
@@ -57,7 +58,6 @@ def get_model(file_name):
         model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
         model.eval()
     model.load_state_dict(torch.load(model_file), strict=False)
-    print(model)
     model_properties = (sws, y_type, kernel_type, kernel_structure, training_size)
     return model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names
 
@@ -70,7 +70,7 @@ def build_mixture_model(model, meta, mode="inference"):
         confidence_region = posterior.mvn.confidence_region()
         # create dimensional model for MCMC mixture model
         dims = len(model.X.T)
-        if dims != posterior.base_sample_shape[0]:
+        if dims != posterior.base_sample_shape[0] and not isinstance(model.kernel, AdditiveStructureKernel):
             dims = posterior.base_sample_shape[0]
         dimensional_model = {}
         for dim in range(dims):
@@ -206,10 +206,10 @@ def main():
     #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
     #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
     #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
-    # file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
-    file_name = "Apache_energy_large_performance_MCMC_RBF_simple_250_20240529-122609" # IndexError: index 16 is out of bounds for dimension 0 with size 16
-    # certain MCMC models have unexpected errors
-    #file_name = "Apache_energy_large_performance_MCMC_RBF_additive_500_20240529-122609" # IndexError: index 16 is out of bounds for dimension 0 with size 16
+    #file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
+
+    # certain models have errors
+    file_name = "synthetic_3_exact_RFF_additive_50_20240529-104346" # IndexError: index 14 is out of bounds for axis 1 with size 14
     #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
     #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
     #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
