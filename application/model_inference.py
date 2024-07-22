@@ -56,7 +56,6 @@ def get_model(file_name):
     elif model == "MCMC":
         model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
         model.eval()
-        print(model)
     model.load_state_dict(torch.load(model_file), strict=False)
     print(model)
     model_properties = (sws, y_type, kernel_type, kernel_structure, training_size)
@@ -71,13 +70,10 @@ def build_mixture_model(model, meta, mode="inference"):
         confidence_region = posterior.mvn.confidence_region()
         # create dimensional model for MCMC mixture model
         dims = len(model.X.T)
-        print(f"number of dimensions: {dims}")
-        print(f"base_sample_shape: {posterior.base_sample_shape}")
         if dims != posterior.base_sample_shape[0]:
             dims = posterior.base_sample_shape[0]
         dimensional_model = {}
         for dim in range(dims):
-            print(f"dimension {dim}")
             dimensional_model[dim] = {}
             dimensional_model[dim]["X"] = X_train[:, dim]
             dimensional_model[dim]["feature_name"] = feature_names[dim]
