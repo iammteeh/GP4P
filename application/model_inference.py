@@ -71,8 +71,13 @@ def build_mixture_model(model, meta, mode="inference"):
         confidence_region = posterior.mvn.confidence_region()
         # create dimensional model for MCMC mixture model
         dims = len(model.X.T)
+        print(f"number of dimensions: {dims}")
+        print(f"base_sample_shape: {posterior.base_sample_shape}")
+        if dims != posterior.base_sample_shape[0]:
+            dims = posterior.base_sample_shape[0]
         dimensional_model = {}
         for dim in range(dims):
+            print(f"dimension {dim}")
             dimensional_model[dim] = {}
             dimensional_model[dim]["X"] = X_train[:, dim]
             dimensional_model[dim]["feature_name"] = feature_names[dim]
@@ -201,10 +206,14 @@ def main():
     #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
     #file_name = "synthetic_3_exact_poly2_additive_20_20240529-104346" #works
     #file_name = "synthetic_3_MCMC_matern32_simple_500_20240529-104346" # works
+    #file_name = "synthetic_4_MCMC_poly3_simple_100_20240529-104346" # works
     #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
-    file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
+    #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
     #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
+    # file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
+    file_name = "Apache_energy_large_performance_MCMC_RBF_simple_250_20240529-122609" # IndexError: index 16 is out of bounds for dimension 0 with size 16
     # certain MCMC models have unexpected errors
+    #file_name = "Apache_energy_large_performance_MCMC_RBF_additive_500_20240529-122609" # IndexError: index 16 is out of bounds for dimension 0 with size 16
     #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
     #file_name = "Apache_energy_large_performance_MCMC_RFF_simple_100_20240528-201735" # RuntimeError: expected scalar type Float but found Double
     #file_name = "synthetic_3_MCMC_RFF_simple_500_20240531-210016" RuntimeError: expected scalar type Float but found Double
@@ -231,6 +240,7 @@ def main():
 
     ## PLOTTING SECTION FOR MCMC MODELS
     if isinstance(model, SAASGP):
+        pass
         # plot feature wise
         #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
         kde_plots(X_train, y_train)
@@ -264,6 +274,7 @@ def main():
         group_rate = group_RATE(inference_dict["mean_vector"], inference_dict["U"], j) #TODO: How to visualize the group rate or KLD in general?
         print(f"group rate: {group_rate}")
         opposites, interactions = get_posterior_variations(model, X_train, SELECTED_FEATURES)
+        #opposites, interactions = get_posterior_variations(model, X_test, SELECTED_FEATURES)
         measure_subset(model, ds, SELECTED_FEATURES)
         dimensional_submodel = {}
         dimensional_submodel["0"] = {}
