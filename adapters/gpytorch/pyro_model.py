@@ -7,7 +7,8 @@ from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
 from pyro.infer.mcmc import MCMC, NUTS
 from gpytorch.means.linear_mean import LinearMean
 from gpytorch.means.constant_mean import ConstantMean
-from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, PolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
+from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
+from adapters.gpytorch.polynomial_kernel import PolynomialKernel
 from adapters.gpytorch.kernels import get_base_kernels, get_additive_kernel
 from domain.env import MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE ,POLY_DEGREE
 from gpytorch.likelihoods.likelihood import Likelihood
