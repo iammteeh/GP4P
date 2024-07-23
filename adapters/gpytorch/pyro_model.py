@@ -203,10 +203,8 @@ class SaasPyroModel(SaasPyroModel):
 
             for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
                 # Get the indices for the current pair of dimensions
-                print(f"i: {i}")
                 if i == len(dimension_pairs):
                     break
-                print(f"dimension_pairs: {dimension_pairs} (len: {len(dimension_pairs)})")
                 dim1, dim2 = dimension_pairs[i]
 
                 for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
