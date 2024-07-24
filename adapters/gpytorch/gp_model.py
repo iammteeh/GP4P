@@ -1,4 +1,5 @@
 import numpy as np
+import jax.numpy as jnp
 import torch
 import gpytorch
 from typing import Optional
@@ -12,9 +13,10 @@ from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, Ad
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
 from adapters.gpytorch.pyro_model import SaasPyroModel
+from adapters.gpytorch.pyro_model_jax import SaasPyroModelJAX
 from botorch.models.transforms import Standardize
 from gpytorch.utils import grid
-from gpytorch.likelihoods import GaussianLikelihood, Likelihood
+from gpytorch.likelihoods import GaussianLikelihood, Likelihood, FixedNoiseGaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
 from gpytorch.means import ConstantMean
@@ -152,3 +154,12 @@ class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
             self._check_if_fitted()
             lengthscale = self.covar_module.base_kernel.lengthscale.clone()
             return lengthscale.median(0).values.squeeze(0)
+
+class SAASGPJAX(GP_Prior, SaasFullyBayesianSingleTaskGP):
+    def __init__(self, X, y, feature_names, mean_func="constant", kernel_structure="simple", kernel_type="matern"):
+        GP_Prior.__init__(self, X, y, feature_names)
+        # transform x and y to tensors
+        self.X = torch.tensor(self.X).double()
+        self.y = torch.tensor(self.y).double().unsqueeze(-1)
+        pyro_model = SaasPyroModelJAX(mean_func=mean_func, kernel_structure=kernel_structure, kernel_type=kernel_type)
+        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=pyro_model)
