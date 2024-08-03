@@ -2,8 +2,13 @@ import torch
 from matplotlib import pyplot as plt
 import seaborn as sns
 import numpy as np
-from scipy.stats import norm, mode
+import math
+from scipy.stats import norm, mode, multivariate_normal
+from streamlit import pyplot
 from domain.env import RESULTS_DIR, DATA_SLICE_AMOUNT
+from datetime import datetime
+
+TIMESTAMP = datetime.now().strftime("%Y%m%d-%H%M%S")
 
 def plot_prior(model, X_test, y_test):
     with torch.no_grad():
@@ -69,10 +74,14 @@ def plot_density(mean, variance, feature_name):
     plt.ylabel("density")
     plt.grid(True)
     # safe figure and show
-    #plt.savefig(f"{RESULTS_DIR}/density_d{d}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
-    plt.show()
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        plt.savefig(f"{RESULTS_DIR}/density_d{d}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
 
-def plot_combined_pdf(features):
+def plot_combined_pdf(features, mode="show"):
     for feature, param in features.items():
         if type(param["mean"]) is not np.ndarray or type(param["std"]) is not np.ndarray:
             param["mean"] = param["mean"].numpy()
@@ -89,8 +98,12 @@ def plot_combined_pdf(features):
     plt.legend()
     plt.grid(True)
     # safe figure and show
-    #plt.savefig(f"{RESULTS_DIR}/density_combined_{features.keys()}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
-    plt.show()
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        plt.savefig(f"{RESULTS_DIR}/density_combined_{features.keys()}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
 
 def plot_interaction_pdfs(param_features, selected_features):
     for i, (feature, param) in enumerate(param_features.items()):
@@ -110,10 +123,14 @@ def plot_interaction_pdfs(param_features, selected_features):
     plt.legend()
     plt.grid(True)
     # safe figure and show
-    #plt.savefig(f"{RESULTS_DIR}/kernel_interactions_{param_features}.png", dpi=300, bbox_inches="tight")
-    plt.show()
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        plt.savefig(f"{RESULTS_DIR}/kernel_interactions_{param_features}.png", dpi=300, bbox_inches="tight")
 
-def mean_and_confidence_region(X_test, X_train, y_train, mean, lower, upper):
+def mean_and_confidence_region(X_test, X_train, y_train, mean, lower, upper, mode="show"):
     print(f"X_test: {X_test.shape}, X_train: {X_train.shape}, y_train; {y_train.shape}, mean: {mean.shape}, lower: {lower.shape}, upper: {upper.shape}")
     if not isinstance(X_test, torch.Tensor):
         X_test = torch.tensor(X_test)
@@ -152,9 +169,15 @@ def mean_and_confidence_region(X_test, X_train, y_train, mean, lower, upper):
         #ax.scatter(X_test.numpy(), mean.numpy(), c='b', s=10)
         ax.fill_between(X_test, lower, upper, alpha=0.5)
         ax.legend(['Observed Data', 'Mean', 'Confidence'])
-        plt.show()
 
-def grid_plot(X_train, y_train, X_test, mean, confidence_region):
+        if mode == "show":
+            plt.show() 
+        elif mode == "dashboard":
+            pyplot(plt, clear_figure=True)
+        else:
+            plt.savefig("kde_plots.png")
+
+def grid_plot(X_train, y_train, X_test, mean, confidence_region, mode="show"):
     lower, upper = confidence_region
 
     num_dimensions = X_train.shape[1] 
@@ -196,9 +219,14 @@ def grid_plot(X_train, y_train, X_test, mean, confidence_region):
     fig.suptitle('Gaussian Process Regression for Each Feature', fontsize=16)
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])  # Adjust the layout
 
-    plt.show()
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        plt.savefig("kde_plots.png")
 
-def kde_plots(X_train, y_train):
+def kde_plots(X_train, y_train, mode="show"):
 
     # Example synthetic data for demonstration
     # Assume X_train is a torch tensor with shape (200, 16)
@@ -224,4 +252,9 @@ def kde_plots(X_train, y_train):
 
     # Adjust layout for better spacing
     plt.tight_layout()
-    plt.show()
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        plt.savefig("kde_plots.png")
