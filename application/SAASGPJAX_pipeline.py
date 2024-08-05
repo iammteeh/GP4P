@@ -3,7 +3,7 @@ import torch
 from adapters.gpytorch.gp_model import SAASGP, SAASGPJAX
 from application.init_pipeline import init_pipeline
 #from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
-from adapters.gpytorch.pyro_model_jax import fit_fully_bayesian_model_nuts
+from adapters.pyro.pyro_model_jax import fit_fully_bayesian_model_nuts
 from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE
 from domain.metrics import get_metrics, get_BIC
 import datetime

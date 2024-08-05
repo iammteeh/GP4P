@@ -5,7 +5,7 @@ import pyro
 from adapters.saasgp import SAASGP
 from application.init_pipeline import init_pipeline, get_numpy_features
 from botorch import fit_gpytorch_mll
-from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
+from adapters.pyro.pyro_model import fit_fully_bayesian_model_nuts
 from domain.env import USE_DUMMY_DATA, MODELDIR, EXTRAFUNCTIONAL_FEATURES, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, ARD, RESULTS_DIR
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.sampling import get_initial_points, generate_batch, draw_random_samples, draw_random_x, generate_test_x_from_tensor
