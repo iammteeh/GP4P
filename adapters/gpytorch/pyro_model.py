@@ -1,13 +1,20 @@
 from typing import Dict, Tuple, Union
 from itertools import combinations
+import torch
+import jax.numpy as jnp
+import numpy as np
 from gpytorch.constraints import GreaterThan
 from botorch.models.fully_bayesian import SaasPyroModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
 from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
+import pyro
 from pyro.infer.mcmc import MCMC, NUTS
+from pyro.contrib.gp.kernels import RBF, RationalQuadratic, Exponential, Matern32, Matern52, Periodic, Polynomial, Sum, Product
+from adapters.pyro.kernels import polynomial_kernel, rbf_kernel, matern_kernel, _periodic_kernel, gen_base_kernels, additive_structure_kernel
 from gpytorch.means.linear_mean import LinearMean
 from gpytorch.means.constant_mean import ConstantMean
 from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
+from botorch.models.fully_bayesian import matern52_kernel, compute_dists
 from adapters.gpytorch.polynomial_kernel import PolynomialKernel
 from adapters.gpytorch.kernels import get_base_kernels, get_additive_kernel
 from domain.env import MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE ,POLY_DEGREE
@@ -19,6 +26,21 @@ from gpytorch.likelihoods.gaussian_likelihood import (
 from gpytorch.means.mean import Mean
 from botorch.models.utils.gpytorch_modules import MIN_INFERRED_NOISE_LEVEL
 from torch import Tensor, Size
+from pyro.infer.autoguide import init_to_feasible, init_to_median, init_to_sample
+
+def convert_to_tensors(data_dict):
+    tensor_dict = {}
+    for key, value in data_dict.items():
+        # Check if the value is array-like
+        if isinstance(value, (list, tuple, np.ndarray, jnp.ndarray)):
+            # Convert to NumPy array if it's not already one
+            if not isinstance(value, np.ndarray):
+                value = np.array(value)
+            tensor_dict[key] = torch.tensor(value)
+        else:
+            # If it's a scalar, convert directly
+            tensor_dict[key] = torch.tensor(value)
+    return tensor_dict
 
 def reshape_and_detach(target: Tensor, new_value: Tensor) -> None:
     # Detach and clone the new_value tensor
@@ -76,6 +98,7 @@ def fit_fully_bayesian_model_nuts(
         ignore_jit_warnings=True,
         max_tree_depth=max_tree_depth,
         target_accept_prob= 0.8,
+        init_strategy=init_to_feasible,
     )
     mcmc = MCMC(
         nuts,
@@ -105,6 +128,120 @@ class SaasPyroModel(SaasPyroModel):
         self.mean_func = mean_func
         self.kernel_type = kernel_type
         self.kernel_structure = kernel_structure
+
+    def init_kernel(self, outputscale=None, lengthscale=None, inv_length_sq=None):
+        r"""Initialize the kernel based on the kernel type and structure."""
+        if self.kernel_structure == "additive":
+            base_kernels = gen_base_kernels(self.kernel_type, self.train_X, self.train_X, lengthscale)
+            additive_kernel = additive_structure_kernel(self.train_X, self.train_X, base_kernels, outputscale=outputscale)
+            return additive_kernel
+        if "poly" in self.kernel_type:
+            if self.kernel_type == "poly2" or self.kernel_type == "polynomial":
+                    POLY_DEGREE = 2
+            elif self.kernel_type == "poly3":
+                    POLY_DEGREE = 3
+            elif self.kernel_type == "poly4":
+                    POLY_DEGREE = 4
+            return polynomial_kernel(self.train_X, self.train_X, degree=POLY_DEGREE)
+        elif self.kernel_type == "rbf":
+            return rbf_kernel(self.train_X, self.train_X, lengthscale=lengthscale)
+        elif self.kernel_type == "matern32":
+            return matern_kernel(self.train_X, self.train_X, inv_length_sq, nu=1.5)
+        elif self.kernel_type == "matern52":
+            return matern52_kernel(self.train_X, lengthscale)
+        elif self.kernel_type == "periodic":
+            kernel = Periodic(input_dim=self.train_X.shape[1], lengthscale=lengthscale)
+            return kernel.forward(self.train_X)
+            # own implementations don't produce positive definite matrices yet
+            return periodic_kernel(self.train_X, self.train_X, lengthscale=lengthscale, period=1.0)
+            return _periodic_kernel(self.train_X, self.train_X, lengthscale=lengthscale, period=1.0)
+        # not yet by GPyTorch supported kernels
+        #elif self.kernel_type == "rational":
+        #    kernel = RationalQuadratic(input_dim=self.train_X.shape[1], lengthscale=lengthscale)
+        #    return kernel.forward(self.train_X)
+        #elif self.kernel_type == "exponential":
+        #    kernel = Exponential(input_dim=self.train_X.shape[1], lengthscale=lengthscale)
+        #    return kernel.forward(self.train_X)
+
+    def sample(self) -> None:
+        r"""Sample from the SAAS model.
+
+        This samples the mean, noise variance, outputscale, and lengthscales according
+        to the SAAS prior.
+        """
+        tkwargs = {"dtype": self.train_X.dtype, "device": self.train_X.device}
+        outputscale = self.sample_outputscale(concentration=2.0, rate=0.15, **tkwargs)
+        mean = self.sample_mean(**tkwargs)
+        noise = self.sample_noise(**tkwargs)
+        inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=self.ard_num_dims, **tkwargs)
+        kernel = self.init_kernel(outputscale=outputscale, lengthscale=lengthscale, inv_length_sq=inverse_lengthscale)
+        if self.kernel_structure != "additive":
+            kernel = outputscale * kernel + noise * torch.eye(self.train_X.shape[0], **tkwargs)
+        pyro.sample(
+            "Y",
+            pyro.distributions.MultivariateNormal(
+                loc=mean.view(-1).expand(self.train_X.shape[0]),
+                covariance_matrix=kernel,
+            ),
+            obs=self.train_Y.squeeze(-1),
+        )
+
+    def sample_outputscale(
+        self, concentration: float = 2.0, rate: float = 0.15, **tkwargs
+    ) -> Tensor:
+        r"""Sample the outputscale."""
+        return pyro.sample(
+            "outputscale",
+            pyro.distributions.Gamma(
+                torch.tensor(concentration, **tkwargs),
+                torch.tensor(rate, **tkwargs),
+            ),
+        )
+
+    def sample_mean(self, **tkwargs) -> Tensor:
+        r"""Sample the mean constant."""
+        return pyro.sample(
+            "mean",
+            pyro.distributions.Normal(
+                torch.tensor(0.0, **tkwargs),
+                torch.tensor(1.0, **tkwargs),
+            ),
+        )
+
+    def sample_noise(self, **tkwargs) -> Tensor:
+        r"""Sample the noise variance."""
+        if self.train_Yvar is None:
+            return MIN_INFERRED_NOISE_LEVEL + pyro.sample(
+                "noise",
+                pyro.distributions.Gamma(
+                    torch.tensor(0.9, **tkwargs),
+                    torch.tensor(10.0, **tkwargs),
+                ),
+            )
+        else:
+            return self.train_Yvar
+
+    def sample_lengthscale(
+        self, dim: int, alpha: float = 0.1, **tkwargs
+    ) -> Tensor:
+        r"""Sample the lengthscale."""
+        tausq = pyro.sample(
+            "kernel_tausq",
+            pyro.distributions.HalfCauchy(torch.tensor(alpha, **tkwargs)),
+        )
+        inv_length_sq = pyro.sample(
+            "_kernel_inv_length_sq",
+            pyro.distributions.HalfCauchy(torch.ones(dim, **tkwargs)),
+        )
+        inv_length_sq = pyro.deterministic(
+            "kernel_inv_length_sq", tausq * inv_length_sq
+        )
+        lengthscale = pyro.deterministic(
+            "lengthscale",
+            inv_length_sq.rsqrt(),
+        )
+        return inv_length_sq, lengthscale
+
     def load_covar_module(self, **kwargs):
         r"""Load the covariance module based on the kernel type and structure."""
         if self.kernel_structure == "additive":
@@ -164,7 +301,10 @@ class SaasPyroModel(SaasPyroModel):
         
     def load_mcmc_samples(self, mcmc_samples: Dict[str, Tensor]) -> Tuple[Mean, Kernel, Likelihood]:
         r"""Load the MCMC samples into the mean_module, covar_module (PiecewisePolynomial), and likelihood."""
-        tkwargs = {"device": self.train_X.device, "dtype": self.train_X.dtype}
+        # check if the samples are tensors
+        if not all([isinstance(v, Tensor) for v in mcmc_samples.values()]):
+            mcmc_samples = convert_to_tensors(mcmc_samples)
+        tkwargs = {"device": torch.tensor(np.array(self.train_X)).device, "dtype": torch.tensor(np.array(self.train_X)).dtype}
         num_mcmc_samples = len(mcmc_samples["mean"])
         batch_shape = Size([num_mcmc_samples])
         #TODO: Implement sampling the linear weighted mean
