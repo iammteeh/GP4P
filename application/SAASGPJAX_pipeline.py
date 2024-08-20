@@ -58,7 +58,6 @@ def main():
     # init model
     data = get_data()
     X_train, X_test, y_train, y_test, feature_names = data
-    #model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=KERNEL_STRUCTURE, kernel_type=KERNEL_TYPE)
     model = SAASGPJAX(X_train, y_train, feature_names, mean_func=MEAN_FUNC, kernel_structure=KERNEL_STRUCTURE, kernel_type=KERNEL_TYPE)
 
     # check for NaN / inf
@@ -106,7 +105,7 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    filename = f"SAASGP_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{timestamp}"
+    filename = f"SAASGPJAX_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{timestamp}"
     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
     print(f"Model saved to {MODELDIR}/{filename}.pth")
 if __name__ == "__main__":

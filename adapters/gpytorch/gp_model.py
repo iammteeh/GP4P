@@ -12,8 +12,8 @@ from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariati
 from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, AdditiveGridInterpolationVariationalStrategy, NNVariationalStrategy, OrthogonallyDecoupledVariationalStrategy
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
-from adapters.gpytorch.pyro_model import SaasPyroModel
-from adapters.gpytorch.pyro_model_jax import SaasPyroModelJAX
+from adapters.pyro.pyro_model import SaasPyroModel
+from adapters.pyro.pyro_model_jax import SaasPyroModelJAX
 from botorch.models.transforms import Standardize
 from gpytorch.utils import grid
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood, FixedNoiseGaussianLikelihood
@@ -161,5 +161,6 @@ class SAASGPJAX(GP_Prior, SaasFullyBayesianSingleTaskGP):
         # transform x and y to tensors
         self.X = torch.tensor(self.X).double()
         self.y = torch.tensor(self.y).double().unsqueeze(-1)
+        print(f"Initialize the additive model... (due to a JAX bug, this can take several minutes, but then we go brrrrr))")
         pyro_model = SaasPyroModelJAX(mean_func=mean_func, kernel_structure=kernel_structure, kernel_type=kernel_type)
         SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=pyro_model)

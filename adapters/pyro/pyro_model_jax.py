@@ -1,31 +1,40 @@
-import math
 import time
-from functools import partial
-from typing import Union
 from itertools import combinations
 import jax.numpy as jnp
 import jax.random as random
-import numpy as np
+from jax.numpy import clip
+from jax import jit, vmap
+from jax.lax import clamp
 import numpyro
 import numpyro.distributions as dist
-from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
-from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
-from adapters.pyro.pyro_model import SaasPyroModel
-from adapters.pyro.jax_kernels import rbf_kernel, matern_kernel
-from jax import jit, vmap
 from jax.scipy.linalg import cho_factor, cho_solve, solve_triangular
 from numpyro.diagnostics import summary
+from gpytorch.constraints import GreaterThan
+
+from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
+from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
+
+from adapters.pyro.pyro_model import SaasPyroModel
+from gpytorch.means.constant_mean import ConstantMean
+from adapters.pyro.jax_kernels import rbf_kernel, matern_kernel, AdditiveJAXKernel
 from numpyro.infer import MCMC, NUTS
 
+from typing import Dict, Tuple, Union
+from jax.typing import ArrayLike
+from gpytorch.means.mean import Mean
+from gpytorch.likelihoods import Likelihood, FixedNoiseGaussianLikelihood, GaussianLikelihood
+from gpytorch.kernels import Kernel
+
+MIN_INFERRED_NOISE_LEVEL = 1e-4
 
 def reshape_and_detach(target, new_value) -> None:
     # Detach and clone the new_value tensor
     detached_value = new_value.copy()
 
     # Check if the new_value is a scalar or has a single element
-    if detached_value.size() == 1:
+    if detached_value.shape == 1:
         # If target is also a scalar, use the scalar value directly
-        if target.size() == 1:
+        if target.shape == 1:
             return detached_value.item()
         else:
             # Otherwise, expand the scalar to match the target shape
@@ -133,38 +142,56 @@ class SaasPyroModelJAX(SaasPyroModel):
     # define the surrogate model. users who want to modify e.g. the prior on the kernel variance
     # should make their modifications here.
     def sample(self):
-        N, P = self.train_X.shape
+        if self.kernel_structure != "additive":
+            N, P = self.train_X.shape
 
-        outputscale = self.sample_outputscale()
-        mean = self.sample_mean()
-        noise = (
-            self.sample_noise() if self.learn_noise else self.observation_variance
-        )
-        inv_length_sq, lengthscale = self.sample_lengthscale(P)
+            variance = self.sample_outputscale()
+            mean = self.sample_mean()
+            noise = (
+                self.sample_noise() if self.learn_noise else self.observation_variance
+            )
+            inv_length_sq, lengthscale = self.sample_lengthscale(P)
 
-        k = self.kernel(self.train_X, self.train_X, outputscale, inv_length_sq, noise, True)
-        numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
-
+            #k = self.kernel(self.train_X, self.train_X, outputscale, inv_length_sq, noise, True)
+            k = matern_kernel(self.train_X, self.train_X, variance, inv_length_sq, noise, nu=2.5)
+            numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
+        else:
+            base_kernels = []
+            for i in range(self.ard_num_dims):
+                inv_length_sq, lengthscale = self.sample_lengthscale(1, name_suffix=f"_{i}")
+                variance = 1.0 # set to 1.0, because we sample the outputscale separately
+                kernel = matern_kernel(self.train_X[:, i], self.train_X[:, i], variance, inv_length_sq, nu=2.5)
+                base_kernels.append(kernel)
+            d_kernels = []
+            for (i, k1),(j, k2) in combinations(enumerate(base_kernels), 2): # iterate over all pairs of dimensions (d over 2)
+                name = f"{i}_{j}"
+                outputscale = self.sample_outputscale(name_suffix=f"_{name}")
+                d_kernels.append(base_kernels[i] * base_kernels[j] * outputscale) # is basically the covariance matrix of the kernel, but we don't need to compute it, because we can sample from it directly
+            K = AdditiveJAXKernel(base_kernels=d_kernels).forward(self.train_X, self.train_X)
+            noise = self.sample_noise()
+            K += jnp.eye(self.train_X.shape[0]) * noise
+            mean = jnp.broadcast_to(self.sample_mean(), self.train_X.shape[0])
+            numpyro.sample(f"Y", dist.MultivariateNormal(loc=mean, covariance_matrix=K), obs=self.train_Y)
     def sample_hyperparameters(self, rng_key, num_samples=1):
         pass
 
-    def sample_outputscale(self, concentration: float = 2.0, rate: float = 0.15):
-        return numpyro.sample("outputscale", dist.Gamma(concentration, rate))
+    def sample_outputscale(self, concentration: float = 2.0, rate: float = 0.15, name_suffix=""):
+        return numpyro.sample("outputscale" + name_suffix, dist.Gamma(concentration, rate))
     
     def sample_mean(self):
         return numpyro.sample("mean", dist.Normal(0.0, 1.0))
     
-    def sample_noise(self):
-        return numpyro.sample("noise", dist.Gamma(0.9, 10.0))
+    def sample_noise(self, name_suffix=""):
+        return numpyro.sample("noise" + name_suffix, dist.Gamma(0.9, 10.0))
     
-    def sample_lengthscale(self, dim: int):
-        tausq = numpyro.sample("kernel_tausq", dist.HalfCauchy(self.alpha)) # shrinkage prior
+    def sample_lengthscale(self, dim: int, name_suffix=""):
+        tausq = numpyro.sample("kernel_tausq" + name_suffix, dist.HalfCauchy(self.alpha)) # shrinkage prior
 
         # note we use deterministic to reparameterize the geometry
-        inv_length_sq = numpyro.sample("_kernel_inv_length_sq", dist.HalfCauchy(jnp.ones(dim)))
-        inv_length_sq = numpyro.deterministic("kernel_inv_length_sq", tausq * inv_length_sq)
+        inv_length_sq = numpyro.sample("_kernel_inv_length_sq" + name_suffix, dist.HalfCauchy(jnp.ones(dim)))
+        inv_length_sq = numpyro.deterministic("kernel_inv_length_sq" + name_suffix, tausq * inv_length_sq)
 
-        lengthscale = numpyro.deterministic("lengthscale", 1.0 / jnp.sqrt(inv_length_sq))
+        lengthscale = numpyro.deterministic("lengthscale" + name_suffix, 1.0 / jnp.sqrt(inv_length_sq))
 
         return inv_length_sq, lengthscale
     
@@ -174,16 +201,104 @@ class SaasPyroModelJAX(SaasPyroModel):
         This computes the true lengthscales and removes the inverse lengthscales and
         tausq (global shrinkage).
         """
-        inv_length_sq = (
-            jnp.expand_dims(mcmc_samples["kernel_tausq"], axis=-1)
-            * mcmc_samples["_kernel_inv_length_sq"]
-        )
-        mcmc_samples["lengthscale"] = jnp.sqrt(1.0 / inv_length_sq)
-        # Delete `kernel_tausq` and `_kernel_inv_length_sq` since they aren't loaded
-        # into the final model.
-        del mcmc_samples["kernel_tausq"], mcmc_samples["_kernel_inv_length_sq"]
+        if self.kernel_structure != "additive":
+            inv_length_sq = (
+                jnp.expand_dims(mcmc_samples["kernel_tausq"], axis=-1)
+                * mcmc_samples["_kernel_inv_length_sq"]
+            )
+            mcmc_samples["lengthscale"] = jnp.sqrt(1.0 / inv_length_sq)
+            # Delete `kernel_tausq` and `_kernel_inv_length_sq` since they aren't loaded
+            # into the final model.
+            del mcmc_samples["kernel_tausq"], mcmc_samples["_kernel_inv_length_sq"]
+        else:
+            for i in range(self.ard_num_dims):
+                inv_length_sq = (
+                    jnp.expand_dims(mcmc_samples[f"kernel_tausq_{i}"], axis=-1)
+                    * mcmc_samples[f"_kernel_inv_length_sq_{i}"]
+                )
+                mcmc_samples[f"lengthscale_{i}"] = jnp.sqrt(1.0 / inv_length_sq)
+                del mcmc_samples[f"kernel_tausq_{i}"], mcmc_samples[f"_kernel_inv_length_sq_{i}"]
         return mcmc_samples
+    
+    def load_jax_mcmc_samples(self, mcmc_samples: Dict[str, ArrayLike]) -> Tuple[Mean, Kernel, Likelihood]:
+        r"""Load the MCMC samples into the mean_module, covar_module (PiecewisePolynomial), and likelihood."""
+        num_mcmc_samples = len(mcmc_samples["mean"])
+        # get batch_shape of num_mcmc_samples
+        batch_shape = [num_mcmc_samples]
+        #TODO: Implement sampling the linear weighted mean
+        #if self.mean_func == "linear_weighted":
+        #    mean_module = LinearMean(input_size=len(self.train_X.T), batch_shape=batch_shape).to(**tkwargs)
+        #elif self.mean_func == "constant":
+        #    mean_module = ConstantMean(batch_shape=batch_shape).to(**tkwargs)
+        #else:
+        #    raise NotImplementedError(f"Mean has to be constant.")
+        mean_module = ConstantMean(batch_shape=batch_shape)
+        covar_module = self.load_covar_module(ard_num_dims=self.ard_num_dims, batch_shape=batch_shape)
+        if self.train_Yvar is not None:
+            likelihood = FixedNoiseGaussianLikelihood(
+                # Reshape to shape `num_mcmc_samples x N`
+                noise=self.train_Yvar.squeeze(-1).expand(
+                    num_mcmc_samples, len(self.train_Yvar)
+                ),
+                batch_shape=batch_shape,
+            )
+        else:
+            likelihood = GaussianLikelihood(
+                batch_shape=batch_shape,
+                noise_constraint=GreaterThan(MIN_INFERRED_NOISE_LEVEL),
+            )
+            likelihood.noise_covar.noise = reshape_and_detach(
+                target=likelihood.noise_covar.noise,
+                new_value=mcmc_samples["noise"],
+            )
+        if self.kernel_structure == "additive":
+            lengthscale_squeezed = mcmc_samples['lengthscale'].squeeze(-1)
+            # Iterate over all pairs of dimensions (d over 2)
+            if len(self.train_X.T) <= mcmc_samples['lengthscale'].shape[0]:
+                dims = len(self.train_X.T)
+            elif len(self.train_X.T) > mcmc_samples['lengthscale'].shape[0]:
+                dims = mcmc_samples['lengthscale'].shape[0]
+            dimension_pairs = list(combinations(range(dims), 2))
 
+            for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+                # Get the indices for the current pair of dimensions
+                if i == len(dimension_pairs):
+                    break
+                dim1, dim2 = dimension_pairs[i]
+
+                for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                    # Select the appropriate lengthscale value
+                    lengthscale_value = lengthscale_squeezed[dim1, dim2] if j == 0 else lengthscale_squeezed[dim2, dim1]
+                    base_kernel.lengthscale = reshape_and_detach(
+                        target=base_kernel.lengthscale,
+                        new_value=lengthscale_value,
+                    )
+
+                # Update outputscale for each ScaleKernel, if needed
+                if 'outputscale' in mcmc_samples:
+                    scale_kernel.outputscale = reshape_and_detach(
+                        target=scale_kernel.outputscale,
+                        new_value=mcmc_samples['outputscale'],
+                    )
+        elif "poly" in self.kernel_type:
+            covar_module.outputscale = reshape_and_detach(
+                target=covar_module.outputscale,
+                new_value=mcmc_samples["outputscale"],
+            )
+        else:
+            covar_module.base_kernel.lengthscale = reshape_and_detach(
+                target=covar_module.base_kernel.lengthscale,
+                new_value=mcmc_samples["lengthscale"],
+            )
+            covar_module.outputscale = reshape_and_detach(
+                target=covar_module.outputscale,
+                new_value=mcmc_samples["outputscale"],
+            )
+        mean_module.constant.data = reshape_and_detach(
+            target=mean_module.constant.data,
+            new_value=mcmc_samples["mean"],
+        )
+        return mean_module, covar_module, likelihood
 
     # run gradient-based NUTS MCMC inference
     def run_inference(self, rng_key, X, Y):
@@ -206,7 +321,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             rhat = flat_summary["kernel_inv_length_sq"]["r_hat"]
             print(
                 "[kernel_inv_length_sq] r_hat min/max/median:  {:.3f}  {:.3f}  {:.3f}".format(
-                    np.min(rhat), np.max(rhat), np.median(rhat)
+                    jnp.min(rhat), jnp.max(rhat), jnp.median(rhat)
                 )
             )
 

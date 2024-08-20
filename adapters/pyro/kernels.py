@@ -1,8 +1,11 @@
 import numpy as np
+import jax.numpy as jnp
 import torch
 import math
 from itertools import combinations
 from botorch.models.fully_bayesian import compute_dists
+from adapters.pyro.pyro_model import SaasPyroModel
+from gpytorch.kernels import AdditiveStructureKernel
 
 _sqrt3 = math.sqrt(3)
 root_five = math.sqrt(5)
@@ -38,6 +41,11 @@ def rbf_kernel(X, Z, lengthscale):
     return k  # N_X N_Z
 
 def matern_kernel(X, Z, inv_length_sq, nu=2.5):
+    # Ensure X and Z are 2D tensors
+    if X.dim() == 1:
+        X = X.unsqueeze(0)
+    if Z.dim() == 1:
+        Z = Z.unsqueeze(0)
     deltaXsq = torch.square(X[:, None, :] - Z) * inv_length_sq  # N_X N_Z P
     dsq = torch.sum(deltaXsq, axis=-1)  # N_X N_Z
     if nu == 0.5:
@@ -77,3 +85,31 @@ def periodic_kernel(X, Z, lengthscale, period=1.0):
     K = torch.exp(-2 * sin_sq / lengthscale**2)
     
     return K  # Shape (N_X, N_Z)
+
+class AdditivePyroKernel(AdditiveStructureKernel):
+    def __init__(self, base_kernels, active_dims=None):
+        print(f"init AdditivePyroKernel with base_kernels: {base_kernels}")
+        num_dims, d_kernels = self.get_additive_kernel(base_kernels)
+        super(AdditivePyroKernel, self).__init__(base_kernel=d_kernels, num_dims=num_dims, active_dims=active_dims)
+        
+    def get_additive_kernel(self, kernels):
+        """
+        takes the first out of a list of kernels and sums over it
+        """
+        additive_kernel = kernels[0]
+        for kernel in kernels[1:]:
+            additive_kernel += kernel
+        return len(kernels), additive_kernel
+    
+    def forward(self, x1, x2, diag=False, last_dim_is_batch=False, **params):
+        if last_dim_is_batch:
+            raise RuntimeError("AdditiveStructureKernel does not accept the last_dim_is_batch argument.")
+        
+        # Compute the base kernel results
+        print(f"Aggregating the results for the base kernels...")
+        out = []
+        for i, kernel in enumerate(self.base_kernel.kernels):
+            out.append(kernel(x1, x2, diag=diag, last_dim_is_batch=False, **params).evaluate())
+        res = torch.stack(out, dim=-1).sum(dim=-1)
+
+        return res

@@ -10,7 +10,7 @@ from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
 import pyro
 from pyro.infer.mcmc import MCMC, NUTS
 from pyro.contrib.gp.kernels import RBF, RationalQuadratic, Exponential, Matern32, Matern52, Periodic, Polynomial, Sum, Product
-from adapters.pyro.kernels import polynomial_kernel, rbf_kernel, matern_kernel, _periodic_kernel, gen_base_kernels, additive_structure_kernel
+from adapters.pyro.kernels import polynomial_kernel, rbf_kernel, matern_kernel, AdditivePyroKernel
 from gpytorch.means.linear_mean import LinearMean
 from gpytorch.means.constant_mean import ConstantMean
 from gpytorch.kernels import Kernel, ScaleKernel, ProductKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, MaternKernel, PeriodicKernel, RBFKernel, RFFKernel ,InducingPointKernel, AdditiveStructureKernel
@@ -131,10 +131,6 @@ class SaasPyroModel(SaasPyroModel):
 
     def init_kernel(self, outputscale=None, lengthscale=None, inv_length_sq=None):
         r"""Initialize the kernel based on the kernel type and structure."""
-        if self.kernel_structure == "additive":
-            base_kernels = gen_base_kernels(self.kernel_type, self.train_X, self.train_X, lengthscale)
-            additive_kernel = additive_structure_kernel(self.train_X, self.train_X, base_kernels, outputscale=outputscale)
-            return additive_kernel
         if "poly" in self.kernel_type:
             if self.kernel_type == "poly2" or self.kernel_type == "polynomial":
                     POLY_DEGREE = 2
@@ -163,42 +159,113 @@ class SaasPyroModel(SaasPyroModel):
         #    kernel = Exponential(input_dim=self.train_X.shape[1], lengthscale=lengthscale)
         #    return kernel.forward(self.train_X)
 
+    def init_additive_base_kernel(self, i, j, active_dims, outputscale=None, lengthscale=None, inv_length_sq=None):
+        r"""Initialize the kernel based on the kernel type and structure."""
+        if "poly" in self.kernel_type:
+            if self.kernel_type == "poly2" or self.kernel_type == "polynomial":
+                    POLY_DEGREE = 2
+            elif self.kernel_type == "poly3":
+                    POLY_DEGREE = 3
+            elif self.kernel_type == "poly4":
+                    POLY_DEGREE = 4
+            return polynomial_kernel(self.train_X[i, active_dims], self.train_X[j, active_dims], degree=POLY_DEGREE)
+        elif self.kernel_type == "rbf":
+            return rbf_kernel(self.train_X[i, active_dims], self.train_X[j, active_dims], lengthscale=lengthscale)
+        elif self.kernel_type == "matern32":
+            return matern_kernel(self.train_X[i, active_dims], self.train_X[j, active_dims], inv_length_sq, nu=1.5)
+        elif self.kernel_type == "matern52":
+            return matern_kernel(self.train_X[i, active_dims], self.train_X[j, active_dims], inv_length_sq, nu=2.5)
+        elif self.kernel_type == "periodic":
+            raise NotImplementedError("Periodic kernel not supported for additive structure.")
+
+    def get_base_kernel(self, X, Z, kernel_type, dim=None, **kwargs):
+        if dim is None:
+            name_suffix = ""
+        else:
+            name_suffix = f"_{dim}"
+        # sample hyperpriors for base_kernel
+        if kernel_type == "polynomial" or kernel_type == "poly2":
+            return polynomial_kernel(X, Z, degree=2)
+        elif kernel_type == "poly3":
+            return polynomial_kernel(X, Z, degree=3)
+        elif kernel_type == "poly4":
+            return polynomial_kernel(X, Z, degree=4)
+        elif kernel_type == "rbf":
+            inverse_lengthscale, lengthscale = SaasPyroModel.sample_lengthscale(dim=2)
+            return rbf_kernel(X, Z, lengthscale=lengthscale)
+        elif kernel_type == "matern32":
+            inverse_lengthscale, lengthscale = SaasPyroModel.sample_lengthscale(dim=2)
+            return matern_kernel(X, Z, inv_length_sq=inverse_lengthscale, nu=1.5)
+        elif kernel_type == "matern52":
+            inverse_lengthscale, lengthscale = SaasPyroModel.sample_lengthscale(dim=1, name_suffix=name_suffix)
+            #return outputscale * matern_kernel(X, Z, inv_length_sq=inverse_lengthscale, nu=2.5)
+            kernel = MaternKernel(nu=2.5)
+            kernel.lengthscale = lengthscale
+            return kernel
+        else:
+            raise ValueError(f"Invalid kernel type: {kernel_type}")
+
     def sample(self) -> None:
         r"""Sample from the SAAS model.
 
         This samples the mean, noise variance, outputscale, and lengthscales according
         to the SAAS prior.
         """
-        tkwargs = {"dtype": self.train_X.dtype, "device": self.train_X.device}
-        outputscale = self.sample_outputscale(concentration=2.0, rate=0.15, **tkwargs)
-        mean = self.sample_mean(**tkwargs)
-        noise = self.sample_noise(**tkwargs)
-        inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=self.ard_num_dims, **tkwargs)
-        kernel = self.init_kernel(outputscale=outputscale, lengthscale=lengthscale, inv_length_sq=inverse_lengthscale)
-        if self.kernel_structure != "additive":
-            kernel = outputscale * kernel + noise * torch.eye(self.train_X.shape[0], **tkwargs)
-        pyro.sample(
-            "Y",
-            pyro.distributions.MultivariateNormal(
-                loc=mean.view(-1).expand(self.train_X.shape[0]),
-                covariance_matrix=kernel,
-            ),
-            obs=self.train_Y.squeeze(-1),
-        )
 
+        tkwargs = {"dtype": self.train_X.dtype, "device": self.train_X.device}
+        if self.kernel_structure != "additive":
+            outputscale = SaasPyroModel.sample_outputscale(concentration=2.0, rate=0.15, **tkwargs)
+            mean = SaasPyroModel.sample_mean(**tkwargs)
+            noise = self.sample_noise(**tkwargs)
+            inverse_lengthscale, lengthscale = SaasPyroModel.sample_lengthscale(dim=self.ard_num_dims, **tkwargs)
+            kernel = self.init_kernel(outputscale=outputscale, lengthscale=lengthscale, inv_length_sq=inverse_lengthscale)
+            kernel = outputscale * kernel + noise * torch.eye(self.train_X.shape[0], **tkwargs)
+            pyro.sample(
+                "Y",
+                pyro.distributions.MultivariateNormal(
+                    loc=mean.view(-1).expand(self.train_X.shape[0]),
+                    covariance_matrix=kernel,
+                ),
+                obs=self.train_Y.squeeze(-1),
+            )
+        else:
+            base_kernels = [self.get_base_kernel(self.train_X, self.train_X, kernel_type=self.kernel_type, dim=item) for item in range(self.train_X.shape[1])]
+            d_kernels = []
+            print(f"Building additive kernel with {len(base_kernels)} base kernels.")
+            for (i,k1),(j,k2) in combinations(enumerate(base_kernels), 2):
+                name = f"outputscale_{i}_{j}"
+                outputscale = SaasPyroModel.sample_outputscale(concentration=2.0, rate=0.15, name=name, **tkwargs)
+                scaled_kernel = ScaleKernel(ProductKernel(k1,k2), num_dims=1, active_dims=[i,j], ard_num_dims=2)
+                ScaleKernel.outputscale = outputscale
+                d_kernels.append(scaled_kernel)
+
+            print(f"Evaluating additive kernel with {len(d_kernels)} base kernels.")
+            K = AdditivePyroKernel(base_kernels=d_kernels).forward(self.train_X, self.train_X)
+            mean = self.sample_mean(**tkwargs)
+            pyro.sample(
+                "Y",
+                pyro.distributions.MultivariateNormal(
+                    loc=mean.view(-1).expand(self.train_X.shape[0]),
+                    covariance_matrix=K,
+                ),
+                obs=self.train_Y.squeeze(-1),
+            )
+
+    @classmethod
     def sample_outputscale(
-        self, concentration: float = 2.0, rate: float = 0.15, **tkwargs
+        cls, concentration: float = 2.0, rate: float = 0.15, name="outputscale", **tkwargs
     ) -> Tensor:
         r"""Sample the outputscale."""
         return pyro.sample(
-            "outputscale",
+            name,
             pyro.distributions.Gamma(
                 torch.tensor(concentration, **tkwargs),
                 torch.tensor(rate, **tkwargs),
             ),
         )
 
-    def sample_mean(self, **tkwargs) -> Tensor:
+    @classmethod
+    def sample_mean(cls, **tkwargs) -> Tensor:
         r"""Sample the mean constant."""
         return pyro.sample(
             "mean",
@@ -221,23 +288,24 @@ class SaasPyroModel(SaasPyroModel):
         else:
             return self.train_Yvar
 
+    @classmethod
     def sample_lengthscale(
-        self, dim: int, alpha: float = 0.1, **tkwargs
+        cls, dim: int, alpha: float = 0.1, name_suffix="", **tkwargs
     ) -> Tensor:
         r"""Sample the lengthscale."""
         tausq = pyro.sample(
-            "kernel_tausq",
+            "kernel_tausq" + name_suffix,
             pyro.distributions.HalfCauchy(torch.tensor(alpha, **tkwargs)),
         )
         inv_length_sq = pyro.sample(
-            "_kernel_inv_length_sq",
+            "_kernel_inv_length_sq" + name_suffix,
             pyro.distributions.HalfCauchy(torch.ones(dim, **tkwargs)),
         )
         inv_length_sq = pyro.deterministic(
-            "kernel_inv_length_sq", tausq * inv_length_sq
+            "kernel_inv_length_sq" + name_suffix, tausq * inv_length_sq
         )
         lengthscale = pyro.deterministic(
-            "lengthscale",
+            "lengthscale" + name_suffix,
             inv_length_sq.rsqrt(),
         )
         return inv_length_sq, lengthscale
@@ -334,34 +402,41 @@ class SaasPyroModel(SaasPyroModel):
                 new_value=mcmc_samples["noise"].clamp_min(MIN_INFERRED_NOISE_LEVEL),
             )
         if self.kernel_structure == "additive":
-            lengthscale_squeezed = mcmc_samples['lengthscale'].squeeze(-1)
+            lengthscales_squeezed = [mcmc_samples[key].squeeze(-1) for i, key in enumerate(mcmc_samples) if f'lengthscale_{i}' in mcmc_samples.keys()]
+            #outputscales_squeezed = [mcmc_samples[key].squeeze(-1) for (i, j), key in zip(mcmc_samples, mcmc_samples) if f'outputscale' in mcmc_samples.keys()]
+            # dict for outputscale
+            outputscales_squeezed = {key: mcmc_samples[key].squeeze(-1) for key in mcmc_samples if 'outputscale' in key}
             # Iterate over all pairs of dimensions (d over 2)
-            if len(self.train_X.T) <= mcmc_samples['lengthscale'].shape[0]:
+            if len(self.train_X.T) <= mcmc_samples['lengthscale_0'].shape[0]:
                 dims = len(self.train_X.T)
-            elif len(self.train_X.T) > mcmc_samples['lengthscale'].shape[0]:
-                dims = mcmc_samples['lengthscale'].shape[0]
+            elif len(self.train_X.T) > mcmc_samples['lengthscale_0'].shape[0]:
+                dims = mcmc_samples['lengthscale_0'].shape[0]
             dimension_pairs = list(combinations(range(dims), 2))
 
-            for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            #for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            for (i, j) in dimension_pairs:
                 # Get the indices for the current pair of dimensions
                 if i == len(dimension_pairs):
                     break
                 dim1, dim2 = dimension_pairs[i]
 
-                for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                for scale_kernel in covar_module.base_kernel.kernels:
                     # Select the appropriate lengthscale value
-                    lengthscale_value = lengthscale_squeezed[dim1, dim2] if j == 0 else lengthscale_squeezed[dim2, dim1]
-                    base_kernel.lengthscale = reshape_and_detach(
-                        target=base_kernel.lengthscale,
-                        new_value=lengthscale_value,
-                    )
+                    for k, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                        lengthscale_value = lengthscales_squeezed[dim1] if k == 0 else lengthscales_squeezed[dim2]
 
-                # Update outputscale for each ScaleKernel, if needed
-                if 'outputscale' in mcmc_samples:
+                        base_kernel.lengthscale = reshape_and_detach(
+                            target=base_kernel.lengthscale,
+                            new_value=lengthscale_value.median()
+                        )
+                    # Select the according outputscale value
+                    outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
                     scale_kernel.outputscale = reshape_and_detach(
                         target=scale_kernel.outputscale,
-                        new_value=mcmc_samples['outputscale'],
+                        new_value=outputscale_value
                     )
+
         elif "poly" in self.kernel_type:
             covar_module.outputscale = reshape_and_detach(
                 target=covar_module.outputscale,
