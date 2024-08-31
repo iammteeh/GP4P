@@ -38,9 +38,9 @@ def validate_data(*args):
             raise ValueError("Data contains NaN or inf values.")
     print(f"data is fine.")
 
-def get_data(training_sizes=[100], use_synthetic_data=False, sws=["LLVM_energy"]):
+def get_data(training_sizes=[100], use_synthetic_data=False, sws="LLVM_energy", y_type="performance"):
     print(f"Fetching data from {sws if not use_synthetic_data else 'synthetic ds'} with training sizes: {training_sizes}")
-    ds = prepare_dataset(dummy_data=use_synthetic_data, sws=sws)
+    ds = prepare_dataset(dummy_data=use_synthetic_data, sws=sws, y_type=y_type)
     # fetch data with the desired training size
     data = yield_experiments(ds, training_size=training_sizes)
     try:
@@ -86,7 +86,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S"), sws=None, 
     init_store(store_path=f"{STORAGE_PATH}")
     i = 0
     total_running_time_start = time()
-    for data in get_data(training_sizes=training_sizes, use_synthetic_data=use_dummy_data, sws=sws):
+    for data in get_data(training_sizes=training_sizes, use_synthetic_data=use_dummy_data, sws=sws, y_type=y):
         training_size = training_sizes[i]
         for kernel_structure in kernel_structures:
             for kernel_type in kernel_types:
