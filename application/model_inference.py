@@ -11,7 +11,7 @@ from gpytorch.kernels import AdditiveStructureKernel
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
-from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region
+from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region, plot_2d_mvn, plot_3d_mvn
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import random
 from time import time
@@ -197,7 +197,7 @@ def get_lengthscales(model, kernel_structure, feature_names):
 
 def main():
     # some example model files that have been checked
-    #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
+    file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
     #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
     #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
     #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
@@ -208,7 +208,7 @@ def main():
     #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
     #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
     #file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
-    file_name = "synthetic_3_MCMC_matern32_additive_20_20240529-104346"
+    #file_name = "synthetic_2_MCMC_poly2_additive_500_20240531-120101"
 
     # certain models have errors
     #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
@@ -287,6 +287,10 @@ def main():
         plot_interaction_pdfs(dimensional_submodel, SELECTED_FEATURES)
     else:
         print("Plotting interactions are only supported for MCMC models now. Sorry!")
+    
+    
+    plot_2d_mvn(dimensional_model[0], dimensional_model[1], posterior.mvn)
+    #plot_3d_mvn(dimensional_model[2], dimensional_model[5], posterior.mvn)
     print(f"done.")
 
 if __name__ == "__main__":
