@@ -1,5 +1,7 @@
 import torch
-from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt, cm
+from matplotlib.patches import Ellipse
+from mpl_toolkits.mplot3d import Axes3D, art3d
 import seaborn as sns
 import numpy as np
 import math
@@ -9,6 +11,92 @@ from domain.env import RESULTS_DIR, DATA_SLICE_AMOUNT
 from datetime import datetime
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d-%H%M%S")
+
+def plot_2d_mvn(dim1, dim2, mvn):
+    import pandas as pd
+    mean, cov = [0., 0.], [(1., -0.6), (-0.6, 1.)]
+    mean1, mean2 = dim1["mean"].mean().item(), dim2["mean"].mean().item()
+    var1, var2 = dim1["variance"].median().item(), dim2["variance"].median().item()
+    feature_name1, feature_name2 = dim1["feature_name"], dim2["feature_name"]
+    # concatenate the means and covariances with numpy
+    mean = np.array([mean1, mean2]).flatten()
+    cov = np.array([[var1, 0], [0, var2]])
+    print(f"shape of mean: {mean.shape}, shape of cov: {cov.shape}")
+    data = np.random.multivariate_normal(mean, cov, 1000)
+    df = pd.DataFrame(data, columns=[feature_name1, feature_name2])
+    g = sns.jointplot(data=df, x=feature_name1, y=feature_name2, kind="kde", color="m")
+
+    #(sns.jointplot("x1", "x2", data=df).plot_joint(sns.kdeplot))
+
+    g.plot_joint(plt.scatter, c="g", s=30, linewidth=1, marker="+")
+
+    #g.ax_joint.collections[0].set_alpha(0)
+    g.set_axis_labels("$x1$", "$x2$");
+
+    #g.ax_joint.legend_.remove()
+    plt.show()
+
+def plot_3d_mvn(dim1, dim2, mvn):
+
+    # Our 2-dimensional distribution will be over variables X and Y
+    N = 60
+    X = np.linspace(-3, 3, N)
+    Y = np.linspace(-3, 4, N)
+    X, Y = np.meshgrid(X, Y)
+
+    # Mean vector and covariance matrix
+    mean1, mean2 = dim1["mean"].mean().item(), dim2["mean"].mean().item()
+    var1, var2 = dim1["variance"].median().item(), dim2["variance"].median().item()
+    feature_name1, feature_name2 = dim1["feature_name"], dim2["feature_name"]
+    # concatenate the means and covariances with numpy
+    mu = np.array([mean1, mean2]).flatten()
+    Sigma = np.array([[var1, 0], [0, var2]])
+
+    # Pack X and Y into a single 3-dimensional array
+    pos = np.empty(X.shape + (2,))
+    pos[:, :, 0] = X
+    pos[:, :, 1] = Y
+
+    def multivariate_gaussian(pos, mu, Sigma):
+        """Return the multivariate Gaussian distribution on array pos.
+
+        pos is an array constructed by packing the meshed arrays of variables
+        x_1, x_2, x_3, ..., x_k into its _last_ dimension.
+
+        """
+        n = mu.shape[0]
+        Sigma_det = np.linalg.det(Sigma)
+        Sigma_inv = np.linalg.inv(Sigma)
+        N = np.sqrt((2*np.pi)**n * Sigma_det)
+        # This einsum call calculates (x-mu)T.Sigma-1.(x-mu) in a vectorized
+        # way across all the input variables.
+        fac = np.einsum('...k,kl,...l->...', pos-mu, Sigma_inv, pos-mu)
+
+        return np.exp(-fac / 2) / N
+
+    # The distribution on the variables X, Y packed into pos.
+    Z = multivariate_gaussian(pos, mu, Sigma)
+
+    # Create a surface plot and projected filled contour plot under it.
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    ax.plot_surface(X, Y, Z, rstride=3, cstride=3, linewidth=1, antialiased=True,
+                    cmap=cm.viridis)
+
+    cset = ax.contourf(X, Y, Z, zdir='z', offset=-0.2, cmap=cm.viridis)
+
+    # Adjust the limits, ticks and view angle
+    ax.set_zlim(-0.2,0.2)
+    ax.set_zticks(np.linspace(0,0.2,5))
+    ax.view_init(30, -100)
+
+    ax.set_xlabel(r'$x_1$')
+    ax.set_ylabel(r'$x_2$')
+    ax.set_zlabel(r'$P(x_1, x_2)$')
+
+    plt.title('mean, cov = [0., 1.], [(1., 0.8), (0.8, 1.)]')
+    #plt.savefig('2d_gaussian3D_0.8.png', dpi=600)
+    plt.show()
 
 def plot_prior(model, X_test, y_test):
     with torch.no_grad():
@@ -79,7 +167,7 @@ def plot_density(mean, variance, feature_name):
     elif mode == "dashboard":
         pyplot(plt, clear_figure=True)
     else:
-        plt.savefig(f"{RESULTS_DIR}/density_d{d}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
+        plt.savefig(f"{RESULTS_DIR}/density_{feature_name}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
 
 def plot_combined_pdf(features, mode="show"):
     for feature, param in features.items():
@@ -105,7 +193,7 @@ def plot_combined_pdf(features, mode="show"):
     else:
         plt.savefig(f"{RESULTS_DIR}/density_combined_{features.keys()}_{TIMESTAMP}.png", dpi=300, bbox_inches="tight")
 
-def plot_interaction_pdfs(param_features, selected_features):
+def plot_interaction_pdfs(param_features, selected_features, mode="show"):
     for i, (feature, param) in enumerate(param_features.items()):
         if type(param["mean"]) is not np.ndarray or type(param["std"]) is not np.ndarray:
             param["mean"] = param["mean"].numpy()
