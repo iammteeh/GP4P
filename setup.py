@@ -3,8 +3,8 @@ import setuptools
 # write a basic setup.py
 setup(
     name='GP4P',
-    version='RC1',
-    description='Gaussian Process for Performance Estimation',
+    version='1.1.0',
+    description='Gaussian Process Regression for UQ Performance Estimation of Configurable Software Systems',
     python_requires='>=3.9.6',
     author = "Immanuel Thoke",
     author_email = "immanuel.thoke@gmail.com",
@@ -12,19 +12,19 @@ setup(
     install_requires=[
         "botorch==0.9.2",
         "copulae==0.7.9",
-        "jax==0.4.14",
-        "matplotlib==3.8.0",
-        "networkx==3.1",
-        "numpy==1.22.4",
-        "numpyro==0.13.2",
-        "pandas==1.5.3",
-        "pyro_ppl==1.8.6+4be5c2e",
-        "python_sat==0.1.8.dev10",
-        "scipy==1.13.1",
+        "jax==0.4.30",
+        "matplotlib==3.9.2",
+        "networkx==3.2.1",
+        "numpy==2.1.1",
+        "numpyro==0.15.2",
+        "pandas==2.2.2",
+        "python_sat==1.8.dev13",
+        "scipy==1.14.1",
         "seaborn==0.13.2",
-        "setuptools==68.2.2",
-        "statsmodels==0.14.0",
-        "torch==2.0.1"]
+        "setuptools==72.1.0",
+        "statsmodels==0.14.2",
+        "streamlit==1.38.0",
+        "torch==2.3.0"]
 )
 # run the following command in the terminal:
 # pip install -e .

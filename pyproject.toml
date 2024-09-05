@@ -1,0 +1,20 @@
+[project]
+name = "GP4P"
+version = "1.1.0"
+authors = [
+  { name="Immanuel Thoke", email="immanuel.thoke@gmail.com" },
+]
+description = "Gaussian Process Regression for UQ Performance Estimation of Configurable Software Systems"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: GPL",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+
+]
+
+[project.urls]
+Homepage = "https://github.com/iammteeh/GP4P/"
+Issues = "https://github.com/iammteeh/GP4P/issues"
