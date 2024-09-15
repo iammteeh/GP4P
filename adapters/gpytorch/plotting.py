@@ -12,7 +12,7 @@ from datetime import datetime
 
 TIMESTAMP = datetime.now().strftime("%Y%m%d-%H%M%S")
 
-def plot_2d_mvn(dim1, dim2, mvn):
+def plot_2d_mvn(dim1, dim2, mvn, mode="show"):
     import pandas as pd
     mean, cov = [0., 0.], [(1., -0.6), (-0.6, 1.)]
     mean1, mean2 = dim1["mean"].mean().item(), dim2["mean"].mean().item()
@@ -34,7 +34,14 @@ def plot_2d_mvn(dim1, dim2, mvn):
     g.set_axis_labels("$x1$", "$x2$");
 
     #g.ax_joint.legend_.remove()
-    plt.show()
+
+    # safe figure and show
+    if mode == "show":
+        plt.show() 
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        raise NotImplementedError
 
 def plot_3d_mvn(dim1, dim2, mvn):
 
@@ -97,6 +104,66 @@ def plot_3d_mvn(dim1, dim2, mvn):
     plt.title('mean, cov = [0., 1.], [(1., 0.8), (0.8, 1.)]')
     #plt.savefig('2d_gaussian3D_0.8.png', dpi=600)
     plt.show()
+
+def plot_cov_insights(dimensional_model, num_dims=[0,1], mode="show"):
+    # Assuming dimensional_model is defined with "mean" and "covariance" for each dimension
+
+    # Number of dimensions in your model
+    #num_dims = len(dimensional_model)
+
+    # Prepare the figure with a grid of subplots
+    fig, axs = plt.subplots(len(num_dims), 3, figsize=(15, 5 * len(num_dims)))
+
+    # Iterate over each dimension pair
+    for i in num_dims:
+        # Mean and covariance for the current dimension
+        mean_i = dimensional_model[i]["mean"]
+        cov_i = dimensional_model[i]["covariance"]
+
+        # Contour plot for the mean of two dimensions
+        if i < len(dimensional_model) - 1:  # Ensure there is a next dimension to pair with
+            mean_j = dimensional_model[i + 1]["mean"].squeeze().numpy()
+            
+            # Choose appropriate grid limits
+            grid_x_min, grid_x_max = mean_i.min() - 3 * np.sqrt(cov_i[i, i]), mean_i.max() + 3 * np.sqrt(cov_i[i, i])
+            grid_y_min, grid_y_max = mean_j.min() - 3 * np.sqrt(cov_i[i + 1, i + 1]), mean_j.max() + 3 * np.sqrt(cov_i[i + 1, i + 1])
+            
+            xi, yi = np.meshgrid(np.linspace(grid_x_min, grid_x_max, 100), np.linspace(grid_y_min, grid_y_max, 100))
+            
+            # Extract the covariance entries for just these two dimensions
+            cov_ij = np.array([
+                [cov_i[i, i], cov_i[i, i + 1]],
+                [cov_i[i + 1, i], cov_i[i + 1, i + 1]]
+            ])
+            
+            # Create a bivariate normal distribution
+            rv_ij = multivariate_normal([mean_i[i], mean_j[i + 1]], cov_ij)
+            
+            # Compute the PDF over the grid and plot the contour
+            zi = rv_ij.pdf(np.dstack((xi, yi)))
+            axs[i, 0].contourf(xi, yi, zi, levels=100)
+            axs[i, 0].set_title(f'Contour Plot of Mean (Dims {i} & {i+1})')
+
+
+        # Line plot for the mean and confidence interval of the current dimension
+        std_dev_i = np.sqrt(np.diag(cov_i))
+        axs[i, 1].plot(mean_i, 'k-', lw=2)
+        axs[i, 1].fill_between(range(len(mean_i)), mean_i - 1.96 * std_dev_i, mean_i + 1.96 * std_dev_i, alpha=0.2)
+        axs[i, 1].set_title(f'Mean and Confidence (Dim {i})')
+
+        # Heatmap of the covariance matrix for the current dimension
+        im = axs[i, 2].imshow(cov_i, cmap='plasma', interpolation='nearest')
+        fig.colorbar(im, ax=axs[i, 2])
+        axs[i, 2].set_title(f'Heatmap of Covariance Matrix (Dim {i})')
+
+    if mode == "show":
+        # Adjust the layout to prevent overlap
+        plt.tight_layout()
+        plt.show()
+    elif mode == "dashboard":
+        pyplot(plt, clear_figure=True)
+    else:
+        raise NotImplementedError
 
 def plot_prior(model, X_test, y_test):
     with torch.no_grad():
