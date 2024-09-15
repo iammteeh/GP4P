@@ -1,5 +1,14 @@
 # energy-influence-model-structure-uncertainty
 
+"And in fact, all of science is
+51:41
+history of data compression progress. So science is not what I proposed [...]
+53:35
+First you need so many megabytes, but then afterwards, [...] you only
+53:43
+have to encode the deviations from the predictions of the model. So if the model is simple, then you can save lots of bits.
+53:49
+So that's how how people discovered gravity. Yeah.
 
 ## GP4P - Gaussian Process Regression for Performance Prediction
 
@@ -27,16 +36,13 @@ a best subset selection
 
 ## Installation
 - prerequisites
-  - Python 3.9.6 or higher
-  - pip or
-  - conda
+  - Python 3.9
+  - pip
+
 In the root directory of the project, run the following command to install the required packages:
 ```bash
+pip install -e . # install the package in editable mode
 pip install -r requirements.txt
-```
-or 
-```bash
-conda install --file requirements.txt
 ```
 or using the setup.py
 ```bash
