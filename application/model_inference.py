@@ -6,12 +6,12 @@ from torch.distributions import MultivariateNormal, Normal
 from copulae.core.linalg import cov2corr, corr2cov
 from copulae.core.misc import rank_data
 from adapters.preprocessing import prepare_dataset, preprocessing
-from adapters.gpytorch.gp_model import SAASGP, MyExactGP
+from adapters.gpytorch.gp_model import SAASGP, MyExactGP, SAASGPJAX
 from gpytorch.kernels import AdditiveStructureKernel
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
-from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region, plot_2d_mvn, plot_3d_mvn
+from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region, plot_2d_mvn, plot_3d_mvn, plot_cov_insights, plot_dimension_insights
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import random
 from time import time
@@ -54,10 +54,13 @@ def get_model(file_name):
     # init model and load state dict
     if model == "exact":
         model = MyExactGP(X_train, y_train, feature_names, likelihood="gaussian", kernel=kernel_type, mean_func=MEAN_FUNC, structure=kernel_structure)
-    elif model == "MCMC":
+    elif model == "MCMC" and kernel_structure != "additive":
         model = SAASGP(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
         model.eval()
-    model.load_state_dict(torch.load(model_file), strict=False)
+    elif model == "MCMC" and kernel_structure == "additive":
+        model = SAASGPJAX(X_train, y_train, feature_names, mean_func="constant", kernel_structure=kernel_structure, kernel_type=kernel_type)
+        model.eval()
+    model.load_state_dict(torch.load(model_file, weights_only=True), strict=False)
     model_properties = (sws, y_type, kernel_type, kernel_structure, training_size)
     return model, model_properties, ds, X_train, X_test, y_train, y_test, feature_names
 
@@ -108,7 +111,7 @@ def BAKR(models, data, confidence=None):
     p_explained_var = explained_var[p - 1]
     print(f"{p_explained_var}.2f of the variance is explained by {p} components (the base features)")
     if confidence is None:
-        confidence = get_metrics(posterior, y_test, posterior.mixture_mean.squeeze(), type="GP")["explained_variance"] if isinstance(model, SAASGP) else get_metrics(posterior, y_test, posterior.mean.squeeze(), type="GP")["explained_variance"]
+        confidence = get_metrics(posterior, y_test, posterior.mixture_mean, type="GP")["explained_variance"] if isinstance(model, SAASGP) or isinstance(model, SAASGPJAX) else get_metrics(posterior, y_test, posterior.mean.squeeze(), type="GP")["explained_variance"]
     q = np.where(explained_var >= confidence)[0][0] + 1 # number of principal components to explain confidential proportion of variance
     #qq = next(x[0] for x in enumerate(explained_var) if x[1] > CONFIDENCE) + 1
     #qqq = next(i + 1 for i, var in enumerate(explained_var) if var >= CONFIDENCE)
@@ -197,7 +200,7 @@ def get_lengthscales(model, kernel_structure, feature_names):
 
 def main():
     # some example model files that have been checked
-    file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
+    #file_name = "x264_energy_fixed-energy_MCMC_matern52_simple_20_20240528-195232" #works
     #file_name = "Apache_energy_large_performance_exact_matern32_simple_100_20240529-122609" # works
     #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240529-122609" # works
     #file_name = "Apache_energy_large_performance_exact_RFF_additive_100_20240528-201735" # works
@@ -206,9 +209,11 @@ def main():
     #file_name = "synthetic_4_MCMC_poly3_simple_100_20240529-104346" # works
     #file_name = "LLVM_energy_performance_MCMC_poly3_simple_20_20240531-090709" # works
     #file_name = "x264_energy_fixed-energy_MCMC_matern52_additive_100_20240528-201735" # works also with interactions
-    #file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
+    file_name = "synthetic_2_MCMC_piecewise_polynomial_additive_100_20240529-081912" # works but without interactions
     #file_name = "Apache_energy_large_performance_exact_matern32_additive_20_20240529-122609" # works
     #file_name = "synthetic_2_MCMC_poly2_additive_500_20240531-120101"
+    #file_name = "LLVM_energy_performance_MCMC_matern52_additive_20_20240916-170756" # works
+    #file_name = "LLVM_energy_fixed-energy_MCMC_matern52_simple_20_20240916-175023"
 
     # certain models have errors
     #file_name = "VP8_pervolution_energy_bin_performance_MCMC_poly3_additive_20_20240612-183658" # won't work
@@ -236,7 +241,7 @@ def main():
     get_lengthscales(model, kernel_structure, feature_names)
 
     ## PLOTTING SECTION FOR MCMC MODELS
-    if isinstance(model, SAASGP):
+    if isinstance(model, SAASGP) or isinstance(model, SAASGPJAX):
         pass
         # plot feature wise
         #grid_plot(X_train, y_train, X_test, posterior.mean, confidence_region)
@@ -261,7 +266,7 @@ def main():
 
     if kernel_structure == "additive" and "synthetic" in sws:
         print(f"Interactions are not supported for additive kernel structures on synthetic data for now. Sorry!")
-    elif isinstance(model, SAASGP):
+    elif isinstance(model, SAASGP) or isinstance(model, SAASGPJAX):
         # measure and plot interactions
         SELECTED_FEATURES = [(1,0), (2,1), (3,0), (4,0)]#,(3,0),(5,1),(10,0)] # list of tuples which features are selected (feature_dim, on/off)
         # compute group RATE according to Crawford et al. 2019
@@ -290,7 +295,8 @@ def main():
     
     
     plot_2d_mvn(dimensional_model[0], dimensional_model[1], posterior.mvn)
-    #plot_3d_mvn(dimensional_model[2], dimensional_model[5], posterior.mvn)
+    #plot_cov_insights(dimensional_model, num_dims=[0])
+    plot_dimension_insights(dimensional_model, dim1=0)
     print(f"done.")
 
 if __name__ == "__main__":

@@ -34,8 +34,8 @@ def get_numpy_features(X_train, X_test, y_train, y_test):
     return X_train, X_test, y_train, y_test
 
 def get_tensor_features(X_train, X_test, y_train, y_test):
-    X_train = tensor(X_train).double()
-    X_test = tensor(X_test).double()
-    y_train = tensor(y_train).double().unsqueeze(-1) # make sure y is a column vector
-    y_test = tensor(y_test).double().unsqueeze(-1) # make sure y is a column vector
+    X_train = torch.tensor(X_train).double()
+    X_test = torch.tensor(X_test).double()
+    y_train = torch.tensor(y_train).double().unsqueeze(-1) # make sure y is a column vector
+    y_test = torch.tensor(y_test).double().unsqueeze(-1) # make sure y is a column vector
     return X_train, X_test, y_train, y_test

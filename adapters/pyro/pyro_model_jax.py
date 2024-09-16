@@ -156,6 +156,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             k = matern_kernel(self.train_X, self.train_X, variance, inv_length_sq, noise, nu=2.5)
             numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
         else:
+            print(f"Initialize the additive model... (due to a JAX bug, this can take several minutes, but then we go brrrrr))")
             base_kernels = []
             for i in range(self.ard_num_dims):
                 inv_length_sq, lengthscale = self.sample_lengthscale(1, name_suffix=f"_{i}")
@@ -166,7 +167,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             for (i, k1),(j, k2) in combinations(enumerate(base_kernels), 2): # iterate over all pairs of dimensions (d over 2)
                 name = f"{i}_{j}"
                 outputscale = self.sample_outputscale(name_suffix=f"_{name}")
-                d_kernels.append(base_kernels[i] * base_kernels[j] * outputscale) # is basically the covariance matrix of the kernel, but we don't need to compute it, because we can sample from it directly
+                d_kernels.append(base_kernels[i] * base_kernels[j] * outputscale) # scaled product kernel
             K = AdditiveJAXKernel(base_kernels=d_kernels).forward(self.train_X, self.train_X)
             noise = self.sample_noise()
             K += jnp.eye(self.train_X.shape[0]) * noise
