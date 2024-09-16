@@ -1,8 +1,10 @@
 import numpy as np
 import jax.numpy as jnp
 import torch
+from torch.nn import Module
 import gpytorch
-from typing import Optional
+from typing import Optional, Mapping, Any
+from itertools import combinations
 from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
@@ -161,6 +163,51 @@ class SAASGPJAX(GP_Prior, SaasFullyBayesianSingleTaskGP):
         # transform x and y to tensors
         self.X = torch.tensor(self.X).double()
         self.y = torch.tensor(self.y).double().unsqueeze(-1)
-        print(f"Initialize the additive model... (due to a JAX bug, this can take several minutes, but then we go brrrrr))")
         pyro_model = SaasPyroModelJAX(mean_func=mean_func, kernel_structure=kernel_structure, kernel_type=kernel_type)
         SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=pyro_model)
+
+    def load_state_dict(self, state_dict: Mapping[str, Any], strict: bool = True):
+        r"""Custom logic for loading the state dict.
+
+        The standard approach of calling `load_state_dict` currently doesn't play well
+        with the `SaasFullyBayesianSingleTaskGP` since the `mean_module`, `covar_module`
+        and `likelihood` aren't initialized until the model has been fitted. The reason
+        for this is that we don't know the number of MCMC samples until NUTS is called.
+        Given the state dict, we can initialize a new model with some dummy samples and
+        then load the state dict into this model. This currently only works for a
+        `SaasPyroModel` and supporting more Pyro models likely requires moving the model
+        construction logic into the Pyro model itself.
+        """
+
+        if not isinstance(self.pyro_model, SaasPyroModelJAX):
+            raise NotImplementedError("load_state_dict only works for SaasPyroModelJAX")
+        raw_mean = state_dict["mean_module.raw_constant"]
+        num_mcmc_samples = len(raw_mean)
+        dim = self.pyro_model.train_X.shape[-1]
+        tkwargs = {"device": raw_mean.device, "dtype": raw_mean.dtype}
+        # Load some dummy samples
+        if self.pyro_model.kernel_structure == "simple":
+            mcmc_samples = {
+                "mean": torch.ones(num_mcmc_samples, **tkwargs),
+                "lengthscale": torch.ones(num_mcmc_samples, dim, **tkwargs),
+                "outputscale": torch.ones(num_mcmc_samples, **tkwargs),
+            }
+        elif self.pyro_model.kernel_structure == "additive":
+            mcmc_samples = {
+                "mean": torch.ones(num_mcmc_samples, **tkwargs),
+            }
+            for i in range(dim):
+                mcmc_samples[f"lengthscale_{i}"] = torch.ones(num_mcmc_samples, **tkwargs)
+
+            for (i, j) in list(combinations(range(dim), 2)):
+                    mcmc_samples[f"outputscale_{i}_{j}"] = torch.ones(num_mcmc_samples, **tkwargs)
+
+        if self.pyro_model.train_Yvar is None:
+            mcmc_samples["noise"] = torch.ones(num_mcmc_samples, **tkwargs)
+        (
+            self.mean_module,
+            self.covar_module,
+            self.likelihood,
+        ) = self.pyro_model.load_mcmc_samples(mcmc_samples=mcmc_samples)
+        # Load the actual samples from the state dict and call it 
+        Module.load_state_dict(self, state_dict=state_dict, strict=strict)
