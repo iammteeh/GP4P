@@ -3,7 +3,7 @@ import torch
 from adapters.gpytorch.gp_model import SAASGP, SAASGPJAX
 from application.init_pipeline import init_pipeline
 from adapters.pyro.pyro_model_jax import fit_fully_bayesian_model_nuts
-from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE
+from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, SWS, Y, DATA_SLICE_AMOUNT, POLY_DEGREE
 from domain.metrics import get_metrics, get_BIC
 import datetime
 
@@ -104,7 +104,7 @@ def main():
     #print(f"jensen shannon: {jensenshannon(model.posterior(X_test).mean.squeeze(-1).detach().numpy(), test_prior.mean_module.detach().numpy(), keepdims=True)}")
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    filename = f"SAASGPJAX_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{timestamp}"
+    filename = f"{SWS}_{Y}_MCMC_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_MCMC_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}_{timestamp}"
     torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
     print(f"Model saved to {MODELDIR}/{filename}.pth")
 if __name__ == "__main__":
