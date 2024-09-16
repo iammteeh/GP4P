@@ -139,7 +139,7 @@ class SaasPyroModel(SaasPyroModel):
             elif self.kernel_type == "poly4":
                     POLY_DEGREE = 4
             return polynomial_kernel(self.train_X, self.train_X, degree=POLY_DEGREE)
-        elif self.kernel_type == "rbf":
+        elif self.kernel_type == "rbf" or self.kernel_type == "RBF":
             return rbf_kernel(self.train_X, self.train_X, lengthscale=lengthscale)
         elif self.kernel_type == "matern32":
             return matern_kernel(self.train_X, self.train_X, inv_length_sq, nu=1.5)
