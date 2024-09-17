@@ -154,7 +154,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S"), sws=None, 
                             modeldata=modeldata,
                             store_path=f"{STORAGE_PATH}"
                         )
-                    except LinAlgError as e:
+                    except LinAlgError or ValueError as e:
                         print(f"Model having {X_train.shape[1]} features: {feature_names}\ninference: {inference_type}, kernel: {kernel_type}, structure: {kernel_structure} failed to converge. Skipping...")
                         pass  
         i += 1
