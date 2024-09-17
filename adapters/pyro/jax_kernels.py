@@ -22,7 +22,7 @@ def kernel_diag(var, noise, jitter=1.0e-6, include_noise=True):
 def rbf_kernel(X, Z, inv_length_sq, var=1.0, noise=None):
     deltaXsq = jnp.square(X[:, None, :] - Z) * inv_length_sq  # N_X N_Z P
     k = var * jnp.exp(-0.5 * jnp.sum(deltaXsq, axis=-1))
-    if noise:
+    if noise is not None:
         k = k + (noise + 1.0e-6) * jnp.eye(X.shape[-2])
     return k  # N_X N_Z
 
@@ -76,7 +76,7 @@ def rff_kernel(X, Z, var, inv_length_sq, num_features, key):
     
     return K  # N_X N_Z
 
-def periodic_kernel(X, Z, var, length_scale, period, noise, include_noise):
+def periodic_kernel(X, Z, var, length_scale, period, noise):
     X = X[:, None, :]  # Shape (N_X, 1, P)
     Z = Z[None, :, :]  # Shape (1, N_Z, P)
     
@@ -86,7 +86,7 @@ def periodic_kernel(X, Z, var, length_scale, period, noise, include_noise):
     # Compute the kernel matrix
     K = var * jnp.exp(-2 * sin_sq / length_scale**2)
     
-    if include_noise:
+    if noise is not None:
         K += (noise + 1.0e-6) * jnp.eye(X.shape[0])
     
     return K  # Shape (N_X, N_Z)
