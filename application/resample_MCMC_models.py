@@ -80,7 +80,7 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S"), sws=None, 
     use_dummy_data = True if not sws else False
     training_sizes = [20, 50, 100, 250, 500]
     kernel_types = ["poly2", "poly3", "poly4", "RBF", "matern32", "matern52"]
-    kernel_structures = ["additive"] # run additive MCMC models using JAX only
+    kernel_structures = ["simple", "additive"] # run additive MCMC models using JAX only
     inference_methods = ["MCMC"]
     STORAGE_PATH = f"{RESULTS_DIR}/modelstorage_{sws}_{y}.json" if not use_dummy_data else f"{RESULTS_DIR}/modelstorage_synthetic_p{POLY_DEGREE}.json"
     init_store(store_path=f"{STORAGE_PATH}")
@@ -140,10 +140,10 @@ def main(timestamp=datetime.datetime.now().strftime("%Y%m%d-%H%M%S"), sws=None, 
                                 "timestamp": timestamp,
                             },
                             "scores": {
-                                "RMSE": metrics["RMSE"].tolist(),
+                                "RMSE": metrics["RMSE"],
                                 "BIC": BIC,
-                                "MAPE": metrics["MAPE"].tolist(),
-                                "ESS": metrics["explained_variance"].tolist(),
+                                "MAPE": metrics["MAPE"],
+                                "ESS": metrics["explained_variance"],
                                 "last_loss": loss if inference_type == "exact" else "trace.tolist()", # TODO: fix this
                                 "loss_curve": "loss_curve",
                                 "training_time": end,
@@ -182,7 +182,7 @@ if __name__ == "__main__":
         "Apache_energy_large": "performance",
         "HSQLDB_energy": "fixed-energy",
         "HSQLDB_pervolution_energy_bin": "performance",
-        "LLVM_energy": "fixed-energy",
+        "LLVM_energy": "performance",
         "PostgreSQL_pervolution_energy_bin": "performance",
         "VP8_pervolution_energy_bin": "performance",
     }
