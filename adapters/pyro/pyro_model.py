@@ -401,7 +401,7 @@ class SaasPyroModel(SaasPyroModel):
                 target=likelihood.noise_covar.noise,
                 new_value=mcmc_samples["noise"].clamp_min(MIN_INFERRED_NOISE_LEVEL),
             )
-        if self.kernel_structure == "additive":
+        if self.kernel_structure == "additive" and "poly" not in self.kernel_type:
             lengthscales_squeezed = [mcmc_samples[key].squeeze(-1) for i, key in enumerate(mcmc_samples) if f'lengthscale_{i}' in mcmc_samples.keys()]
             #outputscales_squeezed = [mcmc_samples[key].squeeze(-1) for (i, j), key in zip(mcmc_samples, mcmc_samples) if f'outputscale' in mcmc_samples.keys()]
             # dict for outputscale
@@ -436,7 +436,25 @@ class SaasPyroModel(SaasPyroModel):
                         target=scale_kernel.outputscale,
                         new_value=outputscale_value
                     )
+        elif self.kernel_structure == "additive" and "poly" in self.kernel_type:
+            outputscales_squeezed = {key: mcmc_samples[key].squeeze(-1) for key in mcmc_samples if 'outputscale' in key}
+            dimension_pairs = list(combinations(range(self.ard_num_dims), 2))
 
+            #for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            for (i, j) in dimension_pairs:
+                # Get the indices for the current pair of dimensions
+                if i == len(dimension_pairs):
+                    break
+                dim1, dim2 = dimension_pairs[i]
+
+                #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                for scale_kernel in covar_module.base_kernel.kernels:
+                    # Select the according outputscale value
+                    outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
+                    scale_kernel.outputscale = reshape_and_detach(
+                        target=scale_kernel.outputscale,
+                        new_value=outputscale_value
+                    )
         elif "poly" in self.kernel_type:
             covar_module.outputscale = reshape_and_detach(
                 target=covar_module.outputscale,
