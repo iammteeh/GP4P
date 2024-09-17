@@ -19,16 +19,16 @@ def kernel_diag(var, noise, jitter=1.0e-6, include_noise=True):
 
 
 # X, Z have shape (N_X, P) and (N_Z, P)
-def rbf_kernel(X, Z, var, inv_length_sq, noise, include_noise):
+def rbf_kernel(X, Z, inv_length_sq, var=1.0, noise=None):
     deltaXsq = jnp.square(X[:, None, :] - Z) * inv_length_sq  # N_X N_Z P
     k = var * jnp.exp(-0.5 * jnp.sum(deltaXsq, axis=-1))
-    if include_noise:
+    if noise:
         k = k + (noise + 1.0e-6) * jnp.eye(X.shape[-2])
     return k  # N_X N_Z
 
 
 # X, Z have shape (N_X, P) and (N_Z, P)
-def matern_kernel(X, Z, var, inv_length_sq, noise=None, nu=2.5):
+def matern_kernel(X, Z, inv_length_sq, var=1.0, noise=None, nu=2.5):
     # Ensure X and Z are 2D tensors
     if X.ndim == 1:
         X = jnp.expand_dims(X, axis=0)
@@ -50,11 +50,11 @@ def matern_kernel(X, Z, var, inv_length_sq, noise=None, nu=2.5):
         k = k + (noise + 1.0e-6) * jnp.eye(X.shape[-2])
     return k  # N_X N_Z
 
-def polynomial_kernel(X, Z, var, bias, degree, include_noise):
+def polynomial_kernel(X, Z, degree, var=1.0, bias=0.0, noise=None):
     dot_product = jnp.dot(X, Z.T)  # N_X N_Z
     k = var * (dot_product + bias) ** degree
-    if include_noise:
-        k = k + (bias + 1.0e-6) * jnp.eye(X.shape[0])
+    if noise is not None:
+        k = k + (noise + 1.0e-6) * jnp.eye(X.shape[-2])
     return k  # N_X N_Z
 
 @partial(jit)

@@ -16,7 +16,7 @@ from botorch.models.fully_bayesian_multitask import SaasFullyBayesianMultiTaskGP
 
 from adapters.pyro.pyro_model import SaasPyroModel
 from gpytorch.means.constant_mean import ConstantMean
-from adapters.pyro.jax_kernels import rbf_kernel, matern_kernel, AdditiveJAXKernel
+from adapters.pyro.jax_kernels import rbf_kernel, matern_kernel, polynomial_kernel, AdditiveJAXKernel
 from numpyro.infer import MCMC, NUTS
 
 from typing import Dict, Tuple, Union
@@ -139,6 +139,44 @@ class SaasPyroModelJAX(SaasPyroModel):
         self.train_Y = jnp.array(self.train_Y).reshape(-1, 1)
         self.ard_num_dims = self.train_X.shape[-1]
 
+    def init_kernel(self, outputscale=None, lengthscale=None, inv_length_sq=None, noise=None):
+        r"""Initialize the kernel based on the kernel type and structure."""
+        if self.kernel_type == "poly2" or self.kernel_type == "polynomial":
+            return polynomial_kernel(self.train_X, self.train_X, degree=2, var=outputscale, noise=noise)
+        elif self.kernel_type == "poly3":
+            return polynomial_kernel(self.train_X, self.train_X, degree=3, var=outputscale, noise=noise)
+        elif self.kernel_type == "poly4":
+            return polynomial_kernel(self.train_X, self.train_X, degree=4, var=outputscale, noise=noise)
+        elif self.kernel_type == "rbf" or self.kernel_type == "RBF":
+            return rbf_kernel(self.train_X, self.train_X, inv_length_sq=inv_length_sq, var=outputscale, noise=noise)
+        elif self.kernel_type == "matern32":
+            return matern_kernel(self.train_X, self.train_X, inv_length_sq=inv_length_sq, var=outputscale, noise=noise, nu=1.5)
+        elif self.kernel_type == "matern52":
+            return matern_kernel(self.train_X, self.train_X, inv_length_sq=inv_length_sq, var=outputscale, noise=noise, nu=2.5)
+
+    def get_base_kernel(self, X, Z, kernel_type, dim=None, **kwargs):
+        if dim is None:
+            name_suffix = ""
+        else:
+            name_suffix = f"_{dim}"
+        # sample hyperpriors for base_kernel
+        if kernel_type == "polynomial" or kernel_type == "poly2":
+            return polynomial_kernel(X, Z, degree=2)
+        elif kernel_type == "poly3":
+            return polynomial_kernel(X, Z, degree=3)
+        elif kernel_type == "poly4":
+            return polynomial_kernel(X, Z, degree=4)
+        elif kernel_type == "rbf":
+            inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=1, name_suffix=name_suffix)
+            return rbf_kernel(X, Z, var=1.0, inv_length_sq=inverse_lengthscale)
+        elif kernel_type == "matern32":
+            inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=1, name_suffix=name_suffix)
+            return matern_kernel(X, Z, inv_length_sq=inverse_lengthscale, nu=1.5)
+        elif kernel_type == "matern52":
+            inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=1, name_suffix=name_suffix)
+            return matern_kernel(X, Z, inv_length_sq=inverse_lengthscale, nu=2.5)
+        else:
+            raise ValueError(f"Invalid kernel type: {kernel_type}")
     # define the surrogate model. users who want to modify e.g. the prior on the kernel variance
     # should make their modifications here.
     def sample(self):
@@ -151,18 +189,10 @@ class SaasPyroModelJAX(SaasPyroModel):
                 self.sample_noise() if self.learn_noise else self.observation_variance
             )
             inv_length_sq, lengthscale = self.sample_lengthscale(P)
-
-            #k = self.kernel(self.train_X, self.train_X, outputscale, inv_length_sq, noise, True)
-            k = matern_kernel(self.train_X, self.train_X, variance, inv_length_sq, noise, nu=2.5)
+            k = self.init_kernel(outputscale=variance, lengthscale=lengthscale, inv_length_sq=inv_length_sq, noise=noise)
             numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
         else:
-            print(f"Initialize the additive model... (due to a JAX bug, this can take several minutes, but then we go brrrrr))")
-            base_kernels = []
-            for i in range(self.ard_num_dims):
-                inv_length_sq, lengthscale = self.sample_lengthscale(1, name_suffix=f"_{i}")
-                variance = 1.0 # set to 1.0, because we sample the outputscale separately
-                kernel = matern_kernel(self.train_X[:, i], self.train_X[:, i], variance, inv_length_sq, nu=2.5)
-                base_kernels.append(kernel)
+            base_kernels = [self.get_base_kernel(self.train_X, self.train_X, self.kernel_type, dim=item) for item in range(self.ard_num_dims)]
             d_kernels = []
             for (i, k1),(j, k2) in combinations(enumerate(base_kernels), 2): # iterate over all pairs of dimensions (d over 2)
                 name = f"{i}_{j}"
@@ -202,7 +232,7 @@ class SaasPyroModelJAX(SaasPyroModel):
         This computes the true lengthscales and removes the inverse lengthscales and
         tausq (global shrinkage).
         """
-        if self.kernel_structure != "additive":
+        if self.kernel_structure == "simple":
             inv_length_sq = (
                 jnp.expand_dims(mcmc_samples["kernel_tausq"], axis=-1)
                 * mcmc_samples["_kernel_inv_length_sq"]
@@ -211,7 +241,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             # Delete `kernel_tausq` and `_kernel_inv_length_sq` since they aren't loaded
             # into the final model.
             del mcmc_samples["kernel_tausq"], mcmc_samples["_kernel_inv_length_sq"]
-        else:
+        elif self.kernel_structure == "additive" and "poly" not in self.kernel_type:
             for i in range(self.ard_num_dims):
                 inv_length_sq = (
                     jnp.expand_dims(mcmc_samples[f"kernel_tausq_{i}"], axis=-1)
@@ -219,6 +249,8 @@ class SaasPyroModelJAX(SaasPyroModel):
                 )
                 mcmc_samples[f"lengthscale_{i}"] = jnp.sqrt(1.0 / inv_length_sq)
                 del mcmc_samples[f"kernel_tausq_{i}"], mcmc_samples[f"_kernel_inv_length_sq_{i}"]
+        else:
+            pass
         return mcmc_samples
     
     def load_jax_mcmc_samples(self, mcmc_samples: Dict[str, ArrayLike]) -> Tuple[Mean, Kernel, Likelihood]:
