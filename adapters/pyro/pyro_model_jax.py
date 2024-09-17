@@ -166,7 +166,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             return polynomial_kernel(X, Z, degree=3)
         elif kernel_type == "poly4":
             return polynomial_kernel(X, Z, degree=4)
-        elif kernel_type == "rbf":
+        elif kernel_type == "rbf" or kernel_type == "RBF":
             inverse_lengthscale, lengthscale = self.sample_lengthscale(dim=1, name_suffix=name_suffix)
             return rbf_kernel(X, Z, var=1.0, inv_length_sq=inverse_lengthscale)
         elif kernel_type == "matern32":
