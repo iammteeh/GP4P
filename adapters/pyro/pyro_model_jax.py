@@ -85,19 +85,21 @@ def fit_fully_bayesian_model_nuts(
         num_samples=num_samples,
         progress_bar=progress_bar,
     )
-    mcmc.run(rng_key_hmc)
+    try:
+        mcmc.run(rng_key_hmc)
 
-    # Get final MCMC samples from the Pyro model
-    mcmc_samples = model.pyro_model.postprocess_mcmc_samples(
-        mcmc_samples=mcmc.get_samples()
-    )
-    for k, v in mcmc_samples.items():
-        mcmc_samples[k] = v[::thinning]
+        # Get final MCMC samples from the Pyro model
+        mcmc_samples = model.pyro_model.postprocess_mcmc_samples(
+            mcmc_samples=mcmc.get_samples()
+        )
+        for k, v in mcmc_samples.items():
+            mcmc_samples[k] = v[::thinning]
 
-    # Load the MCMC samples back into the BoTorch model
-    model.load_mcmc_samples(mcmc_samples)
-    model.eval()
-
+        # Load the MCMC samples back into the BoTorch model
+        model.load_mcmc_samples(mcmc_samples)
+        model.eval()
+    except:
+        mcmc_samples = None
     return mcmc_samples
 
 
