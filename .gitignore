@@ -6,7 +6,8 @@ my_package.egg-info
 archive/
 .pymc_*.trace/
 *.csv
-
+build/
+GP4P.egg-info
 
 modeldata/*.pth
 
