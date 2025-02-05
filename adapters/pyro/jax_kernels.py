@@ -155,7 +155,6 @@ class AdditiveJAXKernel(AdditiveStructureKernel):
 
         # Stack the outputs and sum along the last dimension
         res = jnp.stack(out, axis=-1).sum(axis=-1) # has shape (N_X, N_Z)
-        res = vmap(vmap(lambda x: x))(res)  # Ensure the result is a 2D array
         if diag:
             res = jnp.diag(jnp.diag(res))  # Extract diagonal elements if needed
 
