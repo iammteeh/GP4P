@@ -3,9 +3,10 @@ import torch
 from adapters.gpytorch.gp_model import SAASGP, SAASGPJAX
 from application.init_pipeline import init_pipeline
 from adapters.pyro.pyro_model_jax import fit_fully_bayesian_model_nuts
-from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, SWS, Y, DATA_SLICE_AMOUNT, POLY_DEGREE
+from domain.env import USE_DUMMY_DATA, MODELDIR, LOGDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, SWS, Y, DATA_SLICE_AMOUNT, POLY_DEGREE
 from domain.metrics import get_metrics, get_BIC
 import datetime
+from jax import profiler
 
 
 from gpytorch.distributions import MultivariateNormal
@@ -70,10 +71,11 @@ def main():
     test_prior = model.pyro_sample_from_prior()
 
     # fit
-    model.train()
-    #TODO: add ENV for sampling parameters
-    fit_fully_bayesian_model_nuts(model)
-    print(model)
+    with profiler.trace(LOGDIR/f"trace_{TIMESTAMP}", create_perfetto_link=True):
+        model.train()
+        #TODO: add ENV for sampling parameters
+        fit_fully_bayesian_model_nuts(model)
+        print(model)
 
     # Evaluate model
     model.eval()
