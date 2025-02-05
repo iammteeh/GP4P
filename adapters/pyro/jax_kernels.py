@@ -1,5 +1,5 @@
 import jax.numpy as jnp
-from jax import jit, random
+from jax import jit, random, vmap
 from functools import partial
 import math
 from itertools import combinations
@@ -112,16 +112,18 @@ def scale_kernel(k, scale, X, Z, active_dims):
     return scale * k(X[:, active_dims], Z[:, active_dims])
 
 # Additive structure kernel
+@jit
 def additive_structure_kernel(X, Z, base_kernels):
-    d_kernels = [
-        lambda X, Z, i=i, j=j: scale_kernel(
-            lambda X, Z: product_kernel(base_kernels[i], base_kernels[j], X, Z, [i, j]), 
-            1.0, X, Z, [i, j]
-        )
-        for (i, _), (j, _) in combinations(enumerate(base_kernels), 2)
-    ]
+    def compute_pairwise_kernel(i, j):
+        return base_kernels[i](X, Z) * base_kernels[j](X, Z)
+
+    indices = list(combinations(range(len(base_kernels)), 2))
     
-    K = sum(k(X, Z) for k in d_kernels)
+    # Use vmap to vectorize across combinations
+    pairwise_kernels = vmap(lambda idx: compute_pairwise_kernel(idx[0], idx[1]))(jnp.array(indices))
+    
+    # Sum across pairwise kernels
+    K = jnp.sum(pairwise_kernels, axis=0)
     return K
 
 class AdditiveJAXKernel(AdditiveStructureKernel):
@@ -153,6 +155,7 @@ class AdditiveJAXKernel(AdditiveStructureKernel):
 
         # Stack the outputs and sum along the last dimension
         res = jnp.stack(out, axis=-1).sum(axis=-1) # has shape (N_X, N_Z)
+        res = vmap(vmap(lambda x: x))(res)  # Ensure the result is a 2D array
         if diag:
             res = jnp.diag(jnp.diag(res))  # Extract diagonal elements if needed
 
