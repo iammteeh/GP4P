@@ -71,7 +71,7 @@ def main():
     test_prior = model.pyro_sample_from_prior()
 
     # fit
-    with profiler.trace(LOGDIR/f"trace_{TIMESTAMP}", create_perfetto_link=True):
+    with profiler.trace(LOGDIR + f"/trace_{TIMESTAMP}.prof", create_perfetto_link=True):
         model.train()
         #TODO: add ENV for sampling parameters
         fit_fully_bayesian_model_nuts(model)
