@@ -1,6 +1,6 @@
 import gpytorch
 import torch
-from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
+from domain.gp_model import MyExactGP, MyApproximateGP
 from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
 from application.init_pipeline import init_pipeline, get_data, validate_data
 from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, DATA_SLICE_AMOUNT, SWS, Y, POLY_DEGREE

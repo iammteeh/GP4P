@@ -6,7 +6,7 @@ from torch.distributions import MultivariateNormal, Normal
 from copulae.core.linalg import cov2corr, corr2cov
 from copulae.core.misc import rank_data
 from adapters.preprocessing import prepare_dataset, preprocessing
-from adapters.gpytorch.gp_model import SAASGP, MyExactGP, SAASGPJAX
+from domain.gp_model import SAASGP, MyExactGP, SAASGPJAX
 from gpytorch.kernels import AdditiveStructureKernel
 from domain.feature_model.feature_modeling import inverse_map
 from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset

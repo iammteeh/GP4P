@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from adapters.gpytorch.gp_model import SAASGP, SAASGPJAX
+from domain.gp_model import SAASGP, SAASGPJAX
 from application.init_pipeline import init_pipeline, get_data, validate_data
 from adapters.pyro.pyro_model_jax import fit_fully_bayesian_model_nuts
 from domain.env import USE_DUMMY_DATA, MODELDIR, LOGDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, SWS, Y, DATA_SLICE_AMOUNT, POLY_DEGREE
