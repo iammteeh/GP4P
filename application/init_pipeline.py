@@ -1,6 +1,7 @@
 from domain.env import USE_DUMMY_DATA, DATA_SLICE_AMOUNT
 from adapters.preprocessing import prepare_dataset, preprocessing
 import torch
+import numpy as np
 
 def init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features=None, scaler=None, training_size=DATA_SLICE_AMOUNT):
     ds = prepare_dataset(use_dummy_data)
@@ -39,3 +40,21 @@ def get_tensor_features(X_train, X_test, y_train, y_test):
     y_train = torch.tensor(y_train).double().unsqueeze(-1) # make sure y is a column vector
     y_test = torch.tensor(y_test).double().unsqueeze(-1) # make sure y is a column vector
     return X_train, X_test, y_train, y_test
+
+def locate_invalid_data(data):
+    if isinstance(data, torch.Tensor):
+        isnan = torch.isnan(data)
+        isinf = torch.isinf(data)
+    elif isinstance(data, np.ndarray):
+        isnan = np.isnan(data)
+        isinf = np.isinf(data)
+    
+    invalid_data_locs = isnan | isinf
+    return invalid_data_locs
+
+def validate_data(*args):
+    for arg in args:
+        if not torch.isfinite(arg).all():
+            print(locate_invalid_data(arg))
+            raise ValueError("Data contains NaN or inf values.")
+    print(f"data is fine.")

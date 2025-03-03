@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 from adapters.gpytorch.gp_model import SAASGP, SAASGPJAX
-from application.init_pipeline import init_pipeline
+from application.init_pipeline import init_pipeline, locate_invalid_data, validate_data
 from adapters.pyro.pyro_model_jax import fit_fully_bayesian_model_nuts
 from domain.env import USE_DUMMY_DATA, MODELDIR, LOGDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, SWS, Y, DATA_SLICE_AMOUNT, POLY_DEGREE
 from domain.metrics import get_metrics, get_BIC
@@ -14,23 +14,6 @@ import matplotlib.pyplot as plt
 
 TIMESTAMP = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 
-def locate_invalid_data(data):
-    if isinstance(data, torch.Tensor):
-        isnan = torch.isnan(data)
-        isinf = torch.isinf(data)
-    elif isinstance(data, np.ndarray):
-        isnan = np.isnan(data)
-        isinf = np.isinf(data)
-    
-    invalid_data_locs = isnan | isinf
-    return invalid_data_locs
-
-def validate_data(*args):
-    for arg in args:
-        if not torch.isfinite(arg).all():
-            print(locate_invalid_data(arg))
-            raise ValueError("Data contains NaN or inf values.")
-    print(f"data is fine.")
 
 
 def get_data(get_ds=False):
