@@ -1,6 +1,6 @@
 import numpy as np
 import torch
-from adapters.gpytorch.gp_model import MyExactGP, SAASGP
+from domain.gp_model import MyExactGP, SAASGP
 from gpytorch.mlls import ExactMarginalLogLikelihood
 from adapters.preprocessing import prepare_dataset
 from application.init_pipeline import init_pipeline, yield_experiments

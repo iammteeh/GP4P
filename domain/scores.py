@@ -38,6 +38,20 @@ def AIC(sigma_squared, n, p):
 def VAIC(sigma_squared, n, p):
     return 1 - (np.log(sigma_squared) + 2 * p) / (np.log(sigma_squared) + np.log(n) * p)
 
+def waic(model, likelihood, X, Y):
+    "wideley applicable information criterion"
+    model.eval()
+    with torch.no_grad():
+        output = model(X)
+        predictive_mean = output.mean
+        predictive_var = output.variance
+        error = Y - predictive_mean
+        log_likelihoods = -0.5 * torch.log(2 * np.pi * predictive_var) - 0.5 * (error**2) / predictive_var
+        lppd = torch.sum(torch.log(torch.mean(torch.exp(log_likelihoods), dim=0)))
+        p_waic = torch.sum(torch.var(log_likelihoods, dim=0))
+        waic = -2 * (lppd - p_waic)
+    return waic.item()
+
 def r2_adj(r2, n, k):
     return 1 - (1 - r2) * (n - 1) / (n - k - 1)
 
