@@ -8,7 +8,7 @@ from itertools import combinations
 from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
-from domain.GP_Prior import GP_Prior
+from domain.gp_prior import GP_Prior
 from gpytorch.models import ExactGP, ApproximateGP
 from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariationalDistribution, MeanFieldVariationalDistribution, DeltaVariationalDistribution
 from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, AdditiveGridInterpolationVariationalStrategy, NNVariationalStrategy, OrthogonallyDecoupledVariationalStrategy
