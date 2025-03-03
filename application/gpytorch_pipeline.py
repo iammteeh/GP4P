@@ -2,35 +2,16 @@ import gpytorch
 import torch
 from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
 from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
-from application.init_pipeline import init_pipeline, locate_invalid_data, validate_data
+from application.init_pipeline import init_pipeline, get_data, validate_data
 from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, DATA_SLICE_AMOUNT, SWS, Y, POLY_DEGREE
 from domain.metrics import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
 from time import time
 
-def get_data(get_ds=False):
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
-    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
-
-    # slice X_test such that it has the same shape as X_train
-    # TODO: this shouldn't be necessary
-    if len(X_test) > len(X_train):
-        X_test = X_test[:len(X_train)]
-        y_test = y_test[:len(X_train)]
-
-    # transform test data to tensor
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
-
-    if get_ds:
-        return (ds, X_train, X_test, y_train, y_test, feature_names)
-    else:
-        return (X_train, X_test, y_train, y_test, feature_names)
-
 def choose_model(model="exact", data=None):
     if not data:
-        X_train, X_test, y_train, y_test, feature_names = get_data()
+        X_train, X_test, y_train, y_test, feature_names = get_data(precision="float32")
     else:
         X_train, X_test, y_train, y_test, feature_names = data
     if model == "exact":

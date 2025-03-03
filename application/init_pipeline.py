@@ -41,6 +41,27 @@ def get_tensor_features(X_train, X_test, y_train, y_test):
     y_test = torch.tensor(y_test).double().unsqueeze(-1) # make sure y is a column vector
     return X_train, X_test, y_train, y_test
 
+def get_data(get_ds=False, precision="double"):
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
+    rank = np.linalg.matrix_rank(X_train)
+
+    # slice X_test such that it has the same shape as X_train
+    # TODO: this shouldn't be necessary
+    if len(X_test) > len(X_train):
+        X_test = X_test[:len(X_train)]
+        y_test = y_test[:len(X_train)]
+
+    # transform test data to tensor
+    X_test = torch.tensor(X_test).double() if precision == "double" else torch.tensor(X_test).float()
+    y_test = torch.tensor(y_test).double() if precision == "double" else torch.tensor(y_test).float()
+
+    if get_ds:
+        return (ds, X_train, X_test, y_train, y_test, feature_names)
+    else:
+        return (X_train, X_test, y_train, y_test, feature_names)
+
+
 def locate_invalid_data(data):
     if isinstance(data, torch.Tensor):
         isnan = torch.isnan(data)
