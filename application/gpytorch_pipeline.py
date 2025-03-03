@@ -9,19 +9,6 @@ import numpy as np
 import datetime
 from time import time
 
-def waic(model, likelihood, X, Y):
-    model.eval()
-    with torch.no_grad():
-        output = model(X)
-        predictive_mean = output.mean
-        predictive_var = output.variance
-        error = Y - predictive_mean
-        log_likelihoods = -0.5 * torch.log(2 * np.pi * predictive_var) - 0.5 * (error**2) / predictive_var
-        lppd = torch.sum(torch.log(torch.mean(torch.exp(log_likelihoods), dim=0)))
-        p_waic = torch.sum(torch.var(log_likelihoods, dim=0))
-        waic = -2 * (lppd - p_waic)
-    return waic.item()
-
 def get_data(get_ds=False):
     ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
     print(f"fit model having {X_train.shape[1]} features: {feature_names}")
@@ -133,7 +120,7 @@ def main():
     #mll = GammaRobustVariationalELBO(model.likelihood, model, num_data=len(model.y), prior_dist=prior_dist, variational_dist=variational_dist, beta=1.0)
     # find optimal hyperparameters
     
-    fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
+    fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer, verbose=True)
 
     # Evaluate model
     model.eval()
