@@ -1,6 +1,7 @@
 from domain.env import USE_DUMMY_DATA, DATA_SLICE_AMOUNT
 from adapters.preprocessing import prepare_dataset, preprocessing
 import torch
+import numpy as np
 
 def init_pipeline(use_dummy_data=USE_DUMMY_DATA, extra_features=None, scaler=None, training_size=DATA_SLICE_AMOUNT):
     ds = prepare_dataset(use_dummy_data)
@@ -32,3 +33,49 @@ def get_numpy_features(X_train, X_test, y_train, y_test):
     y_train = y_train[1]
     y_test = y_test[1]
     return X_train, X_test, y_train, y_test
+
+def get_tensor_features(X_train, X_test, y_train, y_test):
+    X_train = torch.tensor(X_train).double()
+    X_test = torch.tensor(X_test).double()
+    y_train = torch.tensor(y_train).double().unsqueeze(-1) # make sure y is a column vector
+    y_test = torch.tensor(y_test).double().unsqueeze(-1) # make sure y is a column vector
+    return X_train, X_test, y_train, y_test
+
+def get_data(get_ds=False, precision="double"):
+    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
+    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
+    rank = np.linalg.matrix_rank(X_train)
+
+    # slice X_test such that it has the same shape as X_train
+    # TODO: this shouldn't be necessary
+    if len(X_test) > len(X_train):
+        X_test = X_test[:len(X_train)]
+        y_test = y_test[:len(X_train)]
+
+    # transform test data to tensor
+    X_test = torch.tensor(X_test).double() if precision == "double" else torch.tensor(X_test).float()
+    y_test = torch.tensor(y_test).double() if precision == "double" else torch.tensor(y_test).float()
+
+    if get_ds:
+        return (ds, X_train, X_test, y_train, y_test, feature_names)
+    else:
+        return (X_train, X_test, y_train, y_test, feature_names)
+
+
+def locate_invalid_data(data):
+    if isinstance(data, torch.Tensor):
+        isnan = torch.isnan(data)
+        isinf = torch.isinf(data)
+    elif isinstance(data, np.ndarray):
+        isnan = np.isnan(data)
+        isinf = np.isinf(data)
+    
+    invalid_data_locs = isnan | isinf
+    return invalid_data_locs
+
+def validate_data(*args):
+    for arg in args:
+        if not torch.isfinite(arg).all():
+            print(locate_invalid_data(arg))
+            raise ValueError("Data contains NaN or inf values.")
+    print(f"data is fine.")

@@ -3,6 +3,25 @@ import math
 # import sqrt
 from sklearn.metrics import r2_score, mean_squared_error
 
+def weighted_avg_and_std(values, weights, gamma=1):
+    """
+    Return the weighted average and standard deviation.
+
+    values, weights -- Numpy ndarrays with the same shape.
+    """
+    if gamma != 1:
+        weights = np.power(weights, gamma)
+    average = np.average(values, weights=weights)
+    variance = np.average((values - average) ** 2, weights=weights)
+    if variance <= 0:
+        sqr_var = 0.0
+    else:
+        sqr_var = math.sqrt(variance)
+    return average, sqr_var
+
+def is_positive_semi_definite(matrix):
+    return np.all(np.linalg.eigvals(matrix) >= 0)
+
 def get_feature_names_from_rv_id(ft_inter):
     new_ft_inter = ft_inter.replace("_log__", "")
     new_ft_inter = new_ft_inter.replace("active_", "")

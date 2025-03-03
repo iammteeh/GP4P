@@ -31,6 +31,9 @@ def get_opposite(X, pos1, opt1, pos2, opt2):
     return X[(X[:,pos1] == (not opt1)) | (X[:,pos2] == (not opt2))] # (not A | not B)
 
 def build_masks(X, conditions):
+    print(f"type of X: {type(X)}")
+    if type(X) != np.ndarray:
+        X = np.array(X)
     masks = []
     for pos, opt in conditions:
         if len(X.T) < pos < 0:

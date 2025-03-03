@@ -4,7 +4,8 @@ from gpytorch.utils import grid
 from torch import tensor
 from gpytorch.kernels import (
     Kernel, GridInterpolationKernel, ScaleKernel, ProductKernel, AdditiveStructureKernel, LinearKernel, RBFKernel, PeriodicKernel, MaternKernel,
-    PolynomialKernel, PiecewisePolynomialKernel, SpectralMixtureKernel, RFFKernel)
+    PiecewisePolynomialKernel, SpectralMixtureKernel, RFFKernel)
+from adapters.gpytorch.polynomial_kernel import PolynomialKernel
 from gpytorch.priors import Prior
 from torch.distributions import constraints, HalfCauchy
 from gpytorch.priors import LogNormalPrior, GammaPrior, HalfCauchyPrior

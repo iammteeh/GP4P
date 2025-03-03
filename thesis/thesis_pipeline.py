@@ -1,11 +1,11 @@
 import numpy as np
 import torch
-from adapters.gpytorch.gp_model import MyExactGP, SAASGP
+from domain.gp_model import MyExactGP, SAASGP
 from gpytorch.mlls import ExactMarginalLogLikelihood
 from adapters.preprocessing import prepare_dataset
 from application.init_pipeline import init_pipeline, yield_experiments
 from application.gpytorch_pipeline import fit_gpytorch_mll
-from adapters.gpytorch.pyro_model import fit_fully_bayesian_model_nuts
+from adapters.pyro.pyro_model import fit_fully_bayesian_model_nuts
 from adapters.model_store import init_store, update_store
 from domain.env import USE_DUMMY_DATA, MODELDIR, SWS, Y, POLY_DEGREE, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, RESULTS_DIR
 from domain.metrics import get_metrics, get_BIC

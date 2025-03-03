@@ -484,11 +484,22 @@ class DataSet(ConfigSysProxy):
         configs_pd = df[features]
         configs = [tuple(x) for x in configs_pd.values.astype(self.value_type)]
         if not self.attribute:
+            # drop all columns except the last one
             nfps = df.drop(features, axis=1)
             col = list(nfps.columns.values)[0]
         else:
-            col = self.attribute
-        ys_pd = df[col]
+            try:
+                col = self.attribute
+                ys_pd = df[col]
+            except KeyError:
+                print(f"Could not find attribute {col} in {df.columns}. Read out columns and search for attribute.")
+                if "performance" in df.columns:
+                    col = "performance"
+                elif "fixed-energy" in df.columns:
+                    col = "fixed-energy"
+                else:
+                    col = df.columns[-1]
+                ys_pd = df[col]
         ys = np.array(ys_pd)
         performance_map = {c: y for c, y in zip(configs, ys)}
         return performance_map

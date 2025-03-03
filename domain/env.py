@@ -11,6 +11,7 @@ How to use GP4P:
 PWD = os.getcwd()
 DATADIR = PWD + '/rawdata/'
 MODELDIR = PWD + '/modeldata/'
+LOGDIR = PWD + '/logs/'
 RESULTS_DIR = PWD + '/evaluation'
 SWS = "LLVM_energy" # or LLVM_energy
 MODE = "not simple" # to choose which structure is induced with the data
@@ -22,12 +23,12 @@ FEATURE_ENCODING = "binary" #TODO: fix one-hot encoding
 X_type = bool # default = bool for one-hot or binary encoded numerical features, else use float
 DATA_SLICE_MODE = "amount" # "proportion" or "amount"
 DATA_SLICE_PROPORTION = 1/1
-DATA_SLICE_AMOUNT = 100
+DATA_SLICE_AMOUNT = 20
 Y = "fixed-energy" # {LLVM_energy: "energy", Apache_energy_large: "performance", HSQLDB_energy: "fixed-energy", HSQLDB_pervolution_energy_bin: "performance", PostgreSQL_pervolution_energy_bin: "performance", VP8_pervolution_energy_bin: "performance", x264_energy: "fixed-energy"}
 # for GP pipelines #
 POLY_DEGREE = 2 # control the degree of the polynomial kernel and synthetic data generation
 MEAN_FUNC = "linear_weighted" # "linear_weighted", "constant", "zero"
 KERNEL_TYPE = "matern52" # "linear", "RBF", "matern32", "matern52", "spectral_mixture", "RFF"
-KERNEL_STRUCTURE = "simple" # "simple" or "additive"
+KERNEL_STRUCTURE = "additive" # "simple" or "additive"
 ###
 SAVE_FIGURES = True

@@ -1,20 +1,24 @@
 import numpy as np
+import jax.numpy as jnp
 import torch
+from torch.nn import Module
 import gpytorch
-from typing import Optional
+from typing import Optional, Mapping, Any
+from itertools import combinations
 from botorch.models.utils import validate_input_scaling
 from botorch.models.transforms.input import InputTransform
 from botorch.models.transforms.outcome import Log, OutcomeTransform
-from domain.GP_Prior import GP_Prior
+from domain.gp_prior import GP_Prior
 from gpytorch.models import ExactGP, ApproximateGP
 from gpytorch.variational import CholeskyVariationalDistribution, NaturalVariationalDistribution, MeanFieldVariationalDistribution, DeltaVariationalDistribution
 from gpytorch.variational import VariationalStrategy, CiqVariationalStrategy, AdditiveGridInterpolationVariationalStrategy, NNVariationalStrategy, OrthogonallyDecoupledVariationalStrategy
 from botorch.models.gpytorch import BatchedMultiOutputGPyTorchModel
 from botorch.models.fully_bayesian import SaasFullyBayesianSingleTaskGP
-from adapters.gpytorch.pyro_model import SaasPyroModel
+from adapters.pyro.pyro_model import SaasPyroModel
+from adapters.pyro.pyro_model_jax import SaasPyroModelJAX
 from botorch.models.transforms import Standardize
 from gpytorch.utils import grid
-from gpytorch.likelihoods import GaussianLikelihood, Likelihood
+from gpytorch.likelihoods import GaussianLikelihood, Likelihood, FixedNoiseGaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
 from gpytorch.means import ConstantMean
@@ -55,6 +59,8 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
 
         if likelihood == "gaussian":
             ExactGP.__init__(self, self.X, self.y, GaussianLikelihood())
+        elif likelihood == "fixed_noise_gaussian":
+            ExactGP.__init__(self, self.X, self.y, FixedNoiseGaussianLikelihood(noise=torch.tensor(np.full((len(self.X),),self.noise_sd_over_all_regs)).float(), learn_additional_noise=True))
         elif isinstance(likelihood, Likelihood):
             ExactGP.__init__(self, self.X, self.y, likelihood=likelihood)
         else:
@@ -150,3 +156,58 @@ class SAASGP(GP_Prior, SaasFullyBayesianSingleTaskGP):
             self._check_if_fitted()
             lengthscale = self.covar_module.base_kernel.lengthscale.clone()
             return lengthscale.median(0).values.squeeze(0)
+
+class SAASGPJAX(GP_Prior, SaasFullyBayesianSingleTaskGP):
+    def __init__(self, X, y, feature_names, mean_func="constant", kernel_structure="simple", kernel_type="matern"):
+        GP_Prior.__init__(self, X, y, feature_names)
+        # transform x and y to tensors
+        self.X = torch.tensor(self.X).double()
+        self.y = torch.tensor(self.y).double().unsqueeze(-1)
+        pyro_model = SaasPyroModelJAX(mean_func=mean_func, kernel_structure=kernel_structure, kernel_type=kernel_type)
+        SaasFullyBayesianSingleTaskGP.__init__(self, self.X, self.y, pyro_model=pyro_model)
+
+    def load_state_dict(self, state_dict: Mapping[str, Any], strict: bool = True):
+        r"""Custom logic for loading the state dict.
+
+        The standard approach of calling `load_state_dict` currently doesn't play well
+        with the `SaasFullyBayesianSingleTaskGP` since the `mean_module`, `covar_module`
+        and `likelihood` aren't initialized until the model has been fitted. The reason
+        for this is that we don't know the number of MCMC samples until NUTS is called.
+        Given the state dict, we can initialize a new model with some dummy samples and
+        then load the state dict into this model. This currently only works for a
+        `SaasPyroModel` and supporting more Pyro models likely requires moving the model
+        construction logic into the Pyro model itself.
+        """
+
+        if not isinstance(self.pyro_model, SaasPyroModelJAX):
+            raise NotImplementedError("load_state_dict only works for SaasPyroModelJAX")
+        raw_mean = state_dict["mean_module.raw_constant"]
+        num_mcmc_samples = len(raw_mean)
+        dim = self.pyro_model.train_X.shape[-1]
+        tkwargs = {"device": raw_mean.device, "dtype": raw_mean.dtype}
+        # Load some dummy samples
+        if self.pyro_model.kernel_structure == "simple":
+            mcmc_samples = {
+                "mean": torch.ones(num_mcmc_samples, **tkwargs),
+                "lengthscale": torch.ones(num_mcmc_samples, dim, **tkwargs),
+                "outputscale": torch.ones(num_mcmc_samples, **tkwargs),
+            }
+        elif self.pyro_model.kernel_structure == "additive":
+            mcmc_samples = {
+                "mean": torch.ones(num_mcmc_samples, **tkwargs),
+            }
+            for i in range(dim):
+                mcmc_samples[f"lengthscale_{i}"] = torch.ones(num_mcmc_samples, **tkwargs)
+
+            for (i, j) in list(combinations(range(dim), 2)):
+                    mcmc_samples[f"outputscale_{i}_{j}"] = torch.ones(num_mcmc_samples, **tkwargs)
+
+        if self.pyro_model.train_Yvar is None:
+            mcmc_samples["noise"] = torch.ones(num_mcmc_samples, **tkwargs)
+        (
+            self.mean_module,
+            self.covar_module,
+            self.likelihood,
+        ) = self.pyro_model.load_mcmc_samples(mcmc_samples=mcmc_samples)
+        # Load the actual samples from the state dict and call it 
+        Module.load_state_dict(self, state_dict=state_dict, strict=strict)

@@ -1,67 +1,17 @@
 import gpytorch
 import torch
-from adapters.gpytorch.gp_model import MyExactGP, MyApproximateGP
+from domain.gp_model import MyExactGP, MyApproximateGP
 from gpytorch.mlls import ExactMarginalLogLikelihood, InducingPointKernelAddedLossTerm, VariationalELBO, GammaRobustVariationalELBO
-from application.init_pipeline import init_pipeline, get_numpy_features
-from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, DATA_SLICE_AMOUNT
-from domain.metrics import get_metrics, gaussian_log_likelihood
+from application.init_pipeline import init_pipeline, get_data, validate_data
+from domain.env import USE_DUMMY_DATA, MODELDIR, MEAN_FUNC, KERNEL_TYPE, KERNEL_STRUCTURE, DATA_SLICE_AMOUNT, SWS, Y, POLY_DEGREE
+from domain.scores import get_metrics, gaussian_log_likelihood
 import numpy as np
 import datetime
 from time import time
 
-def waic(model, likelihood, X, Y):
-    model.eval()
-    with torch.no_grad():
-        output = model(X)
-        predictive_mean = output.mean
-        predictive_var = output.variance
-        error = Y - predictive_mean
-        log_likelihoods = -0.5 * torch.log(2 * np.pi * predictive_var) - 0.5 * (error**2) / predictive_var
-        lppd = torch.sum(torch.log(torch.mean(torch.exp(log_likelihoods), dim=0)))
-        p_waic = torch.sum(torch.var(log_likelihoods, dim=0))
-        waic = -2 * (lppd - p_waic)
-    return waic.item()
-
-def get_data(get_ds=False):
-    ds, feature_names, X_train, X_test, y_train, y_test = init_pipeline(use_dummy_data=USE_DUMMY_DATA)
-    print(f"fit model having {X_train.shape[1]} features: {feature_names}")
-
-    # slice X_test such that it has the same shape as X_train
-    # TODO: this shouldn't be necessary
-    if len(X_test) > len(X_train):
-        X_test = X_test[:len(X_train)]
-        y_test = y_test[:len(X_train)]
-
-    # transform test data to tensor
-    X_test = torch.tensor(X_test).float()
-    y_test = torch.tensor(y_test).float()
-
-    if get_ds:
-        return (ds, X_train, X_test, y_train, y_test, feature_names)
-    else:
-        return (X_train, X_test, y_train, y_test, feature_names)
-
-def locate_invalid_data(data):
-    if isinstance(data, torch.Tensor):
-        isnan = torch.isnan(data)
-        isinf = torch.isinf(data)
-    elif isinstance(data, np.ndarray):
-        isnan = np.isnan(data)
-        isinf = np.isinf(data)
-    
-    invalid_data_locs = isnan | isinf
-    return invalid_data_locs
-
-def validate_data(*args):
-    for arg in args:
-        if not torch.isfinite(arg).all():
-            print(locate_invalid_data(arg))
-            raise ValueError("Data contains NaN or inf values.")
-    print(f"data is fine.")
-
 def choose_model(model="exact", data=None):
     if not data:
-        X_train, X_test, y_train, y_test, feature_names = get_data()
+        X_train, X_test, y_train, y_test, feature_names = get_data(precision="float32")
     else:
         X_train, X_test, y_train, y_test, feature_names = data
     if model == "exact":
@@ -133,7 +83,7 @@ def main():
     #mll = GammaRobustVariationalELBO(model.likelihood, model, num_data=len(model.y), prior_dist=prior_dist, variational_dist=variational_dist, beta=1.0)
     # find optimal hyperparameters
     
-    fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer)
+    fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer, verbose=True)
 
     # Evaluate model
     model.eval()
@@ -151,7 +101,8 @@ def main():
 
     # Save model
     timestamp = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
-    torch.save(model.state_dict(), f"{MODELDIR}/GPY_{MEAN_FUNC}_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}__{timestamp}.pth")
+    filename = f"{SWS}_{Y}_exact_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}_{timestamp}" if not USE_DUMMY_DATA else f"synthetic_{POLY_DEGREE}_MCMC_{KERNEL_TYPE}_{KERNEL_STRUCTURE}_{DATA_SLICE_AMOUNT}_{timestamp}"
+    torch.save(model.state_dict(), f"{MODELDIR}/{filename}.pth")
 
 if __name__ == "__main__":
     main()
