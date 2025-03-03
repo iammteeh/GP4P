@@ -9,7 +9,7 @@ from adapters.preprocessing import prepare_dataset, preprocessing
 from domain.gp_model import SAASGP, MyExactGP, SAASGPJAX
 from gpytorch.kernels import AdditiveStructureKernel
 from domain.feature_model.feature_modeling import inverse_map
-from adapters.gpytorch.util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
+from domain.gp_util import decompose_matrix, get_alphas, get_beta, get_thetas, LFSR, get_PPAAs, map_inverse_to_sample_feature, get_groups, group_RATE, get_posterior_variations, interaction_distant, measure_subset
 from adapters.sklearn.dimension_reduction import kernel_pca
 from adapters.gpytorch.plotting import kde_plots, plot_combined_pdf, plot_density, plot_interaction_pdfs, mean_and_confidence_region, plot_2d_mvn, plot_3d_mvn, plot_cov_insights, plot_dimension_insights
 from domain.scores import get_metrics, gaussian_log_likelihood

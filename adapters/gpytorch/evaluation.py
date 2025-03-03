@@ -4,7 +4,7 @@ import numpy as np
 import torch
 import scipy
 from domain.feature_model.feature_modeling import get_feature_model
-from adapters.gpytorch.util import decompose_matrix
+from domain.gp_util import decompose_matrix
 
 def analyze_posterior(model, X_test, y_test, features):
     words, opposites, literals, interactions = get_feature_model(X_test, features)

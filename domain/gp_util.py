@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import median_abs_deviation, norm
 from domain.feature_model.boolean_masks import get_literals_and_interaction, get_opposites_and_interactions
 from adapters.preprocessing import define_subsets
-from domain.metrics import get_metrics
+from domain.scores import get_metrics
 from scipy.spatial.distance import pdist, jensenshannon
 from time import time
 
