@@ -30,6 +30,6 @@ POLY_DEGREE = 2 # control the degree of the polynomial kernel and synthetic data
 MEAN_FUNC = "linear_weighted" # "linear_weighted", "constant", "zero"
 KERNEL_TYPE = "matern52" # "linear", "RBF", "matern32", "matern52", "spectral_mixture", "RFF"
 KERNEL_STRUCTURE = "additive" # "simple" or "additive"
-INTERPOLATION = True # grid interpolation mode, for additive models only
+INTERPOLATION = False # grid interpolation mode, for additive models only
 ###
 SAVE_FIGURES = True
