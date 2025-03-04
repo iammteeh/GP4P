@@ -68,7 +68,7 @@ def fit_gpytorch_mll(model, optimizer, mll, hyperparameter_optimizer, verbose=Fa
     return loss.sum().item()
 
 def main():
-    data = get_data()
+    data = get_data(precision="float32")
     X_train, X_test, y_train, y_test, feature_names = data
     # init model
     model, optimizer, mll, hyperparameter_optimizer = choose_model(model="exact", data=data)
