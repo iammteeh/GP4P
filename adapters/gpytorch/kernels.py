@@ -142,7 +142,7 @@ def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prio
     outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None # gimmick
     if interpolation:
         grid_size = grid.choose_grid_size(X, kronecker_structure=False)
-        d_kernels = [ScaleKernel(GridInterpolationKernel(ProductKernel(k1,k2), grid_size=int(grid_size), num_dims=1, active_dims=[i,j]), outputscale_prior=outscale_prior, num_dims=2, ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
+        d_kernels = [ScaleKernel(GridInterpolationKernel(ProductKernel(k1, k2), grid_size=int(grid_size), num_dims=1, active_dims=[i,j]), outputscale_prior=outscale_prior, num_dims=2, ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
     else:
         d_kernels = [ScaleKernel(ProductKernel(k1,k2), outputscale_prior=outscale_prior, num_dims=1, active_dims=[i,j], ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
     num_dims, d_kernels = get_additive_kernel(d_kernels)
