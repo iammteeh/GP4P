@@ -137,13 +137,13 @@ def additive_kernel_permutation(items, k=3):
     print(f"Finished building additive kernel. \n Time elapsed: {end - start:.2f}s")
     return additive_kernel
 
-def additive_structure_kernel(X, base_kernels, interpolation=False, **scale_prior_params):
+def additive_structure_kernel(X, base_kernels, interpolation=False):
     import itertools
-    outscale_prior = HalfCauchyPrior(scale=1) if scale_prior_params else None # gimmick
+    outputscale_prior = GammaPrior(concentration=2, rate=0.15)
     if interpolation:
         grid_size = grid.choose_grid_size(X, kronecker_structure=False)
-        d_kernels = [ScaleKernel(GridInterpolationKernel(ProductKernel(k1, k2), grid_size=int(grid_size), num_dims=1, active_dims=[i,j]), outputscale_prior=outscale_prior, num_dims=2, ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
+        d_kernels = [ScaleKernel(GridInterpolationKernel(ProductKernel(k1, k2), grid_size=int(grid_size), num_dims=1, active_dims=[i,j]), outputscale_prior=outputscale_prior, num_dims=2, ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
     else:
-        d_kernels = [ScaleKernel(ProductKernel(k1,k2), outputscale_prior=outscale_prior, num_dims=1, active_dims=[i,j], ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
+        d_kernels = [ScaleKernel(ProductKernel(k1,k2), outputscale_prior=outputscale_prior, num_dims=1, active_dims=[i,j], ard_num_dims=2) for (i,k1),(j,k2)  in itertools.combinations(enumerate(base_kernels), 2)] # k * (n over k) in size
     num_dims, d_kernels = get_additive_kernel(d_kernels)
     return AdditiveStructureKernel(base_kernel=d_kernels, num_dims=num_dims)
