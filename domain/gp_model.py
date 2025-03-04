@@ -18,6 +18,7 @@ from adapters.pyro.pyro_model import SaasPyroModel
 from adapters.pyro.pyro_model_jax import SaasPyroModelJAX
 from botorch.models.transforms import Standardize
 from gpytorch.utils import grid
+from gpytorch.priors import GammaPrior
 from gpytorch.likelihoods import GaussianLikelihood, Likelihood, FixedNoiseGaussianLikelihood
 from gpytorch.distributions import MultivariateNormal
 from adapters.gpytorch.means import LinearMean
@@ -58,7 +59,8 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
         self.weighted_std = self.stds_weighted[0]
 
         if likelihood == "gaussian":
-            ExactGP.__init__(self, self.X, self.y, GaussianLikelihood())
+            noise_prior = GammaPrior(0.9, 10)
+            ExactGP.__init__(self, self.X, self.y, GaussianLikelihood(noise_prior=noise_prior))
         elif likelihood == "fixed_noise_gaussian":
             ExactGP.__init__(self, self.X, self.y, FixedNoiseGaussianLikelihood(noise=torch.tensor(np.full((len(self.X),),self.noise_sd_over_all_regs)).float(), learn_additional_noise=True))
         elif isinstance(likelihood, Likelihood):
@@ -71,6 +73,7 @@ class MyExactGP(GP_Prior, ExactGP, BatchedMultiOutputGPyTorchModel):
 
         # init kernel hyperparameters
         hyper_parameter_init_values = {}
+        hyper_parameter_init_values["likelihood.noise_prior"] = torch.tensor(1.)
         if kernel == "RBF" or kernel == "matern32" or kernel == "matern52" or kernel == "RFF":
             hyper_parameter_init_values["kernel.base_kernel.lengthscale"] = torch.tensor(0.5)
         elif kernel == "polynomial":
