@@ -58,7 +58,7 @@ def r2_adj(r2, n, k):
 def get_metrics(pred_dist, y_true, y_pred, type="regression"):
     if type == "regression":
         try:
-            root_mse = sklearn.metrics.mean_squared_error(y_true, y_pred, squared=False)
+            root_mse = sklearn.metrics.root_mean_squared_error(y_true, y_pred)
         except:
             root_mse = "negative"
         return {
@@ -78,7 +78,7 @@ def get_metrics(pred_dist, y_true, y_pred, type="regression"):
         except:
             log_mse = "negative"
         try:
-            rmse = sklearn.metrics.mean_squared_error(y_true, y_pred, squared=False)
+            rmse = sklearn.metrics.root_mean_squared_error(y_true, y_pred)
         except:
             rmse = "negative"
         return {
