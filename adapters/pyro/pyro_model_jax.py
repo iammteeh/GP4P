@@ -281,36 +281,59 @@ class SaasPyroModelJAX(SaasPyroModel):
             )
             likelihood.noise_covar.noise = reshape_and_detach(
                 target=likelihood.noise_covar.noise,
-                new_value=mcmc_samples["noise"],
+                new_value=mcmc_samples["noise"].clip(MIN_INFERRED_NOISE_LEVEL),
             )
-        if self.kernel_structure == "additive":
-            lengthscale_squeezed = mcmc_samples['lengthscale'].squeeze(-1)
+        if self.kernel_structure == "additive" and not "poly" in self.kernel_type:
+            lengthscales_squeezed = [mcmc_samples[key].squeeze(-1) for i, key in enumerate(mcmc_samples) if f'lengthscale_{i}' in mcmc_samples.keys()]
+            outputscales_squeezed = {key: mcmc_samples[key].squeeze(-1) for key in mcmc_samples if 'outputscale' in key}
             # Iterate over all pairs of dimensions (d over 2)
-            if len(self.train_X.T) <= mcmc_samples['lengthscale'].shape[0]:
+            if len(self.train_X.T) <= mcmc_samples['lengthscale_0'].shape[0]:
                 dims = len(self.train_X.T)
-            elif len(self.train_X.T) > mcmc_samples['lengthscale'].shape[0]:
+            elif len(self.train_X.T) > mcmc_samples['lengthscale_0'].shape[0]:
                 dims = mcmc_samples['lengthscale'].shape[0]
             dimension_pairs = list(combinations(range(dims), 2))
 
-            for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            #for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            for (i, j) in dimension_pairs:
                 # Get the indices for the current pair of dimensions
                 if i == len(dimension_pairs):
                     break
                 dim1, dim2 = dimension_pairs[i]
 
-                for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                for scale_kernel in covar_module.base_kernel.kernels:
                     # Select the appropriate lengthscale value
-                    lengthscale_value = lengthscale_squeezed[dim1, dim2] if j == 0 else lengthscale_squeezed[dim2, dim1]
-                    base_kernel.lengthscale = reshape_and_detach(
-                        target=base_kernel.lengthscale,
-                        new_value=lengthscale_value,
-                    )
+                    for k, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                        lengthscale_value = lengthscales_squeezed[dim1] if k == 0 else lengthscales_squeezed[dim2]
 
-                # Update outputscale for each ScaleKernel, if needed
-                if 'outputscale' in mcmc_samples:
+                        base_kernel.lengthscale = reshape_and_detach(
+                            target=base_kernel.lengthscale,
+                            new_value=lengthscale_value.median()
+                        )
+                    # Select the according outputscale value
+                    outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
                     scale_kernel.outputscale = reshape_and_detach(
                         target=scale_kernel.outputscale,
-                        new_value=mcmc_samples['outputscale'],
+                        new_value=outputscale_value
+                    )
+        elif self.kernel_structure == "additive" and "poly" in self.kernel_type:
+            outputscales_squeezed = {key: mcmc_samples[key].squeeze(-1) for key in mcmc_samples if 'outputscale' in key}
+            dimension_pairs = list(combinations(range(self.ard_num_dims), 2))
+
+            #for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
+            for (i, j) in dimension_pairs:
+                # Get the indices for the current pair of dimensions
+                if i == len(dimension_pairs):
+                    break
+                dim1, dim2 = dimension_pairs[i]
+
+                #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                for scale_kernel in covar_module.base_kernel.kernels:
+                    # Select the according outputscale value
+                    outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
+                    scale_kernel.outputscale = reshape_and_detach(
+                        target=scale_kernel.outputscale,
+                        new_value=outputscale_value
                     )
         elif "poly" in self.kernel_type:
             covar_module.outputscale = reshape_and_detach(
