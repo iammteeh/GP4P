@@ -85,21 +85,18 @@ def fit_fully_bayesian_model_nuts(
         num_samples=num_samples,
         progress_bar=progress_bar,
     )
-    try:
-        mcmc.run(rng_key_hmc)
+    mcmc.run(rng_key_hmc)
 
-        # Get final MCMC samples from the Pyro model
-        mcmc_samples = model.pyro_model.postprocess_mcmc_samples(
-            mcmc_samples=mcmc.get_samples()
-        )
-        for k, v in mcmc_samples.items():
-            mcmc_samples[k] = v[::thinning]
+    # Get final MCMC samples from the Pyro model
+    mcmc_samples = model.pyro_model.postprocess_mcmc_samples(
+        mcmc_samples=mcmc.get_samples()
+    )
+    for k, v in mcmc_samples.items():
+        mcmc_samples[k] = v[::thinning]
 
-        # Load the MCMC samples back into the BoTorch model
-        model.load_mcmc_samples(mcmc_samples)
-        model.eval()
-    except:
-        mcmc_samples = None
+    # Load the MCMC samples back into the BoTorch model
+    model.load_mcmc_samples(mcmc_samples)
+    model.eval()
     return mcmc_samples
 
 
@@ -255,7 +252,7 @@ class SaasPyroModelJAX(SaasPyroModel):
             pass
         return mcmc_samples
     
-    def load_jax_mcmc_samples(self, mcmc_samples: Dict[str, ArrayLike]) -> Tuple[Mean, Kernel, Likelihood]:
+    def load_mcmc_samples(self, mcmc_samples: Dict[str, ArrayLike]) -> Tuple[Mean, Kernel, Likelihood]:
         r"""Load the MCMC samples into the mean_module, covar_module (PiecewisePolynomial), and likelihood."""
         num_mcmc_samples = len(mcmc_samples["mean"])
         # get batch_shape of num_mcmc_samples
@@ -329,7 +326,7 @@ class SaasPyroModelJAX(SaasPyroModel):
                 target=covar_module.outputscale,
                 new_value=mcmc_samples["outputscale"],
             )
-        mean_module.constant.data = reshape_and_detach(
+        mean_module.constant = reshape_and_detach(
             target=mean_module.constant.data,
             new_value=mcmc_samples["mean"],
         )
