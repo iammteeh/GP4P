@@ -55,6 +55,8 @@ def get_data(get_ds=False, precision="double"):
     # transform test data to tensor
     X_test = torch.tensor(X_test).double() if precision == "double" else torch.tensor(X_test).float()
     y_test = torch.tensor(y_test).double() if precision == "double" else torch.tensor(y_test).float()
+    # also ensure to use the same precision globally
+    torch.set_default_dtype(torch.float64) if precision == "double" else torch.set_autocast_dtype(torch.float32)
 
     if get_ds:
         return (ds, X_train, X_test, y_train, y_test, feature_names)
