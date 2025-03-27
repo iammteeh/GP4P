@@ -178,30 +178,37 @@ class SaasPyroModelJAX(SaasPyroModel):
             raise ValueError(f"Invalid kernel type: {kernel_type}")
     # define the surrogate model. users who want to modify e.g. the prior on the kernel variance
     # should make their modifications here.
+
+    def sample_single_kernel_model(self):
+        N, P = self.train_X.shape
+
+        variance = self.sample_outputscale()
+        mean = self.sample_mean()
+        noise = (
+            self.sample_noise() if self.learn_noise else self.observation_variance
+        )
+        inv_length_sq, lengthscale = self.sample_lengthscale(P)
+        k = self.init_kernel(outputscale=variance, lengthscale=lengthscale, inv_length_sq=inv_length_sq, noise=noise)
+        numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
+    
+    def sample_additive_kernel_model(self):
+        base_kernels = [self.get_base_kernel(self.train_X, self.train_X, self.kernel_type, dim=item) for item in range(self.ard_num_dims)]
+        d_kernels = []
+        for (i, k1),(j, k2) in combinations(enumerate(base_kernels), 2): # iterate over all pairs of dimensions (d over 2)
+            name = f"{i}_{j}"
+            outputscale = self.sample_outputscale(name_suffix=f"_{name}")
+            d_kernels.append(base_kernels[i] * base_kernels[j] * outputscale) # scaled product kernel
+        K = AdditiveJAXKernel(base_kernels=d_kernels).forward(self.train_X, self.train_X)
+        noise = self.sample_noise()
+        K += jnp.eye(self.train_X.shape[0]) * noise
+        mean = jnp.broadcast_to(self.sample_mean(), self.train_X.shape[0])
+        numpyro.sample(f"Y", dist.MultivariateNormal(loc=mean, covariance_matrix=K), obs=self.train_Y)
+    
     def sample(self):
         if self.kernel_structure != "additive":
-            N, P = self.train_X.shape
-
-            variance = self.sample_outputscale()
-            mean = self.sample_mean()
-            noise = (
-                self.sample_noise() if self.learn_noise else self.observation_variance
-            )
-            inv_length_sq, lengthscale = self.sample_lengthscale(P)
-            k = self.init_kernel(outputscale=variance, lengthscale=lengthscale, inv_length_sq=inv_length_sq, noise=noise)
-            numpyro.sample("Y", dist.MultivariateNormal(loc=jnp.broadcast_to(mean, self.train_X.shape[0]), covariance_matrix=k), obs=self.train_Y)
+            self.sample_single_kernel_model()
         else:
-            base_kernels = [self.get_base_kernel(self.train_X, self.train_X, self.kernel_type, dim=item) for item in range(self.ard_num_dims)]
-            d_kernels = []
-            for (i, k1),(j, k2) in combinations(enumerate(base_kernels), 2): # iterate over all pairs of dimensions (d over 2)
-                name = f"{i}_{j}"
-                outputscale = self.sample_outputscale(name_suffix=f"_{name}")
-                d_kernels.append(base_kernels[i] * base_kernels[j] * outputscale) # scaled product kernel
-            K = AdditiveJAXKernel(base_kernels=d_kernels).forward(self.train_X, self.train_X)
-            noise = self.sample_noise()
-            K += jnp.eye(self.train_X.shape[0]) * noise
-            mean = jnp.broadcast_to(self.sample_mean(), self.train_X.shape[0])
-            numpyro.sample(f"Y", dist.MultivariateNormal(loc=mean, covariance_matrix=K), obs=self.train_Y)
+            self.sample_additive_kernel_model()
     def sample_hyperparameters(self, rng_key, num_samples=1):
         pass
 
