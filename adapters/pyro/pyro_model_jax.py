@@ -290,40 +290,8 @@ class SaasPyroModelJAX(SaasPyroModel):
                 target=likelihood.noise_covar.noise,
                 new_value=mcmc_samples["noise"].clip(MIN_INFERRED_NOISE_LEVEL),
             )
-        if self.kernel_structure == "additive" and not "poly" in self.kernel_type:
+        if self.kernel_structure == "additive":
             lengthscales_squeezed = [mcmc_samples[key].squeeze(-1) for i, key in enumerate(mcmc_samples) if f'lengthscale_{i}' in mcmc_samples.keys()]
-            outputscales_squeezed = {key: mcmc_samples[key] for key in mcmc_samples if 'outputscale' in key}
-            # Iterate over all pairs of dimensions (d over 2)
-            if len(self.train_X.T) <= mcmc_samples['lengthscale_0'].shape[0]:
-                dims = len(self.train_X.T)
-            elif len(self.train_X.T) > mcmc_samples['lengthscale_0'].shape[0]:
-                dims = mcmc_samples['lengthscale'].shape[0]
-            dimension_pairs = list(combinations(range(dims), 2))
-
-            #for i, scale_kernel in enumerate(covar_module.base_kernel.kernels):
-            for (i, j) in dimension_pairs:
-                # Get the indices for the current pair of dimensions
-                if i == len(dimension_pairs):
-                    break
-                dim1, dim2 = dimension_pairs[i]
-
-                #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
-                for scale_kernel in covar_module.base_kernel.kernels:
-                    # Select the appropriate lengthscale value
-                    for k, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
-                        lengthscale_value = lengthscales_squeezed[dim1] if k == 0 else lengthscales_squeezed[dim2]
-
-                        base_kernel.lengthscale = reshape_and_detach(
-                            target=base_kernel.lengthscale,
-                            new_value=jnp.median(lengthscale_value)
-                        )
-                    # Select the according outputscale value
-                    outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
-                    scale_kernel.outputscale = reshape_and_detach(
-                        target=scale_kernel.outputscale,
-                        new_value=outputscale_value
-                    )
-        elif self.kernel_structure == "additive" and "poly" in self.kernel_type:
             outputscales_squeezed = {key: mcmc_samples[key] for key in mcmc_samples if 'outputscale' in key}
             dimension_pairs = list(combinations(range(self.ard_num_dims), 2))
 
@@ -336,6 +304,15 @@ class SaasPyroModelJAX(SaasPyroModel):
 
                 #for j, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
                 for scale_kernel in covar_module.base_kernel.kernels:
+                    if "poly" not in self.kernel_type:
+                        # Select the appropriate lengthscale value
+                        for k, base_kernel in enumerate(scale_kernel.base_kernel.kernels):
+                            lengthscale_value = lengthscales_squeezed[dim1] if k == 0 else lengthscales_squeezed[dim2]
+
+                            base_kernel.lengthscale = reshape_and_detach(
+                                target=base_kernel.lengthscale,
+                                new_value=jnp.median(lengthscale_value)
+                            )
                     # Select the according outputscale value
                     outputscale_value = outputscales_squeezed[f"outputscale_{i}_{j}"]
                     scale_kernel.outputscale = reshape_and_detach(
