@@ -57,13 +57,12 @@ def polynomial_kernel(X, Z, degree, var=1.0, bias=0.0, noise=None):
         k = k + (noise + 1.0e-6) * jnp.eye(X.shape[-2])
     return k  # N_X N_Z
 
-@partial(jit)
-def rff_kernel(X, Z, var, inv_length_sq, num_features, key):
+def rff_kernel(X, Z, inv_length_sq, num_features, var=1.0):
     N_X, P = X.shape
     N_Z = Z.shape[0]
     
     # Generate random weights and biases
-    w_key, b_key = random.split(key)
+    w_key, b_key = random.split(random.PRNGKey(42))
     W = jnp.sqrt(2 * inv_length_sq) * random.normal(w_key, (num_features, P))
     b = 2 * jnp.pi * random.uniform(b_key, (num_features,))
     
