@@ -32,7 +32,7 @@ With the presented methods of the Bayesian Approximate Kernel Regres-
 sion and the distance measure groupRATE, the provided application can iden-
 tify interactions among configuration options to choose from in a variable se-
 lection procedure as a set of constraints to state a dynamic program for finding
-a best subset selection
+a best subset selection with a fixed bandwidth of objective use-cases.
 
 ## Installation
 - prerequisites
